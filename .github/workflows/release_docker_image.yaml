@@ -1,0 +1,15 @@
+name: Release Docker Image
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release_image:
+    uses: pagopa/dx/.github/workflows/docker_image_build.yaml@main
+    name: Docker Image
+    secrets: inherit
+    with:
+      dockerfile_path: './apps/Dockerfile'
+      image_description: 'Empty image used for tests'
+      build_args: |
+        ENV_KEY=override_arg_value
