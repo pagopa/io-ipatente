@@ -1,6 +1,6 @@
 resource "github_repository" "this" {
   name        = "io-ipatente"
-  description = "Initial repository for DevEx activities."
+  description = "iPatente services"
 
   visibility = "public"
 
@@ -19,7 +19,7 @@ resource "github_repository" "this" {
   has_issues      = false
   has_downloads   = false
 
-  topics = ["dx", "typescript"]
+  topics = ["io", "ipatente"]
 
   vulnerability_alerts = true
 

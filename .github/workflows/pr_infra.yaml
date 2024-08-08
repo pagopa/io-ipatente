@@ -22,5 +22,4 @@ jobs:
     secrets: inherit
     with:
       environment: prod
-      region: westeurope
       base_path: infra/resources
