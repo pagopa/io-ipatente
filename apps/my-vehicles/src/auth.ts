@@ -1,28 +1,8 @@
 import NextAuth from "next-auth";
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
-  providers: [
-    {
-      id: "fims",
-      name: "fims",
-      type: "oidc",
-      issuer: process.env.OIDC_ISSUER_URL,
-      authorization: {
-        params: {
-          scope: "openid profile lollipop",
-        },
-      },
-      checks: ["state"],
-      clientId: process.env.OIDC_CLIENT_ID,
-      clientSecret: process.env.OIDC_CLIENT_SECRET,
-      idToken: false,
-    },
-  ],
-  pages: {
-    signIn: "/api/auth/signin",
-  },
+export const { auth, handlers, signIn, signOut } = NextAuth({
   callbacks: {
-    jwt: ({ token, profile }) => {
+    jwt: ({ profile, token }) => {
       if (profile) {
         // TODO: Add lollipop check
         // TODO: Add zod model check
@@ -43,4 +23,24 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return session;
     },
   },
+  pages: {
+    signIn: "/api/auth/signin",
+  },
+  providers: [
+    {
+      authorization: {
+        params: {
+          scope: "openid profile lollipop",
+        },
+      },
+      checks: ["state"],
+      clientId: process.env.OIDC_CLIENT_ID,
+      clientSecret: process.env.OIDC_CLIENT_SECRET,
+      id: "fims",
+      idToken: false,
+      issuer: process.env.OIDC_ISSUER_URL,
+      name: "fims",
+      type: "oidc",
+    },
+  ],
 });
