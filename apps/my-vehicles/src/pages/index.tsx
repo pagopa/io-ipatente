@@ -3,11 +3,18 @@ import { Inter } from "next/font/google";
 import Head from "next/head";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
+import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const { data: session } = useSession();
+  const [fetchData, setFetchData] = useState("");
+
+  const testFetch = () =>
+    fetch("/api/info-veicoli").then(async (response) =>
+      setFetchData(JSON.stringify(await response.json())),
+    );
 
   return (
     <>
@@ -20,10 +27,10 @@ export default function Home() {
       <main className={`${styles.main} ${inter.className}`}>
         <div className={styles.description}>
           <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.tsx</code>
+            Welcome {session?.user?.givenName} {session?.user?.familyName}{" "}
+            <code className={styles.code}>{session?.user?.fiscalCode}</code>{" "}
+            <button onClick={testFetch}>msw fetch test</button> {fetchData}
           </p>
-          <p>{JSON.stringify(session?.user)}</p>
           <div>
             <a
               href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
