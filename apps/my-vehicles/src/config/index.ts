@@ -12,7 +12,6 @@ export interface Configuration {
   IS_TEST: boolean;
 
   // FIMS OIDC
-  OIDC_API_MOCKING: boolean;
   OIDC_CLIENT_ID: string;
   OIDC_CLIENT_REDIRECT_URI: string;
   OIDC_CLIENT_SECRET: string;
@@ -36,7 +35,6 @@ export function getConfiguration(): Configuration {
     IS_SERVER: typeof window === "undefined",
     IS_TEST: process.env.NODE_ENV === "test",
 
-    OIDC_API_MOCKING: process.env.OIDC_API_MOCKING === "true",
     OIDC_CLIENT_ID: process.env.OIDC_CLIENT_ID as string,
     OIDC_CLIENT_REDIRECT_URI: process.env.OIDC_CLIENT_REDIRECT_URI as string,
     OIDC_CLIENT_SECRET: process.env.OIDC_CLIENT_SECRET as string,
