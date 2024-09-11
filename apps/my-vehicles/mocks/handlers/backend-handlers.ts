@@ -20,7 +20,6 @@ export const buildHandlers = () => {
   return [
     http.get(`${baseURL}/info-veicoli`, () => {
       const resultArray = [
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         HttpResponse.json(getInfoVeicoli200Response(), { status: 200 }),
         HttpResponse.json(getInfoVeicoli400Response(), { status: 400 }),
         HttpResponse.json(getInfoVeicoli401Response(), { status: 401 }),
