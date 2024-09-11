@@ -1,5 +1,7 @@
 import NextAuth from "next-auth";
 
+import { getConfiguration } from "./config";
+
 export const { auth, handlers, signIn, signOut } = NextAuth({
   callbacks: {
     jwt: ({ profile, token }) => {
@@ -34,11 +36,11 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         },
       },
       checks: ["state"],
-      clientId: process.env.OIDC_CLIENT_ID,
-      clientSecret: process.env.OIDC_CLIENT_SECRET,
+      clientId: getConfiguration().OIDC_CLIENT_ID,
+      clientSecret: getConfiguration().OIDC_CLIENT_SECRET,
       id: "fims",
       idToken: false,
-      issuer: process.env.OIDC_ISSUER_URL,
+      issuer: getConfiguration().OIDC_ISSUER_URL,
       name: "fims",
       type: "oidc",
     },
