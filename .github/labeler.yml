@@ -1,5 +1,5 @@
 internal: packages/**/*
-app-backend: apps/my-vehicles/**/*
+my-vehicles: apps/my-vehicles/**/*
 docs: docs/**/*
 ci: .github/workflows/**/*
 infra: infra/**/*
