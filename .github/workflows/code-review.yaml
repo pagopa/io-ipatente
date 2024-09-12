@@ -22,11 +22,15 @@ jobs:
         with:
           fetch-depth: 2
 
+      - name: Setup yarn
+        run: corepack enable
+
       - name: Setup Node.js environment
         uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b #v4.0.3
         with:
           node-version-file: ".node-version"
           cache: "yarn"
+          cache-dependency-path: "yarn.lock"
 
       - name: Install dependencies
         run: yarn install --immutable
