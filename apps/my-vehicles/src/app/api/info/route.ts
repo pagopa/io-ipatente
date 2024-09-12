@@ -12,8 +12,5 @@ export async function GET() {
     version: packageJson.version,
   };
 
-  // eslint-disable-next-line no-console
-  console.log("GET /api/info", response);
-
   return NextResponse.json(response, { status: 200 });
 }
