@@ -13,7 +13,7 @@ export async function GET() {
   };
 
   // eslint-disable-next-line no-console
-  console.log("GET /api/info", response);
+  console.log("GET /api/info response", response);
 
   return NextResponse.json(response, { status: 200 });
 }
