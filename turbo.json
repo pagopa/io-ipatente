@@ -23,7 +23,8 @@
       "inputs": [
         "src/**/*.ts",
         "package.json",
-        "tsconfig.json"
+        "tsconfig.json",
+        "!vitest.config.*"
       ],
       "outputs": [],
       "dependsOn": [
