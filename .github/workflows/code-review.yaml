@@ -1,47 +1,16 @@
-# This workflow will perform the code review on each code change.
-# It uses "actions/cache" and turborepo in order to perform tasks only on changed files.
-
-name: "Code Review"
+name: Code Review
 
 on:
+  workflow_dispatch:
   pull_request:
-    types: [opened, edited, synchronize, reopened, ready_for_review]
+    types: [opened, synchronize]
     paths:
       - apps/**
       - packages/**
-      - package.json
-  workflow_dispatch:
+      - .node-version
 
 jobs:
-  code_review:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Check out code
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 #v4.1.7
-        with:
-          fetch-depth: 2
-
-      - name: Setup Node.js and Set Environment Variable
-        uses: ./.github/actions/setup-node
-
-      - name: Install dependencies
-        run: yarn install --immutable
-
-      - name: Cache turbo build setup
-        uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 #v4.0.2
-        with:
-          path: ${{ env.TURBO_CACHE_DIR }}
-          key: ${{ runner.os }}-turbo-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-turbo-
-
-      - name: "Code review"
-        run: yarn run code-review
-
-      - name: "Report My Vehicles Coverage"
-        uses: davelosert/vitest-coverage-report-action@9fd25c0d0394bfd0ffa632777316402c2e5fb81f # v2.0.4
-        if: ${{ hashFiles('./apps/my-vehicles/coverage/*.json') != '' }}
-        with:
-          name: "My Vehicles"
-          working-directory: "./apps/my-vehicles"
+  js_code_review:
+    uses: pagopa/dx/.github/workflows/js_code_review.yaml@acbe3f70840ac84fe36e15a115a61fcf4aa6ada1
+    name: Code Review
+    secrets: inherit
