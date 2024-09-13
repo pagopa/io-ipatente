@@ -1,0 +1,6 @@
+internal: packages/**/*
+my-vehicles: apps/my-vehicles/**/*
+docs: docs/**/*
+ci: .github/workflows/**/*
+infra: infra/**/*
+changeset: .changeset/**/*
