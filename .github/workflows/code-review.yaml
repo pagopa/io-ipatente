@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      TURBO_CACHE_DIR: .turbo/cache
+      TURBO_CACHE_DIR: .test-turbo-cache
 
     steps:
       - name: Check out code
@@ -41,7 +41,7 @@ jobs:
       - name: Cache turbo build setup
         uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 #v4.0.2
         with:
-          path: .turbo
+          path: .test-turbo-cache
           key: ${{ runner.os }}-turbo-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-turbo-
