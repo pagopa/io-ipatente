@@ -16,24 +16,14 @@ jobs:
   code_review:
     runs-on: ubuntu-latest
 
-    env:
-      TURBO_CACHE_DIR: .test-turbo-cache
-
     steps:
       - name: Check out code
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 #v4.1.7
         with:
           fetch-depth: 2
 
-      - name: Setup yarn
-        run: corepack enable
-
-      - name: Setup Node.js environment
-        uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b #v4.0.3
-        with:
-          node-version-file: ".node-version"
-          cache: "yarn"
-          cache-dependency-path: "yarn.lock"
+      - name: Setup Node.js and Set Environment Variable
+        uses: ./.github/actions/setup-node
 
       - name: Install dependencies
         run: yarn install --immutable
