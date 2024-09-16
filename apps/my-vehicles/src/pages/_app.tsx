@@ -9,9 +9,9 @@ if (process.env.NEXT_PUBLIC_BACKEND_API_MOCKING === "true") {
   require("../../mocks");
 }
 
-export type NextPageWithLayout<P = {}, IP = P> = {
+export type NextPageWithLayout = {
   getLayout?: (page: ReactElement) => ReactNode;
-} & NextPage<P, IP>;
+} & NextPage;
 
 type AppPropsWithLayout = {
   Component: NextPageWithLayout;
