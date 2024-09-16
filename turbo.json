@@ -8,7 +8,12 @@
       "dependsOn": ["^generate", "generate", "^build"]
     },
     "typecheck": {
-      "inputs": ["src/**/*.ts", "package.json", "tsconfig.json"],
+      "inputs": [
+        "src/**/*.ts",
+        "package.json",
+        "tsconfig.json",
+        "!vitest.config.*"
+      ],
       "outputs": [],
       "dependsOn": ["^build", "^typecheck"]
     },
