@@ -1,23 +1,11 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": [
-    "**/.env.*local"
-  ],
-  "pipeline": {
+  "globalDependencies": ["**/.env.*local"],
+  "tasks": {
     "build": {
-      "inputs": [
-        "src/**/*.ts",
-        "package.json",
-        "tsconfig.json"
-      ],
-      "outputs": [
-        "dist/**"
-      ],
-      "dependsOn": [
-        "^generate",
-        "generate",
-        "^build"
-      ]
+      "inputs": ["src/**/*.ts", "package.json", "tsconfig.json"],
+      "outputs": ["dist/**"],
+      "dependsOn": ["^generate", "generate", "^build"]
     },
     "typecheck": {
       "inputs": [
@@ -27,62 +15,32 @@
         "!vitest.config.*"
       ],
       "outputs": [],
-      "dependsOn": [
-        "^build",
-        "^typecheck"
-      ]
+      "dependsOn": ["^build", "^typecheck"]
     },
     "format": {},
     "format:check": {},
     "lint": {
-      "inputs": [
-        "src/**/*.ts"
-      ]
+      "inputs": ["src/**/*.ts"]
     },
     "lint:check": {
-      "inputs": [
-        "src/**/*.ts"
-      ]
+      "inputs": ["src/**/*.ts"]
     },
     "test": {
-      "inputs": [
-        "src/**/*.ts"
-      ],
-      "outputMode": "errors-only",
-      "dependsOn": [
-        "^test",
-        "^build"
-      ]
+      "inputs": ["src/**/*.ts"],
+      "dependsOn": ["^test", "^build"]
     },
     "test:coverage": {
-      "inputs": [
-        "src/**/*.ts"
-      ],
-      "outputMode": "errors-only",
-      "dependsOn": [
-        "^test",
-        "^build"
-      ]
+      "inputs": ["src/**/*.ts"],
+      "dependsOn": ["^test", "^build"]
     },
     "generate": {},
     "generate:definitions-internal": {
-      "inputs": [
-        "api/internal.yaml",
-        "package.json",
-        "tsconfig.json"
-      ],
-      "outputs": [
-        "src/generated/definitions/internal/**"
-      ],
-      "dependsOn": [
-        "lint:api",
-        "clean:generate"
-      ]
+      "inputs": ["api/internal.yaml", "package.json", "tsconfig.json"],
+      "outputs": ["src/generated/definitions/internal/**"],
+      "dependsOn": ["lint:api", "clean:generate"]
     },
     "lint:api": {
-      "inputs": [
-        "api/*.yaml"
-      ],
+      "inputs": ["api/*.yaml"],
       "dependsOn": []
     },
     "clean:generate": {}
