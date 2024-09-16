@@ -7,6 +7,4 @@ import { setupServer } from "msw/node";
 
 import { getHandlers } from "./handlers";
 
-export const mswServer = setupServer(...getHandlers());
-
-export const mswServerTest = () => setupServer(...getHandlers());
+export const server = setupServer(...getHandlers());

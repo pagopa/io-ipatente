@@ -8,4 +8,4 @@ import { setupWorker } from "msw/browser";
 
 import { getHandlers } from "./handlers";
 
-export const mswWorker = setupWorker(...getHandlers());
+export const worker = setupWorker(...getHandlers());
