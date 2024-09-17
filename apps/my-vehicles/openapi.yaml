@@ -1,0 +1,177 @@
+openapi: 3.0.0
+info:
+  title: Info Veicolo API
+  description: Specifica delle API backend for frontend (BFF) per la funzionalità **I miei veicoli**
+  version: 0.1.0
+servers:
+  - url: http://localhost:8080/ext/v1
+
+paths:
+  /info-veicoli:
+    get:
+      summary: Recupero di tutti i dati inerenti veicoli
+      operationId: getInfoVeicoli
+      parameters:
+        - name: codiceFiscaleProprietario
+          in: query
+          description: CodiceFiscaleProprietario
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Veicolo"
+        400:
+          $ref: "#/components/responses/Errore400Veicoli"
+        401:
+          $ref: "#/components/responses/Errore401"
+        403:
+          $ref: "#/components/responses/Errore403"
+        404:
+          $ref: "#/components/responses/Errore404"
+        500:
+          description: Internal server error
+
+components:
+  responses:
+    Errore400Veicoli:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Errore"
+          examples:
+            ERR-VEIC-BE-InfoVeicoli-100:
+              $ref: "#/components/examples/ERR-VEIC-BE-InfoVeicoli-100"
+            ERR-VEIC-BE-InfoVeicoli-101:
+              $ref: "#/components/examples/ERR-VEIC-BE-InfoVeicoli-101"
+    Errore404:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Errore"
+          examples:
+            ERR-VEIC-BE-InfoVeicoli-010:
+              $ref: "#/components/examples/ERR-VEIC-BE-InfoVeicoli-010"
+    Errore401:
+      description: Not Authorized
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Errore"
+          examples:
+            ERR-VEIC-BE-InfoVeicoli-010:
+              $ref: "#/components/examples/ERR-VEIC-BE-InfoVeicoli-020"
+    Errore403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Errore"
+          examples:
+            ERR-VEIC-MS-VeicoliImmatricolati-100:
+              $ref: "#/components/examples/ERR-VEIC-BE-InfoVeicoli-020"
+  schemas:
+    CoperturaRCA:
+      type: object
+      properties:
+        compagniaAssicuratrice:
+          description: Indica la compagnia con cui  e' stata stipuilata la copertura RCA
+          type: string
+        dataScadenzaCopertura:
+          description: Indica la data di scadenza della copertura RCA, comprensiva del periodo di comporto
+          type: string
+        coperturaRCA:
+          description: Indica se il veicolo e' coperto da RCA alla data corrente
+          type: string
+
+    Veicolo:
+      type: object
+      properties:
+        targaVeicolo:
+          description: Targa Veicolo
+          type: string
+        tipoVeicolo:
+          description: Tipo Veicolo
+          type: string
+        datiVeicolo:
+          $ref: "#/components/schemas/DatiVeicolo"
+        storicoRevisioni:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Revisione"
+        coperturaRCA:
+          $ref: "#/components/schemas/CoperturaRCA"
+
+    Revisione:
+      type: "object"
+      properties:
+        dataRevisione:
+          type: "string"
+          format: "date"
+        esitoRevisione:
+          type: "string"
+        kmPercorsi:
+          type: "number"
+        kmTotali:
+          type: "number"
+
+    DatiVeicolo:
+      type: "object"
+      properties:
+        extraMassa:
+          description: Messaggio che indica se il veicolo e' soggetto ad extra massa
+          type: "string"
+        neopatentati:
+          description: Indica se il veicolo puo' essere guidato da neo patentati
+          type: "string"
+        classeAmbientale:
+          description: Indica la classe ambientale del veicolo
+          type: "string"
+
+    Errore:
+      title: Errore
+      type: object
+      properties:
+        codice:
+          type: string
+          description: Codice di errore
+        messaggio:
+          type: string
+          description: Descrizione dell'errore
+  examples:
+    ERR-VEIC-BE-InfoVeicoli-010:
+      description: Dati non trovati
+      value:
+        {
+          "codice": "ERR-VEIC-BE-InfoVeicoli-010",
+          "descrizione": "Dati non trovati",
+        }
+    ERR-VEIC-BE-InfoVeicoli-020:
+      description: Operazione non autorizzata
+      value:
+        {
+          "codice": "ERR-VEIC-BE-InfoVeicoli-020",
+          "descrizione": "Operazione non autorizzata",
+        }
+    ERR-VEIC-BE-InfoVeicoli-100:
+      description: Codice Fiscale obbligatorio
+      value:
+        {
+          "codice": "ERR-VEIC-BE-InfoVeicoli-100",
+          "descrizione": "Codice Fiscale obbligatorio",
+        }
+    ERR-VEIC-BE-InfoVeicoli-101:
+      description: Formato Codice Fiscale non valido
+      value:
+        {
+          "codice": "ERR-VEIC-BE-InfoVeicoli-101",
+          "descrizione": "Formato Codice Fiscale non valido",
+        }

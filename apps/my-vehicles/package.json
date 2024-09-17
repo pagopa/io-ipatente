@@ -15,14 +15,18 @@
     "coverage:fe": "vitest run --config ./vitest/vitest.config.react.mjs --coverage",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "generate": "npm-run-all 'generate:*'",
+    "generate:openapi-schema": "rimraf src/generated && mkdir -p src/generated && openapi-zod-client ./openapi.yaml -o src/generated/openapi.ts --export-schemas --additional-props-default-value=false"
   },
   "dependencies": {
+    "@zodios/core": "^10.9.6",
     "jsonwebtoken": "^9.0.2",
     "next": "14.2.5",
     "next-auth": "^5.0.0-beta.20",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@faker-js/faker": "^9.0.0",
@@ -40,7 +44,10 @@
     "eslint-config-next": "14.2.5",
     "jsdom": "^25.0.0",
     "msw": "^2.4.4",
+    "npm-run-all": "^4.1.5",
+    "openapi-zod-client": "^1.18.2",
     "prettier": "^3.3.3",
+    "rimraf": "^6.0.1",
     "typescript": "^5",
     "vite": "^5.4.4",
     "vite-tsconfig-paths": "^5.0.1",
