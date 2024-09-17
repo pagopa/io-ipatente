@@ -8,15 +8,19 @@ import { getConfiguration } from "@/config";
  */
 export const setupMocks = async () => {
   if (
-    getConfiguration().IS_MSW_ENABLED ||
-    process.env.NEXT_PUBLIC_IS_MSW_ENABLED
+    !getConfiguration().IS_MSW_ENABLED ||
+    !process.env.NEXT_PUBLIC_IS_MSW_ENABLED
   ) {
-    if (getConfiguration().IS_BROWSER) {
-      const { mswWorker } = await import("./msw-worker");
-      mswWorker.start({ onUnhandledRequest: "bypass" });
-    } else {
-      const { mswServer } = await import("./msw-server");
-      mswServer.listen({ onUnhandledRequest: "warn" });
-    }
+    return;
   }
+
+  if (getConfiguration().IS_BROWSER) {
+    const { worker } = await import("./browser");
+    return worker.start({ onUnhandledRequest: "bypass" });
+  }
+
+  const { server } = await import("./server");
+  return server.listen({ onUnhandledRequest: "warn" });
 };
+
+setupMocks();
