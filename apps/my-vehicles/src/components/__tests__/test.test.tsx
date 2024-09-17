@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import { cleanup, render } from "@testing-library/react";
 import { afterEach, expect, it } from "vitest";
 
-import { TestComponent } from "../test-component";
+import { TestComponent } from "../TestComponent";
 
 // needed to clean document (react dom)
 afterEach(cleanup);
