@@ -57,7 +57,7 @@ To test the `NextJS App` locally:
 
 1. **Setup the Environment Variables.** Create a file called `.env.local` in each `NextJS App` folder (`./apps/*`) valued according to the environment variables listed in `.env.example`.
 
-2. **Install the project (if you haven't already).** Run from the root folder the following commands.
+2. **Install the project (if you haven't already).** Run the following commands from the root folder.
 
 ```bash
 # to install the dependencies
@@ -75,7 +75,7 @@ yarn workspace <prj-name> dev
 ```
 
 ### Mocking data with MSW
-Each NextJS App use [MSW](https://mswjs.io/), an API mocking library that allows you to write client-agnostic mocks and reuse them across any frameworks, tools, and environments.
+Each NextJS App uses [MSW](https://mswjs.io/), an API mocking library that allows you to write client-agnostic mocks and reuse them across any frameworks, tools, and environments.
 
 To enable MSW in a specific NextJS App, set the following environment variables in `.env.local` file:
 
@@ -93,7 +93,7 @@ NEXT_PUBLIC_EXTERNAL_API_MOCKING=true
 
 This project uses [changesets](https://github.com/changesets/changesets) to automate updating package versions, and changelogs.
 
-Each Pull Request that includes changes that require a version bump should include a `changeset` file that describe that changes.
+Each Pull Request that includes changes that require a version bump should include a `changeset` file that describes that changes.
 
 To create a new `changeset` file run the following command from the project root:
 
