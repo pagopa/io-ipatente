@@ -63,7 +63,7 @@ To test the `NextJS App` locally:
 # to install the dependencies
 yarn
 # to generate the TypeScript models based on OpenAPI specs
-yarn workspaces <prj-name> generate
+yarn workspace <prj-name> generate
 # to build all projects
 yarn build
 ```
