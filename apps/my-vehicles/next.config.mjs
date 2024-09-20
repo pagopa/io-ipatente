@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
+import nextI18NextConfig from "./next-i18next.config.js";
+
+const i18n = nextI18NextConfig.i18n;
+
 const nextConfig = {
   reactStrictMode: true,
+  i18n,
   // https://github.com/mswjs/msw/issues/1801
   // Setting `resolve.alias` to `false` will tell webpack to ignore a module.
   // `msw/node` is a server-only module that exports methods not available in the `browser`.

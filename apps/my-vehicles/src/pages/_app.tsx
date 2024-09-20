@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import "@/styles/globals.css";
 import { NextPage } from "next";
 import { SessionProvider } from "next-auth/react";
+import { appWithTranslation } from "next-i18next";
 import { ReactElement, ReactNode } from "react";
 
 if (process.env.NEXT_PUBLIC_BACKEND_API_MOCKING === "true") {
@@ -25,4 +26,4 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   );
 };
 
-export default App;
+export default appWithTranslation(App);
