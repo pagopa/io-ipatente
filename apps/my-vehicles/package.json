@@ -17,9 +17,11 @@
     "build": "next build",
     "start": "next start",
     "generate": "npm-run-all 'generate:*'",
-    "generate:openapi-schema": "rimraf src/generated && mkdir -p src/generated && openapi-zod-client ./openapi.yaml -o src/generated/openapi.ts --export-schemas --additional-props-default-value=false"
+    "generate:openapi-schema": "rimraf src/generated && mkdir -p src/generated && openapi-zod-client ./openapi.yaml -o src/generated/openapi.ts -t template-bff.hbs --additional-props-default-value=false"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.56.2",
+    "@tanstack/react-query-devtools": "^5.56.2",
     "@zodios/core": "^10.9.6",
     "jsonwebtoken": "^9.0.2",
     "next": "14.2.5",

@@ -1,20 +1,31 @@
+import { auth } from "@/auth";
+import { useVehicles } from "@/hooks/useVehicles";
 import styles from "@/styles/Home.module.css";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { Inter } from "next/font/google";
 import Head from "next/head";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { Session } from "next-auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
-  const { data: session } = useSession();
-  const [fetchData, setFetchData] = useState("");
+type HomeProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
-  const testFetch = () =>
-    fetch("/api/info-veicoli").then(async (response) =>
-      setFetchData(JSON.stringify(await response.json())),
-    );
+export default function Home({ session }: HomeProps) {
+  const {
+    data = [],
+    error,
+    isError,
+    isLoading,
+  } = useVehicles(session.user.fiscalCode);
+
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
+
+  if (isError) {
+    return <span>Error: {error.message}</span>;
+  }
 
   return (
     <>
@@ -29,7 +40,7 @@ export default function Home() {
           <p>
             Welcome {session?.user?.givenName} {session?.user?.familyName}{" "}
             <code className={styles.code}>{session?.user?.fiscalCode}</code>{" "}
-            <button onClick={testFetch}>msw fetch test</button> {fetchData}
+            {JSON.stringify(data)}
           </p>
           <div>
             <a
@@ -123,3 +134,16 @@ export default function Home() {
     </>
   );
 }
+
+export const getServerSideProps = (async (context) => {
+  const session = await auth(context);
+
+  // TODO: handle session not found
+  if (!session) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return { props: { session } };
+}) satisfies GetServerSideProps<{ session: Session }>;
