@@ -33,6 +33,7 @@
   "devDependencies": {
     "@faker-js/faker": "^9.0.0",
     "@pagopa/eslint-config": "^4.0.1",
+    "@tanstack/eslint-plugin-query": "^5.57.1",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",

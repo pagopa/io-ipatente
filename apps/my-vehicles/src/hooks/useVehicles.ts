@@ -13,5 +13,5 @@ const fetchVehicles = async (fiscalCode: string) => {
 export const useVehicles = (fiscalCode: string) =>
   useQuery({
     queryFn: () => fetchVehicles(fiscalCode),
-    queryKey: ["vehicles"],
+    queryKey: ["vehicles", fiscalCode],
   });

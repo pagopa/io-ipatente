@@ -1,6 +1,7 @@
 import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
 import pagopa from "@pagopa/eslint-config";
+import pluginQuery from "@tanstack/eslint-plugin-query";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -11,4 +12,8 @@ const compat = new FlatCompat({
   recommendedConfig: js.configs.recommended,
   allConfig: js.configs.all,
 });
-export default [...pagopa, ...compat.extends("next/core-web-vitals")];
+export default [
+  ...pagopa,
+  ...compat.extends("next/core-web-vitals"),
+  ...pluginQuery.configs["flat/recommended"],
+];
