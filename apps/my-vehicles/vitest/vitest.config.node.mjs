@@ -1,5 +1,6 @@
 import { configDefaults, defineConfig } from "vitest/config";
 import tsconfigPaths from "vite-tsconfig-paths";
+import { loadEnv } from "vite";
 
 export default defineConfig({
   plugins: [tsconfigPaths()],
@@ -32,6 +33,7 @@ export default defineConfig({
       reporter: ["text", "json-summary", "json"],
       reportsDirectory: `${configDefaults.coverage.reportsDirectory}/backend`,
     },
+    env: loadEnv("test", process.cwd(), ""),
     exclude: [
       ...configDefaults.exclude,
       "./vitest/vitest.setup.react.ts",
