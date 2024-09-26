@@ -17,9 +17,11 @@
     "build": "next build",
     "start": "next start",
     "generate": "npm-run-all 'generate:*'",
-    "generate:openapi-schema": "rimraf src/generated && mkdir -p src/generated && openapi-zod-client ./openapi.yaml -o src/generated/openapi.ts --export-schemas --additional-props-default-value=false"
+    "generate:openapi-schema": "rimraf src/generated && mkdir -p src/generated && openapi-zod-client ./openapi.yaml -o src/generated/openapi.ts -t template-bff.hbs --additional-props-default-value=false"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.56.2",
+    "@tanstack/react-query-devtools": "^5.56.2",
     "@zodios/core": "^10.9.6",
     "i18next": "^23.15.1",
     "jsonwebtoken": "^9.0.2",
@@ -34,6 +36,7 @@
   "devDependencies": {
     "@faker-js/faker": "^9.0.0",
     "@pagopa/eslint-config": "^4.0.1",
+    "@tanstack/eslint-plugin-query": "^5.57.1",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",

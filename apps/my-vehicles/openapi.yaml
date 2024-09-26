@@ -11,13 +11,6 @@ paths:
     get:
       summary: Recupero di tutti i dati inerenti veicoli
       operationId: getInfoVeicoli
-      parameters:
-        - name: codiceFiscaleProprietario
-          in: query
-          description: CodiceFiscaleProprietario
-          required: true
-          schema:
-            type: string
       responses:
         200:
           description: OK

@@ -1,9 +1,11 @@
 import { faker } from "@faker-js/faker/locale/it";
 
-// TODO: just a placeholder, replace with correct mock vehicle object
-export const getMockVehicle = () => ({
-  todo: faker.lorem.word(),
-});
+export const getMockVehicles = [
+  {
+    targaVeicolo: faker.vehicle.vrm(),
+    tipoVeicolo: "C",
+  },
+];
 
 export const aMockBadRequestError = {
   codice: "ERR-VEIC-BE-InfoVeicoli-100",

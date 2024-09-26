@@ -7,7 +7,7 @@ import {
   aMockForbiddenError,
   aMockNotAuthorizedError,
   aMockNotFoundError,
-  getMockVehicle,
+  getMockVehicles,
 } from "../data/backend-data";
 
 faker.seed(1);
@@ -32,7 +32,7 @@ export const buildHandlers = () => {
   ];
 };
 
-export const getInfoVeicoli200Response = () => getMockVehicle();
+export const getInfoVeicoli200Response = () => getMockVehicles;
 export const getInfoVeicoli400Response = () => aMockBadRequestError;
 export const getInfoVeicoli401Response = () => aMockNotAuthorizedError;
 export const getInfoVeicoli403Response = () => aMockForbiddenError;

@@ -4,6 +4,7 @@
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { configDefaults, defineConfig } from "vitest/config";
+import { loadEnv } from "vite";
 
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
@@ -33,6 +34,7 @@ export default defineConfig({
       reportsDirectory: `${configDefaults.coverage.reportsDirectory}/frontend`,
     },
     css: true,
+    env: loadEnv("test", process.cwd(), ""),
     environment: "jsdom",
     exclude: [
       ...configDefaults.exclude,

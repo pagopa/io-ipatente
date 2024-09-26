@@ -1,3 +1,4 @@
+import { useVehicles } from "@/hooks/useVehicles";
 import styles from "@/styles/Home.module.css";
 import { GetStaticProps } from "next";
 import { Inter } from "next/font/google";
@@ -7,7 +8,6 @@ import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,18 +15,22 @@ export default function Home() {
   const { t } = useTranslation();
   const router = useRouter();
   const { data: session } = useSession();
-  const [fetchData, setFetchData] = useState("");
 
-  const testFetch = () =>
-    fetch("/api/info-veicoli").then(async (response) =>
-      setFetchData(JSON.stringify(await response.json())),
-    );
+  const { data = [], error, isError, isLoading } = useVehicles();
 
   const testChangeLanguage = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const path = router.asPath;
     const locale = event.target.value;
     return router.push(path, path, { locale });
   };
+
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
+
+  if (isError) {
+    return <span>Error: {error.message}</span>;
+  }
 
   return (
     <>
@@ -42,7 +46,7 @@ export default function Home() {
             {t("welcome")} {session?.user?.givenName}{" "}
             {session?.user?.familyName}{" "}
             <code className={styles.code}>{session?.user?.fiscalCode}</code>{" "}
-            <button onClick={testFetch}>msw fetch test</button> {fetchData}
+            {JSON.stringify(data)}{" "}
             <select id="i18nSelect" onChange={testChangeLanguage}>
               <option value="it">IT</option>
               <option value="en">EN</option>
