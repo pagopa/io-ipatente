@@ -1,3 +1,4 @@
+import { useVehicles } from "@/hooks/useVehicles";
 import styles from "@/styles/Home.module.css";
 import { GetStaticProps } from "next";
 import { Inter } from "next/font/google";
@@ -7,8 +8,6 @@ import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useState } from "react";
-import { useVehicles } from "@/hooks/useVehicles";
 
 const inter = Inter({ subsets: ["latin"] });
 
