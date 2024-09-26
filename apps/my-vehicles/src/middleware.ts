@@ -35,7 +35,8 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      */
-    "/((?!api/auth|_next/static|_next/image|favicon.ico).*)",
+    "/",
+    "/((?!api/auth|_next/static|_next/image|mockServiceWorker.js|favicon.ico).*)",
     "/api/auth/callback/fims",
   ],
 };
