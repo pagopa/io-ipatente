@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { NextPage } from "next";
 import { SessionProvider } from "next-auth/react";
+import { appWithTranslation } from "next-i18next";
 import { ReactElement, ReactNode, useState } from "react";
 
 if (process.env.NEXT_PUBLIC_BACKEND_API_MOCKING === "true") {
@@ -45,4 +46,4 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   );
 };
 
-export default App;
+export default appWithTranslation(App);

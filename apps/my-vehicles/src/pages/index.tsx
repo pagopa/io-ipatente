@@ -1,23 +1,29 @@
-import { auth } from "@/auth";
-import { useVehicles } from "@/hooks/useVehicles";
 import styles from "@/styles/Home.module.css";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { GetStaticProps } from "next";
 import { Inter } from "next/font/google";
 import Head from "next/head";
 import Image from "next/image";
-import { Session } from "next-auth";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useState } from "react";
+import { useVehicles } from "@/hooks/useVehicles";
 
 const inter = Inter({ subsets: ["latin"] });
 
-type HomeProps = InferGetServerSidePropsType<typeof getServerSideProps>;
+export default function Home() {
+  const { t } = useTranslation();
+  const router = useRouter();
+  const { data: session } = useSession();
 
-export default function Home({ session }: HomeProps) {
-  const {
-    data = [],
-    error,
-    isError,
-    isLoading,
-  } = useVehicles(session.user.fiscalCode);
+  const { data = [], error, isError, isLoading } = useVehicles();
+
+  const testChangeLanguage = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const path = router.asPath;
+    const locale = event.target.value;
+    return router.push(path, path, { locale });
+  };
 
   if (isLoading) {
     return <span>Loading...</span>;
@@ -38,9 +44,14 @@ export default function Home({ session }: HomeProps) {
       <main className={`${styles.main} ${inter.className}`}>
         <div className={styles.description}>
           <p>
-            Welcome {session?.user?.givenName} {session?.user?.familyName}{" "}
+            {t("welcome")} {session?.user?.givenName}{" "}
+            {session?.user?.familyName}{" "}
             <code className={styles.code}>{session?.user?.fiscalCode}</code>{" "}
-            {JSON.stringify(data)}
+            {JSON.stringify(data)}{" "}
+            <select id="i18nSelect" onChange={testChangeLanguage}>
+              <option value="it">IT</option>
+              <option value="en">EN</option>
+            </select>
           </p>
           <div>
             <a
@@ -135,15 +146,9 @@ export default function Home({ session }: HomeProps) {
   );
 }
 
-export const getServerSideProps = (async (context) => {
-  const session = await auth(context);
-
-  // TODO: handle session not found
-  if (!session) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return { props: { session } };
-}) satisfies GetServerSideProps<{ session: Session }>;
+// Loading locales server-side
+export const getStaticProps: GetStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale as string, ["common"])),
+  },
+});

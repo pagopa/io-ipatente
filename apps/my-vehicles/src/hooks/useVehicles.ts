@@ -1,17 +1,13 @@
 import { client } from "@/common/client";
 import { useQuery } from "@tanstack/react-query";
 
-const fetchVehicles = async (fiscalCode: string) => {
-  const response = await client.getInfoVeicoli({
-    queries: {
-      codiceFiscaleProprietario: fiscalCode,
-    },
-  });
+const fetchVehicles = async () => {
+  const response = await client.getInfoVeicoli();
   return response;
 };
 
-export const useVehicles = (fiscalCode: string) =>
+export const useVehicles = () =>
   useQuery({
-    queryFn: () => fetchVehicles(fiscalCode),
-    queryKey: ["vehicles", fiscalCode],
+    queryFn: () => fetchVehicles(),
+    queryKey: ["vehicles"],
   });
