@@ -20,6 +20,7 @@
     "generate:openapi-schema": "rimraf src/generated && mkdir -p src/generated && openapi-zod-client ./openapi.yaml -o src/generated/openapi.ts -t template-bff.hbs --additional-props-default-value=false"
   },
   "dependencies": {
+    "@ipatente/ui": "workspace:*",
     "@tanstack/react-query": "^5.56.2",
     "@tanstack/react-query-devtools": "^5.56.2",
     "@zodios/core": "^10.9.6",
