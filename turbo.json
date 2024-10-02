@@ -31,7 +31,7 @@
     },
     "test:coverage": {
       "inputs": ["src/**/*.ts"],
-      "dependsOn": ["^generate", "generate", "^test", "^build"]
+      "dependsOn": ["generate", "^test", "^build"]
     },
     "generate": {},
     "generate:definitions-internal": {
