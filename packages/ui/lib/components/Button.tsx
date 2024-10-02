@@ -1,22 +1,20 @@
 import Button from "@mui/material/Button";
 
-export type UIButtonProps = {
+export interface UIButtonProps {
   label: string;
-  variant?: "contained" | "naked" | "outlined" | "text";
   onClick: () => void;
-};
+  variant?: "contained" | "naked" | "outlined" | "text";
+}
 
-const UIButton = ({ label, variant = "contained", onClick }: UIButtonProps) => {
-  return (
-    <Button
-      data-testid="io-ipatente-button"
-      variant={variant}
-      color="primary"
-      onClick={() => onClick()}
-    >
-      {label}
-    </Button>
-  );
-};
+const UIButton = ({ label, onClick, variant = "contained" }: UIButtonProps) => (
+  <Button
+    color="primary"
+    data-testid="io-ipatente-button"
+    onClick={onClick}
+    variant={variant}
+  >
+    {label}
+  </Button>
+);
 
 export default UIButton;
