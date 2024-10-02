@@ -7,7 +7,7 @@ const UITheme = createTheme({
     ...muiItaliaTheme.palette,
     primary: {
       // Test purpose
-      main: "purple",
+      main: "#5E0A80",
     },
   },
 });
