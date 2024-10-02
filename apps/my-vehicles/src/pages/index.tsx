@@ -1,15 +1,15 @@
+/* eslint-disable no-console */
 import { useVehicles } from "@/hooks/useVehicles";
-import styles from "@/styles/Home.module.css";
+// import styles from "@/styles/Home.module.css";
+import { UIButton } from "@io-ipatente/ui";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 import { GetStaticProps } from "next";
-import { Inter } from "next/font/google";
 import Head from "next/head";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const { t } = useTranslation();
@@ -40,107 +40,37 @@ export default function Home() {
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <link href="/favicon.ico" rel="icon" />
       </Head>
-      <main className={`${styles.main} ${inter.className}`}>
-        <div className={styles.description}>
-          <p>
+      <Grid
+        alignContent="center"
+        alignItems="center"
+        container
+        spacing={2}
+        textAlign="center"
+      >
+        <Grid item xs={12}>
+          <Typography color="primary" variant="h3">
             {t("welcome")} {session?.user?.givenName}{" "}
             {session?.user?.familyName}{" "}
-            <code className={styles.code}>{session?.user?.fiscalCode}</code>{" "}
-            {JSON.stringify(data)}{" "}
-            <select id="i18nSelect" onChange={testChangeLanguage}>
-              <option value="it">IT</option>
-              <option value="en">EN</option>
-            </select>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              By{" "}
-              <Image
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                height={24}
-                priority
-                src="/vercel.svg"
-                width={100}
-              />
-            </a>
-          </div>
-        </div>
-
-        <div className={styles.center}>
-          <Image
-            alt="Next.js Logo"
-            className={styles.logo}
-            height={37}
-            priority
-            src="/next.svg"
-            width={180}
+          </Typography>
+          <Typography variant="h5">{session?.user?.fiscalCode}</Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography>{JSON.stringify(data)}</Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <select id="i18nSelect" onChange={testChangeLanguage}>
+            <option value="it">IT</option>
+            <option value="en">EN</option>
+          </select>
+        </Grid>
+        <Grid item xs={12}>
+          <UIButton
+            label="Test UI"
+            onClick={() => console.log("Test UI")}
+            variant="contained"
           />
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            className={styles.card}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <h2>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            className={styles.card}
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <h2>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            className={styles.card}
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <h2>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            className={styles.card}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <h2>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+        </Grid>
+      </Grid>
     </>
   );
 }

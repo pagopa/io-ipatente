@@ -1,6 +1,9 @@
 import type { AppProps } from "next/app";
 
 import "@/styles/globals.css";
+import { UITheme } from "@io-ipatente/ui";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { NextPage } from "next";
@@ -38,10 +41,13 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
 
   return (
     <SessionProvider>
-      <QueryClientProvider client={queryClient}>
-        {getLayout(<Component {...pageProps} />)}
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
+      <ThemeProvider theme={UITheme}>
+        <CssBaseline />
+        <QueryClientProvider client={queryClient}>
+          {getLayout(<Component {...pageProps} />)}
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </ThemeProvider>
     </SessionProvider>
   );
 };
