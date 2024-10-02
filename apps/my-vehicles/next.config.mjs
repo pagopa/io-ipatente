@@ -1,10 +1,12 @@
 /** @type {import('next').NextConfig} */
+import path from "node:path";
 import nextI18NextConfig from "./next-i18next.config.js";
 
 const i18n = nextI18NextConfig.i18n;
 
 const nextConfig = {
   reactStrictMode: true,
+  transpilePackages: ["@pagopa/mui-italia"],
   i18n,
   // https://github.com/mswjs/msw/issues/1801
   // Setting `resolve.alias` to `false` will tell webpack to ignore a module.
@@ -20,6 +22,8 @@ const nextConfig = {
       config.resolve.alias = {
         ...config.resolve.alias,
         "msw/node": false,
+        react: path.resolve("./node_modules/react"),
+        "react-dom": path.resolve("./node_modules/react-dom"),
       };
     }
     return config;

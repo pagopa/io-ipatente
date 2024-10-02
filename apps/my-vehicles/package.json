@@ -20,7 +20,14 @@
     "generate:openapi-schema": "rimraf src/generated && mkdir -p src/generated && openapi-zod-client ./openapi.yaml -o src/generated/openapi.ts -t template-bff.hbs --additional-props-default-value=false"
   },
   "dependencies": {
-    "@ipatente/ui": "workspace:*",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@io-ipatente/ui": "workspace:*",
+    "@mui/icons-material": "^5.14.3",
+    "@mui/lab": "^5.0.0-alpha.140",
+    "@mui/material": "^5.14.5",
+    "@mui/system": "^5.14.5",
+    "@pagopa/mui-italia": "^1.5.0",
     "@tanstack/react-query": "^5.56.2",
     "@tanstack/react-query-devtools": "^5.56.2",
     "@zodios/core": "^10.9.6",
@@ -29,8 +36,8 @@
     "next": "14.2.5",
     "next-auth": "^5.0.0-beta.21",
     "next-i18next": "^15.3.1",
-    "react": "^18",
-    "react-dom": "^18",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-i18next": "^15.0.2",
     "zod": "^3.23.8"
   },
