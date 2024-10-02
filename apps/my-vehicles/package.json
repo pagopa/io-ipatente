@@ -10,7 +10,7 @@
     "test": "yarn test:bff && yarn test:fe",
     "test:bff": "vitest run --config ./vitest/vitest.config.node.mjs",
     "test:fe": "vitest run --config ./vitest/vitest.config.react.mjs",
-    "coverage": "yarn coverage:bff && yarn coverage:fe",
+    "test:coverage": "yarn coverage:bff && yarn coverage:fe",
     "coverage:bff": "vitest run --config ./vitest/vitest.config.node.mjs --coverage",
     "coverage:fe": "vitest run --config ./vitest/vitest.config.react.mjs --coverage",
     "dev": "next dev",
