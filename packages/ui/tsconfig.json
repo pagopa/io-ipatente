@@ -11,8 +11,7 @@
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "emitDeclarationOnly": true,
-    "declaration": true,
+    "noEmit": true,
     "jsx": "react-jsx",
     "typeRoots": ["./dist/index.d.ts"],
 
