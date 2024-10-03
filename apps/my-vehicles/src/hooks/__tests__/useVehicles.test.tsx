@@ -7,8 +7,6 @@ import { Errore } from "../../generated/openapi";
 import { Wrapper } from "../../utils/testWrapper";
 import { useVehicles } from "../useVehicles";
 
-const MOCK_FISCAL_CODE = "AAAAAAAAAAAAA";
-
 const MOCK_ERROR_PAYLOAD: Errore = {
   codice: "ERROR_CODE",
   messaggio: "MESSAGE",
@@ -16,7 +14,7 @@ const MOCK_ERROR_PAYLOAD: Errore = {
 
 describe("useVehicles", () => {
   it("should return the list of vehicles if the status code is 200", async () => {
-    const { result } = renderHook(() => useVehicles(MOCK_FISCAL_CODE), {
+    const { result } = renderHook(() => useVehicles(), {
       wrapper: Wrapper,
     });
 
@@ -32,7 +30,7 @@ describe("useVehicles", () => {
       ),
     );
 
-    const { result } = renderHook(() => useVehicles(MOCK_FISCAL_CODE), {
+    const { result } = renderHook(() => useVehicles(), {
       wrapper: Wrapper,
     });
 
