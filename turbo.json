@@ -5,7 +5,7 @@
     "build": {
       "inputs": ["src/**/*.ts", "package.json", "tsconfig.json"],
       "outputs": ["dist/**"],
-      "dependsOn": ["^generate", "generate", "^build"]
+      "dependsOn": ["generate", "^build"]
     },
     "typecheck": {
       "inputs": [
@@ -19,6 +19,7 @@
     },
     "format": {},
     "format:check": {},
+    "generate": {},
     "lint": {
       "inputs": ["src/**/*.ts"]
     },
@@ -26,23 +27,10 @@
       "inputs": ["src/**/*.ts"]
     },
     "test": {
-      "inputs": ["src/**/*.ts"],
-      "dependsOn": ["^test", "^build"]
+      "dependsOn": ["generate"]
     },
     "test:coverage": {
-      "inputs": ["src/**/*.ts"],
-      "dependsOn": ["^generate", "generate", "^test", "^build"]
-    },
-    "generate": {},
-    "generate:definitions-internal": {
-      "inputs": ["api/internal.yaml", "package.json", "tsconfig.json"],
-      "outputs": ["src/generated/definitions/internal/**"],
-      "dependsOn": ["lint:api", "clean:generate"]
-    },
-    "lint:api": {
-      "inputs": ["api/*.yaml"],
-      "dependsOn": []
-    },
-    "clean:generate": {}
+      "dependsOn": ["generate"]
+    }
   }
 }
