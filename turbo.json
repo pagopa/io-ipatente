@@ -19,7 +19,10 @@
     },
     "format": {},
     "format:check": {},
-    "generate": {},
+    "generate": {
+      "inputs": ["./openapi.yaml"],
+      "outputs": ["src/generated/**/*"]
+    },
     "lint": {
       "inputs": ["src/**/*.ts"]
     },
