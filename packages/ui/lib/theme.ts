@@ -7,14 +7,14 @@ const colorTextPrimary = "#003366";
 const UITheme = createTheme(
   deepmerge(muiItaliaTheme, {
     palette: {
-      primary: {
-        main: "#0066CC",
-      },
       error: {
         contrastText: colorTextPrimary,
       },
       info: {
         contrastText: colorTextPrimary,
+      },
+      primary: {
+        main: "#0066CC",
       },
       success: {
         contrastText: colorTextPrimary,
@@ -31,7 +31,7 @@ const UITheme = createTheme(
         color: colorTextPrimary,
       },
     },
-  })
+  }),
 );
 
 export default UITheme;
