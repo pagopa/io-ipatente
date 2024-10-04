@@ -2,7 +2,11 @@ import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
-import { DATA_TEST_ID_PREFIX, PageHeader, PageHeaderBreadcrumb } from "../";
+import {
+  DATA_TEST_ID_PREFIX,
+  PageHeader,
+  PageHeaderBreadcrumb,
+} from "../PageHeader";
 
 const description = "sample-description";
 const title = "sample-title";
