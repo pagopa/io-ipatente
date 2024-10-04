@@ -32,10 +32,10 @@ export const TopBar = ({ assistance, product }: TopBarProps) => (
         alignItems="center"
         direction="row"
         spacing={2}
-        sx={{ flexGrow: 1, ml: 2 }}
+        sx={{ flexGrow: 1, ml: 1 }}
       >
         <Link
-          color="primary.main"
+          color="primary"
           href={product.url}
           underline="none"
           variant="caption"
@@ -46,11 +46,7 @@ export const TopBar = ({ assistance, product }: TopBarProps) => (
       </Stack>
 
       {assistance && (
-        <Stack
-          alignItems="center"
-          direction="row"
-          spacing={{ md: 4, sm: 3, xs: 1 }}
-        >
+        <Stack alignItems="center" direction="row" spacing={2}>
           <ButtonNaked
             component="button"
             onClick={assistance.onClick}

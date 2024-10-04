@@ -35,17 +35,17 @@ exports[`Test TopBar Components > Should match the snapshot when assistance is t
             />
           </svg>
           <div
-            class="MuiStack-root css-1owdgva-MuiStack-root"
+            class="MuiStack-root css-1l9q2wv-MuiStack-root"
           >
             <a
-              class="MuiTypography-root MuiTypography-caption MuiLink-root MuiLink-underlineNone css-1s8n792-MuiTypography-root-MuiLink-root"
+              class="MuiTypography-root MuiTypography-caption MuiLink-root MuiLink-underlineNone css-boo9qj-MuiTypography-root-MuiLink-root"
               href=""
             >
               Il portale dell'automobilista
             </a>
           </div>
           <div
-            class="MuiStack-root css-6jtjdt-MuiStack-root"
+            class="MuiStack-root css-1sos3zc-MuiStack-root"
           >
             <button
               class="MuiButtonBase-root MuiButton-root MuiButton-naked MuiButton-nakedText MuiButton-sizeSmall MuiButton-nakedSizeSmall MuiButton-colorText MuiButton-root MuiButton-naked MuiButton-nakedText MuiButton-sizeSmall MuiButton-nakedSizeSmall MuiButton-colorText css-1bmlfez-MuiButtonBase-root-MuiButton-root"
@@ -126,17 +126,17 @@ exports[`Test TopBar Components > Should match the snapshot when assistance is t
           />
         </svg>
         <div
-          class="MuiStack-root css-1owdgva-MuiStack-root"
+          class="MuiStack-root css-1l9q2wv-MuiStack-root"
         >
           <a
-            class="MuiTypography-root MuiTypography-caption MuiLink-root MuiLink-underlineNone css-1s8n792-MuiTypography-root-MuiLink-root"
+            class="MuiTypography-root MuiTypography-caption MuiLink-root MuiLink-underlineNone css-boo9qj-MuiTypography-root-MuiLink-root"
             href=""
           >
             Il portale dell'automobilista
           </a>
         </div>
         <div
-          class="MuiStack-root css-6jtjdt-MuiStack-root"
+          class="MuiStack-root css-1sos3zc-MuiStack-root"
         >
           <button
             class="MuiButtonBase-root MuiButton-root MuiButton-naked MuiButton-nakedText MuiButton-sizeSmall MuiButton-nakedSizeSmall MuiButton-colorText MuiButton-root MuiButton-naked MuiButton-nakedText MuiButton-sizeSmall MuiButton-nakedSizeSmall MuiButton-colorText css-1bmlfez-MuiButtonBase-root-MuiButton-root"
@@ -274,10 +274,10 @@ exports[`Test TopBar Components > Should match the snapshot with default props 1
             />
           </svg>
           <div
-            class="MuiStack-root css-1owdgva-MuiStack-root"
+            class="MuiStack-root css-1l9q2wv-MuiStack-root"
           >
             <a
-              class="MuiTypography-root MuiTypography-caption MuiLink-root MuiLink-underlineNone css-1s8n792-MuiTypography-root-MuiLink-root"
+              class="MuiTypography-root MuiTypography-caption MuiLink-root MuiLink-underlineNone css-boo9qj-MuiTypography-root-MuiLink-root"
               href=""
             >
               Il portale dell'automobilista
@@ -318,10 +318,10 @@ exports[`Test TopBar Components > Should match the snapshot with default props 1
           />
         </svg>
         <div
-          class="MuiStack-root css-1owdgva-MuiStack-root"
+          class="MuiStack-root css-1l9q2wv-MuiStack-root"
         >
           <a
-            class="MuiTypography-root MuiTypography-caption MuiLink-root MuiLink-underlineNone css-1s8n792-MuiTypography-root-MuiLink-root"
+            class="MuiTypography-root MuiTypography-caption MuiLink-root MuiLink-underlineNone css-boo9qj-MuiTypography-root-MuiLink-root"
             href=""
           >
             Il portale dell'automobilista
