@@ -2,7 +2,7 @@ import { createTheme } from "@mui/material/styles";
 import { deepmerge } from "@mui/utils";
 import { theme as muiItaliaTheme } from "@pagopa/mui-italia";
 
-const UITheme = createTheme(
+export const UITheme = createTheme(
   deepmerge(muiItaliaTheme, {
     palette: {
       primary: {
@@ -12,4 +12,4 @@ const UITheme = createTheme(
   }),
 );
 
-export default UITheme;
+export type UITheme = typeof UITheme;
