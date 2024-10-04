@@ -24,8 +24,8 @@ describe("Test TopBar Components", () => {
       <TopBar
         {...defaultProps}
         assistance={{
-          onClick: mockHandleClick,
           label: "Assistenza",
+          onClick: mockHandleClick,
         }}
       />,
     );
@@ -37,8 +37,8 @@ describe("Test TopBar Components", () => {
       <TopBar
         {...defaultProps}
         assistance={{
-          onClick: mockHandleClick,
           label: "Assistenza",
+          onClick: mockHandleClick,
         }}
       />,
     );

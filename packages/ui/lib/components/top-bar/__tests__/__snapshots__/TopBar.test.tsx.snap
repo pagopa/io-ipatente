@@ -6,7 +6,7 @@ exports[`Test TopBar Components > Should match the snapshot when assistance is t
   "baseElement": <body>
     <div>
       <header
-        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionStatic css-enyiw4-MuiPaper-root-MuiAppBar-root"
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionStatic css-1061a19-MuiPaper-root-MuiAppBar-root"
       >
         <div
           class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-hyum1k-MuiToolbar-root"
@@ -97,7 +97,7 @@ exports[`Test TopBar Components > Should match the snapshot when assistance is t
   </body>,
   "container": <div>
     <header
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionStatic css-enyiw4-MuiPaper-root-MuiAppBar-root"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionStatic css-1061a19-MuiPaper-root-MuiAppBar-root"
     >
       <div
         class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-hyum1k-MuiToolbar-root"
@@ -245,7 +245,7 @@ exports[`Test TopBar Components > Should match the snapshot with default props 1
   "baseElement": <body>
     <div>
       <header
-        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionStatic css-enyiw4-MuiPaper-root-MuiAppBar-root"
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionStatic css-1061a19-MuiPaper-root-MuiAppBar-root"
       >
         <div
           class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-hyum1k-MuiToolbar-root"
@@ -289,7 +289,7 @@ exports[`Test TopBar Components > Should match the snapshot with default props 1
   </body>,
   "container": <div>
     <header
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionStatic css-enyiw4-MuiPaper-root-MuiAppBar-root"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionStatic css-1061a19-MuiPaper-root-MuiAppBar-root"
     >
       <div
         class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-hyum1k-MuiToolbar-root"

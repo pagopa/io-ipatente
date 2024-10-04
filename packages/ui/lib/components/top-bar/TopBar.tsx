@@ -25,7 +25,7 @@ export interface TopBarProps {
 }
 
 export const TopBar = ({ assistance, product }: TopBarProps) => (
-  <AppBar position="static" sx={{ backgroundColor: "white" }}>
+  <AppBar position="static" sx={{ bgcolor: "background.paper" }}>
     <Toolbar>
       <Logo name={product.logo} />
       <Stack
