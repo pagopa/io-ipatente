@@ -1,18 +1,19 @@
 import type { Meta, StoryObj } from "@storybook/react";
+
 import { fn } from "@storybook/test";
 
-import { UIPageHeader } from "../lib/components/page-header";
+import { PageHeader } from "../lib/components/page-header";
 
 const meta = {
-  title: "Components/UIPageHeader",
-  component: UIPageHeader,
+  argTypes: {},
+  args: { onBreadcrumbClick: fn() },
+  component: PageHeader,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {},
-  args: { onBreadcrumbClick: fn() },
-} satisfies Meta<typeof UIPageHeader>;
+  title: "Components/PageHeader",
+} satisfies Meta<typeof PageHeader>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

@@ -1,14 +1,14 @@
 import { ArrowForwardIos } from "@mui/icons-material";
-import Breadcrumbs from "@mui/material/Breadcrumbs";
+import MuiBreadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
-export interface UIPageHeaderProps {
+export interface PageHeaderProps {
   /** A list of links that help visualize page's location within app hierarchical structure.
    * It allows navigation up to any of the ancestors.
    * */
-  breadcrumbs?: UIPageHeaderBreadcrumb[];
+  breadcrumbs?: PageHeaderBreadcrumb[];
   /** Page Header description: if present, it is shown under the title */
   description?: string;
   /** Event triggered when user click on a breadcrumb with `routePath` defined */
@@ -17,12 +17,12 @@ export interface UIPageHeaderProps {
   title: string;
 }
 
-export interface UIPageHeaderBreadcrumbs {
-  breadcrumbs: UIPageHeaderBreadcrumb[];
+export interface PageHeaderBreadcrumbsProps {
+  breadcrumbs: PageHeaderBreadcrumb[];
   onBreadcrumbClick?: (routePath: string) => void;
 }
 
-export interface UIPageHeaderBreadcrumb {
+export interface PageHeaderBreadcrumb {
   /** Breadcrumb item displayed text */
   label: string;
   /** Breadcrumb item route path */
@@ -36,12 +36,12 @@ const TEXT_PRIMARY_COLOR = "text.primary";
 const BREADCRUMB_SEPARATOR_COLOR = "#64748B";
 
 /** Page Header component */
-export const UIPageHeader = ({
+export const PageHeader = ({
   breadcrumbs,
   description,
   onBreadcrumbClick,
   title,
-}: UIPageHeaderProps) => (
+}: PageHeaderProps) => (
   <Stack
     bgcolor={PAGE_HEADER_BG_COLOR}
     data-testid={DATA_TEST_ID_PREFIX}
@@ -50,7 +50,7 @@ export const UIPageHeader = ({
     spacing={1}
   >
     {breadcrumbs && (
-      <UIPageHeaderBreadcrumbs
+      <PageHeader.Breadcrumbs
         breadcrumbs={breadcrumbs}
         onBreadcrumbClick={onBreadcrumbClick}
       />
@@ -75,11 +75,11 @@ export const UIPageHeader = ({
 );
 
 /** Page Header Breadcrumbs internal component */
-const UIPageHeaderBreadcrumbs = ({
+const Breadcrumbs = ({
   breadcrumbs,
   onBreadcrumbClick,
-}: UIPageHeaderBreadcrumbs) => (
-  <Breadcrumbs
+}: PageHeaderBreadcrumbsProps) => (
+  <MuiBreadcrumbs
     data-testid={`${DATA_TEST_ID_PREFIX}-breadcrumbs`}
     separator={
       <ArrowForwardIos
@@ -116,5 +116,8 @@ const UIPageHeaderBreadcrumbs = ({
         </Typography>
       ),
     )}
-  </Breadcrumbs>
+  </MuiBreadcrumbs>
 );
+
+// namespaced component
+PageHeader.Breadcrumbs = Breadcrumbs;

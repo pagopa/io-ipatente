@@ -1,0 +1,188 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test PageHeader Component > Should match the snapshot with all props 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="MuiStack-root css-chstwu-MuiStack-root"
+        data-testid="io-ipatente-page-header"
+      >
+        <nav
+          class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-63vwl1-MuiTypography-root-MuiBreadcrumbs-root"
+          data-testid="io-ipatente-page-header-breadcrumbs"
+        >
+          <ol
+            class="MuiBreadcrumbs-ol css-4pdmu4-MuiBreadcrumbs-ol"
+          >
+            <li
+              class="MuiBreadcrumbs-li"
+            >
+              <button
+                class="MuiTypography-root MuiTypography-sidenav MuiLink-root MuiLink-underlineAlways MuiLink-button css-5ix3i7-MuiTypography-root-MuiLink-root"
+                data-testid="io-ipatente-page-header-breadcrumb-root-0"
+              >
+                root-page
+              </button>
+            </li>
+            <li
+              aria-hidden="true"
+              class="MuiBreadcrumbs-separator css-1wuw8dw-MuiBreadcrumbs-separator"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-hehnhb-MuiSvgIcon-root"
+                data-testid="ArrowForwardIosIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z"
+                />
+              </svg>
+            </li>
+            <li
+              class="MuiBreadcrumbs-li"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body2 css-1yr8029-MuiTypography-root"
+                data-testid="io-ipatente-page-header-breadcrumb-leaf"
+              >
+                leaf-page
+              </p>
+            </li>
+          </ol>
+        </nav>
+        <h3
+          class="MuiTypography-root MuiTypography-h3 css-krdrhq-MuiTypography-root"
+          data-testid="io-ipatente-page-header-title"
+        >
+          sample-title
+        </h3>
+        <p
+          class="MuiTypography-root MuiTypography-body2 css-1yr8029-MuiTypography-root"
+          data-testid="io-ipatente-page-header-description"
+        >
+          sample-description
+        </p>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="MuiStack-root css-chstwu-MuiStack-root"
+      data-testid="io-ipatente-page-header"
+    >
+      <nav
+        class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-63vwl1-MuiTypography-root-MuiBreadcrumbs-root"
+        data-testid="io-ipatente-page-header-breadcrumbs"
+      >
+        <ol
+          class="MuiBreadcrumbs-ol css-4pdmu4-MuiBreadcrumbs-ol"
+        >
+          <li
+            class="MuiBreadcrumbs-li"
+          >
+            <button
+              class="MuiTypography-root MuiTypography-sidenav MuiLink-root MuiLink-underlineAlways MuiLink-button css-5ix3i7-MuiTypography-root-MuiLink-root"
+              data-testid="io-ipatente-page-header-breadcrumb-root-0"
+            >
+              root-page
+            </button>
+          </li>
+          <li
+            aria-hidden="true"
+            class="MuiBreadcrumbs-separator css-1wuw8dw-MuiBreadcrumbs-separator"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-hehnhb-MuiSvgIcon-root"
+              data-testid="ArrowForwardIosIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z"
+              />
+            </svg>
+          </li>
+          <li
+            class="MuiBreadcrumbs-li"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body2 css-1yr8029-MuiTypography-root"
+              data-testid="io-ipatente-page-header-breadcrumb-leaf"
+            >
+              leaf-page
+            </p>
+          </li>
+        </ol>
+      </nav>
+      <h3
+        class="MuiTypography-root MuiTypography-h3 css-krdrhq-MuiTypography-root"
+        data-testid="io-ipatente-page-header-title"
+      >
+        sample-title
+      </h3>
+      <p
+        class="MuiTypography-root MuiTypography-body2 css-1yr8029-MuiTypography-root"
+        data-testid="io-ipatente-page-header-description"
+      >
+        sample-description
+      </p>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
