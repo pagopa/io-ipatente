@@ -1,7 +1,7 @@
 import type { AppProps } from "next/app";
 
 import "@/styles/globals.css";
-import { UITheme } from "@io-ipatente/ui";
+import { Theme } from "@io-ipatente/ui";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -41,7 +41,7 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
 
   return (
     <SessionProvider>
-      <ThemeProvider theme={UITheme}>
+      <ThemeProvider theme={Theme}>
         <CssBaseline />
         <QueryClientProvider client={queryClient}>
           {getLayout(<Component {...pageProps} />)}
