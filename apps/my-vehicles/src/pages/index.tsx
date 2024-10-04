@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import { useVehicles } from "@/hooks/useVehicles";
 // import styles from "@/styles/Home.module.css";
-import { UIButton } from "@io-ipatente/ui";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { GetStaticProps } from "next";
@@ -62,13 +61,6 @@ export default function Home() {
             <option value="it">IT</option>
             <option value="en">EN</option>
           </select>
-        </Grid>
-        <Grid item xs={12}>
-          <UIButton
-            label="Test UI"
-            onClick={() => console.log("Test UI")}
-            variant="contained"
-          />
         </Grid>
       </Grid>
     </>
