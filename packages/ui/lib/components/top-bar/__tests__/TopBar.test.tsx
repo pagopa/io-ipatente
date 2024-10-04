@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 
 import { TopBar, TopBarProps } from "../TopBar";
 
-const mockHandleAssistanceClick = vi.fn();
+const mockHandleClick = vi.fn();
 
 const defaultProps: TopBarProps = {
   product: {
@@ -19,34 +19,32 @@ describe("Test TopBar Components", () => {
     expect(comp).toMatchSnapshot();
   });
 
-  it("Should match the snapshot when enableAssistance is true", () => {
+  it("Should match the snapshot when assistance is true", () => {
     const comp = render(
       <TopBar
         {...defaultProps}
-        contextualHelp={{
-          onAssistanceClick: mockHandleAssistanceClick,
-          title: "Assistenza",
+        assistance={{
+          onClick: mockHandleClick,
+          label: "Assistenza",
         }}
-        enableAssistance={true}
       />,
     );
     expect(comp).toMatchSnapshot();
   });
 
-  it("Should call onAssistanceClick when the assistance button is clicked", async () => {
+  it("Should call onClick when the assistance button is clicked", async () => {
     const comp = render(
       <TopBar
         {...defaultProps}
-        contextualHelp={{
-          onAssistanceClick: mockHandleAssistanceClick,
-          title: "Assistenza",
+        assistance={{
+          onClick: mockHandleClick,
+          label: "Assistenza",
         }}
-        enableAssistance={true}
       />,
     );
 
     const button = await comp.findByText("Assistenza");
     fireEvent.click(button);
-    expect(mockHandleAssistanceClick).toHaveBeenCalledTimes(1);
+    expect(mockHandleClick).toHaveBeenCalledTimes(1);
   });
 });

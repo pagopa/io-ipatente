@@ -6,18 +6,6 @@ const meta = {
   title: "Components/TopBar",
   component: TopBar,
   tags: ["autodocs"],
-  argTypes: {
-    contextualHelp: {
-      control: "object",
-      if: { arg: "enableAssistance" },
-    },
-  },
-  args: {
-    contextualHelp: {
-      title: "Assistenza",
-      onAssistanceClick: () => {},
-    },
-  },
 } satisfies Meta<typeof TopBar>;
 
 export default meta;
@@ -30,7 +18,6 @@ export const Default: Story = {
       url: "",
       name: "Il portale dell'automobilista",
     },
-    enableAssistance: false,
   },
 };
 
@@ -41,10 +28,9 @@ export const WithAssistance: Story = {
       url: "",
       name: "Il portale dell'automobilista",
     },
-    enableAssistance: true,
-    contextualHelp: {
-      title: "Assistenza",
-      onAssistanceClick: () => {},
+    assistance: {
+      label: "Assistenza",
+      onClick: () => {},
     },
   },
 };
