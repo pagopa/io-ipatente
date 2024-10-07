@@ -34,7 +34,6 @@ const DATA_TEST_ID_PREFIX = "io-ipatente-card-info";
 
 const CARD_BACKGROUND_COLOR = "#F5F7FB";
 const DIVIDER_BORDER_COLOR = "#CBD5E1";
-const TEXT_PRIMARY_COLOR = "text.primary";
 const TEXT_SECONDARY_COLOR = "#64748B";
 
 /** Basic info card component */
@@ -59,7 +58,6 @@ export const CardInfo = ({
       >
         {icon}
         <Typography
-          color={TEXT_PRIMARY_COLOR}
           data-testid={`${DATA_TEST_ID_PREFIX}-title`}
           fontSize={20}
           fontWeight={600}
@@ -108,7 +106,6 @@ const Items = ({ items }: CardInfoItemsProps) => (
                 item.value
               ) : (
                 <Typography
-                  color={TEXT_PRIMARY_COLOR}
                   data-testid={`${DATA_TEST_ID_PREFIX}-item-${index}-value`}
                   fontSize={20}
                   fontWeight={600}

@@ -32,7 +32,6 @@ export interface PageHeaderBreadcrumb {
 export const DATA_TEST_ID_PREFIX = "io-ipatente-page-header";
 
 const PAGE_HEADER_BG_COLOR = "#DFF1F3";
-const TEXT_PRIMARY_COLOR = "text.primary";
 const BREADCRUMB_SEPARATOR_COLOR = "#64748B";
 
 /** Page Header component */
@@ -55,16 +54,11 @@ export const PageHeader = ({
         onBreadcrumbClick={onBreadcrumbClick}
       />
     )}
-    <Typography
-      color={TEXT_PRIMARY_COLOR}
-      data-testid={`${DATA_TEST_ID_PREFIX}-title`}
-      variant="h3"
-    >
+    <Typography data-testid={`${DATA_TEST_ID_PREFIX}-title`} variant="h3">
       {title}
     </Typography>
     {description && (
       <Typography
-        color={TEXT_PRIMARY_COLOR}
         data-testid={`${DATA_TEST_ID_PREFIX}-description`}
         variant="body2"
       >
@@ -91,7 +85,6 @@ const Breadcrumbs = ({
     {breadcrumbs.map((item, index, items) =>
       index < items.length - 1 ? (
         <Link
-          color={TEXT_PRIMARY_COLOR}
           component="button"
           data-testid={`${DATA_TEST_ID_PREFIX}-breadcrumb-root-${index}`}
           key={`${DATA_TEST_ID_PREFIX}-breadcrumb-${index}`}
@@ -107,7 +100,6 @@ const Breadcrumbs = ({
         </Link>
       ) : (
         <Typography
-          color={TEXT_PRIMARY_COLOR}
           data-testid={`${DATA_TEST_ID_PREFIX}-breadcrumb-leaf`}
           key={`${DATA_TEST_ID_PREFIX}-breadcrumb-${index}`}
           variant="body2"
