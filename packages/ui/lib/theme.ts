@@ -7,6 +7,10 @@ const colorTextPrimary = "#003366";
 export const Theme = createTheme(
   deepmerge(muiItaliaTheme, {
     palette: {
+      background: {
+        default: "#F5F7FB",
+      },
+      divider: "#CBD5E1",
       error: {
         contrastText: colorTextPrimary,
       },
@@ -21,6 +25,7 @@ export const Theme = createTheme(
       },
       text: {
         primary: colorTextPrimary,
+        secondary: "#64748B",
       },
       warning: {
         contrastText: colorTextPrimary,

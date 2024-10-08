@@ -31,10 +31,7 @@ export interface CardInfoItem {
 }
 
 const DATA_TEST_ID_PREFIX = "io-ipatente-card-info";
-
-const CARD_BACKGROUND_COLOR = "#F5F7FB";
-const DIVIDER_BORDER_COLOR = "#CBD5E1";
-const TEXT_SECONDARY_COLOR = "#64748B";
+const TEXT_SECONDARY_COLOR = "text.secondary";
 
 /** Basic info card component */
 export const CardInfo = ({
@@ -46,7 +43,7 @@ export const CardInfo = ({
 }: CardInfoProps) => (
   <Card
     data-testid={DATA_TEST_ID_PREFIX}
-    sx={{ backgroundColor: CARD_BACKGROUND_COLOR, width: "100%" }}
+    sx={{ backgroundColor: "background.default", width: "100%" }}
   >
     <CardContent sx={{ padding: 2 }}>
       <Stack
@@ -128,9 +125,7 @@ const Items = ({ items }: CardInfoItemsProps) => (
             marginTop={1.5}
           ></Typography>
         )}
-        {index < items.length - 1 ? (
-          <Divider sx={{ borderColor: DIVIDER_BORDER_COLOR, marginY: 1.5 }} />
-        ) : null}
+        {index < items.length - 1 ? <Divider sx={{ marginY: 1.5 }} /> : null}
       </React.Fragment>
     ))}
   </List>
