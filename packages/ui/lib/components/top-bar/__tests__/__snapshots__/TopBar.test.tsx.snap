@@ -71,7 +71,7 @@ exports[`Test TopBar Components > Should match the snapshot when assistance is t
             </button>
             <button
               aria-label="Assistenza"
-              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-3t1kcv-MuiButtonBase-root-MuiIconButton-root"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-mnnzy1-MuiButtonBase-root-MuiIconButton-root"
               tabindex="0"
               type="button"
             >
@@ -162,7 +162,7 @@ exports[`Test TopBar Components > Should match the snapshot when assistance is t
           </button>
           <button
             aria-label="Assistenza"
-            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-3t1kcv-MuiButtonBase-root-MuiIconButton-root"
+            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-mnnzy1-MuiButtonBase-root-MuiIconButton-root"
             tabindex="0"
             type="button"
           >

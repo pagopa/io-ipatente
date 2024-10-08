@@ -61,7 +61,7 @@ export const TopBar = ({ assistance, product }: TopBarProps) => (
             aria-label={assistance.label}
             onClick={assistance.onClick}
             size="small"
-            sx={{ color: "text.primary", display: ["flex", "none"] }}
+            sx={{ display: ["flex", "none"] }}
           >
             <HelpOutlineRoundedIcon fontSize="inherit" />
           </IconButton>

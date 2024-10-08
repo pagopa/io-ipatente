@@ -20,7 +20,7 @@ exports[`Test PageHeader Component > Should match the snapshot with all props 1`
               class="MuiBreadcrumbs-li"
             >
               <button
-                class="MuiTypography-root MuiTypography-sidenav MuiLink-root MuiLink-underlineAlways MuiLink-button css-5ix3i7-MuiTypography-root-MuiLink-root"
+                class="MuiTypography-root MuiTypography-sidenav MuiLink-root MuiLink-underlineAlways MuiLink-button css-itsvw3-MuiTypography-root-MuiLink-root"
                 data-testid="io-ipatente-page-header-breadcrumb-root-0"
               >
                 root-page
@@ -46,7 +46,7 @@ exports[`Test PageHeader Component > Should match the snapshot with all props 1`
               class="MuiBreadcrumbs-li"
             >
               <p
-                class="MuiTypography-root MuiTypography-body2 css-1yr8029-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
                 data-testid="io-ipatente-page-header-breadcrumb-leaf"
               >
                 leaf-page
@@ -55,13 +55,13 @@ exports[`Test PageHeader Component > Should match the snapshot with all props 1`
           </ol>
         </nav>
         <h3
-          class="MuiTypography-root MuiTypography-h3 css-krdrhq-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
           data-testid="io-ipatente-page-header-title"
         >
           sample-title
         </h3>
         <p
-          class="MuiTypography-root MuiTypography-body2 css-1yr8029-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
           data-testid="io-ipatente-page-header-description"
         >
           sample-description
@@ -85,7 +85,7 @@ exports[`Test PageHeader Component > Should match the snapshot with all props 1`
             class="MuiBreadcrumbs-li"
           >
             <button
-              class="MuiTypography-root MuiTypography-sidenav MuiLink-root MuiLink-underlineAlways MuiLink-button css-5ix3i7-MuiTypography-root-MuiLink-root"
+              class="MuiTypography-root MuiTypography-sidenav MuiLink-root MuiLink-underlineAlways MuiLink-button css-itsvw3-MuiTypography-root-MuiLink-root"
               data-testid="io-ipatente-page-header-breadcrumb-root-0"
             >
               root-page
@@ -111,7 +111,7 @@ exports[`Test PageHeader Component > Should match the snapshot with all props 1`
             class="MuiBreadcrumbs-li"
           >
             <p
-              class="MuiTypography-root MuiTypography-body2 css-1yr8029-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
               data-testid="io-ipatente-page-header-breadcrumb-leaf"
             >
               leaf-page
@@ -120,13 +120,13 @@ exports[`Test PageHeader Component > Should match the snapshot with all props 1`
         </ol>
       </nav>
       <h3
-        class="MuiTypography-root MuiTypography-h3 css-krdrhq-MuiTypography-root"
+        class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
         data-testid="io-ipatente-page-header-title"
       >
         sample-title
       </h3>
       <p
-        class="MuiTypography-root MuiTypography-body2 css-1yr8029-MuiTypography-root"
+        class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
         data-testid="io-ipatente-page-header-description"
       >
         sample-description
