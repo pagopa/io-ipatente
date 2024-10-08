@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { SectionTitle } from "../lib/components/section-title";
-import { CheckCircle } from "@mui/icons-material";
-import React from "react";
 
 const meta = {
   title: "Components/SectionTitle",
