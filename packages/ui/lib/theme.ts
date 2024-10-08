@@ -18,7 +18,7 @@ export const Theme = createTheme(
         contrastText: colorTextPrimary,
       },
       primary: {
-        main: colorTextPrimary,
+        main: "#0066CC",
       },
       success: {
         contrastText: colorTextPrimary,
