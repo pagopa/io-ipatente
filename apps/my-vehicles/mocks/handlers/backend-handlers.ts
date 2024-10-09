@@ -2,13 +2,7 @@ import { getConfiguration } from "@/config";
 import { faker } from "@faker-js/faker/locale/it";
 import { HttpResponse, http } from "msw";
 
-import {
-  aMockBadRequestError,
-  aMockForbiddenError,
-  aMockNotAuthorizedError,
-  aMockNotFoundError,
-  getMockVehicles,
-} from "../data/backend-data";
+import { getMockVehicles } from "../data/backend-data";
 
 faker.seed();
 
@@ -21,11 +15,11 @@ export const buildHandlers = () => {
     http.get(`${baseURL}/infoVeicoli`, () => {
       const resultArray = [
         HttpResponse.json(getInfoVeicoli200Response(), { status: 200 }),
-        HttpResponse.json(getInfoVeicoli400Response(), { status: 400 }),
-        HttpResponse.json(getInfoVeicoli401Response(), { status: 401 }),
-        HttpResponse.json(getInfoVeicoli403Response(), { status: 403 }),
-        HttpResponse.json(getInfoVeicoli404Response(), { status: 404 }),
-        HttpResponse.json(getInfoVeicoli500Response(), { status: 500 }),
+        HttpResponse.json({ status: 400 }),
+        HttpResponse.json({ status: 401 }),
+        HttpResponse.json({ status: 403 }),
+        HttpResponse.json({ status: 404 }),
+        HttpResponse.json({ status: 500 }),
       ];
       return resultArray[0];
     }),
@@ -33,8 +27,3 @@ export const buildHandlers = () => {
 };
 
 export const getInfoVeicoli200Response = () => getMockVehicles();
-export const getInfoVeicoli400Response = () => aMockBadRequestError;
-export const getInfoVeicoli401Response = () => aMockNotAuthorizedError;
-export const getInfoVeicoli403Response = () => aMockForbiddenError;
-export const getInfoVeicoli404Response = () => aMockNotFoundError;
-export const getInfoVeicoli500Response = () => null;
