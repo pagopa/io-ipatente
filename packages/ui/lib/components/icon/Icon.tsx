@@ -3,6 +3,8 @@ import { SvgIconProps } from "@mui/material/SvgIcon";
 import IconAirplane from "./svg/IconAirplane";
 import IconAlarm from "./svg/IconAlarm";
 import IconAnchor from "./svg/IconAnchor";
+import IconArrowCircleLeftBold from "./svg/IconArrowCircleLeftBold";
+import IconArrowCircleRightBold from "./svg/IconArrowCircleRightBold";
 import IconBus from "./svg/IconBus";
 import IconBusStation from "./svg/IconBusStation";
 import IconCar1 from "./svg/IconCar1";
@@ -12,6 +14,7 @@ import IconCarGearbox from "./svg/IconCarGearbox";
 import IconCarParking from "./svg/IconCarParking";
 import IconCaravan from "./svg/IconCaravan";
 import IconComponent from "./svg/IconComponent";
+import IconDocumentText from "./svg/IconDocumentText";
 import IconDriving from "./svg/IconDriving";
 import IconEletricMoped from "./svg/IconEletricMoped";
 import IconFerryBoat from "./svg/IconFerryBoat";
@@ -37,6 +40,8 @@ export const Icons = {
   airplane: IconAirplane,
   alarm: IconAlarm,
   anchor: IconAnchor,
+  arrowCircleLeftBold: IconArrowCircleLeftBold,
+  arrowCircleRightBold: IconArrowCircleRightBold,
   bus: IconBus,
   busStation: IconBusStation,
   car1: IconCar1,
@@ -46,6 +51,7 @@ export const Icons = {
   carParking: IconCarParking,
   caravan: IconCaravan,
   component: IconComponent,
+  documentText: IconDocumentText,
   driving: IconDriving,
   eletricMoped: IconEletricMoped,
   ferryBoat: IconFerryBoat,
@@ -78,3 +84,78 @@ export const Icon = ({ fontSize = "small", name, ...props }: IconProps) => {
   const IconElement = Icons[name];
   return <IconElement fontSize={fontSize} {...props} />;
 };
+
+// /* Transport */
+// const {
+//   airplane,
+//   alarm,
+//   anchor,
+//   arrowCircleLeftBold,
+//   bus,
+//   busStation,
+//   car1,
+//   car2,
+//   carCollision,
+//   carGearbox,
+//   carParking,
+//   caravan,
+//   component,
+//   driving,
+//   eletricMoped,
+//   ferryBoat,
+//   gasStation,
+//   gasStationOff,
+//   hambulance,
+//   metro,
+//   moped,
+//   motor,
+//   motorbike1,
+//   motorbike2,
+//   parking,
+//   road,
+//   sailboat,
+//   scooter,
+//   smartCar,
+//   speedometer,
+//   truck,
+//   truckFast,
+//   yacth,
+// } = Icons;
+
+// export const TransportIcons = {
+//   airplane,
+//   alarm,
+//   anchor,
+//   arrowCircleLeftBold,
+//   bus,
+//   busStation,
+//   car1,
+//   car2,
+//   carCollision,
+//   carGearbox,
+//   carParking,
+//   caravan,
+//   component,
+//   driving,
+//   eletricMoped,
+//   ferryBoat,
+//   gasStation,
+//   gasStationOff,
+//   hambulance,
+//   metro,
+//   moped,
+//   motor,
+//   motorbike1,
+//   motorbike2,
+//   parking,
+//   road,
+//   sailboat,
+//   scooter,
+//   smartCar,
+//   speedometer,
+//   truck,
+//   truckFast,
+//   yacth,
+// } as const;
+
+// export type TransportIcons = keyof typeof TransportIcons;
