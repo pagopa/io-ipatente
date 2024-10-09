@@ -10,7 +10,7 @@ import {
   getMockVehicles,
 } from "../data/backend-data";
 
-faker.seed(1);
+faker.seed();
 
 export const buildHandlers = () => {
   const configuration = getConfiguration();
@@ -18,7 +18,7 @@ export const buildHandlers = () => {
     configuration.BACKEND_API_BASE_URL + configuration.BACKEND_API_BASE_PATH;
 
   return [
-    http.get(`${baseURL}/info-veicoli`, () => {
+    http.get(`${baseURL}/infoVeicoli`, () => {
       const resultArray = [
         HttpResponse.json(getInfoVeicoli200Response(), { status: 200 }),
         HttpResponse.json(getInfoVeicoli400Response(), { status: 400 }),
@@ -32,7 +32,7 @@ export const buildHandlers = () => {
   ];
 };
 
-export const getInfoVeicoli200Response = () => getMockVehicles;
+export const getInfoVeicoli200Response = () => getMockVehicles();
 export const getInfoVeicoli400Response = () => aMockBadRequestError;
 export const getInfoVeicoli401Response = () => aMockNotAuthorizedError;
 export const getInfoVeicoli403Response = () => aMockForbiddenError;
