@@ -3,14 +3,8 @@ import { HttpResponse, http } from "msw";
 import { describe, expect, it } from "vitest";
 
 import { server } from "../../../mocks/server";
-import { Errore } from "../../generated/openapi";
 import { Wrapper } from "../../utils/testWrapper";
 import { useVehicles } from "../useVehicles";
-
-const MOCK_ERROR_PAYLOAD: Errore = {
-  codice: "ERROR_CODE",
-  messaggio: "MESSAGE",
-};
 
 describe("useVehicles", () => {
   it("should return the list of vehicles if the status code is 200", async () => {
@@ -25,9 +19,7 @@ describe("useVehicles", () => {
 
   it("should return an error if the status code is different from 200", async () => {
     server.use(
-      http.get("/api/info-veicoli", () =>
-        HttpResponse.json(MOCK_ERROR_PAYLOAD, { status: 500 }),
-      ),
+      http.get("/api/infoVeicoli", () => HttpResponse.json({ status: 500 })),
     );
 
     const { result } = renderHook(() => useVehicles(), {

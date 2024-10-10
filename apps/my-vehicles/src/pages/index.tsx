@@ -1,6 +1,6 @@
-/* eslint-disable no-console */
-import { useVehicles } from "@/hooks/useVehicles";
 // import styles from "@/styles/Home.module.css";
+import { Veicolo } from "@/generated/openapi";
+import { useVehicles } from "@/hooks/useVehicles";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { GetStaticProps } from "next";
@@ -53,9 +53,14 @@ export default function Home() {
           </Typography>
           <Typography variant="h5">{session?.user?.fiscalCode}</Typography>
         </Grid>
-        <Grid item xs={12}>
-          <Typography>{JSON.stringify(data)}</Typography>
-        </Grid>
+        {data.map((vehicle: Veicolo) => (
+          <Grid item key={vehicle.targaVeicolo} xs={12}>
+            <Typography
+              fontWeight={600}
+            >{`Dati veicolo ${vehicle.targaVeicolo}`}</Typography>
+            <Typography>{JSON.stringify(vehicle)}</Typography>
+          </Grid>
+        ))}
         <Grid item xs={12}>
           <select id="i18nSelect" onChange={testChangeLanguage}>
             <option value="it">IT</option>

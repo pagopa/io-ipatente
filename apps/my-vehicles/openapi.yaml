@@ -1,15 +1,15 @@
 openapi: 3.0.0
 info:
-  title: Info Veicolo API
-  description: Specifica delle API backend for frontend (BFF) per la funzionalità **I miei veicoli**
-  version: 0.1.0
+  title: Info Veicoli API
+  description: Specifica delle API backend for frontend (BFF) per la funzionalità **I miei veicoli**.
+  version: 1.0.0
 servers:
-  - url: http://localhost:8080/ext/v1
+  - url: http://localhost:8080
 
 paths:
-  /info-veicoli:
+  /infoVeicoli:
     get:
-      summary: Recupero di tutti i dati inerenti veicoli
+      summary: Recupero di tutti i dati inerenti veicoli area privata
       operationId: getInfoVeicoli
       responses:
         200:
@@ -20,60 +20,77 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Veicolo"
-        400:
-          $ref: "#/components/responses/Errore400Veicoli"
         401:
-          $ref: "#/components/responses/Errore401"
+          description: Unauthorized
         403:
-          $ref: "#/components/responses/Errore403"
+          description: Forbidden
         404:
-          $ref: "#/components/responses/Errore404"
+          description: Not found
         500:
           description: Internal server error
 
 components:
-  responses:
-    Errore400Veicoli:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/Errore"
-          examples:
-            ERR-VEIC-BE-InfoVeicoli-100:
-              $ref: "#/components/examples/ERR-VEIC-BE-InfoVeicoli-100"
-            ERR-VEIC-BE-InfoVeicoli-101:
-              $ref: "#/components/examples/ERR-VEIC-BE-InfoVeicoli-101"
-    Errore404:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/Errore"
-          examples:
-            ERR-VEIC-BE-InfoVeicoli-010:
-              $ref: "#/components/examples/ERR-VEIC-BE-InfoVeicoli-010"
-    Errore401:
-      description: Not Authorized
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/Errore"
-          examples:
-            ERR-VEIC-BE-InfoVeicoli-010:
-              $ref: "#/components/examples/ERR-VEIC-BE-InfoVeicoli-020"
-    Errore403:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/Errore"
-          examples:
-            ERR-VEIC-MS-VeicoliImmatricolati-100:
-              $ref: "#/components/examples/ERR-VEIC-BE-InfoVeicoli-020"
   schemas:
+    Veicolo:
+      type: object
+      required:
+        - targaVeicolo
+        - tipoVeicolo
+      properties:
+        targaVeicolo:
+          description: Targa Veicolo
+          type: string
+        tipoVeicolo:
+          $ref: "#/components/schemas/TipoVeicoloEnum"
+        datiVeicolo:
+          $ref: "#/components/schemas/DatiVeicolo"
+        storicoRevisioni:
+          type: array
+          items:
+            $ref: "#/components/schemas/Revisione"
+        coperturaRCA:
+          $ref: "#/components/schemas/CoperturaRCA"
+    DatiVeicolo:
+      type: "object"
+      properties:
+        extraMassa:
+          description: |
+            ### Messaggi restituiti:
+            Messaggio che indica se il veicolo e' soggetto ad extra massa
+            - "NPDA_EXTRAMASSA_MSG001" (Traduzione frontend ita: IL VEICOLO NON RIENTRA NELLE CONDIZIONI DI CUI ALL'ARTICOLO 116, CO.3, LETT. F), N. 2, CDS)
+            - "NPDA_EXTRAMASSA_MSG002" (Il veicolo di categoria N2, alimentato con combustibile alternativo e con una massa autorizzata massima compresa tra 3.500 kg e 4.250 kg, adibito al trasporto di merci e che opera senza rimorchio, può essere condotto dai titolari di una patente di guida di categoria B rilasciata da almeno due anni.)
+
+          type: "string"
+        neopatentati:
+          description: |
+            ### Messaggi restituiti:
+            - "NPDA_NEOPAT_MSG001" (Traduzione frontend ita: Il veicolo può essere guidato da un neopatentato.)
+            - "NPDA_NEOPAT_MSG002" (Traduzione frontend ita: Il veicolo non può essere guidato da un conducente che abbia conseguito la patente da meno di un anno. Tale limite non si applica se a fianco del conducente si trova, in funzione di istruttore, persona di età non superiore a sessantacinque anni, munita di patente valida per la stessa categoria, conseguita da almeno dieci anni, ovvero valida per la categoria superiore.)
+            - "NPDA_NEOPAT_MSG003" (Traduzione frontend ita: Dati tecnici mancanti.)
+            - "NPDA_NEOPAT_MSG004" (Traduzione frontend ita: Dato Non Verificabile.)
+          type: "string"
+        classeAmbientale:
+          $ref: "#/components/schemas/ClasseAmbientaleEnum"
+    Revisione:
+      type: "object"
+      required:
+        - dataRevisione
+        - esitoRevisione
+      properties:
+        dataRevisione:
+          type: "string"
+        esitoRevisione:
+          $ref: "#/components/schemas/EsitoRevisioneEnum"
+        kmPercorsi:
+          type: "number"
+        kmTotali:
+          type: "number"
     CoperturaRCA:
       type: object
+      description: ultima assicurazione valida in corso, null se non presente
+      required:
+        - compagniaAssicuratrice
+        - dataScadenzaCopertura
       properties:
         compagniaAssicuratrice:
           description: Indica la compagnia con cui  e' stata stipuilata la copertura RCA
@@ -81,90 +98,70 @@ components:
         dataScadenzaCopertura:
           description: Indica la data di scadenza della copertura RCA, comprensiva del periodo di comporto
           type: string
-        coperturaRCA:
-          description: Indica se il veicolo e' coperto da RCA alla data corrente
-          type: string
-
-    Veicolo:
-      type: object
-      properties:
-        targaVeicolo:
-          description: Targa Veicolo
-          type: string
-        tipoVeicolo:
-          description: Tipo Veicolo
-          type: string
-        datiVeicolo:
-          $ref: "#/components/schemas/DatiVeicolo"
-        storicoRevisioni:
-          type: "array"
-          items:
-            $ref: "#/components/schemas/Revisione"
-        coperturaRCA:
-          $ref: "#/components/schemas/CoperturaRCA"
-
-    Revisione:
-      type: "object"
-      properties:
-        dataRevisione:
-          type: "string"
-          format: "date"
-        esitoRevisione:
-          type: "string"
-        kmPercorsi:
-          type: "number"
-        kmTotali:
-          type: "number"
-
-    DatiVeicolo:
-      type: "object"
-      properties:
-        extraMassa:
-          description: Messaggio che indica se il veicolo e' soggetto ad extra massa
-          type: "string"
-        neopatentati:
-          description: Indica se il veicolo puo' essere guidato da neo patentati
-          type: "string"
-        classeAmbientale:
-          description: Indica la classe ambientale del veicolo
-          type: "string"
-
-    Errore:
-      title: Errore
-      type: object
-      properties:
-        codice:
-          type: string
-          description: Codice di errore
-        messaggio:
-          type: string
-          description: Descrizione dell'errore
-  examples:
-    ERR-VEIC-BE-InfoVeicoli-010:
-      description: Dati non trovati
-      value:
-        {
-          "codice": "ERR-VEIC-BE-InfoVeicoli-010",
-          "descrizione": "Dati non trovati",
-        }
-    ERR-VEIC-BE-InfoVeicoli-020:
-      description: Operazione non autorizzata
-      value:
-        {
-          "codice": "ERR-VEIC-BE-InfoVeicoli-020",
-          "descrizione": "Operazione non autorizzata",
-        }
-    ERR-VEIC-BE-InfoVeicoli-100:
-      description: Codice Fiscale obbligatorio
-      value:
-        {
-          "codice": "ERR-VEIC-BE-InfoVeicoli-100",
-          "descrizione": "Codice Fiscale obbligatorio",
-        }
-    ERR-VEIC-BE-InfoVeicoli-101:
-      description: Formato Codice Fiscale non valido
-      value:
-        {
-          "codice": "ERR-VEIC-BE-InfoVeicoli-101",
-          "descrizione": "Formato Codice Fiscale non valido",
-        }
+          format: date
+    TipoVeicoloEnum:
+      type: string
+      description: |
+        ### Tipo veicolo
+        - "C" (Ciclomotore)
+        - "A" (Autoveicolo)
+        - "M" (Motoveicolo)
+        - "R" (Rimorchio)
+        - "N" (Macchina Operatrice Trainata)
+        - "P" (Macchina Operatrice Semovente)
+        - "U" (Macchina Agricola Semovente ad 1 asse)
+        - "X" (Macchina Agricola Operatrice Trainata)
+        - "Y" (Rimorchio Agricolo con Massa complessiva a pieno carico non superiore a 1,5 tonnellate)
+        - "S" (Macchina Agricola Semovente munita di almeno 2 assi)
+        - "T" (Rimorchio Agricolo)
+        - "V" (Macchina Agricola Operatrice)
+        - "E" (Autoveicolo e Rimorchio - Targhe di Prova)
+        - "F" (Motoveicolo e Ciclomotore - Targhe di Prova)
+        - "G" (Macchina Agricola - Targhe di Prova)
+        - "H" (Macchina Operatrice - Targhe di Prova)
+        - "CD" (Corpo Diplomatico - Targhe Diplomatiche)
+        - "CC" (Corpo Consolare - Targhe Diplomatiche)
+        - "EE" (Escursionisti Esteri - Targhe Diplomatiche)
+      enum: [C, A, M, R, N, P, U, X, Y, S, T, V, E, F, G, H, CD, CC, EE]
+    ClasseAmbientaleEnum:
+      type: string
+      description: |
+        ### Messaggi restituiti:
+        - EURO0
+        - EURO1
+        - EURO2
+        - EURO3
+        - EURO4
+        - EURO5
+        - EURO5B
+        - EURO6
+        - EURO6A
+        - EURO6B
+        - EURO6C
+        - EURO6D
+        - EURO6E
+        - Dato non disponibile
+      enum:
+        [
+          EURO0,
+          EURO1,
+          EURO2,
+          EURO3,
+          EURO4,
+          EURO5,
+          EURO5B,
+          EURO6,
+          EURO6A,
+          EURO6B,
+          EURO6C,
+          EURO6D,
+          EURO6E,
+        ]
+    EsitoRevisioneEnum:
+      type: "string"
+      description: |
+        ### Esito revisione
+        - "P" (Regolare)
+        - "R" (Ripetere)
+        - "S" (Sospendere)
+      enum: [P, R, S]
