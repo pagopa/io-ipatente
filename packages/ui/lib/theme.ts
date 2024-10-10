@@ -4,7 +4,7 @@ import { theme as muiItaliaTheme } from "@pagopa/mui-italia";
 
 const colorTextPrimary = "#003366";
 
-export const Theme = createTheme(
+export const theme = createTheme(
   deepmerge(muiItaliaTheme, {
     palette: {
       background: {
@@ -84,4 +84,4 @@ export const Theme = createTheme(
   }),
 );
 
-export type Theme = typeof Theme;
+export type IOIPatenteTheme = typeof theme;
