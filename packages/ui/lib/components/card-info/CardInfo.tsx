@@ -1,7 +1,13 @@
-import { Divider, List, ListItem, ListItemText, Stack } from "@mui/material";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
+import {
+  Card,
+  CardContent,
+  Divider,
+  List,
+  ListItem,
+  ListItemText,
+  Stack,
+  Typography,
+} from "@mui/material";
 import React, { ReactNode } from "react";
 
 export interface CardInfoProps {

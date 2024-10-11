@@ -1,11 +1,14 @@
 import ArrowForwardIos from "@mui/icons-material/ArrowForwardIos";
-import Chip, { ChipProps } from "@mui/material/Chip";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import {
+  Chip,
+  ChipProps,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Stack,
+  Typography,
+} from "@mui/material";
 
 import { Icon, IconType } from "../icon";
 

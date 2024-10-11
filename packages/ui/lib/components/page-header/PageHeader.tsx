@@ -1,8 +1,10 @@
 import { ArrowForwardIos } from "@mui/icons-material";
-import MuiBreadcrumbs from "@mui/material/Breadcrumbs";
-import Link from "@mui/material/Link";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import {
+  Link,
+  Breadcrumbs as MuiBreadcrumbs,
+  Stack,
+  Typography,
+} from "@mui/material";
 
 export interface PageHeaderProps {
   /** A list of links that help visualize page's location within app hierarchical structure.
