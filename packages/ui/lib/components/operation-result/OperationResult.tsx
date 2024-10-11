@@ -1,7 +1,4 @@
-import Box from "@mui/material/Box";
-import Button, { ButtonProps } from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import { Box, Button, ButtonProps, Stack, Typography } from "@mui/material";
 import { ReactNode } from "react";
 
 export interface OperationResultProps {

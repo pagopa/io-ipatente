@@ -1,9 +1,5 @@
 import HelpOutlineRoundedIcon from "@mui/icons-material/HelpOutlineRounded";
-import AppBar from "@mui/material/AppBar";
-import IconButton from "@mui/material/IconButton";
-import Link from "@mui/material/Link";
-import Stack from "@mui/material/Stack";
-import Toolbar from "@mui/material/Toolbar";
+import { AppBar, IconButton, Link, Stack, Toolbar } from "@mui/material";
 import { ButtonNaked } from "@pagopa/mui-italia";
 
 import { Logo, LogoType } from "../logo";
