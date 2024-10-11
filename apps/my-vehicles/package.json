@@ -1,5 +1,8 @@
 {
   "name": "my-vehicles",
+  "author": {
+    "name": "PagoPA"
+  },
   "version": "0.2.0",
   "private": true,
   "scripts": {
