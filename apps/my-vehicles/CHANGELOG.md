@@ -1,5 +1,13 @@
 # my-vehicles
 
+## 0.2.1
+
+### Patch Changes
+
+- d4badad: Add PagoPA author on apps and packages package.json
+- Updated dependencies [d4badad]
+  - @io-ipatente/ui@0.1.1
+
 ## 0.2.0
 
 ### Minor Changes

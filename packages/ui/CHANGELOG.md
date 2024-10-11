@@ -1,5 +1,11 @@
 # @io-ipatente/ui
 
+## 0.1.1
+
+### Patch Changes
+
+- d4badad: Add PagoPA author on apps and packages package.json
+
 ## 0.1.0
 
 ### Minor Changes
