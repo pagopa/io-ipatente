@@ -1,6 +1,5 @@
 import type { AppProps } from "next/app";
 
-import "@/styles/globals.css";
 import { theme } from "@io-ipatente/ui";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
