@@ -1,4 +1,4 @@
-# my-vehicles
+# vehicles
 
 ## 0.2.1
 

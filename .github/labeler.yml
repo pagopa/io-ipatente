@@ -1,5 +1,8 @@
 internal: packages/**/*
-my-vehicles: apps/my-vehicles/**/*
+licences: apps/licences/**/*
+payments: apps/payments/**/*
+practices: apps/practices/**/*
+vehicles: apps/vehicles/**/*
 docs: docs/**/*
 ci: .github/workflows/**/*
 infra: infra/**/*
