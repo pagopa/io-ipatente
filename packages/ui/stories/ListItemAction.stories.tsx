@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ListeItemAction } from "../lib/components/list-item-action";
+import { ListItemAction } from "../lib/components/list-item-action";
 import { CheckCircle } from "@mui/icons-material";
 import React from "react";
 
 const meta = {
   title: "Components/ListItemAction",
-  component: ListeItemAction,
+  component: ListItemAction,
   parameters: {
     layout: "padded",
   },
   tags: ["autodocs"],
-} satisfies Meta<typeof ListeItemAction>;
+} satisfies Meta<typeof ListItemAction>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

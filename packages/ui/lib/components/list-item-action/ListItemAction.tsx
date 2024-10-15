@@ -20,7 +20,7 @@ export interface ListItemActionProps {
   value: string;
 }
 
-export const ListeItemAction = ({
+export const ListItemAction = ({
   chips = [],
   icon,
   label,

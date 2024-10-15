@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Test ListeItemAction Components > Should match the snapshot with chips 1`] = `
+exports[`Test ListItemAction Components > Should match the snapshot with chips 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
@@ -225,7 +225,7 @@ exports[`Test ListeItemAction Components > Should match the snapshot with chips 
 }
 `;
 
-exports[`Test ListeItemAction Components > Should match the snapshot with default props 1`] = `
+exports[`Test ListItemAction Components > Should match the snapshot with default props 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
