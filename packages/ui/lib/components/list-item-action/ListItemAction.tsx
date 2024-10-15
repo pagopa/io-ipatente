@@ -27,7 +27,10 @@ export const ListItemAction = ({
   onClick,
   value,
 }: ListItemActionProps) => (
-  <ListItem disablePadding sx={{ boxShadow: (theme) => theme.shadows[4] }}>
+  <ListItem
+    disablePadding
+    sx={{ boxShadow: (theme) => theme.shadows[4], bgcolor: "background.paper" }}
+  >
     <ListItemButton onClick={onClick}>
       <ListItemIcon>
         <Icon fontSize="medium" name={icon} />
@@ -47,7 +50,7 @@ export const ListItemAction = ({
                 useFlexGap
               >
                 {chips.map((props, index) => (
-                  <Chip {...props} key={`item-${index}`} />
+                  <Chip {...props} key={`chip-${index}`} />
                 ))}
               </Stack>
             )}
