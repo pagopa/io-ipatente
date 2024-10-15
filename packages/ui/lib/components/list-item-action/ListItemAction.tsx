@@ -12,8 +12,12 @@ import {
 
 import { Icon, IconType } from "../icon";
 
+type BadgeProps = {
+  icon: IconType;
+} & Pick<ChipProps, "color" | "label" | "size">;
+
 export interface ListItemActionProps {
-  chips?: ChipProps[];
+  badges?: BadgeProps[];
   icon: IconType;
   label: string;
   onClick: () => void;
@@ -21,7 +25,7 @@ export interface ListItemActionProps {
 }
 
 export const ListItemAction = ({
-  chips = [],
+  badges = [],
   icon,
   label,
   onClick,
@@ -29,7 +33,7 @@ export const ListItemAction = ({
 }: ListItemActionProps) => (
   <ListItem
     disablePadding
-    sx={{ boxShadow: (theme) => theme.shadows[4], bgcolor: "background.paper" }}
+    sx={{ bgcolor: "background.paper", boxShadow: (theme) => theme.shadows[4] }}
   >
     <ListItemButton onClick={onClick}>
       <ListItemIcon>
@@ -43,17 +47,15 @@ export const ListItemAction = ({
             <Typography mb={1} variant="h6">
               {value}
             </Typography>
-            {chips.length > 0 && (
-              <Stack
-                direction="row"
-                sx={{ flexWrap: "wrap", gap: 1 }}
-                useFlexGap
-              >
-                {chips.map((props, index) => (
-                  <Chip {...props} key={`chip-${index}`} />
-                ))}
-              </Stack>
-            )}
+            <Stack direction="row" sx={{ flexWrap: "wrap", gap: 1 }} useFlexGap>
+              {badges.map(({ icon, ...rest }, index) => (
+                <Chip
+                  {...rest}
+                  icon={<Icon fontSize="small" name={icon} />}
+                  key={`chip-${index}`}
+                />
+              ))}
+            </Stack>
           </>
         }
       />

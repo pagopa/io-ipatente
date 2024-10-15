@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ListItemAction } from "../lib/components/list-item-action";
-import { CheckCircle } from "@mui/icons-material";
-import React from "react";
 
 const meta = {
   title: "Components/ListItemAction",
@@ -17,22 +15,22 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    chips: [
+    badges: [
       {
         color: "success",
-        icon: <CheckCircle />,
-        label: "custom-label-test",
-        size: "small",
-      },
-      {
-        color: "success",
-        icon: <CheckCircle />,
+        icon: "tickCircleBold",
         label: "custom-label",
         size: "small",
       },
       {
-        color: "success",
-        icon: <CheckCircle />,
+        color: "warning",
+        icon: "warningBold",
+        label: "custom-label-test",
+        size: "small",
+      },
+      {
+        color: "error",
+        icon: "warning2Bold",
         label: "custom-label",
         size: "small",
       },

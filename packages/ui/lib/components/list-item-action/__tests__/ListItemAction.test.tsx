@@ -1,4 +1,3 @@
-import { CheckCircle } from "@mui/icons-material";
 import { fireEvent, render } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
@@ -19,14 +18,14 @@ describe("Test ListItemAction Components", () => {
     expect(comp).toMatchSnapshot();
   });
 
-  it("Should match the snapshot with chips", () => {
+  it("Should match the snapshot with badges", () => {
     const comp = render(
       <ListItemAction
         {...defaultProps}
-        chips={[
+        badges={[
           {
             color: "success",
-            icon: <CheckCircle />,
+            icon: "tickCircleBold",
             label: "custom-label-test",
             size: "small",
           },

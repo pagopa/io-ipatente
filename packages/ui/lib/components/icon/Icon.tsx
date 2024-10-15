@@ -32,8 +32,11 @@ import IconSailboat from "./svg/IconSailboat";
 import IconScooter from "./svg/IconScooter";
 import IconSmartCar from "./svg/IconSmartCar";
 import IconSpeedometer from "./svg/IconSpeedometer";
+import IconTickCircleBold from "./svg/IconTickCircleBold";
 import IconTruck from "./svg/IconTruck";
 import IconTruckFast from "./svg/IconTruckFast";
+import IconWarning2Bold from "./svg/IconWarning2Bold";
+import IconWarningBold from "./svg/IconWarningBold";
 import IconYacth from "./svg/IconYacth";
 
 export const Icons = {
@@ -69,8 +72,11 @@ export const Icons = {
   scooter: IconScooter,
   smartCar: IconSmartCar,
   speedometer: IconSpeedometer,
+  tickCircleBold: IconTickCircleBold,
   truck: IconTruck,
   truckFast: IconTruckFast,
+  warning2Bold: IconWarning2Bold,
+  warningBold: IconWarningBold,
   yacth: IconYacth,
 } as const;
 
