@@ -1,19 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
-import { User } from "next-auth";
 import { describe, expect, it, vi } from "vitest";
 
+import { CustomUser } from "../../../../types/next-auth";
 import { withJWTAuthHandler } from "../wrappers";
 
 const localhostUrl = "http://localhost";
 
 const mocks: {
-  jwtMock: User;
+  jwtMock: CustomUser;
 } = vi.hoisted(() => ({
   jwtMock: {
     familyName: "aFamilyName",
     fiscalCode: "aFiscalCode",
     givenName: "aGivenName",
-  } as unknown as User,
+  } as unknown as CustomUser,
 }));
 
 const { getToken } = vi.hoisted(() => ({
