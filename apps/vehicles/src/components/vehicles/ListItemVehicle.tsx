@@ -22,7 +22,12 @@ export interface ListItemVehicleProps {
 export const ListItemVehicle = ({ data, onClick }: ListItemVehicleProps) => {
   const { t } = useTranslation();
 
-  const { coperturaRCA, storicoRevisioni, targaVeicolo, tipoVeicolo } = data;
+  const {
+    coperturaRCA,
+    storicoRevisioni = [],
+    targaVeicolo,
+    tipoVeicolo,
+  } = data;
 
   const { icon, label } = vehicleByType[tipoVeicolo] ?? {
     icon: "car1",
@@ -40,8 +45,8 @@ export const ListItemVehicle = ({ data, onClick }: ListItemVehicleProps) => {
       }
 
       if (
-        new Date(coperturaRCA.dataScadenzaCopertura).getTime() >=
-        new Date().getTime()
+        new Date(coperturaRCA.dataScadenzaCopertura).setHours(0, 0, 0, 0) >=
+        new Date().setHours(0, 0, 0, 0)
       ) {
         return {
           color: "success",
@@ -61,7 +66,7 @@ export const ListItemVehicle = ({ data, onClick }: ListItemVehicleProps) => {
 
   const inspectionStatus: NonNullable<ListItemActionProps["badges"]>[0] =
     useMemo(() => {
-      const inspection = storicoRevisioni?.reduce(
+      const inspection = storicoRevisioni.reduce(
         (prev, curr) =>
           new Date(prev.dataRevisione) > new Date(curr.dataRevisione)
             ? prev
