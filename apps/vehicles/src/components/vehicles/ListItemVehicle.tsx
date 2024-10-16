@@ -26,7 +26,7 @@ export const ListItemVehicle = ({ data, onClick }: ListItemVehicleProps) => {
 
   const { icon, label } = vehicleByType[tipoVeicolo] ?? {
     icon: "car1",
-    label: "vehicles.label",
+    label: "vehicles.defaultLabel",
   };
 
   const rcaStatus: NonNullable<ListItemActionProps["badges"]>[0] =
