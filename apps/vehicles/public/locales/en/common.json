@@ -13,7 +13,6 @@
     "description": "Registered vehicles",
     "defaultLabel": "Vehicle",
     "rca": "RCA",
-    "rcaNotFound": "Not available",
     "inspection": "Inspection"
   },
   "vehicleDetails": {

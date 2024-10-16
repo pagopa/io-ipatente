@@ -18,6 +18,7 @@ import IconDocumentText from "./svg/IconDocumentText";
 import IconDriving from "./svg/IconDriving";
 import IconEletricMoped from "./svg/IconEletricMoped";
 import IconFerryBoat from "./svg/IconFerryBoat";
+import IconForbidden from "./svg/IconForbidden";
 import IconGasStation from "./svg/IconGasStation";
 import IconGasStationOff from "./svg/IconGasStationOff";
 import IconHambulance from "./svg/IconHambulance";
@@ -58,6 +59,7 @@ export const Icons = {
   driving: IconDriving,
   eletricMoped: IconEletricMoped,
   ferryBoat: IconFerryBoat,
+  forbidden: IconForbidden,
   gasStation: IconGasStation,
   gasStationOff: IconGasStationOff,
   hambulance: IconHambulance,

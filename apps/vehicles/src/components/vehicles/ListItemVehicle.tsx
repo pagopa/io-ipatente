@@ -38,8 +38,8 @@ export const ListItemVehicle = ({ data, onClick }: ListItemVehicleProps) => {
     useMemo(() => {
       if (!coperturaRCA) {
         return {
-          icon: "warningBold",
-          label: t("vehicles.rcaNotFound"),
+          icon: "forbidden",
+          label: t("vehicles.rca"),
           size: "small",
         };
       }
