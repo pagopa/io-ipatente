@@ -1,5 +1,6 @@
-import { JWT } from "next-auth/jwt";
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import NextAuth, { type DefaultSession } from "next-auth";
+import { JWT } from "next-auth/jwt";
 
 declare module "next-auth" {
   interface Session {
@@ -7,23 +8,23 @@ declare module "next-auth" {
   }
 
   interface User {
+    familyName?: string;
     fiscalCode: string;
     givenName?: string;
-    familyName?: string;
   }
 
   interface Profile {
+    assertion?: string;
+    assertion_ref?: string;
     fiscal_code: string;
     public_key?: string;
-    assertion_ref?: string;
-    assertion?: string;
   }
 }
 
 declare module "next-auth/jwt" {
   interface JWT {
+    familyName?: string;
     fiscalCode: string;
     givenName?: string;
-    familyName?: string;
   }
 }
