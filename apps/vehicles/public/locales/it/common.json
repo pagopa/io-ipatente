@@ -8,5 +8,21 @@
       "name": "Il portale dell'automobilista"
     }
   },
+  "vehicles": {
+    "title": "I miei veicoli",
+    "description": "Di seguito trovi tutti i veicoli da te registrati",
+    "label": "TODO: label",
+    "rca": "RCA",
+    "rcaNotFound": "Non presente",
+    "inspection": "Revisione"
+  },
+  "vehicleDetails": {
+    "title": "Dettaglio Veicolo"
+  },
+  "vehicle": {
+    "type": {
+      "A": "Automobile"
+    }
+  },
   "welcome": "Benvenuto/a"
 }

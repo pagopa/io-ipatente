@@ -8,5 +8,21 @@
       "name": "The driver's portal"
     }
   },
+  "vehicles": {
+    "title": "My vehicles",
+    "description": "Registered vehicles",
+    "label": "TODO: label",
+    "rca": "RCA",
+    "rcaNotFound": "Not available",
+    "inspection": "Inspection"
+  },
+  "vehicleDetails": {
+    "title": "Vehicle details"
+  },
+  "vehicle": {
+    "type": {
+      "A": "Car"
+    }
+  },
   "welcome": "Welcome"
 }
