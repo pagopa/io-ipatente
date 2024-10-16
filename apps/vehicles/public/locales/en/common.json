@@ -11,7 +11,7 @@
   "vehicles": {
     "title": "My vehicles",
     "description": "Registered vehicles",
-    "defaultLabel": "Car",
+    "defaultLabel": "Vehicle",
     "rca": "RCA",
     "rcaNotFound": "Not available",
     "inspection": "Inspection"

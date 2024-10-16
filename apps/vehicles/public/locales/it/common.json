@@ -11,7 +11,7 @@
   "vehicles": {
     "title": "I miei veicoli",
     "description": "Di seguito trovi tutti i veicoli da te registrati",
-    "defaultLabel": "Automobile",
+    "defaultLabel": "Veicolo",
     "rca": "RCA",
     "rcaNotFound": "Non presente",
     "inspection": "Revisione"
