@@ -20,6 +20,13 @@ export const theme = createTheme(
           },
         },
       },
+      MuiCardHeader: {
+        styleOverrides: {
+          avatar: {
+            marginRight: pxToRem(8),
+          },
+        },
+      },
       MuiSvgIcon: {
         variants: [
           {
