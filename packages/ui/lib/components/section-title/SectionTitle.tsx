@@ -18,12 +18,12 @@ export const SectionTitle = ({ icon, label }: SectionTitleProps) => {
   )} 0%, ${alpha("#B3E5E3", 0.45)} 100%)`;
 
   return (
-    <Stack alignItems="center" direction="row" gap={2}>
+    <Stack alignItems="center" direction="row" gap={1}>
       <Avatar
         sx={{
           background: BG_LINEAR_GRADIENT,
           color: "text.primary",
-          padding: 4,
+          padding: 3.5,
         }}
         variant="rounded"
       >
