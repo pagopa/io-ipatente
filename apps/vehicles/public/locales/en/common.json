@@ -16,12 +16,72 @@
     "inspection": "Inspection"
   },
   "vehicleDetails": {
-    "title": "Vehicle details"
+    "title": "Vehicle details",
+    "info": {
+      "title": "Dettaglio veicolo",
+      "plate": "Targa",
+      "type": "Tipologia veicolo",
+      "use": "Uso",
+      "purpose": "Destinazione",
+      "extraMass": "Massa supplementare",
+      "emissionClass": "Classe ambientale",
+      "noviceDriver": "Veicolo per neopatentati"
+    },
+    "rca": {
+      "title": "Copertura RCA",
+      "valid": "Valida",
+      "expired": "Scaduta",
+      "notFound": "Non presente",
+      "insuranceGroup": "Gruppo assicurativo",
+      "dueDate": "Data fine copertura",
+      "info": "La data di fine assicurazione è comprensiva del <strong>periodo di comporto</strong>"
+    },
+    "inspections": {
+      "title": "Storico revisioni",
+      "date": "Data revisione: ",
+      "licensePlate": "Targa alla revisione: ",
+      "kilometersDetected": "Km rilevati: "
+    }
   },
   "vehicle": {
     "type": {
-      "A": "Car"
+      "A": "Automobile",
+      "C": "Ciclomotore",
+      "M": "Motoveicolo",
+      "R": "Rimorchio",
+      "N": "Macchina Operatrice Trainata",
+      "P": "Macchina Operatrice Semovente",
+      "U": "Macchina Agricola Semovente ad 1 asse",
+      "X": "Macchina Agricola Operatrice Trainata",
+      "Y": "Rimorchio Agricolo con Massa complessiva a pieno carico non superiore a 1,5 tonnellate",
+      "S": "Macchina Agricola Semovente munita di almeno 2 assi",
+      "T": "Rimorchio Agricolo",
+      "V": "Macchina Agricola Operatrice",
+      "E": "Autoveicolo e Rimorchio - Targhe di Prova",
+      "F": "Motoveicolo e Ciclomotore - Targhe di Prova",
+      "G": "Macchina Agricola - Targhe di Prova",
+      "H": "Macchina Operatrice - Targhe di Prova",
+      "CD": "Corpo Diplomatico - Targhe Diplomatiche",
+      "CC": "Corpo Consolare - Targhe Diplomatiche",
+      "EE": "Escursionisti Esteri - Targhe Diplomatiche"
     }
+  },
+  "extraMass": {
+    "EXTRAM_MSG_001": "Autorizzato",
+    "EXTRAM_MSG_002": "Non calcolabile",
+    "EXTRAM_MSG_003": "Non calcolabile",
+    "EXTRAM_MSG_004": "Non disponibile",
+    "EXTRAM_MSG_005": "Errore imprevisto"
+  },
+  "inspection": {
+    "REV_MSG_001": "Regolare",
+    "REV_MSG_002": "Da ripetere",
+    "REV_MSG_003": "Sospesa"
+  },
+  "novice": {
+    "EXTRAM_MSG_001": "Autorizzato alla guida",
+    "EXTRAM_MSG_002": "Non autorizzato alla guida",
+    "EXTRAM_MSG_003": "Dato non verificabile"
   },
   "welcome": "Welcome"
 }

@@ -4,7 +4,7 @@ import { HttpResponse, http } from "msw";
 
 import { getMockVehicles } from "../data/backend-data";
 
-faker.seed();
+faker.seed(1);
 
 export const buildHandlers = () => {
   const configuration = getConfiguration();
