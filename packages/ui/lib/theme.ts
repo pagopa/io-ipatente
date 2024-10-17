@@ -6,9 +6,18 @@ const colorTextPrimary = "#003366";
 
 export const theme = createTheme(
   deepmerge(muiItaliaTheme, {
+    components: {
+      MuiCard: {
+        styleOverrides: {
+          root: {
+            backgroundColor: "#F5F7FB",
+          },
+        },
+      },
+    },
     palette: {
       background: {
-        default: "#F5F7FB",
+        default: "#FFFFFF",
       },
       divider: "#CBD5E1",
       error: {
