@@ -1,5 +1,5 @@
+import { auth } from "@/auth";
 import { NextRequest, NextResponse } from "next/server";
-import { getToken } from "next-auth/jwt";
 
 import { CustomUser } from "../../../types/next-auth";
 import { handleUnauthorizedErrorResponse } from "./errors";
@@ -16,14 +16,14 @@ export const withJWTAuthHandler =
     nextRequest: NextRequest,
     { params }: { params: Record<string, unknown> },
   ) => {
-    const authDetails = await getToken({ req: nextRequest });
+    const session = await auth();
 
-    if (!authDetails) {
+    if (!session) {
       return handleUnauthorizedErrorResponse("No Authentication provided");
     }
     // call final handler injecting token payload
     return handler(nextRequest, {
       params,
-      user: authDetails,
+      user: session.user,
     });
   };

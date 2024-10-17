@@ -1,37 +1,29 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Session } from "next-auth";
 import { describe, expect, it, vi } from "vitest";
 
-import { CustomUser } from "../../../../types/next-auth";
 import { withJWTAuthHandler } from "../wrappers";
 
 const localhostUrl = "http://localhost";
 
-const mocks: {
-  jwtMock: CustomUser;
-} = vi.hoisted(() => ({
-  jwtMock: {
+const mockSession: Session = vi.hoisted(() => ({
+  expires: "anExpireDate",
+  user: {
     familyName: "aFamilyName",
     fiscalCode: "aFiscalCode",
     givenName: "aGivenName",
-  } as unknown as CustomUser,
+  },
 }));
 
-const { getToken } = vi.hoisted(() => ({
-  getToken: vi.fn().mockReturnValue(() => Promise.resolve(mocks.jwtMock)),
+const { auth } = vi.hoisted(() => ({
+  auth: vi.fn().mockReturnValue(() => Promise.resolve(mockSession)),
 }));
 
-vi.mock("next-auth/jwt", async () => {
-  const actual = await vi.importActual("next-auth/jwt");
-  return {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ...(actual as any),
-    getToken,
-  };
-});
+vi.mock("../../../auth", () => ({ auth }));
 
 describe("withJWTAuthHandler", () => {
   it("no token or invalid one provided should end up in 401 response", async () => {
-    getToken.mockReturnValueOnce(Promise.resolve(null));
+    auth.mockReturnValueOnce(Promise.resolve(null));
 
     const nextRequestMock = new NextRequest(new URL(localhostUrl));
 
@@ -48,7 +40,7 @@ describe("withJWTAuthHandler", () => {
   });
 
   it("valid token provided should end up in 200 response", async () => {
-    getToken.mockReturnValueOnce(Promise.resolve(mocks.jwtMock));
+    auth.mockResolvedValueOnce(Promise.resolve(mockSession));
 
     const nextRequestMock = new NextRequest(new URL(localhostUrl));
 
@@ -63,7 +55,8 @@ describe("withJWTAuthHandler", () => {
     expect(aMockedHandler).toHaveBeenCalledWith(
       nextRequestMock,
       expect.objectContaining({
-        user: mocks.jwtMock,
+        params: {},
+        user: mockSession.user,
       }),
     );
     expect(result.status).toBe(200);
