@@ -1,5 +1,19 @@
 # vehicles
 
+## 0.3.0
+
+### Minor Changes
+
+- d912a16: Added infoVeicoli API handler, fix next-auth JWT type augmentation, fix withJWTAuthHandler get session, minor updates
+- 782f8fa: Added withJWTAuthHandler bff wrapper
+
+### Patch Changes
+
+- 595f593: Add user's vehicle list
+- 091d3c4: Updated io-ipatente-vehicles openapi and msw mock data
+- Updated dependencies [595f593]
+  - @io-ipatente/ui@0.1.2
+
 ## 0.2.1
 
 ### Patch Changes
