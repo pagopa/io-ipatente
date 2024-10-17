@@ -8,6 +8,7 @@ import IconArrowCircleRightBold from "./svg/IconArrowCircleRightBold";
 import IconBus from "./svg/IconBus";
 import IconBusStation from "./svg/IconBusStation";
 import IconCar1 from "./svg/IconCar1";
+import IconCar1Bold from "./svg/IconCar1Bold";
 import IconCar2 from "./svg/IconCar2";
 import IconCarCollision from "./svg/IconCarCollision";
 import IconCarGearbox from "./svg/IconCarGearbox";
@@ -50,6 +51,7 @@ export const Icons = {
   bus: IconBus,
   busStation: IconBusStation,
   car1: IconCar1,
+  car1Bold: IconCar1Bold,
   car2: IconCar2,
   carCollision: IconCarCollision,
   carGearbox: IconCarGearbox,
