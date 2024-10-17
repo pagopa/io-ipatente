@@ -13,7 +13,7 @@ exports[`Test SectionTitle Components > Should match the snapshot with default p
         >
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeLarge css-tzssek-MuiSvgIcon-root"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium-small css-821wyw-MuiSvgIcon-root"
             focusable="false"
             viewBox="0 0 24 24"
           >
@@ -44,7 +44,7 @@ exports[`Test SectionTitle Components > Should match the snapshot with default p
       >
         <svg
           aria-hidden="true"
-          class="MuiSvgIcon-root MuiSvgIcon-fontSizeLarge css-tzssek-MuiSvgIcon-root"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium-small css-821wyw-MuiSvgIcon-root"
           focusable="false"
           viewBox="0 0 24 24"
         >

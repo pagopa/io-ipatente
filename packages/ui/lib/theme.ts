@@ -1,8 +1,14 @@
 import { createTheme } from "@mui/material/styles";
 import { deepmerge } from "@mui/utils";
-import { theme as muiItaliaTheme } from "@pagopa/mui-italia";
+import { theme as muiItaliaTheme, pxToRem } from "@pagopa/mui-italia";
 
 const colorTextPrimary = "#003366";
+
+declare module "@mui/material/SvgIcon" {
+  interface SvgIconPropsSizeOverrides {
+    "medium-small": true;
+  }
+}
 
 export const theme = createTheme(
   deepmerge(muiItaliaTheme, {
@@ -13,6 +19,16 @@ export const theme = createTheme(
             backgroundColor: "#F5F7FB",
           },
         },
+      },
+      MuiSvgIcon: {
+        variants: [
+          {
+            props: { fontSize: "medium-small" },
+            style: {
+              fontSize: pxToRem(32),
+            },
+          },
+        ],
       },
     },
     palette: {

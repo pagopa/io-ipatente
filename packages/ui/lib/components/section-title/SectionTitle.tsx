@@ -27,7 +27,7 @@ export const SectionTitle = ({ icon, label }: SectionTitleProps) => {
         }}
         variant="rounded"
       >
-        <Icon fontSize="large" name={icon} />
+        <Icon fontSize="medium-small" name={icon} />
       </Avatar>
       <Typography variant="h5">{label}</Typography>
     </Stack>
