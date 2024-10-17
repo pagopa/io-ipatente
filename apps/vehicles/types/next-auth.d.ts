@@ -18,7 +18,7 @@ declare module "next-auth" {
   }
 }
 
-declare module "next-auth/jwt" {
+declare module "@auth/core/jwt" {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface JWT extends CustomUser {}
 }
