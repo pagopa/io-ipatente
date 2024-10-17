@@ -6,7 +6,7 @@ exports[`Test CardInfo Component > Should match the snapshot with all props 1`] 
   "baseElement": <body>
     <div>
       <div
-        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-17bwcv1-MuiPaper-root-MuiCard-root"
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-tjaq38-MuiPaper-root-MuiCard-root"
         data-testid="io-ipatente-card-info"
       >
         <div
@@ -144,7 +144,7 @@ exports[`Test CardInfo Component > Should match the snapshot with all props 1`] 
   </body>,
   "container": <div>
     <div
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-17bwcv1-MuiPaper-root-MuiCard-root"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-tjaq38-MuiPaper-root-MuiCard-root"
       data-testid="io-ipatente-card-info"
     >
       <div

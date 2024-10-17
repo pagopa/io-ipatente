@@ -29,7 +29,6 @@ export const CardCarousel = ({ children, icon, title }: CardCarouselProps) => (
       ".io-ipatente-hidden": {
         display: "none",
       },
-      backgroundColor: "background.default",
     }}
   >
     <CardHeader
@@ -61,6 +60,9 @@ export const CardCarousel = ({ children, icon, title }: CardCarouselProps) => (
           "& .swiper": {
             height: "100%",
             width: "100%",
+          },
+          ".swiper-slide": {
+            height: "auto",
           },
         }}
       >

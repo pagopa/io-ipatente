@@ -1,5 +1,11 @@
 import AppLayout from "@/components/layouts/AppLayout";
+import { VehicleSectionDetails } from "@/components/vehicle-details/VehicleSectionDetails";
+import { VehicleSectionInspections } from "@/components/vehicle-details/VehicleSectionInspections";
+import { VehicleSectionRca } from "@/components/vehicle-details/VehicleSectionRca";
 import { useVehicles } from "@/hooks/useVehicles";
+import { vehicleByType } from "@/utils/strings";
+import { SectionTitle } from "@io-ipatente/ui";
+import Stack from "@mui/material/Stack";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -22,7 +28,28 @@ export default function VehicleDetails() {
     return <div>Error: {error.message}</div>;
   }
 
-  return <div>TODO: {JSON.stringify(data?.targaVeicolo)}</div>;
+  if (data === undefined) {
+    return <div>Vehicle not found</div>;
+  }
+
+  const { icon } = vehicleByType[data.tipoVeicolo] ?? {
+    icon: "car1",
+    label: "vehicles.defaultLabel",
+  };
+
+  return (
+    <>
+      <SectionTitle icon={icon} label={data.targaVeicolo} />
+      <Stack my={3} spacing={2}>
+        <VehicleSectionDetails data={data} />
+        <VehicleSectionRca rca={data.coperturaRCA} />
+        <VehicleSectionInspections
+          inspections={data.storicoRevisioni}
+          plate={data.targaVeicolo}
+        />
+      </Stack>
+    </>
+  );
 }
 
 VehicleDetails.getLayout = function getLayout(page: ReactElement) {

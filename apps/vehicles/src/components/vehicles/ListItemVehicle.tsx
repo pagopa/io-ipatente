@@ -1,18 +1,8 @@
-import type { ParseKeys } from "i18next";
-
-import { TipoVeicoloEnum, Veicolo } from "@/generated/openapi";
-import { IconType, ListItemAction, ListItemActionProps } from "@io-ipatente/ui";
+import { Veicolo } from "@/generated/openapi";
+import { vehicleByType } from "@/utils/strings";
+import { ListItemAction, ListItemActionProps } from "@io-ipatente/ui";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
-
-export const vehicleByType: {
-  [K in TipoVeicoloEnum]?: { icon: IconType; label: ParseKeys };
-} = {
-  [TipoVeicoloEnum.Enum.A]: {
-    icon: "car1",
-    label: "vehicle.type.A",
-  },
-};
 
 export interface ListItemVehicleProps {
   data: Veicolo;
@@ -66,6 +56,7 @@ export const ListItemVehicle = ({ data, onClick }: ListItemVehicleProps) => {
 
   const inspectionStatus: NonNullable<ListItemActionProps["badges"]>[0] =
     useMemo(() => {
+      // TODO: Move sort logic to bff
       const inspection = storicoRevisioni.reduce(
         (prev, curr) =>
           new Date(prev.dataRevisione) > new Date(curr.dataRevisione)

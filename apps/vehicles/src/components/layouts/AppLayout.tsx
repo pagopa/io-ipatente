@@ -26,7 +26,7 @@ const AppLayout = ({ children, description, title }: AppLayoutProps) => {
         description={description ? t(description) : ""}
         title={t(title)}
       />
-      <Box sx={{ px: 3 }}>{children}</Box>
+      <Box sx={{ p: 2 }}>{children}</Box>
     </Box>
   );
 };

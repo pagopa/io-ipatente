@@ -8,6 +8,7 @@ import IconArrowCircleRightBold from "./svg/IconArrowCircleRightBold";
 import IconBus from "./svg/IconBus";
 import IconBusStation from "./svg/IconBusStation";
 import IconCar1 from "./svg/IconCar1";
+import IconCar1Bold from "./svg/IconCar1Bold";
 import IconCar2 from "./svg/IconCar2";
 import IconCarCollision from "./svg/IconCarCollision";
 import IconCarGearbox from "./svg/IconCarGearbox";
@@ -31,6 +32,7 @@ import IconParking from "./svg/IconParking";
 import IconRoad from "./svg/IconRoad";
 import IconSailboat from "./svg/IconSailboat";
 import IconScooter from "./svg/IconScooter";
+import IconSecurityUserBold from "./svg/IconSecurityUserBold";
 import IconSmartCar from "./svg/IconSmartCar";
 import IconSpeedometer from "./svg/IconSpeedometer";
 import IconTickCircleBold from "./svg/IconTickCircleBold";
@@ -49,6 +51,7 @@ export const Icons = {
   bus: IconBus,
   busStation: IconBusStation,
   car1: IconCar1,
+  car1Bold: IconCar1Bold,
   car2: IconCar2,
   carCollision: IconCarCollision,
   carGearbox: IconCarGearbox,
@@ -72,6 +75,7 @@ export const Icons = {
   road: IconRoad,
   sailboat: IconSailboat,
   scooter: IconScooter,
+  securityUserBold: IconSecurityUserBold,
   smartCar: IconSmartCar,
   speedometer: IconSpeedometer,
   tickCircleBold: IconTickCircleBold,
