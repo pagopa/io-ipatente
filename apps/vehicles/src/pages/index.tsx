@@ -74,7 +74,7 @@ export default function Home() {
 }
 
 Home.getLayout = function getLayout(page: ReactElement) {
-  return <AppLayout>{page}</AppLayout>;
+  return <AppLayout title="app.title">{page}</AppLayout>;
 };
 
 // Loading locales server-side

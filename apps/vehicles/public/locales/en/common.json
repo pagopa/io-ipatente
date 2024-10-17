@@ -8,5 +8,20 @@
       "name": "The driver's portal"
     }
   },
+  "vehicles": {
+    "title": "My vehicles",
+    "description": "Registered vehicles",
+    "defaultLabel": "Vehicle",
+    "rca": "RCA",
+    "inspection": "Inspection"
+  },
+  "vehicleDetails": {
+    "title": "Vehicle details"
+  },
+  "vehicle": {
+    "type": {
+      "A": "Car"
+    }
+  },
   "welcome": "Welcome"
 }

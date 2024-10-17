@@ -155,6 +155,9 @@ components:
           type: "number"
     EsitoRevisione:
       type: object
+      required:
+        - descrizione
+        - codice
       properties:
         descrizione:
           type: string
