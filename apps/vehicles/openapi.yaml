@@ -113,6 +113,9 @@ components:
             - PRIV.,LOCAZIONE FAC. COMPERA
     ExtraMassa:
       type: object
+      required:
+        - descrizione
+        - codice
       properties:
         descrizione:
           type: string
