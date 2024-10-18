@@ -42,4 +42,9 @@ describe("Test ListItemAction Components", () => {
     fireEvent.click(button);
     expect(mockHandleClick).toHaveBeenCalledTimes(1);
   });
+
+  it("Should match the snapshot for loading", () => {
+    const comp = render(<ListItemAction isLoading={true} />);
+    expect(comp).toMatchSnapshot();
+  });
 });

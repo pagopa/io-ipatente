@@ -52,9 +52,9 @@ export default function VehicleDetails() {
   );
 }
 
-VehicleDetails.getLayout = function getLayout(page: ReactElement) {
-  return <AppLayout title="vehicleDetails.title">{page}</AppLayout>;
-};
+VehicleDetails.getLayout = (page: ReactElement) => (
+  <AppLayout title="vehicleDetails.title">{page}</AppLayout>
+);
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
   props: {

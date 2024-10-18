@@ -6,36 +6,48 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Skeleton,
   Stack,
   Typography,
 } from "@mui/material";
 
 import { Icon, IconType } from "../icon";
 
-type BadgeProps = {
+export type BadgeProps = {
   icon: IconType;
 } & Pick<ChipProps, "color" | "label" | "size">;
 
-export interface ListItemActionProps {
+type ListItemActionBaseProps = {
   badges?: BadgeProps[];
   icon: IconType;
   label: string;
   onClick: () => void;
   value: string;
-}
+};
 
-export const ListItemAction = ({
-  badges = [],
-  icon,
-  label,
-  onClick,
-  value,
-}: ListItemActionProps) => (
-  <ListItem
-    disablePadding
-    sx={{ bgcolor: "background.paper", boxShadow: (theme) => theme.shadows[4] }}
-  >
-    <ListItemButton onClick={onClick}>
+export type ListItemActionProps =
+  | {
+      isLoading: true;
+    }
+  | ({
+      isLoading?: false;
+    } & ListItemActionBaseProps);
+
+export const ListItemAction = (props: ListItemActionProps) => {
+  if (props.isLoading) {
+    return <ListItemActionSkeleton />;
+  }
+
+  const { badges = [], icon, label, onClick, value } = props;
+
+  return (
+    <ListItemButton
+      onClick={onClick}
+      sx={{
+        bgcolor: "background.paper",
+        boxShadow: (theme) => theme.shadows[4],
+      }}
+    >
       <ListItemIcon>
         <Icon fontSize="medium" name={icon} />
       </ListItemIcon>
@@ -61,5 +73,28 @@ export const ListItemAction = ({
       />
       <ArrowForwardIos />
     </ListItemButton>
+  );
+};
+
+const ListItemActionSkeleton = () => (
+  <ListItem
+    sx={{
+      bgcolor: "background.paper",
+      boxShadow: (theme) => theme.shadows[4],
+    }}
+  >
+    <ListItemIcon>
+      <Skeleton height={40} variant="circular" width={40} />
+    </ListItemIcon>
+    <ListItemText
+      disableTypography
+      primary={<Skeleton width="60%" />}
+      secondary={
+        <>
+          <Skeleton width="40%" />
+          <Skeleton width="20%" />
+        </>
+      }
+    />
   </ListItem>
 );

@@ -27,6 +27,14 @@ export const theme = createTheme(
           },
         },
       },
+      MuiListItem: {
+        styleOverrides: {
+          root: {
+            paddingBottom: muiItaliaTheme.spacing(2),
+            paddingTop: muiItaliaTheme.spacing(2),
+          },
+        },
+      },
       MuiSvgIcon: {
         variants: [
           {

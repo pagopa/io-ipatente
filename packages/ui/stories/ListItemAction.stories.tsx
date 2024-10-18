@@ -41,3 +41,9 @@ export const Default: Story = {
     value: "FT 561 YC",
   },
 };
+
+export const isLoading: Story = {
+  args: {
+    isLoading: true,
+  },
+};
