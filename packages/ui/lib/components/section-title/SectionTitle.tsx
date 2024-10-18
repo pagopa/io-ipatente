@@ -1,5 +1,6 @@
 import { Avatar, Stack, Typography } from "@mui/material";
 import { alpha, useTheme } from "@mui/material/styles";
+import { memo } from "react";
 
 import { Icon, IconType } from "../icon";
 
@@ -8,7 +9,7 @@ export interface SectionTitleProps {
   label: string;
 }
 
-export const SectionTitle = ({ icon, label }: SectionTitleProps) => {
+export const SectionTitle = memo(({ icon, label }: SectionTitleProps) => {
   const theme = useTheme();
 
   // TODO: Check second color and move to theme
@@ -32,4 +33,4 @@ export const SectionTitle = ({ icon, label }: SectionTitleProps) => {
       <Typography variant="h5">{label}</Typography>
     </Stack>
   );
-};
+});
