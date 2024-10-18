@@ -6,7 +6,7 @@ exports[`Test CardCarousel Components > Should match the snapshot 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-bozkv9-MuiPaper-root-MuiCard-root"
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1kpnbex-MuiPaper-root-MuiCard-root"
       >
         <div
           class="MuiCardHeader-root css-185gdzj-MuiCardHeader-root"
@@ -90,7 +90,7 @@ exports[`Test CardCarousel Components > Should match the snapshot 1`] = `
           class="MuiCardContent-root css-1xte5ga-MuiCardContent-root"
         >
           <div
-            class="MuiStack-root css-o7ax6o-MuiStack-root"
+            class="MuiStack-root css-11lil7k-MuiStack-root"
           >
             <div
               class="swiper swiper-initialized swiper-horizontal io-ipatente-swiper"
@@ -135,7 +135,7 @@ exports[`Test CardCarousel Components > Should match the snapshot 1`] = `
   </body>,
   "container": <div>
     <div
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-bozkv9-MuiPaper-root-MuiCard-root"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1kpnbex-MuiPaper-root-MuiCard-root"
     >
       <div
         class="MuiCardHeader-root css-185gdzj-MuiCardHeader-root"
@@ -219,7 +219,7 @@ exports[`Test CardCarousel Components > Should match the snapshot 1`] = `
         class="MuiCardContent-root css-1xte5ga-MuiCardContent-root"
       >
         <div
-          class="MuiStack-root css-o7ax6o-MuiStack-root"
+          class="MuiStack-root css-11lil7k-MuiStack-root"
         >
           <div
             class="swiper swiper-initialized swiper-horizontal io-ipatente-swiper"

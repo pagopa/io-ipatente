@@ -25,7 +25,11 @@ export default function Vehicles() {
   }
 
   return (
-    <Stack component="ul" spacing={2} sx={{ listStyleType: "none", pl: 0 }}>
+    <Stack
+      component="ul"
+      spacing={2}
+      sx={{ listStyleType: "none", m: 0, pl: 0 }}
+    >
       {data.map((item) => (
         <ListItemVehicle
           data={item}

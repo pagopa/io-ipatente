@@ -47,10 +47,7 @@ export const CardInfo = ({
   title,
   topContent,
 }: CardInfoProps) => (
-  <Card
-    data-testid={DATA_TEST_ID_PREFIX}
-    sx={{ backgroundColor: "background.default", width: "100%" }}
-  >
+  <Card data-testid={DATA_TEST_ID_PREFIX} sx={{ width: "100%" }}>
     <CardContent sx={{ padding: 2 }}>
       <Stack
         alignItems="center"
