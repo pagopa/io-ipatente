@@ -1,6 +1,7 @@
 import AppLayout from "@/components/layouts/AppLayout";
 import { ListItemVehicle } from "@/components/vehicles/ListItemVehicle";
 import { useVehicles } from "@/hooks/useVehicles";
+import { ListItemAction } from "@io-ipatente/ui";
 import Stack from "@mui/material/Stack";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
@@ -17,7 +18,17 @@ export default function Vehicles() {
   );
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <Stack
+        component="ul"
+        spacing={2}
+        sx={{ listStyleType: "none", m: 0, pl: 0 }}
+      >
+        <ListItemAction isLoading />
+        <ListItemAction isLoading />
+        <ListItemAction isLoading />
+      </Stack>
+    );
   }
 
   if (isError) {
@@ -41,13 +52,11 @@ export default function Vehicles() {
   );
 }
 
-Vehicles.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <AppLayout description="vehicles.description" title="vehicles.title">
-      {page}
-    </AppLayout>
-  );
-};
+Vehicles.getLayout = (page: ReactElement) => (
+  <AppLayout description="vehicles.description" title="vehicles.title">
+    {page}
+  </AppLayout>
+);
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
   props: {

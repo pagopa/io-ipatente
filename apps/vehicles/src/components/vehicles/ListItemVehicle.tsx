@@ -1,6 +1,6 @@
 import { Veicolo } from "@/generated/openapi";
 import { vehicleByType } from "@/utils/strings";
-import { ListItemAction, ListItemActionProps } from "@io-ipatente/ui";
+import { BadgeProps, ListItemAction } from "@io-ipatente/ui";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
 
@@ -24,72 +24,70 @@ export const ListItemVehicle = ({ data, onClick }: ListItemVehicleProps) => {
     label: "vehicles.defaultLabel",
   };
 
-  const rcaStatus: NonNullable<ListItemActionProps["badges"]>[0] =
-    useMemo(() => {
-      if (!coperturaRCA) {
-        return {
-          icon: "forbidden",
-          label: t("vehicles.rca"),
-          size: "small",
-        };
-      }
-
-      if (
-        new Date(coperturaRCA.dataScadenzaCopertura).setHours(0, 0, 0, 0) >=
-        new Date().setHours(0, 0, 0, 0)
-      ) {
-        return {
-          color: "success",
-          icon: "tickCircleBold",
-          label: t("vehicles.rca"),
-          size: "small",
-        };
-      }
-
+  const rcaStatus: BadgeProps = useMemo(() => {
+    if (!coperturaRCA) {
       return {
-        color: "error",
-        icon: "warning2Bold",
+        icon: "forbidden",
         label: t("vehicles.rca"),
         size: "small",
       };
-    }, [coperturaRCA, t]);
+    }
 
-  const inspectionStatus: NonNullable<ListItemActionProps["badges"]>[0] =
-    useMemo(() => {
-      // TODO: Move sort logic to bff
-      const inspection = storicoRevisioni.reduce(
-        (prev, curr) =>
-          new Date(prev.dataRevisione) > new Date(curr.dataRevisione)
-            ? prev
-            : curr,
-        storicoRevisioni[0],
-      );
+    if (
+      new Date(coperturaRCA.dataScadenzaCopertura).setHours(0, 0, 0, 0) >=
+      new Date().setHours(0, 0, 0, 0)
+    ) {
+      return {
+        color: "success",
+        icon: "tickCircleBold",
+        label: t("vehicles.rca"),
+        size: "small",
+      };
+    }
 
-      switch (inspection?.esitoRevisione.codice) {
-        case "REV_MSG_001":
-          return {
-            color: "success",
-            icon: "tickCircleBold",
-            label: t("vehicles.inspection"),
-            size: "small",
-          };
-        case "REV_MSG_002":
-          return {
-            color: "warning",
-            icon: "warningBold",
-            label: t("vehicles.inspection"),
-            size: "small",
-          };
-        case "REV_MSG_003":
-        default:
-          return {
-            color: "error",
-            icon: "warning2Bold",
-            label: t("vehicles.inspection"),
-            size: "small",
-          };
-      }
-    }, [storicoRevisioni, t]);
+    return {
+      color: "error",
+      icon: "warning2Bold",
+      label: t("vehicles.rca"),
+      size: "small",
+    };
+  }, [coperturaRCA, t]);
+
+  const inspectionStatus: BadgeProps = useMemo(() => {
+    // TODO: Move sort logic to bff
+    const inspection = storicoRevisioni.reduce(
+      (prev, curr) =>
+        new Date(prev.dataRevisione) > new Date(curr.dataRevisione)
+          ? prev
+          : curr,
+      storicoRevisioni[0],
+    );
+
+    switch (inspection?.esitoRevisione.codice) {
+      case "REV_MSG_001":
+        return {
+          color: "success",
+          icon: "tickCircleBold",
+          label: t("vehicles.inspection"),
+          size: "small",
+        };
+      case "REV_MSG_002":
+        return {
+          color: "warning",
+          icon: "warningBold",
+          label: t("vehicles.inspection"),
+          size: "small",
+        };
+      case "REV_MSG_003":
+      default:
+        return {
+          color: "error",
+          icon: "warning2Bold",
+          label: t("vehicles.inspection"),
+          size: "small",
+        };
+    }
+  }, [storicoRevisioni, t]);
 
   return (
     <ListItemAction
