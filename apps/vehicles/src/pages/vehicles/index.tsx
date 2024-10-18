@@ -1,12 +1,12 @@
 import AppLayout from "@/components/layouts/AppLayout";
 import { ListItemVehicle } from "@/components/vehicles/ListItemVehicle";
 import { useVehicles } from "@/hooks/useVehicles";
+import { ListItemAction } from "@io-ipatente/ui";
 import Stack from "@mui/material/Stack";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { ReactElement, useCallback } from "react";
-import { ListItemAction } from "@io-ipatente/ui";
 
 export default function Vehicles() {
   const router = useRouter();
