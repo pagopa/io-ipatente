@@ -17,13 +17,13 @@ export type BadgeProps = {
   icon: IconType;
 } & Pick<ChipProps, "color" | "label" | "size">;
 
-type ListItemActionBaseProps = {
+interface ListItemActionBaseProps {
   badges?: BadgeProps[];
   icon: IconType;
   label: string;
   onClick: () => void;
   value: string;
-};
+}
 
 export type ListItemActionProps =
   | {
