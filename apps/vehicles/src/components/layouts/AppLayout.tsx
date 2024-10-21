@@ -1,17 +1,20 @@
-import { TopBar } from "@io-ipatente/ui";
+import { PageHeader, TopBar } from "@io-ipatente/ui";
 import Box from "@mui/material/Box";
+import { ParseKeys } from "i18next";
 import { useTranslation } from "next-i18next";
 import { ReactNode } from "react";
 
 interface AppLayoutProps {
   children: ReactNode;
+  description?: ParseKeys;
+  title: ParseKeys;
 }
 
-const AppLayout = ({ children }: AppLayoutProps) => {
+const AppLayout = ({ children, description, title }: AppLayoutProps) => {
   const { t } = useTranslation();
 
   return (
-    <>
+    <Box display="flex" flexDirection="column" minHeight="100vh">
       <TopBar
         product={{
           logo: "ipatente",
@@ -19,10 +22,12 @@ const AppLayout = ({ children }: AppLayoutProps) => {
           url: "",
         }}
       />
-      <Box component="main" sx={{ p: 3 }}>
-        {children}
-      </Box>
-    </>
+      <PageHeader
+        description={description ? t(description) : ""}
+        title={t(title)}
+      />
+      <Box sx={{ p: 2 }}>{children}</Box>
+    </Box>
   );
 };
 

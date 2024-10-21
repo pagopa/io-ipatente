@@ -5,6 +5,12 @@ import { theme as muiItaliaTheme, pxToRem } from "@pagopa/mui-italia";
 const colorTextPrimary = "#003366";
 const colorPrimaryContainedHover = "#004D99";
 
+declare module "@mui/material/SvgIcon" {
+  interface SvgIconPropsSizeOverrides {
+    "medium-small": true;
+  }
+}
+
 export const theme = createTheme(
   deepmerge(muiItaliaTheme, {
     components: {
@@ -41,6 +47,38 @@ export const theme = createTheme(
           },
         },
       },
+      MuiCard: {
+        styleOverrides: {
+          root: {
+            backgroundColor: "#F5F7FB",
+          },
+        },
+      },
+      MuiCardHeader: {
+        styleOverrides: {
+          avatar: {
+            marginRight: pxToRem(8),
+          },
+        },
+      },
+      MuiListItem: {
+        styleOverrides: {
+          root: {
+            paddingBottom: muiItaliaTheme.spacing(2),
+            paddingTop: muiItaliaTheme.spacing(2),
+          },
+        },
+      },
+      MuiSvgIcon: {
+        variants: [
+          {
+            props: { fontSize: "medium-small" },
+            style: {
+              fontSize: pxToRem(32),
+            },
+          },
+        ],
+      },
     },
     palette: {
       action: {
@@ -51,7 +89,7 @@ export const theme = createTheme(
         selected: "rgba(0, 115, 230, 0.08)",
       },
       background: {
-        default: "#F5F7FB",
+        default: "#FFFFFF",
       },
       divider: "#CBD5E1",
       error: {

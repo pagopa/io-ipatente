@@ -6,14 +6,14 @@ exports[`Test SectionTitle Components > Should match the snapshot with default p
   "baseElement": <body>
     <div>
       <div
-        class="MuiStack-root css-1kq5d21-MuiStack-root"
+        class="MuiStack-root css-1rlitzi-MuiStack-root"
       >
         <div
-          class="MuiAvatar-root MuiAvatar-rounded MuiAvatar-colorDefault css-hm2vhr-MuiAvatar-root"
+          class="MuiAvatar-root MuiAvatar-rounded MuiAvatar-colorDefault css-1m0zkg3-MuiAvatar-root"
         >
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeLarge css-tzssek-MuiSvgIcon-root"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium-small css-821wyw-MuiSvgIcon-root"
             focusable="false"
             viewBox="0 0 24 24"
           >
@@ -37,14 +37,14 @@ exports[`Test SectionTitle Components > Should match the snapshot with default p
   </body>,
   "container": <div>
     <div
-      class="MuiStack-root css-1kq5d21-MuiStack-root"
+      class="MuiStack-root css-1rlitzi-MuiStack-root"
     >
       <div
-        class="MuiAvatar-root MuiAvatar-rounded MuiAvatar-colorDefault css-hm2vhr-MuiAvatar-root"
+        class="MuiAvatar-root MuiAvatar-rounded MuiAvatar-colorDefault css-1m0zkg3-MuiAvatar-root"
       >
         <svg
           aria-hidden="true"
-          class="MuiSvgIcon-root MuiSvgIcon-fontSizeLarge css-tzssek-MuiSvgIcon-root"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium-small css-821wyw-MuiSvgIcon-root"
           focusable="false"
           viewBox="0 0 24 24"
         >

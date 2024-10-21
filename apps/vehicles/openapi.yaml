@@ -54,23 +54,94 @@ components:
       type: "object"
       properties:
         extraMassa:
-          description: |
-            ### Messaggi restituiti:
-            Messaggio che indica se il veicolo e' soggetto ad extra massa
-            - "NPDA_EXTRAMASSA_MSG001" (Traduzione frontend ita: IL VEICOLO NON RIENTRA NELLE CONDIZIONI DI CUI ALL'ARTICOLO 116, CO.3, LETT. F), N. 2, CDS)
-            - "NPDA_EXTRAMASSA_MSG002" (Il veicolo di categoria N2, alimentato con combustibile alternativo e con una massa autorizzata massima compresa tra 3.500 kg e 4.250 kg, adibito al trasporto di merci e che opera senza rimorchio, può essere condotto dai titolari di una patente di guida di categoria B rilasciata da almeno due anni.)
-
-          type: "string"
+          $ref: "#/components/schemas/ExtraMassa"
         neopatentati:
-          description: |
-            ### Messaggi restituiti:
-            - "NPDA_NEOPAT_MSG001" (Traduzione frontend ita: Il veicolo può essere guidato da un neopatentato.)
-            - "NPDA_NEOPAT_MSG002" (Traduzione frontend ita: Il veicolo non può essere guidato da un conducente che abbia conseguito la patente da meno di un anno. Tale limite non si applica se a fianco del conducente si trova, in funzione di istruttore, persona di età non superiore a sessantacinque anni, munita di patente valida per la stessa categoria, conseguita da almeno dieci anni, ovvero valida per la categoria superiore.)
-            - "NPDA_NEOPAT_MSG003" (Traduzione frontend ita: Dati tecnici mancanti.)
-            - "NPDA_NEOPAT_MSG004" (Traduzione frontend ita: Dato Non Verificabile.)
-          type: "string"
+          $ref: "#/components/schemas/Neopatentati"
         classeAmbientale:
           $ref: "#/components/schemas/ClasseAmbientaleEnum"
+        tipoUsoVeicolo:
+          type: "string"
+          description: |
+            - AUTOVEICOLO IN SERVIZIO PUBBLICO DI LINEA INTEGRATIVO
+            - AUTOVEICOLO USO ESCLUSIVO DI POLIZIA
+            - AUTOVETTURA PER TRASPORTO DI PERSONE
+            - AUTOBUS PER TRASPORTO DI PERSONE
+            - AUTOCARRO PER TRASPORTO DI COSE
+            - AUTOCARAVAN
+            - AUTOVEICOLO PER USO SPECIALE
+            - TRAS.SPECIFICO PERSONE PART.CONDIZIONI
+            - AUTOVEIC.TRASP.PROMISCUO PERSONE/COSE
+            - TRATTORE STRADALE PER RIMORCHIO
+            - TRATTORE PER SEMIRIMORCHIO
+            - AUTOVEICOLO PER TRASPORTO SPECIFICO
+            - QUADRICICLO PER TRASP. DI PERSONE
+            - QUADRICICLO PER TRASP.DI COSE
+            - QUADRICICLO PER USO SPECIALE
+            - QUADRICICLO TRASP. SPECIFICO
+            - MOTOVEICOLO USO ESCLUSIVO DI POLIZIA
+            - TRICICLO PER TRASPORTO PROMISCUO
+            - TRICICLO PER USO SPECIALE
+            - TRICICLO PER TRASPORTO SPECIFICO
+            - MOTOCICLO PER TRASPORTO PERSONE
+            - TRICICLO PER TRASPORTO COSE
+            - TRICICLO PER TRASPORTO DI PERSONE
+            - SEMIRIMORCHIO PER TRASPORTO SPECIFICO
+            - SEMIRIMORCHIO PER TRASPORTO COSE
+            - RIMORCHIO PER TRASPORTO ATTREZZATURE TURISTICHE E SPORTIVE
+            - RIMORCHIO PER TRASPORTI SPECIFICI
+            - SEMIRIMORCHIO PER TRASPORTO PERSONE
+            - RIMORCHIO PER TRASPORTO COSE
+            - CARAVAN
+            - RIMORCHIO PER TRASPORTO PERSONE
+            - RIMORCHIO PER USO SPECIALE
+            - SEMIRIMORCHIO PER USO SPECIALE
+            - CICLOMOTORE
+            - VEICOLO USO SPECIALE AUTOSCUOLA
+            - QUADRICICLO USO ESCLUSIVO DI POLIZIA
+            - USO SPEC AUTOSCUOLA RIMORCHIO ABB ESCL VEIC USO SPEC AUTOSC
+            - AUTOVEICOLO PER USO SPECIALE DELLA POLIZIA LOCALE
+        tipoDestinazioneUsoVeicolo:
+          type: "string"
+          description: |
+            - DI TERZI DA NOLEGGIO CON CONDUC.
+            - DI TERZI DA LOCARE SENZA CONDUC.
+            - DI TERZI
+            - PROPRIO
+            - DI TERZI CON AUTORIZZAZIONI VINCOLATE
+            - DI TERZI CON AUTORIZZAZIONE LIBERA
+            - USO SPECIALE
+            - PRIV.,LOCAZIONE FAC. COMPERA
+    ExtraMassa:
+      type: object
+      required:
+        - descrizione
+        - codice
+      properties:
+        descrizione:
+          type: string
+          description: |
+            ### Esiti extramassa
+            - (EXTRAM_MSG_001) 'Il veicolo di categoria N2, alimentato con combustibile alternativo e con una massa autorizzata massima compresa tra 3.500 kg e 4.250 kg, adibito al trasporto di merci e che opera senza rimorchio, puo' essere condotto dai titolari di una patente di guida di categoria B rilasciata da almeno due anni'
+            - (EXTRAM_MSG_002) 'QUANTITA' MASSA TOTALE ASSENTE SU OMOLOGAZIONE - IMPOSSIBILE CALCOLARE L'EXTRAMASSA'
+            - (EXTRAM_MSG_003) 'QUANTITA' MASSA TOTALE ASSENTE - IMPOSSIBILE CALCOLARE L'EXTRAMASSA'
+            - (EXTRAM_MSG_004) 'MASSA SUPPLEMENTARE NON DISPONIBILE - CONTATTARE LA CASA COSTRUTTRICE PER L'INSERIMENTO DI TALE INFORMAZIONE
+            - (EXTRAM_MSG_005) 'ERRORE IMPREVISTO, CONTROLLARE IL LOG PER MAGGIORI INFORMAZIONI'
+          example: "ERRORE IMPREVISTO, CONTROLLARE IL LOG PER MAGGIORI INFORMAZIONI"
+        codice:
+          $ref: "#/components/schemas/ExtraMassaEnum"
+    Neopatentati:
+      type: object
+      properties:
+        descrizione:
+          type: string
+          description: |
+            ### Esiti neopatentato
+            - (NEOP_MSG_001) 'Autorizzato alla guida'
+            - (NEOP_MSG_002) 'Non autorizzato alla guida'
+            - (NEOP_MSG_003) 'Dato Non Verificabile'
+          example: "Autorizzato alla guida"
+        codice:
+          $ref: "#/components/schemas/NeopatentatiEnum"
     Revisione:
       type: "object"
       required:
@@ -80,11 +151,27 @@ components:
         dataRevisione:
           type: "string"
         esitoRevisione:
-          $ref: "#/components/schemas/EsitoRevisioneEnum"
+          $ref: "#/components/schemas/EsitoRevisione"
         kmPercorsi:
           type: "number"
         kmTotali:
           type: "number"
+    EsitoRevisione:
+      type: object
+      required:
+        - descrizione
+        - codice
+      properties:
+        descrizione:
+          type: string
+          description: |
+            ### Esiti revisione
+            - (REV_MSG_001) 'Regolare'
+            - (REV_MSG_002) 'Da ripetere'
+            - (REV_MSG_003) 'Sospesa'
+          example: "Regolare"
+        codice:
+          $ref: "#/components/schemas/EsitoRevisioneEnum"
     CoperturaRCA:
       type: object
       description: ultima assicurazione valida in corso, null se non presente
@@ -123,6 +210,23 @@ components:
         - "CC" (Corpo Consolare - Targhe Diplomatiche)
         - "EE" (Escursionisti Esteri - Targhe Diplomatiche)
       enum: [C, A, M, R, N, P, U, X, Y, S, T, V, E, F, G, H, CD, CC, EE]
+    ExtraMassaEnum:
+      type: string
+      enum:
+        [
+          EXTRAM_MSG_001,
+          EXTRAM_MSG_002,
+          EXTRAM_MSG_003,
+          EXTRAM_MSG_004,
+          EXTRAM_MSG_005,
+        ]
+      description: Codici extramassa
+      example: "EXTRAM_MSG_005"
+    NeopatentatiEnum:
+      type: string
+      enum: [NEOP_MSG_001, NEOP_MSG_002, NEOP_MSG_003]
+      description: Codici neopatentato
+      example: "NEOP_MSG_001"
     ClasseAmbientaleEnum:
       type: string
       description: |
@@ -158,10 +262,7 @@ components:
           EURO6E,
         ]
     EsitoRevisioneEnum:
-      type: "string"
-      description: |
-        ### Esito revisione
-        - "P" (Regolare)
-        - "R" (Ripetere)
-        - "S" (Sospendere)
-      enum: [P, R, S]
+      type: string
+      description: Codici esito revisione
+      enum: [REV_MSG_001, REV_MSG_002, REV_MSG_003]
+      example: "REV_MSG_001"
