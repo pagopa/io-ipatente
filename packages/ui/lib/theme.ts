@@ -3,7 +3,7 @@ import { createTheme } from "@mui/material/styles";
 import { deepmerge } from "@mui/utils";
 import { theme as muiItaliaTheme, pxToRem } from "@pagopa/mui-italia";
 
-const colorTextPrimary = "#003366";
+export const colorTextPrimary = "#003366";
 export const colorPrimaryContainedHover = "#004D99";
 
 // Added colors from figma
@@ -47,13 +47,6 @@ export const theme = createTheme(
           },
         ],
       },
-      MuiChip: {
-        styleOverrides: {
-          label: {
-            fontSize: pxToRem(16),
-          },
-        },
-      },
       MuiCard: {
         styleOverrides: {
           root: {
@@ -65,6 +58,13 @@ export const theme = createTheme(
         styleOverrides: {
           avatar: {
             marginRight: pxToRem(8),
+          },
+        },
+      },
+      MuiChip: {
+        styleOverrides: {
+          label: {
+            fontSize: pxToRem(16),
           },
         },
       },
