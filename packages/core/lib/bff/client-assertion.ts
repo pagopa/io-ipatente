@@ -34,7 +34,7 @@ export const generateClientAssertion = ({
   typ,
 }: ClientAssertion) => {
   try {
-    // Varables for JWT token
+    // Variables for JWT token
     const iat = Math.floor(Date.now() / 1000);
     const expiration = iat + exp;
     const jti = uuidv4();
