@@ -53,7 +53,7 @@ interface Properties {
 }
 
 export const TypographyTable = () => {
-  const { allVariants, ...variants } = theme.typography;
+  const { ...variants } = theme.typography;
   const data = Object.entries({ ...variants, ...EXTRA_VARIANTS }).reduce(
     (acc, [key, value]) =>
       value !== null && typeof value === "object" && !Array.isArray(value)
