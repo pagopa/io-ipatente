@@ -6,6 +6,8 @@ export interface ClientAssertion {
   alg: "RS256";
   /** The target audience: in project case a PDND Interoperability resource. */
   aud: string;
+  /** Expiration time _(seconds since generation)_ */
+  exp: number;
   /** The issuer of the request: in project case the id of this client. */
   iss: string;
   /** The id of the selected key. */
@@ -23,6 +25,7 @@ export interface ClientAssertion {
 export const generateClientAssertion = ({
   alg,
   aud,
+  exp,
   iss,
   kid,
   privateKey,
@@ -31,16 +34,16 @@ export const generateClientAssertion = ({
   typ,
 }: ClientAssertion) => {
   try {
-    // Varables for JWT token
+    // Variables for JWT token
     const iat = Math.floor(Date.now() / 1000);
-    const exp = iat + 43200 * 60; // 43200 ninutes (30 days)
+    const expiration = iat + exp;
     const jti = uuidv4();
 
     // JWT Headers
     const headersRSA = { alg, kid, typ };
 
     // JWT Payload
-    const payload = { aud, exp, iat, iss, jti, purposeId, sub };
+    const payload = { aud, exp: expiration, iat, iss, jti, purposeId, sub };
 
     return jwt.sign(payload, privateKey, {
       algorithm: alg,
