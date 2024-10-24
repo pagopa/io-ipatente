@@ -33,7 +33,7 @@ describe("Client Assertion", () => {
     mockUuidv4.mockReturnValue(mockJti);
 
     const iat = Math.floor(Date.now() / 1000);
-    
+
     const expectedPayload = {
       aud: mockClientAssertion.aud,
       exp: iat + mockClientAssertion.exp,
