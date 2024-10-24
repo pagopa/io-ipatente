@@ -11,6 +11,7 @@ describe("Client Assertion", () => {
   const mockClientAssertion: ClientAssertion = {
     alg: "RS256",
     aud: "https://example.com",
+    exp: 600,
     iss: "client-id",
     kid: "key-id",
     privateKey: "private-key",
@@ -32,11 +33,10 @@ describe("Client Assertion", () => {
     mockUuidv4.mockReturnValue(mockJti);
 
     const iat = Math.floor(Date.now() / 1000);
-    const exp = iat + 43200 * 60; // 30 giorni
 
     const expectedPayload = {
       aud: mockClientAssertion.aud,
-      exp,
+      exp: iat + mockClientAssertion.exp,
       iat,
       iss: mockClientAssertion.iss,
       jti: mockJti,
