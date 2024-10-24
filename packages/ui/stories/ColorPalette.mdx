@@ -1,7 +1,7 @@
 import { Meta, ColorPalette, ColorItem } from "@storybook/addon-docs";
 import { theme } from "../lib/theme";
 
-<Meta title="Foundation/ColorPalette" />
+<Meta title="Foundation/ColorPalette" />;
 
 <h2>Main</h2>
 <br />
@@ -12,6 +12,7 @@ import { theme } from "../lib/theme";
       Main: theme.palette.primary.main,
       Light: theme.palette.primary.light,
       ContrastText: theme.palette.primary.contrastText,
+      ContainedHoverBackground: theme.palette.primary.containedHoverBackground,
     }}
   />
   <ColorItem
@@ -20,6 +21,7 @@ import { theme } from "../lib/theme";
       Main: theme.palette.secondary.main,
       Light: theme.palette.secondary.light,
       ContrastText: theme.palette.secondary.contrastText,
+      ContainedHoverBackground: theme.palette.secondary.containedHoverBackground,
     }}
   />
   <ColorItem
@@ -36,6 +38,7 @@ import { theme } from "../lib/theme";
       Main: theme.palette.error.main,
       Light: theme.palette.error.light,
       Dark: theme.palette.error.dark,
+      ContainedHoverBackground: theme.palette.error.containedHoverBackground,
     }}
   />
   <ColorItem
@@ -44,6 +47,7 @@ import { theme } from "../lib/theme";
       Main: theme.palette.success.main,
       Light: theme.palette.success.light,
       Dark: theme.palette.success.dark,
+      ContainedHoverBackground: theme.palette.success.containedHoverBackground,
     }}
   />
   <ColorItem
@@ -52,12 +56,14 @@ import { theme } from "../lib/theme";
       Main: theme.palette.warning.main,
       Light: theme.palette.warning.light,
       Dark: theme.palette.warning.dark,
+      ContainedHoverBackground: theme.palette.warning.containedHoverBackground,
     }}
   />
   <ColorItem
     title="Background"
     colors={{
       Paper: theme.palette.background.paper,
+      PageHeader: theme.palette.background.pageHeader,
       Default: theme.palette.background.default,
     }}
   />

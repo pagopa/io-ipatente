@@ -5,6 +5,13 @@ import { theme as muiItaliaTheme, pxToRem } from "@pagopa/mui-italia";
 export const colorTextPrimary = "#003366";
 export const colorPrimaryContainedHover = "#004D99";
 
+// Added colors from figma
+export const colorBackgroundPageHeader = "#DFF1F3";
+const colorSecondaryContainedHover = "#0F766E";
+const colorErrorContainedHover = "#901323";
+const colorSuccessContainedHover = "#165A36";
+const colorWarningContainedHover = "#663D00";
+
 declare module "@mui/material/SvgIcon" {
   interface SvgIconPropsSizeOverrides {
     "medium-small": true;
@@ -90,9 +97,11 @@ export const theme = createTheme(
       },
       background: {
         default: "#F2F2F2",
+        pageHeader: colorBackgroundPageHeader,
       },
       divider: "#CBD5E1",
       error: {
+        containedHoverBackground: colorErrorContainedHover,
         contrastText: colorTextPrimary,
         dark: "#5F0C17",
         light: "#FCE8EB",
@@ -102,14 +111,17 @@ export const theme = createTheme(
         contrastText: colorTextPrimary,
       },
       primary: {
+        containedHoverBackground: colorPrimaryContainedHover,
         light: "#DCEDFF",
         main: "#0066CC",
       },
       secondary: {
+        containedHoverBackground: colorSecondaryContainedHover,
         light: "#CCFBF1",
         main: "#2DD4BF",
       },
       success: {
+        containedHoverBackground: colorSuccessContainedHover,
         contrastText: colorTextPrimary,
         dark: "#0F3E25",
         light: "#E6F9EF",
@@ -121,6 +133,7 @@ export const theme = createTheme(
         secondary: "#334155",
       },
       warning: {
+        containedHoverBackground: colorWarningContainedHover,
         contrastText: colorTextPrimary,
         dark: "#422700",
         light: "#F6E4C8",

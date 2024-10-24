@@ -6,6 +6,8 @@ import {
   Typography,
 } from "@mui/material";
 
+import { colorBackgroundPageHeader } from "../../theme";
+
 export interface PageHeaderProps {
   /** A list of links that help visualize page's location within app hierarchical structure.
    * It allows navigation up to any of the ancestors.
@@ -33,7 +35,6 @@ export interface PageHeaderBreadcrumb {
 
 export const DATA_TEST_ID_PREFIX = "io-ipatente-page-header";
 
-const PAGE_HEADER_BG_COLOR = "#DFF1F3";
 const BREADCRUMB_SEPARATOR_COLOR = "#64748B";
 
 /** Page Header component */
@@ -44,7 +45,7 @@ export const PageHeader = ({
   title,
 }: PageHeaderProps) => (
   <Stack
-    bgcolor={PAGE_HEADER_BG_COLOR}
+    bgcolor={colorBackgroundPageHeader}
     data-testid={DATA_TEST_ID_PREFIX}
     paddingX={2}
     paddingY={3}
