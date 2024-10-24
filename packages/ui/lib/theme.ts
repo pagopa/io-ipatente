@@ -1,16 +1,9 @@
-/* eslint-disable perfectionist/sort-objects */
 import { createTheme } from "@mui/material/styles";
 import { deepmerge } from "@mui/utils";
 import { theme as muiItaliaTheme, pxToRem } from "@pagopa/mui-italia";
 
 export const colorTextPrimary = "#003366";
 export const colorPrimaryContainedHover = "#004D99";
-
-// Added colors from figma
-export const colorSecondaryContainedHover = "#0F766E";
-export const colorErrorContainedHover = "#901323";
-export const colorSuccessContainedHover = "#165A36";
-export const colorWarningContainedHover = "#663D00";
 
 declare module "@mui/material/SvgIcon" {
   interface SvgIconPropsSizeOverrides {
