@@ -4,17 +4,14 @@ import { Typography } from "@mui/material";
 
 import { theme } from "../lib/theme";
 
-const exludedKeys = ["allVariants"];
-
-const variantsOptions = Object.entries(theme.typography).reduce(
-  (acc, [key, value]) =>
-    !exludedKeys.includes(key) &&
-    value !== null &&
-    typeof value === "object" &&
-    !Array.isArray(value)
-      ? [...acc, key]
-      : acc,
-  [] as string[],
+const variantsOptions = Object.entries(theme.typography).reduce<string[]>(
+  (acc, [key, value]) => {
+    if (key !== "allVariants" && value && typeof value === "object") {
+      return [...acc, key];
+    }
+    return acc;
+  },
+  [],
 );
 
 const metadata = {

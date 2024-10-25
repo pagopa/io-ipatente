@@ -6,8 +6,6 @@ import {
   Typography,
 } from "@mui/material";
 
-import { colorBackgroundPageHeader } from "../../theme";
-
 export interface PageHeaderProps {
   /** A list of links that help visualize page's location within app hierarchical structure.
    * It allows navigation up to any of the ancestors.
@@ -45,7 +43,7 @@ export const PageHeader = ({
   title,
 }: PageHeaderProps) => (
   <Stack
-    bgcolor={colorBackgroundPageHeader}
+    bgcolor="background.pageHeader"
     data-testid={DATA_TEST_ID_PREFIX}
     paddingX={2}
     paddingY={3}

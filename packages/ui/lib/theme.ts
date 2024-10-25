@@ -25,7 +25,7 @@ export const theme = createTheme(
         styleOverrides: {
           li: {
             p: {
-              fontSize: `${pxToRem(18)} !important`,
+              fontSize: pxToRem(18),
             },
           },
           root: {
