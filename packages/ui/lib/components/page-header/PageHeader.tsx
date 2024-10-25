@@ -33,7 +33,6 @@ export interface PageHeaderBreadcrumb {
 
 export const DATA_TEST_ID_PREFIX = "io-ipatente-page-header";
 
-const PAGE_HEADER_BG_COLOR = "#DFF1F3";
 const BREADCRUMB_SEPARATOR_COLOR = "#64748B";
 
 /** Page Header component */
@@ -44,7 +43,7 @@ export const PageHeader = ({
   title,
 }: PageHeaderProps) => (
   <Stack
-    bgcolor={PAGE_HEADER_BG_COLOR}
+    bgcolor="background.pageHeader"
     data-testid={DATA_TEST_ID_PREFIX}
     paddingX={2}
     paddingY={3}

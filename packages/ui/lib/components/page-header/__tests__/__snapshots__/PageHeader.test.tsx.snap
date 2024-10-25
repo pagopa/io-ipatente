@@ -6,7 +6,7 @@ exports[`Test PageHeader Component > Should match the snapshot with all props 1`
   "baseElement": <body>
     <div>
       <div
-        class="MuiStack-root css-chstwu-MuiStack-root"
+        class="MuiStack-root css-1ibk9n1-MuiStack-root"
         data-testid="io-ipatente-page-header"
       >
         <nav
@@ -71,7 +71,7 @@ exports[`Test PageHeader Component > Should match the snapshot with all props 1`
   </body>,
   "container": <div>
     <div
-      class="MuiStack-root css-chstwu-MuiStack-root"
+      class="MuiStack-root css-1ibk9n1-MuiStack-root"
       data-testid="io-ipatente-page-header"
     >
       <nav

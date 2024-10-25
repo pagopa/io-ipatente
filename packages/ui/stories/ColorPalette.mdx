@@ -1,0 +1,93 @@
+import { Meta, ColorPalette, ColorItem } from "@storybook/blocks";
+import { theme } from "../lib/theme";
+
+<Meta title="Foundation/Colors" />
+
+<h2>Main</h2>
+<br />
+<ColorPalette>
+  <ColorItem
+    title="Primary"
+    colors={{
+      Main: theme.palette.primary.main,
+      Light: theme.palette.primary.light,
+      ContrastText: theme.palette.primary.contrastText,
+      ContainedHoverBackground: theme.palette.primary.containedHoverBackground,
+    }}
+  />
+  <ColorItem
+    title="Secondary"
+    colors={{
+      Main: theme.palette.secondary.main,
+      Light: theme.palette.secondary.light,
+      ContrastText: theme.palette.secondary.contrastText,
+      ContainedHoverBackground:
+        theme.palette.secondary.containedHoverBackground,
+    }}
+  />
+  <ColorItem
+    title="Text"
+    colors={{
+      Primary: theme.palette.text.primary,
+      Secondary: theme.palette.text.secondary,
+      Disabled: theme.palette.text.disabled,
+    }}
+  />
+  <ColorItem
+    title="Error"
+    colors={{
+      Main: theme.palette.error.main,
+      Light: theme.palette.error.light,
+      Dark: theme.palette.error.dark,
+      ContainedHoverBackground: theme.palette.error.containedHoverBackground,
+    }}
+  />
+  <ColorItem
+    title="Success"
+    colors={{
+      Main: theme.palette.success.main,
+      Light: theme.palette.success.light,
+      Dark: theme.palette.success.dark,
+      ContainedHoverBackground: theme.palette.success.containedHoverBackground,
+    }}
+  />
+  <ColorItem
+    title="Warning"
+    colors={{
+      Main: theme.palette.warning.main,
+      Light: theme.palette.warning.light,
+      Dark: theme.palette.warning.dark,
+      ContainedHoverBackground: theme.palette.warning.containedHoverBackground,
+    }}
+  />
+  <ColorItem
+    title="Background"
+    colors={{
+      Paper: theme.palette.background.paper,
+      PageHeader: theme.palette.background.pageHeader,
+      Default: theme.palette.background.default,
+    }}
+  />
+  <ColorItem
+    title="Action"
+    subtitle="Fill color for different components in various states"
+    colors={{
+      Active: theme.palette.action.active,
+      focus: theme.palette.action.focus,
+    }}
+  />
+  <ColorItem
+    title="Action (Primary)"
+    colors={{
+      Hover: theme.palette.primaryAction.hover,
+      Selected: theme.palette.primaryAction.selected,
+    }}
+  />
+  <ColorItem
+    title="Action (Disabled)"
+    colors={{
+      Disabled: theme.palette.action.disabled,
+      DisabledBackground: theme.palette.action.disabledBackground,
+    }}
+  />
+</ColorPalette>
