@@ -1,6 +1,7 @@
 import AppLayout from "@/components/layouts/AppLayout";
 import { Veicolo } from "@/generated/openapi";
 import { useVehicles } from "@/hooks/useVehicles";
+import { EmptyState } from "@io-ipatente/ui";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { GetStaticProps } from "next";
@@ -54,6 +55,10 @@ export default function Home() {
           </Typography>
           <Typography variant="h5">{session?.user?.fiscalCode}</Typography>
         </Grid>
+        <EmptyState
+          name="car1Bold"
+          title="Non sono presenti veicoli registrati"
+        />
         {data.map((vehicle: Veicolo) => (
           <Grid item key={vehicle.targaVeicolo} xs={12}>
             <Typography
