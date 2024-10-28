@@ -19,13 +19,18 @@ export const VehicleSectionInspections = ({
   if (inspections.length === 0) {
     return (
       <CardInfo
-        bottomContent={
-          <Typography color="text.secondary" textAlign="center" variant="body2">
+        icon={<Icon fontSize="medium" name="documentText" />}
+        title={t("vehicleDetails.inspections.title")}
+        topContent={
+          <Typography
+            color="text.secondary"
+            paddingTop={2}
+            textAlign="center"
+            variant="body2"
+          >
             {t("vehicleDetails.inspections.empty")}
           </Typography>
         }
-        icon={<Icon fontSize="medium" name="documentText" />}
-        title={t("vehicleDetails.inspections.title")}
       />
     );
   }
