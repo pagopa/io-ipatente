@@ -37,23 +37,23 @@ export default function Vehicles() {
     return <div>Error: {error.message}</div>;
   }
 
-  return (
+  return data.length ? (
     <Stack
       component="ul"
       spacing={2}
       sx={{ listStyleType: "none", m: 0, pl: 0 }}
     >
-      {data.length ? (
-        data.map((item) => (
-          <ListItemVehicle
-            data={item}
-            key={`vehicle-${item.targaVeicolo}`}
-            onClick={handleOnClick}
-          />
-        ))
-      ) : (
-        <EmptyState name="car1Bold" title={t("vehicles.empty")} />
-      )}
+      {data.map((item) => (
+        <ListItemVehicle
+          data={item}
+          key={`vehicle-${item.targaVeicolo}`}
+          onClick={handleOnClick}
+        />
+      ))}
+    </Stack>
+  ) : (
+    <Stack marginTop={"24px"}>
+      <EmptyState icon="car1Bold" title={t("vehicles.empty")} />
     </Stack>
   );
 }
