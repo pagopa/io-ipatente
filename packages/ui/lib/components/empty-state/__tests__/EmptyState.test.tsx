@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 
 import { EmptyState } from "../EmptyState";
 
-describe("Test LogoIPatente Components", () => {
+describe("Test EmptyState Component", () => {
   it("Should match the snapshot", () => {
     const comp = render(
       <EmptyState
