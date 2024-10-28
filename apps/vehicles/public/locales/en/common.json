@@ -17,6 +17,10 @@
   },
   "vehicleDetails": {
     "title": "Vehicle details",
+    "breadcrumbs": {
+      "vehicles": "My vehicles",
+      "vehicleDetail": "Vehicle detail"
+    },
     "info": {
       "title": "Dettaglio veicolo",
       "plate": "Targa",

@@ -7,7 +7,8 @@ import { vehicleByType } from "@/utils/strings";
 import { SectionTitle } from "@io-ipatente/ui";
 import Stack from "@mui/material/Stack";
 import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
+import { TFunction } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { ReactElement } from "react";
 
@@ -49,8 +50,24 @@ export default function VehicleDetails() {
   );
 }
 
-VehicleDetails.getLayout = (page: ReactElement) => (
-  <AppLayout title="vehicleDetails.title">{page}</AppLayout>
+VehicleDetails.getLayout = (
+  page: ReactElement,
+  router: Router,
+  t: TFunction,
+) => (
+  <AppLayout
+    breadcrumbs={[
+      {
+        label: t("vehicleDetails.breadcrumbs.vehicles"),
+        routePath: "/vehicles",
+      },
+      { label: t("vehicleDetails.breadcrumbs.vehicleDetail") },
+    ]}
+    onBreadcrumbClick={(path) => router.push(path)}
+    title="vehicleDetails.title"
+  >
+    {page}
+  </AppLayout>
 );
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
