@@ -13,7 +13,8 @@
     "description": "Registered vehicles",
     "defaultLabel": "Vehicle",
     "rca": "RCA",
-    "inspection": "Inspection"
+    "inspection": "Inspection",
+    "empty": "There are no registered vehicles"
   },
   "vehicleDetails": {
     "title": "Vehicle details",

@@ -13,7 +13,8 @@
     "description": "Di seguito trovi tutti i veicoli da te registrati",
     "defaultLabel": "Veicolo",
     "rca": "RCA",
-    "inspection": "Revisione"
+    "inspection": "Revisione",
+    "empty": "Non sono presenti veicoli registrati"
   },
   "vehicleDetails": {
     "title": "Dettaglio Veicolo",

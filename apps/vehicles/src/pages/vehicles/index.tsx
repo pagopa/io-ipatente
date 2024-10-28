@@ -1,14 +1,16 @@
 import AppLayout from "@/components/layouts/AppLayout";
 import { ListItemVehicle } from "@/components/vehicles/ListItemVehicle";
 import { useVehicles } from "@/hooks/useVehicles";
-import { ListItemAction } from "@io-ipatente/ui";
+import { EmptyState, ListItemAction } from "@io-ipatente/ui";
 import Stack from "@mui/material/Stack";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { ReactElement, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Vehicles() {
+  const { t } = useTranslation();
   const router = useRouter();
   const { data = [], error, isError, isLoading } = useVehicles();
 
@@ -35,7 +37,7 @@ export default function Vehicles() {
     return <div>Error: {error.message}</div>;
   }
 
-  return (
+  return data.length ? (
     <Stack
       component="ul"
       spacing={2}
@@ -48,6 +50,10 @@ export default function Vehicles() {
           onClick={handleOnClick}
         />
       ))}
+    </Stack>
+  ) : (
+    <Stack marginTop={3}>
+      <EmptyState icon="car1Bold" title={t("vehicles.empty")} />
     </Stack>
   );
 }

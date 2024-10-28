@@ -1,5 +1,6 @@
 export * from "./card-carousel";
 export * from "./card-info";
+export * from "./empty-state";
 export * from "./icon";
 export * from "./list-item-action";
 export * from "./logo";
