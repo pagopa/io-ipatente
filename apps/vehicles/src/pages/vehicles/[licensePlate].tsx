@@ -43,10 +43,7 @@ export default function VehicleDetails() {
       <Stack my={3} spacing={2}>
         <VehicleSectionDetails data={data} />
         <VehicleSectionRca rca={data.coperturaRCA} />
-        <VehicleSectionInspections
-          inspections={data.storicoRevisioni}
-          plate={data.targaVeicolo}
-        />
+        <VehicleSectionInspections inspections={data.storicoRevisioni} />
       </Stack>
     </>
   );
