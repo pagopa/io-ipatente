@@ -1,6 +1,6 @@
 ---
-"io-ipatente-vehicles": major
-"@io-ipatente/ui": major
+"io-ipatente-vehicles": minor
+"@io-ipatente/ui": minor
 ---
 
 Add EmptyState component
