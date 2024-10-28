@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Test LogoIPatente Components > Should match the snapshot 1`] = `
+exports[`Test EmptyState Component > Should match the snapshot 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
