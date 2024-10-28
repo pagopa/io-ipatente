@@ -73,7 +73,7 @@ export const CardInfo = ({
         spacing={1}
       >
         {topContent}
-        <CardInfo.Items items={items ?? []} />
+        {items && items.length > 0 && <CardInfo.Items items={items} />}
         {bottomContent}
       </Stack>
     </CardContent>
