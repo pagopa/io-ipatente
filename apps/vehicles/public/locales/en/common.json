@@ -41,7 +41,8 @@
       "title": "Storico revisioni",
       "date": "Data revisione: ",
       "licensePlate": "Targa alla revisione: ",
-      "kilometersDetected": "Km rilevati: "
+      "kilometersDetected": "Km rilevati: ",
+      "empty": "Non sono presenti revisioni da visualizzare per questo veicolo."
     }
   },
   "vehicle": {
