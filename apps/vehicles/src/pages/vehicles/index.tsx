@@ -52,7 +52,7 @@ export default function Vehicles() {
       ))}
     </Stack>
   ) : (
-    <Stack marginTop={"24px"}>
+    <Stack marginTop={3}>
       <EmptyState icon="car1Bold" title={t("vehicles.empty")} />
     </Stack>
   );

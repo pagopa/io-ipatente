@@ -10,10 +10,12 @@ export const EmptyState = ({ icon, title }: EmptyStateProps) => (
   <Stack
     alignItems="center"
     justifyContent="center"
-    rowGap="8px"
+    rowGap={1}
     textAlign="center"
   >
     <Icon color="inherit" name={icon} />
-    <Typography color="text.secondary">{title}</Typography>
+    <Typography color="text.secondary" variant="body2">
+      {title}
+    </Typography>
   </Stack>
 );
