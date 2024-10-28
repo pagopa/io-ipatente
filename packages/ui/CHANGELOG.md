@@ -1,5 +1,17 @@
 # @io-ipatente/ui
 
+## 0.2.0
+
+### Minor Changes
+
+- 01e16b5: Refinement of ListItemAction
+- 4726cf6: Add vehicle details
+
+### Patch Changes
+
+- 595f593: Add user's vehicle list
+- 9b6a1c7: Updated theme with MIT colors and typography customizations
+
 ## 0.1.1
 
 ### Patch Changes
