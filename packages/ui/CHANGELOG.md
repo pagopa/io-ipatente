@@ -1,5 +1,11 @@
 # @io-ipatente/ui
 
+## 0.3.0
+
+### Minor Changes
+
+- 2b63b12: Add EmptyState component
+
 ## 0.2.1
 
 ### Patch Changes
