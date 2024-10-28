@@ -71,8 +71,16 @@ export const theme = createTheme(
       MuiListItem: {
         styleOverrides: {
           root: {
-            paddingBottom: muiItaliaTheme.spacing(2),
-            paddingTop: muiItaliaTheme.spacing(2),
+            paddingBottom: muiItaliaTheme.spacing(1.5),
+            paddingTop: muiItaliaTheme.spacing(1.5),
+          },
+        },
+      },
+      MuiListItemButton: {
+        styleOverrides: {
+          root: {
+            paddingBottom: muiItaliaTheme.spacing(1.5),
+            paddingTop: muiItaliaTheme.spacing(1.5),
           },
         },
       },
