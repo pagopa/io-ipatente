@@ -127,7 +127,7 @@ const Items = ({ items }: CardInfoItemsProps) => (
             variant="caption"
           ></Typography>
         )}
-        {index < items.length - 1 ? <Divider sx={{ marginY: 1.5 }} /> : null}
+        {index < items.length - 1 ? <Divider /> : null}
       </React.Fragment>
     ))}
   </List>

@@ -71,8 +71,16 @@ export const theme = createTheme(
       MuiListItem: {
         styleOverrides: {
           root: {
-            paddingBottom: muiItaliaTheme.spacing(2),
-            paddingTop: muiItaliaTheme.spacing(2),
+            paddingBottom: muiItaliaTheme.spacing(1.5),
+            paddingTop: muiItaliaTheme.spacing(1.5),
+          },
+        },
+      },
+      MuiListItemButton: {
+        styleOverrides: {
+          root: {
+            paddingBottom: muiItaliaTheme.spacing(1.5),
+            paddingTop: muiItaliaTheme.spacing(1.5),
           },
         },
       },
@@ -96,7 +104,7 @@ export const theme = createTheme(
         selected: "rgba(0, 115, 230, 0.08)",
       },
       background: {
-        default: "#F2F2F2",
+        default: "#FFFFFF",
         pageHeader: colorBackgroundPageHeader,
       },
       divider: "#CBD5E1",

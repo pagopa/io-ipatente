@@ -53,6 +53,7 @@ export const VehicleSectionRca = ({ rca }: VehicleSectionRcaProps) => {
             color={rcaStatus.color}
             icon={<Icon fontSize="small" name={rcaStatus.icon} />}
             label={rcaStatus.label}
+            size="small"
           />
         }
       />
@@ -83,6 +84,7 @@ export const VehicleSectionRca = ({ rca }: VehicleSectionRcaProps) => {
           color={rcaStatus.color}
           icon={<Icon fontSize="small" name={rcaStatus.icon} />}
           label={rcaStatus.label}
+          size="small"
         />
       }
     />
