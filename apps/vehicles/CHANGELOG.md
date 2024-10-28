@@ -1,5 +1,16 @@
 # vehicles
 
+## 0.4.0
+
+### Minor Changes
+
+- 2b63b12: Add EmptyState component
+
+### Patch Changes
+
+- Updated dependencies [2b63b12]
+  - @io-ipatente/ui@0.3.0
+
 ## 0.3.1
 
 ### Patch Changes
