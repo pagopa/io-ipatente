@@ -25,6 +25,7 @@ export const VehicleSectionInspections = ({
           <Chip
             icon={<Icon fontSize="small" name="forbidden" />}
             label={t("vehicleDetails.inspections.notFound")}
+            size="small"
           />
         }
       />
@@ -76,6 +77,7 @@ export const VehicleSectionInspections = ({
                   />
                 }
                 label={t(inspectionResultByCode[esitoRevisione.codice].label)}
+                size="small"
               />
             </ListItem>
             {kmTotali && (
