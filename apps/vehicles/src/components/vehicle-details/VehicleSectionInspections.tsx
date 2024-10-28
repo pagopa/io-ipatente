@@ -9,12 +9,10 @@ import { useTranslation } from "next-i18next";
 
 export interface VehicleSectionInspectionsProps {
   inspections?: Revisione[];
-  plate: string;
 }
 
 export const VehicleSectionInspections = ({
   inspections = [],
-  plate,
 }: VehicleSectionInspectionsProps) => {
   const { t } = useTranslation();
 
@@ -27,6 +25,7 @@ export const VehicleSectionInspections = ({
           <Chip
             icon={<Icon fontSize="small" name="forbidden" />}
             label={t("vehicleDetails.inspections.notFound")}
+            size="small"
           />
         }
       />
@@ -78,20 +77,8 @@ export const VehicleSectionInspections = ({
                   />
                 }
                 label={t(inspectionResultByCode[esitoRevisione.codice].label)}
+                size="small"
               />
-            </ListItem>
-            <ListItem>
-              <Typography
-                display="inline"
-                fontWeight={400}
-                mr={1}
-                variant="body2"
-              >
-                {t("vehicleDetails.inspections.plate")}
-              </Typography>
-              <Typography display="inline" fontWeight={600} variant="body2">
-                {plate}
-              </Typography>
             </ListItem>
             {kmTotali && (
               <ListItem>

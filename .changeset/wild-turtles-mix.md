@@ -3,4 +3,4 @@
 "@io-ipatente/ui": patch
 ---
 
-Add user's vehicle list
+Removal of license plate for each inspection

@@ -123,12 +123,11 @@ const Items = ({ items }: CardInfoItemsProps) => (
               __html: item.footerText,
             }}
             data-testid={`${DATA_TEST_ID_PREFIX}-item-${index}-footer-text`}
-            fontSize={12}
-            fontWeight={600}
             marginTop={1.5}
+            variant="caption"
           ></Typography>
         )}
-        {index < items.length - 1 ? <Divider sx={{ marginY: 1.5 }} /> : null}
+        {index < items.length - 1 ? <Divider /> : null}
       </React.Fragment>
     ))}
   </List>

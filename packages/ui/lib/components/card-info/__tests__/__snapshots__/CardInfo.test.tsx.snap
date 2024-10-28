@@ -66,7 +66,7 @@ exports[`Test CardInfo Component > Should match the snapshot with all props 1`] 
                 </div>
               </li>
               <hr
-                class="MuiDivider-root MuiDivider-fullWidth css-a0txjx-MuiDivider-root"
+                class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
               />
               <li
                 class="MuiListItem-root MuiListItem-gutters css-1nxmd3h-MuiListItem-root"
@@ -103,7 +103,7 @@ exports[`Test CardInfo Component > Should match the snapshot with all props 1`] 
                 </div>
               </li>
               <hr
-                class="MuiDivider-root MuiDivider-fullWidth css-a0txjx-MuiDivider-root"
+                class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
               />
               <li
                 class="MuiListItem-root MuiListItem-gutters css-1nxmd3h-MuiListItem-root"
@@ -125,12 +125,12 @@ exports[`Test CardInfo Component > Should match the snapshot with all props 1`] 
                   </p>
                 </div>
               </li>
-              <p
-                class="MuiTypography-root MuiTypography-body1 css-pjtqcu-MuiTypography-root"
+              <span
+                class="MuiTypography-root MuiTypography-caption css-rb72w1-MuiTypography-root"
                 data-testid="io-ipatente-card-info-item-2-footer-text"
               >
                 sample-footer-text
-              </p>
+              </span>
             </ul>
             <div
               data-testid="sample-bottom-content"
@@ -204,7 +204,7 @@ exports[`Test CardInfo Component > Should match the snapshot with all props 1`] 
               </div>
             </li>
             <hr
-              class="MuiDivider-root MuiDivider-fullWidth css-a0txjx-MuiDivider-root"
+              class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
             />
             <li
               class="MuiListItem-root MuiListItem-gutters css-1nxmd3h-MuiListItem-root"
@@ -241,7 +241,7 @@ exports[`Test CardInfo Component > Should match the snapshot with all props 1`] 
               </div>
             </li>
             <hr
-              class="MuiDivider-root MuiDivider-fullWidth css-a0txjx-MuiDivider-root"
+              class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
             />
             <li
               class="MuiListItem-root MuiListItem-gutters css-1nxmd3h-MuiListItem-root"
@@ -263,12 +263,12 @@ exports[`Test CardInfo Component > Should match the snapshot with all props 1`] 
                 </p>
               </div>
             </li>
-            <p
-              class="MuiTypography-root MuiTypography-body1 css-pjtqcu-MuiTypography-root"
+            <span
+              class="MuiTypography-root MuiTypography-caption css-rb72w1-MuiTypography-root"
               data-testid="io-ipatente-card-info-item-2-footer-text"
             >
               sample-footer-text
-            </p>
+            </span>
           </ul>
           <div
             data-testid="sample-bottom-content"
