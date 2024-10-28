@@ -104,7 +104,7 @@ export const theme = createTheme(
         selected: "rgba(0, 115, 230, 0.08)",
       },
       background: {
-        default: "#F2F2F2",
+        default: "#FFFFFF",
         pageHeader: colorBackgroundPageHeader,
       },
       divider: "#CBD5E1",
