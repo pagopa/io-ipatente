@@ -1,6 +1,7 @@
 import { CoperturaRCA } from "@/generated/openapi";
 import { CardInfo, CardInfoItem, Icon, IconType } from "@io-ipatente/ui";
 import Chip, { ChipProps } from "@mui/material/Chip";
+import Typography from "@mui/material/Typography";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
 
@@ -49,12 +50,14 @@ export const VehicleSectionRca = ({ rca }: VehicleSectionRcaProps) => {
         icon={<Icon fontSize="medium" name="securityUserBold" />}
         title={t("vehicleDetails.rca.title")}
         topContent={
-          <Chip
-            color={rcaStatus.color}
-            icon={<Icon fontSize="small" name={rcaStatus.icon} />}
-            label={rcaStatus.label}
-            size="small"
-          />
+          <Typography
+            color="text.secondary"
+            paddingTop={2}
+            textAlign="center"
+            variant="body2"
+          >
+            {t("vehicleDetails.rca.notFound")}
+          </Typography>
         }
       />
     );
