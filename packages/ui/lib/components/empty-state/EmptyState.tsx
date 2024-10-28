@@ -3,11 +3,11 @@ import { Stack, Typography } from "@mui/material";
 import { theme } from "../../theme";
 import { Icon, IconType } from "../icon";
 export interface EmptyStateProps {
-  name: IconType;
+  icon: IconType;
   title: string;
 }
 
-export const EmptyState = ({ name, title }: EmptyStateProps) => (
+export const EmptyState = ({ icon, title }: EmptyStateProps) => (
   <Stack
     alignItems="center"
     borderRadius="8px"
@@ -16,7 +16,7 @@ export const EmptyState = ({ name, title }: EmptyStateProps) => (
     textAlign="center"
   >
     <Stack alignItems="center" justifyContent="center" rowGap="8px">
-      <Icon color="inherit" name={name} />
+      <Icon color="inherit" name={icon} />
       <Typography color={theme.palette.text.secondary}>{title}</Typography>
     </Stack>
   </Stack>

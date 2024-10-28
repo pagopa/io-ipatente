@@ -56,7 +56,7 @@ export default function Home() {
           <Typography variant="h5">{session?.user?.fiscalCode}</Typography>
         </Grid>
         <EmptyState
-          name="car1Bold"
+          icon="car1Bold"
           title="Non sono presenti veicoli registrati"
         />
         {data.map((vehicle: Veicolo) => (
