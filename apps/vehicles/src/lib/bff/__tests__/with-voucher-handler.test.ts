@@ -33,7 +33,7 @@ vi.mock("../../../config", () => ({
 
 vi.mock("@io-ipatente/core", async () => {
   const actual =
-    await vi.importActual<typeof import("@io-ipatente/core")>(
+    await vi.importActual<typeof import("../../../../../../packages/core")>(
       "@io-ipatente/core",
     );
   return {
