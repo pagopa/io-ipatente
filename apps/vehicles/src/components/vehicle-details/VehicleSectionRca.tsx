@@ -1,12 +1,9 @@
 import { CoperturaRCA } from "@/generated/openapi";
-import { CardInfo, CardInfoItem, Icon, IconType } from "@io-ipatente/ui";
-import Chip, { ChipProps } from "@mui/material/Chip";
+import { CardInfo, CardInfoItem, CardInfoProps, Icon } from "@io-ipatente/ui";
+import Chip from "@mui/material/Chip";
+import Typography from "@mui/material/Typography";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
-
-interface MetadataListItem {
-  items: CardInfoItem[];
-}
 
 export interface VehicleSectionRcaProps {
   rca?: CoperturaRCA;
@@ -15,53 +12,49 @@ export interface VehicleSectionRcaProps {
 export const VehicleSectionRca = ({ rca }: VehicleSectionRcaProps) => {
   const { t } = useTranslation();
 
-  const rcaStatus: {
-    icon: IconType;
-  } & Pick<ChipProps, "color" | "label"> = useMemo(() => {
+  const topContent: CardInfoProps["topContent"] = useMemo(() => {
     if (!rca) {
-      return {
-        icon: "forbidden",
-        label: t("vehicleDetails.rca.notFound"),
-      };
+      return (
+        <Typography
+          color="text.secondary"
+          paddingTop={2}
+          textAlign="center"
+          variant="body2"
+        >
+          {t("vehicleDetails.rca.notFound")}
+        </Typography>
+      );
     }
 
     if (
       new Date(rca.dataScadenzaCopertura).setHours(0, 0, 0, 0) >=
       new Date().setHours(0, 0, 0, 0)
     ) {
-      return {
-        color: "success",
-        icon: "tickCircleBold",
-        label: t("vehicleDetails.rca.valid"),
-      };
+      return (
+        <Chip
+          color="success"
+          icon={<Icon fontSize="small" name="tickCircleBold" />}
+          label={t("vehicleDetails.rca.valid")}
+          size="small"
+        />
+      );
     }
 
-    return {
-      color: "error",
-      icon: "warning2Bold",
-      label: t("vehicleDetails.rca.expired"),
-    };
-  }, [rca, t]);
-
-  if (rca === undefined) {
     return (
-      <CardInfo
-        icon={<Icon fontSize="medium" name="securityUserBold" />}
-        title={t("vehicleDetails.rca.title")}
-        topContent={
-          <Chip
-            color={rcaStatus.color}
-            icon={<Icon fontSize="small" name={rcaStatus.icon} />}
-            label={rcaStatus.label}
-            size="small"
-          />
-        }
+      <Chip
+        color="error"
+        icon={<Icon fontSize="small" name="warning2Bold" />}
+        label={t("vehicleDetails.rca.expired")}
+        size="small"
       />
     );
-  }
+  }, [rca, t]);
 
-  const metadataListItems: MetadataListItem = {
-    items: [
+  const metadataListItems: CardInfoItem[] | undefined = useMemo(() => {
+    if (!rca) {
+      return undefined;
+    }
+    return [
       {
         label: t("vehicleDetails.rca.insuranceGroup"),
         value: rca.compagniaAssicuratrice,
@@ -71,22 +64,15 @@ export const VehicleSectionRca = ({ rca }: VehicleSectionRcaProps) => {
         label: t("vehicleDetails.rca.dueDate"),
         value: rca.dataScadenzaCopertura,
       },
-    ],
-  };
+    ];
+  }, [rca, t]);
 
   return (
     <CardInfo
       icon={<Icon fontSize="medium" name="securityUserBold" />}
-      items={metadataListItems.items}
+      items={metadataListItems}
       title={t("vehicleDetails.rca.title")}
-      topContent={
-        <Chip
-          color={rcaStatus.color}
-          icon={<Icon fontSize="small" name={rcaStatus.icon} />}
-          label={rcaStatus.label}
-          size="small"
-        />
-      }
+      topContent={topContent}
     />
   );
 };
