@@ -43,7 +43,9 @@ export const TopBar = ({ assistance, product }: TopBarProps) => (
 
       {assistance && (
         <Stack alignItems="center" direction="row" spacing={2}>
-          {/* <ButtonNaked
+          {/* 
+           TODO -> IOPAE-1489 -> fix ButtonNaked problem with material UI
+          <ButtonNaked
             component="button"
             onClick={assistance.onClick}
             size="small"

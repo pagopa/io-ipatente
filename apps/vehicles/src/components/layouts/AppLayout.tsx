@@ -30,7 +30,7 @@ const AppLayout = ({
         assistance={{
           label: "",
           onClick: () => {
-            router.push("/assistance");
+            router.push("/"); // TODO -> add assistence routePath, done in IOPAE-1490
           },
         }}
         product={{
