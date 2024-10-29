@@ -20,7 +20,7 @@ exports[`Test PageHeader Component > Should match the snapshot with all props 1`
               class="MuiBreadcrumbs-li"
             >
               <button
-                class="MuiTypography-root MuiTypography-sidenav MuiLink-root MuiLink-underlineAlways MuiLink-button css-itsvw3-MuiTypography-root-MuiLink-root"
+                class="MuiTypography-root MuiTypography-sidenav MuiLink-root MuiLink-underlineAlways MuiLink-button css-6u8z30-MuiTypography-root-MuiLink-root"
                 data-testid="io-ipatente-page-header-breadcrumb-root-0"
               >
                 root-page
@@ -85,7 +85,7 @@ exports[`Test PageHeader Component > Should match the snapshot with all props 1`
             class="MuiBreadcrumbs-li"
           >
             <button
-              class="MuiTypography-root MuiTypography-sidenav MuiLink-root MuiLink-underlineAlways MuiLink-button css-itsvw3-MuiTypography-root-MuiLink-root"
+              class="MuiTypography-root MuiTypography-sidenav MuiLink-root MuiLink-underlineAlways MuiLink-button css-6u8z30-MuiTypography-root-MuiLink-root"
               data-testid="io-ipatente-page-header-breadcrumb-root-0"
             >
               root-page
