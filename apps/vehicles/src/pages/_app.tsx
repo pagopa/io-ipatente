@@ -10,7 +10,7 @@ import { SessionProvider } from "next-auth/react";
 import { appWithTranslation } from "next-i18next";
 import { ReactElement, ReactNode, useState } from "react";
 
-if (process.env.NEXT_PUBLIC_BACKEND_API_MOCKING === "true") {
+if (process.env.NEXT_PUBLIC_BFF_API_MOCKING === "true") {
   require("../../mocks");
 }
 

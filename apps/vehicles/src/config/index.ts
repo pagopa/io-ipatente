@@ -1,8 +1,25 @@
 export interface Configuration {
   // Backend for Frontend
-  BACKEND_API_BASE_PATH: string;
-  BACKEND_API_BASE_URL: string;
-  BACKEND_API_MOCKING: boolean;
+  BFF_API_BASE_PATH: string;
+  BFF_API_BASE_URL: string;
+  BFF_API_MOCKING: boolean;
+
+  // External DG MOT backend
+  EXT_API_BASE_PATH: string;
+  EXT_API_BASE_URL: string;
+  EXT_API_MOCKING: boolean;
+
+  // PDND Interoperability
+  INTEROP_AUTH_SERVER_ENDPOINT_URL: string;
+  INTEROP_CLIENT_ASSERTION_AUD: string;
+  INTEROP_CLIENT_ASSERTION_ISS: string;
+  INTEROP_CLIENT_ASSERTION_KID: string;
+  INTEROP_CLIENT_ASSERTION_PK: string;
+  INTEROP_CLIENT_ASSERTION_PURPOSE_ID: string;
+  INTEROP_CLIENT_ASSERTION_SUB: string;
+  INTEROP_CLIENT_ASSERTION_TYPE: string;
+  INTEROP_CLIENT_ID: string;
+  INTEROP_GRANT_TYPE: string;
 
   IS_BROWSER: boolean;
   IS_DEVELOPMENT: boolean;
@@ -22,11 +39,32 @@ export interface Configuration {
 
 export function getConfiguration(): Configuration {
   return {
-    BACKEND_API_BASE_PATH: process.env
-      .NEXT_PUBLIC_BACKEND_API_BASE_PATH as string,
-    BACKEND_API_BASE_URL: process.env
-      .NEXT_PUBLIC_BACKEND_API_BASE_URL as string,
-    BACKEND_API_MOCKING: process.env.NEXT_PUBLIC_BACKEND_API_MOCKING === "true",
+    BFF_API_BASE_PATH: process.env.NEXT_PUBLIC_BFF_API_BASE_PATH as string,
+    BFF_API_BASE_URL: process.env.NEXT_PUBLIC_BFF_API_BASE_URL as string,
+    BFF_API_MOCKING: process.env.NEXT_PUBLIC_BFF_API_MOCKING === "true",
+
+    EXT_API_BASE_PATH: process.env.EXT_API_BASE_PATH as string,
+    EXT_API_BASE_URL: process.env.EXT_API_BASE_URL as string,
+    EXT_API_MOCKING: process.env.EXT_API_MOCKING === "true",
+
+    INTEROP_AUTH_SERVER_ENDPOINT_URL: process.env
+      .INTEROP_AUTH_SERVER_ENDPOINT_URL as string,
+    INTEROP_CLIENT_ASSERTION_AUD: process.env
+      .INTEROP_CLIENT_ASSERTION_AUD as string,
+    INTEROP_CLIENT_ASSERTION_ISS: process.env
+      .INTEROP_CLIENT_ASSERTION_ISS as string,
+    INTEROP_CLIENT_ASSERTION_KID: process.env
+      .INTEROP_CLIENT_ASSERTION_KID as string,
+    INTEROP_CLIENT_ASSERTION_PK: process.env
+      .INTEROP_CLIENT_ASSERTION_PK as string,
+    INTEROP_CLIENT_ASSERTION_PURPOSE_ID: process.env
+      .INTEROP_CLIENT_ASSERTION_PURPOSE_ID as string,
+    INTEROP_CLIENT_ASSERTION_SUB: process.env
+      .INTEROP_CLIENT_ASSERTION_SUB as string,
+    INTEROP_CLIENT_ASSERTION_TYPE: process.env
+      .INTEROP_CLIENT_ASSERTION_TYPE as string,
+    INTEROP_CLIENT_ID: process.env.INTEROP_CLIENT_ID as string,
+    INTEROP_GRANT_TYPE: process.env.INTEROP_GRANT_TYPE as string,
 
     IS_BROWSER: typeof window !== "undefined",
     IS_DEVELOPMENT: process.env.NODE_ENV === "development",
