@@ -1,22 +1,6 @@
-terraform {
+resource "azurerm_resource_group" "rg" {
+  name     = "${local.project}-${local.application_basename}-rg-01"
+  location = local.location
 
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = ">= 3.96.0"
-    }
-
-  }
-
-  backend "azurerm" {
-    resource_group_name  = "terraform-state-rg"
-    storage_account_name = "tfappprodio"
-    container_name       = "terraform-state"
-    key                  = "io-ipatente.resources.prod.tfstate"
-  }
-}
-
-provider "azurerm" {
-  features {
-  }
+  tags = local.tags
 }
