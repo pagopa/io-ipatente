@@ -87,5 +87,9 @@
     "EXTRAM_MSG_002": "Non autorizzato alla guida",
     "EXTRAM_MSG_003": "Dato non verificabile"
   },
-  "welcome": "Benvenuto/a"
+  "welcome": "Benvenuto/a",
+  "assistance": {
+    "title": "Assistenza",
+    "description": "Se hai bisogno di supporto, contatta il servizio di assistenza."
+  }
 }
