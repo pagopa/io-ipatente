@@ -6,16 +6,22 @@ import { ThemeProvider } from "@mui/material/styles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { NextPage } from "next";
+import { Router } from "next/router";
 import { SessionProvider } from "next-auth/react";
-import { appWithTranslation } from "next-i18next";
+import { TFunction, appWithTranslation, useTranslation } from "next-i18next";
 import { ReactElement, ReactNode, useState } from "react";
 
 if (process.env.NEXT_PUBLIC_BACKEND_API_MOCKING === "true") {
   require("../../mocks");
 }
 
+export interface GetLayoutProps {
+  page: ReactElement;
+  router: Router;
+  t: TFunction;
+}
 export type NextPageWithLayout<P = Record<never, never>, IP = P> = {
-  getLayout?: (page: ReactElement) => ReactNode;
+  getLayout?: ({ page, router, t }: GetLayoutProps) => ReactNode;
 } & NextPage<P, IP>;
 
 type AppPropsWithLayout = {
@@ -24,7 +30,7 @@ type AppPropsWithLayout = {
 
 const FETCH_MAX_RETRIES = 5;
 
-const App = ({ Component, pageProps }: AppPropsWithLayout) => {
+const App = ({ Component, pageProps, router }: AppPropsWithLayout) => {
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -36,14 +42,16 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
       }),
   );
 
-  const getLayout = Component.getLayout ?? ((page) => page);
+  const { t } = useTranslation();
+
+  const getLayout = Component.getLayout ?? (({ page }) => page);
 
   return (
     <SessionProvider>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <QueryClientProvider client={queryClient}>
-          {getLayout(<Component {...pageProps} />)}
+          {getLayout({ page: <Component {...pageProps} />, router, t })}
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </ThemeProvider>
