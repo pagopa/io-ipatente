@@ -92,6 +92,7 @@
   "welcome": "Welcome",
   "assistance": {
     "title": "Assistenza",
-    "description": "Se hai bisogno di supporto, contatta il servizio di assistenza."
+    "description": "Se hai bisogno di supporto, contatta il servizio di assistenza.",
+    "back": "Back"
   }
 }

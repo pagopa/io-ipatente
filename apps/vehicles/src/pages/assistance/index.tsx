@@ -1,15 +1,27 @@
 import AppLayout from "@/components/layouts/AppLayout";
-import Stack from "@mui/material/Stack";
 import { GetServerSideProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { ReactElement } from "react";
+
+import { GetLayoutProps } from "../_app";
 
 export default function Assistance() {
-  return <Stack>{}</Stack>;
+  return <></>;
 }
 
-Assistance.getLayout = (page: ReactElement) => (
-  <AppLayout description="assistance.description" title="assistance.title">
+Assistance.getLayout = ({ page, router, t }: GetLayoutProps) => (
+  <AppLayout
+    breadcrumbs={[
+      {
+        clickable: true,
+        icon: "arrowBack",
+        label: t("assistance.back"),
+        routePath: "/",
+      },
+    ]}
+    description={t("assistance.description")}
+    onBreadcrumbClick={() => router.back()}
+    title={t("assistance.title")}
+  >
     {page}
   </AppLayout>
 );
