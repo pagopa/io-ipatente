@@ -7,7 +7,7 @@
 #   resource_group_name = var.resource_group_name
 
 #   target_service = {
-#     function_app_name = module.vehicles.app_service.app_service.name
+#     app_service_name = module.vehicles.app_service.app_service.name
 #   }
 
 #   scheduler = {

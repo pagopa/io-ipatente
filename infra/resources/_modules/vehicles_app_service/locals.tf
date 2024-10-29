@@ -3,7 +3,11 @@ locals {
   vehicles = {
     tier = "standard"
     base_app_settings = {
-      TODO = "TODO:"
+      NODE_ENV                 = "production"
+      WEBSITE_RUN_FROM_PACKAGE = "1"
+
+      # Logs
+      AI_SDK_CONNECTION_STRING = data.azurerm_application_insights.ai_common.connection_string
     }
 
     prod_app_setting = {
