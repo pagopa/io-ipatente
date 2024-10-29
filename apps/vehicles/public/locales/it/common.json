@@ -18,6 +18,10 @@
   },
   "vehicleDetails": {
     "title": "Dettaglio Veicolo",
+    "breadcrumbs": {
+      "vehicles": "I miei veicoli",
+      "vehicleDetail": "Dettaglio veicolo"
+    },
     "info": {
       "title": "Dettaglio veicolo",
       "plate": "Targa",
@@ -32,7 +36,7 @@
       "title": "Copertura RCA",
       "valid": "Valida",
       "expired": "Scaduta",
-      "notFound": "Non presente",
+      "notFound": "Non sono disponibili dati per questo veicolo.",
       "insuranceGroup": "Gruppo assicurativo",
       "dueDate": "Data fine copertura",
       "info": "La data di fine assicurazione è comprensiva del <strong>periodo di comporto</strong>"
