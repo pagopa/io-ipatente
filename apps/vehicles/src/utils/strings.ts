@@ -9,7 +9,6 @@ import {
 import { IconType } from "@io-ipatente/ui";
 import { ChipProps } from "@mui/material/Chip";
 
-// TODO: icon needs to be updated
 export const vehicleByType: {
   [K in TipoVeicoloEnum]: { icon: IconType; label: ParseKeys };
 } = {
@@ -18,75 +17,75 @@ export const vehicleByType: {
     label: "vehicle.type.A",
   },
   [TipoVeicoloEnum.Enum.C]: {
-    icon: "car1",
+    icon: "scooter",
     label: "vehicle.type.C",
   },
   [TipoVeicoloEnum.Enum.CC]: {
-    icon: "car1",
+    icon: "car2",
     label: "vehicle.type.CC",
   },
   [TipoVeicoloEnum.Enum.CD]: {
-    icon: "car1",
+    icon: "car2",
     label: "vehicle.type.CD",
   },
   [TipoVeicoloEnum.Enum.E]: {
-    icon: "car1",
+    icon: "component",
     label: "vehicle.type.E",
   },
   [TipoVeicoloEnum.Enum.EE]: {
-    icon: "car1",
+    icon: "car2",
     label: "vehicle.type.EE",
   },
   [TipoVeicoloEnum.Enum.F]: {
-    icon: "car1",
+    icon: "motorbike1",
     label: "vehicle.type.F",
   },
   [TipoVeicoloEnum.Enum.G]: {
-    icon: "car1",
+    icon: "component",
     label: "vehicle.type.G",
   },
   [TipoVeicoloEnum.Enum.H]: {
-    icon: "car1",
+    icon: "component",
     label: "vehicle.type.H",
   },
   [TipoVeicoloEnum.Enum.M]: {
-    icon: "car1",
+    icon: "motorbike1",
     label: "vehicle.type.M",
   },
   [TipoVeicoloEnum.Enum.N]: {
-    icon: "car1",
+    icon: "component",
     label: "vehicle.type.N",
   },
   [TipoVeicoloEnum.Enum.P]: {
-    icon: "car1",
+    icon: "component",
     label: "vehicle.type.P",
   },
   [TipoVeicoloEnum.Enum.R]: {
-    icon: "car1",
+    icon: "component",
     label: "vehicle.type.R",
   },
   [TipoVeicoloEnum.Enum.S]: {
-    icon: "car1",
+    icon: "component",
     label: "vehicle.type.S",
   },
   [TipoVeicoloEnum.Enum.T]: {
-    icon: "car1",
+    icon: "component",
     label: "vehicle.type.T",
   },
   [TipoVeicoloEnum.Enum.U]: {
-    icon: "car1",
+    icon: "component",
     label: "vehicle.type.U",
   },
   [TipoVeicoloEnum.Enum.V]: {
-    icon: "car1",
+    icon: "component",
     label: "vehicle.type.V",
   },
   [TipoVeicoloEnum.Enum.X]: {
-    icon: "car1",
+    icon: "component",
     label: "vehicle.type.X",
   },
   [TipoVeicoloEnum.Enum.Y]: {
-    icon: "car1",
+    icon: "component",
     label: "vehicle.type.Y",
   },
 };
