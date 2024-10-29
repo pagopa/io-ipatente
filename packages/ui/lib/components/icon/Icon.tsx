@@ -14,6 +14,7 @@ import IconCarCollision from "./svg/IconCarCollision";
 import IconCarGearbox from "./svg/IconCarGearbox";
 import IconCarParking from "./svg/IconCarParking";
 import IconCaravan from "./svg/IconCaravan";
+import IconCloseCircle from "./svg/IconCloseCircle";
 import IconComponent from "./svg/IconComponent";
 import IconDocumentText from "./svg/IconDocumentText";
 import IconDriving from "./svg/IconDriving";
@@ -23,7 +24,11 @@ import IconForbidden from "./svg/IconForbidden";
 import IconGasStation from "./svg/IconGasStation";
 import IconGasStationOff from "./svg/IconGasStationOff";
 import IconHambulance from "./svg/IconHambulance";
+import IconInfo from "./svg/IconInfo";
 import IconMetro from "./svg/IconMetro";
+import IconModalError from "./svg/IconModalError";
+import IconModalSuccess from "./svg/IconModalSuccess";
+import IconModalWarning from "./svg/IconModalWarning";
 import IconMoped from "./svg/IconMoped";
 import IconMotor from "./svg/IconMotor";
 import IconMotorbike1 from "./svg/IconMotorbike1";
@@ -57,6 +62,7 @@ export const Icons = {
   carGearbox: IconCarGearbox,
   carParking: IconCarParking,
   caravan: IconCaravan,
+  closeCircle: IconCloseCircle,
   component: IconComponent,
   documentText: IconDocumentText,
   driving: IconDriving,
@@ -66,7 +72,11 @@ export const Icons = {
   gasStation: IconGasStation,
   gasStationOff: IconGasStationOff,
   hambulance: IconHambulance,
+  info: IconInfo,
   metro: IconMetro,
+  modalError: IconModalError,
+  modalSuccess: IconModalSuccess,
+  modalWarning: IconModalWarning,
   moped: IconMoped,
   motor: IconMotor,
   motorbike1: IconMotorbike1,

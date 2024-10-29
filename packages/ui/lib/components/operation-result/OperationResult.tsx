@@ -14,7 +14,7 @@ export interface OperationResultProps {
 
 type OperationResultAction = {
   label: string;
-} & Pick<ButtonProps, "endIcon" | "onClick" | "startIcon">;
+} & Pick<ButtonProps, "disabled" | "endIcon" | "onClick" | "startIcon">;
 
 export const DATA_TEST_ID_OPERATION_RESULT_PREFIX =
   "io-ipatente-operation-result";
@@ -43,6 +43,7 @@ export const OperationResult = ({
     {action && (
       <Button
         data-testid={`${DATA_TEST_ID_OPERATION_RESULT_PREFIX}-action`}
+        disabled={action.disabled}
         endIcon={action.endIcon}
         onClick={action.onClick}
         size="small"

@@ -1,7 +1,9 @@
-import { Veicolo } from "@/generated/openapi";
-import { extraMassByCode, noviceByCode, vehicleByType } from "@/utils/strings";
-import { CardInfo, CardInfoItem, Icon } from "@io-ipatente/ui";
+import { ExtraMassaEnum, Veicolo } from "@/generated/openapi";
+import { noviceByCode, vehicleByType } from "@/utils/strings";
+import { CardInfo, CardInfoItem, Icon, Modal } from "@io-ipatente/ui";
+import { Stack, Typography } from "@mui/material";
 import { useTranslation } from "next-i18next";
+import { ReactNode, useState } from "react";
 
 interface MetadataListItem {
   items: ({ isVisible: boolean } & CardInfoItem)[];
@@ -13,6 +15,8 @@ export interface VehicleSectionDetailsProps {
 
 export const VehicleSectionDetails = ({ data }: VehicleSectionDetailsProps) => {
   const { t } = useTranslation();
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const { datiVeicolo, targaVeicolo, tipoVeicolo } = data;
 
@@ -44,11 +48,17 @@ export const VehicleSectionDetails = ({ data }: VehicleSectionDetailsProps) => {
         value: datiVeicolo?.tipoDestinazioneUsoVeicolo,
       },
       {
+        icon: (
+          <Icon
+            name="info"
+            onClick={() => {
+              setIsOpen(true);
+            }}
+          />
+        ),
         isVisible: !!datiVeicolo?.extraMassa?.codice,
         label: t("vehicleDetails.info.extraMass"),
-        value: t(
-          extraMassByCode[datiVeicolo?.extraMassa?.codice ?? "EXTRAM_MSG_005"],
-        ),
+        value: t("extraMass.EXTRAM_MSG_005"),
       },
       {
         isVisible: !!datiVeicolo?.classeAmbientale,
@@ -65,15 +75,58 @@ export const VehicleSectionDetails = ({ data }: VehicleSectionDetailsProps) => {
     ],
   };
 
-  const filteredMetadataListItems = metadataListItems.items.filter(
-    (item) => item.isVisible !== false,
-  );
+  // const filteredMetadataListItems = metadataListItems.items.filter(
+  //   (item) => item.isVisible !== false,
+  // );
 
   return (
-    <CardInfo
-      icon={<Icon fontSize="medium" name={icon} />}
-      items={filteredMetadataListItems}
-      title={t("vehicleDetails.info.title")}
-    />
+    <>
+      <Modal
+        body={ModalExtraMassBody(
+          datiVeicolo?.extraMassa?.codice,
+          datiVeicolo?.extraMassa?.descrizione,
+        )}
+        close={() => setIsOpen(false)}
+        open={isOpen}
+        title={t("vehicleDetails.info.extraMass")}
+      />
+      <CardInfo
+        icon={<Icon fontSize="medium" name={icon} />}
+        items={metadataListItems.items}
+        title={t("vehicleDetails.info.title")}
+      />
+    </>
   );
 };
+
+const EXTRA_MASS_ICON_MAP: Record<ExtraMassaEnum, ReactNode> = {
+  [ExtraMassaEnum.Values.EXTRAM_MSG_001]: (
+    <Icon fontSize="large" name="modalSuccess" />
+  ),
+  [ExtraMassaEnum.Values.EXTRAM_MSG_002]: (
+    <Icon fontSize="large" name="modalWarning" />
+  ),
+  [ExtraMassaEnum.Values.EXTRAM_MSG_003]: (
+    <Icon fontSize="large" name="modalWarning" />
+  ),
+  [ExtraMassaEnum.Values.EXTRAM_MSG_004]: (
+    <Icon fontSize="large" name="modalWarning" />
+  ),
+  [ExtraMassaEnum.Values.EXTRAM_MSG_005]: (
+    <Icon fontSize="large" name="modalError" />
+  ),
+};
+
+const ModalExtraMassBody = (
+  code: ExtraMassaEnum | undefined,
+  description: string | undefined,
+) => (
+  <Stack p={2}>
+    <Stack alignItems="center" sx={{ marginBottom: 2 }}>
+      {EXTRA_MASS_ICON_MAP[code ?? ExtraMassaEnum.Values.EXTRAM_MSG_002]}
+    </Stack>
+    <Typography textAlign="center" variant="body1">
+      {description}
+    </Typography>
+  </Stack>
+);

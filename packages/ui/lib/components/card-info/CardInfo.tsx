@@ -30,6 +30,8 @@ export interface CardInfoItemsProps {
 export interface CardInfoItem {
   /** footer text _(will be displayed on bottom)_ */
   footerText?: string;
+  /** Item icon */
+  icon?: ReactNode;
   /** Item label */
   label: string;
   /** Item value */
@@ -105,13 +107,20 @@ const Items = ({ items }: CardInfoItemsProps) => (
               React.isValidElement(item.value) ? (
                 item.value
               ) : (
-                <Typography
-                  data-testid={`${DATA_TEST_ID_PREFIX}-item-${index}-value`}
-                  fontSize={20}
-                  fontWeight={600}
+                <Stack
+                  alignItems="center"
+                  direction="row"
+                  justifyContent="space-between"
                 >
-                  {item.value}
-                </Typography>
+                  <Typography
+                    data-testid={`${DATA_TEST_ID_PREFIX}-item-${index}-value`}
+                    fontSize={20}
+                    fontWeight={600}
+                  >
+                    {item.value}
+                  </Typography>
+                  {item?.icon}
+                </Stack>
               )
             }
           />
