@@ -9,7 +9,8 @@ import Stack from "@mui/material/Stack";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { ReactElement } from "react";
+
+import { GetLayoutProps } from "../_app";
 
 export default function VehicleDetails() {
   const router = useRouter();
@@ -49,8 +50,20 @@ export default function VehicleDetails() {
   );
 }
 
-VehicleDetails.getLayout = (page: ReactElement) => (
-  <AppLayout title="vehicleDetails.title">{page}</AppLayout>
+VehicleDetails.getLayout = ({ page, router, t }: GetLayoutProps) => (
+  <AppLayout
+    breadcrumbs={[
+      {
+        label: t("vehicleDetails.breadcrumbs.vehicles"),
+        routePath: "/vehicles",
+      },
+      { label: t("vehicleDetails.breadcrumbs.vehicleDetail") },
+    ]}
+    onBreadcrumbClick={(path) => router.push(path)}
+    title={t("vehicleDetails.title")}
+  >
+    {page}
+  </AppLayout>
 );
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
