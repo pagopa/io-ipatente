@@ -3,6 +3,7 @@ import { ListItemVehicle } from "@/components/vehicles/ListItemVehicle";
 import { useVehicles } from "@/hooks/useVehicles";
 import { EmptyState, ListItemAction } from "@io-ipatente/ui";
 import Stack from "@mui/material/Stack";
+import { AxiosError } from "axios";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -10,6 +11,7 @@ import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
 import { GetLayoutProps } from "../_app";
+import VehiclesError from "../_vehiclesError";
 
 export default function Vehicles() {
   const { t } = useTranslation();
@@ -36,7 +38,18 @@ export default function Vehicles() {
   }
 
   if (isError) {
-    return <div>Error: {error.message}</div>;
+    if (
+      (error as AxiosError).status === 400 ||
+      (error as AxiosError).status === 404
+    ) {
+      return <VehiclesError />;
+    }
+    if (
+      (error as AxiosError).status === 401 ||
+      (error as AxiosError).status === 403
+    ) {
+      return <div>aaaa</div>;
+    }
   }
 
   return data.length ? (
