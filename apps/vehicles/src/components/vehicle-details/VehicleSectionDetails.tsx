@@ -102,19 +102,19 @@ export const VehicleSectionDetails = ({ data }: VehicleSectionDetailsProps) => {
 };
 
 const EXTRA_MASS_ICON_MAP: Record<ExtraMassaEnum, ReactNode> = {
-  [ExtraMassaEnum.Values.EXTRAM_MSG_001]: (
+  [ExtraMassaEnum.Enum.EXTRAM_MSG_001]: (
     <Icon fontSize="large" name="modalSuccess" />
   ),
-  [ExtraMassaEnum.Values.EXTRAM_MSG_002]: (
+  [ExtraMassaEnum.Enum.EXTRAM_MSG_002]: (
     <Icon fontSize="large" name="modalWarning" />
   ),
-  [ExtraMassaEnum.Values.EXTRAM_MSG_003]: (
+  [ExtraMassaEnum.Enum.EXTRAM_MSG_003]: (
     <Icon fontSize="large" name="modalWarning" />
   ),
-  [ExtraMassaEnum.Values.EXTRAM_MSG_004]: (
+  [ExtraMassaEnum.Enum.EXTRAM_MSG_004]: (
     <Icon fontSize="large" name="modalWarning" />
   ),
-  [ExtraMassaEnum.Values.EXTRAM_MSG_005]: (
+  [ExtraMassaEnum.Enum.EXTRAM_MSG_005]: (
     <Icon fontSize="large" name="modalError" />
   ),
 };
@@ -125,7 +125,7 @@ const ModalExtraMassBody = (
 ) => (
   <Stack p={2}>
     <Stack alignItems="center" sx={{ marginBottom: 2 }}>
-      {EXTRA_MASS_ICON_MAP[code ?? ExtraMassaEnum.Values.EXTRAM_MSG_002]}
+      {EXTRA_MASS_ICON_MAP[code ?? ExtraMassaEnum.Enum.EXTRAM_MSG_005]}
     </Stack>
     <Typography textAlign="center" variant="body1">
       {description}
