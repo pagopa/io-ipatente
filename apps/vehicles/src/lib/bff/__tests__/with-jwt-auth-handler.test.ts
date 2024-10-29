@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Session } from "next-auth";
 import { describe, expect, it, vi } from "vitest";
 
-import { withJWTAuthHandler } from "../wrappers";
+import { withJWTAuthHandler } from "../with-jwt-auth-handler";
 
 const localhostUrl = "http://localhost";
 
@@ -20,6 +20,18 @@ const { auth } = vi.hoisted(() => ({
 }));
 
 vi.mock("../../../auth", () => ({ auth }));
+
+vi.mock("@io-ipatente/core", async () => {
+  const actual =
+    await vi.importActual<typeof import("@io-ipatente/core")>(
+      "@io-ipatente/core",
+    );
+  return {
+    ...actual,
+    generateClientAssertion: vi.fn(),
+    requestVoucher: vi.fn(),
+  };
+});
 
 describe("withJWTAuthHandler", () => {
   it("no token or invalid one provided should end up in 401 response", async () => {
