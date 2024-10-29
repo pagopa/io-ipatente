@@ -1,5 +1,5 @@
 import { ExtraMassaEnum, Veicolo } from "@/generated/openapi";
-import { noviceByCode, vehicleByType } from "@/utils/strings";
+import { extraMassByCode, noviceByCode, vehicleByType } from "@/utils/strings";
 import { CardInfo, CardInfoItem, Icon, Modal } from "@io-ipatente/ui";
 import { Stack, Typography } from "@mui/material";
 import { useTranslation } from "next-i18next";
@@ -58,7 +58,9 @@ export const VehicleSectionDetails = ({ data }: VehicleSectionDetailsProps) => {
         ),
         isVisible: !!datiVeicolo?.extraMassa?.codice,
         label: t("vehicleDetails.info.extraMass"),
-        value: t("extraMass.EXTRAM_MSG_005"),
+        value: t(
+          extraMassByCode[datiVeicolo?.extraMassa?.codice ?? "EXTRAM_MSG_005"],
+        ),
       },
       {
         isVisible: !!datiVeicolo?.classeAmbientale,
