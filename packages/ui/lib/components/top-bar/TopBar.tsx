@@ -1,6 +1,6 @@
 import HelpOutlineRoundedIcon from "@mui/icons-material/HelpOutlineRounded";
 import { AppBar, IconButton, Link, Stack, Toolbar } from "@mui/material";
-import { ButtonNaked } from "@pagopa/mui-italia";
+// import { ButtonNaked } from "@pagopa/mui-italia";
 
 import { Logo, LogoType } from "../logo";
 
@@ -43,7 +43,7 @@ export const TopBar = ({ assistance, product }: TopBarProps) => (
 
       {assistance && (
         <Stack alignItems="center" direction="row" spacing={2}>
-          <ButtonNaked
+          {/* <ButtonNaked
             component="button"
             onClick={assistance.onClick}
             size="small"
@@ -52,7 +52,7 @@ export const TopBar = ({ assistance, product }: TopBarProps) => (
             weight="default"
           >
             {assistance.label}
-          </ButtonNaked>
+          </ButtonNaked> */}
           <IconButton
             aria-label={assistance.label}
             onClick={assistance.onClick}
