@@ -4,7 +4,6 @@ import { AppBar, IconButton, Link, Stack, Toolbar } from "@mui/material";
 import { Logo, LogoType } from "../logo";
 
 interface AssistanceProps {
-  label: string;
   onClick: () => void;
 }
 
@@ -43,7 +42,7 @@ export const TopBar = ({ assistance, product }: TopBarProps) => (
       {assistance && (
         <Stack alignItems="center" direction="row" spacing={2}>
           <IconButton
-            aria-label={assistance.label}
+            aria-label={"assistance-icon"}
             onClick={assistance.onClick}
             size="small"
           >

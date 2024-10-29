@@ -28,7 +28,6 @@ const AppLayout = ({
     <Box display="flex" flexDirection="column" minHeight="100vh">
       <TopBar
         assistance={{
-          label: "",
           onClick: () => {
             router.push("/assistance");
           },
