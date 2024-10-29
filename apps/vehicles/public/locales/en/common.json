@@ -13,7 +13,8 @@
     "description": "Registered vehicles",
     "defaultLabel": "Vehicle",
     "rca": "RCA",
-    "inspection": "Inspection"
+    "inspection": "Inspection",
+    "empty": "There are no registered vehicles"
   },
   "vehicleDetails": {
     "title": "Vehicle details",
@@ -35,7 +36,7 @@
       "title": "Copertura RCA",
       "valid": "Valida",
       "expired": "Scaduta",
-      "notFound": "Non presente",
+      "notFound": "Non sono disponibili dati per questo veicolo.",
       "insuranceGroup": "Gruppo assicurativo",
       "dueDate": "Data fine copertura",
       "info": "La data di fine assicurazione è comprensiva del <strong>periodo di comporto</strong>"
@@ -44,7 +45,8 @@
       "title": "Storico revisioni",
       "date": "Data revisione: ",
       "licensePlate": "Targa alla revisione: ",
-      "kilometersDetected": "Km rilevati: "
+      "kilometersDetected": "Km rilevati: ",
+      "empty": "Non sono presenti revisioni da visualizzare per questo veicolo."
     }
   },
   "vehicle": {

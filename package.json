@@ -9,7 +9,7 @@
     "test:coverage": "turbo run test:coverage",
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
-    "version": "changeset version",
+    "version": "changeset version && yarn install",
     "release": "changeset tag",
     "generate": "turbo run generate"
   },

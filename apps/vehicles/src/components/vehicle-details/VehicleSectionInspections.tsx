@@ -22,11 +22,14 @@ export const VehicleSectionInspections = ({
         icon={<Icon fontSize="medium" name="documentText" />}
         title={t("vehicleDetails.inspections.title")}
         topContent={
-          <Chip
-            icon={<Icon fontSize="small" name="forbidden" />}
-            label={t("vehicleDetails.inspections.notFound")}
-            size="small"
-          />
+          <Typography
+            color="text.secondary"
+            paddingTop={2}
+            textAlign="center"
+            variant="body2"
+          >
+            {t("vehicleDetails.inspections.empty")}
+          </Typography>
         }
       />
     );
