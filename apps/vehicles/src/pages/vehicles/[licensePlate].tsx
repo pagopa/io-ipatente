@@ -7,10 +7,10 @@ import { vehicleByType } from "@/utils/strings";
 import { SectionTitle } from "@io-ipatente/ui";
 import Stack from "@mui/material/Stack";
 import { GetServerSideProps } from "next";
-import { Router, useRouter } from "next/router";
-import { TFunction } from "next-i18next";
+import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { ReactElement } from "react";
+
+import { GetLayoutParams } from "../_app";
 
 export default function VehicleDetails() {
   const router = useRouter();
@@ -50,11 +50,7 @@ export default function VehicleDetails() {
   );
 }
 
-VehicleDetails.getLayout = (
-  page: ReactElement,
-  router: Router,
-  t: TFunction,
-) => (
+VehicleDetails.getLayout = ({ page, router, t }: GetLayoutParams) => (
   <AppLayout
     breadcrumbs={[
       {
@@ -64,7 +60,7 @@ VehicleDetails.getLayout = (
       { label: t("vehicleDetails.breadcrumbs.vehicleDetail") },
     ]}
     onBreadcrumbClick={(path) => router.push(path)}
-    title="vehicleDetails.title"
+    title={t("vehicleDetails.title")}
   >
     {page}
   </AppLayout>

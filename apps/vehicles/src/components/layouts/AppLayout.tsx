@@ -4,14 +4,13 @@ import {
   TopBar,
 } from "@io-ipatente/ui";
 import Box from "@mui/material/Box";
-import { ParseKeys } from "i18next";
 import { useTranslation } from "next-i18next";
 import { ReactNode } from "react";
 
 interface AppLayoutProps extends Partial<PageHeaderBreadcrumbsProps> {
   children: ReactNode;
-  description?: ParseKeys;
-  title: ParseKeys;
+  description?: string;
+  title: string;
 }
 
 const AppLayout = ({
@@ -34,9 +33,9 @@ const AppLayout = ({
       />
       <PageHeader
         breadcrumbs={breadcrumbs}
-        description={description ? t(description) : ""}
+        description={description}
         onBreadcrumbClick={onBreadcrumbClick}
-        title={t(title)}
+        title={title}
       />
       <Box sx={{ p: 2 }}>{children}</Box>
     </Box>

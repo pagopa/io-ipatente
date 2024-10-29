@@ -15,8 +15,13 @@ if (process.env.NEXT_PUBLIC_BACKEND_API_MOCKING === "true") {
   require("../../mocks");
 }
 
+export interface GetLayoutParams {
+  page: ReactElement;
+  router: Router;
+  t: TFunction;
+}
 export type NextPageWithLayout<P = Record<never, never>, IP = P> = {
-  getLayout?: (page: ReactElement, router: Router, t: TFunction) => ReactNode;
+  getLayout?: ({ page, router, t }: GetLayoutParams) => ReactNode;
 } & NextPage<P, IP>;
 
 type AppPropsWithLayout = {
@@ -39,14 +44,14 @@ const App = ({ Component, pageProps, router }: AppPropsWithLayout) => {
 
   const { t } = useTranslation();
 
-  const getLayout = Component.getLayout ?? ((page) => page);
+  const getLayout = Component.getLayout ?? (({ page }) => page);
 
   return (
     <SessionProvider>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <QueryClientProvider client={queryClient}>
-          {getLayout(<Component {...pageProps} />, router, t)}
+          {getLayout({ page: <Component {...pageProps} />, router, t })}
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </ThemeProvider>

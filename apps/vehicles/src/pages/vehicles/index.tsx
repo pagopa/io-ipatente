@@ -6,7 +6,9 @@ import Stack from "@mui/material/Stack";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { ReactElement, useCallback } from "react";
+import { useCallback } from "react";
+
+import { GetLayoutParams } from "../_app";
 
 export default function Vehicles() {
   const router = useRouter();
@@ -52,8 +54,11 @@ export default function Vehicles() {
   );
 }
 
-Vehicles.getLayout = (page: ReactElement) => (
-  <AppLayout description="vehicles.description" title="vehicles.title">
+Vehicles.getLayout = ({ page, t }: GetLayoutParams) => (
+  <AppLayout
+    description={t("vehicles.description")}
+    title={t("vehicles.title")}
+  >
     {page}
   </AppLayout>
 );

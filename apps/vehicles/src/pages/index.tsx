@@ -9,7 +9,8 @@ import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { ReactElement } from "react";
+
+import { GetLayoutParams } from "./_app";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -73,9 +74,9 @@ export default function Home() {
   );
 }
 
-Home.getLayout = function getLayout(page: ReactElement) {
-  return <AppLayout title="app.title">{page}</AppLayout>;
-};
+Home.getLayout = ({ page, t }: GetLayoutParams) => (
+  <AppLayout title={t("app.title")}>{page}</AppLayout>
+);
 
 // Loading locales server-side
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
