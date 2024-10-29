@@ -5,10 +5,6 @@ import Typography from "@mui/material/Typography";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
 
-interface MetadataListItem {
-  items: CardInfoItem[];
-}
-
 export interface VehicleSectionRcaProps {
   rca?: CoperturaRCA;
 }
@@ -54,30 +50,27 @@ export const VehicleSectionRca = ({ rca }: VehicleSectionRcaProps) => {
     );
   }, [rca, t]);
 
-  const metadataListItems: MetadataListItem | undefined = useMemo(() => {
+  const metadataListItems: CardInfoItem[] | undefined = useMemo(() => {
     if (!rca) {
       return undefined;
     }
-
-    return {
-      items: [
-        {
-          label: t("vehicleDetails.rca.insuranceGroup"),
-          value: rca.compagniaAssicuratrice,
-        },
-        {
-          footerText: t("vehicleDetails.rca.info"),
-          label: t("vehicleDetails.rca.dueDate"),
-          value: rca.dataScadenzaCopertura,
-        },
-      ],
-    };
+    return [
+      {
+        label: t("vehicleDetails.rca.insuranceGroup"),
+        value: rca.compagniaAssicuratrice,
+      },
+      {
+        footerText: t("vehicleDetails.rca.info"),
+        label: t("vehicleDetails.rca.dueDate"),
+        value: rca.dataScadenzaCopertura,
+      },
+    ];
   }, [rca, t]);
 
   return (
     <CardInfo
       icon={<Icon fontSize="medium" name="securityUserBold" />}
-      items={metadataListItems?.items}
+      items={metadataListItems}
       title={t("vehicleDetails.rca.title")}
       topContent={topContent}
     />
