@@ -48,7 +48,7 @@ exports[`Test TopBar Components > Should match the snapshot when assistance is t
             class="MuiStack-root css-1sos3zc-MuiStack-root"
           >
             <button
-              aria-label="assistance-icon"
+              aria-label="assistance"
               class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
               tabindex="0"
               type="button"
@@ -117,7 +117,7 @@ exports[`Test TopBar Components > Should match the snapshot when assistance is t
           class="MuiStack-root css-1sos3zc-MuiStack-root"
         >
           <button
-            aria-label="assistance-icon"
+            aria-label="assistance"
             class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
             tabindex="0"
             type="button"

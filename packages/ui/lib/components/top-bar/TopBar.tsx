@@ -42,7 +42,7 @@ export const TopBar = ({ assistance, product }: TopBarProps) => (
       {assistance && (
         <Stack alignItems="center" direction="row" spacing={2}>
           <IconButton
-            aria-label={"assistance-icon"}
+            aria-label={"assistance"}
             onClick={assistance.onClick}
             size="small"
           >

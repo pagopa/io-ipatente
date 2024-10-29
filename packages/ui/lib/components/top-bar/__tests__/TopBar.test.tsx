@@ -41,7 +41,7 @@ describe("Test TopBar Components", () => {
       />,
     );
 
-    const button = comp.getByLabelText("assistance-icon");
+    const button = comp.getByLabelText("assistance");
     fireEvent.click(button);
     expect(mockHandleClick).toHaveBeenCalledTimes(1);
   });
