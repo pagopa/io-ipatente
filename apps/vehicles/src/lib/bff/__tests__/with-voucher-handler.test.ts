@@ -1,11 +1,11 @@
+import { NextRequest, NextResponse } from "next/server";
+import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
+
 import {
   Voucher,
   generateClientAssertion,
   requestVoucher,
-} from "@io-ipatente/core";
-import { NextRequest, NextResponse } from "next/server";
-import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
-
+} from "../../../../../../packages/core";
 import {
   HTTP_STATUS_INTERNAL_SERVER_ERROR,
   HTTP_STATUS_UNAUTHORIZED,
