@@ -24,7 +24,6 @@ describe("Test TopBar Components", () => {
       <TopBar
         {...defaultProps}
         assistance={{
-          label: "Assistenza",
           onClick: mockHandleClick,
         }}
       />,
@@ -37,13 +36,12 @@ describe("Test TopBar Components", () => {
       <TopBar
         {...defaultProps}
         assistance={{
-          label: "Assistenza",
           onClick: mockHandleClick,
         }}
       />,
     );
 
-    const button = await comp.findByText("Assistenza");
+    const button = comp.getByLabelText("assistance");
     fireEvent.click(button);
     expect(mockHandleClick).toHaveBeenCalledTimes(1);
   });
