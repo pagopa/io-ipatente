@@ -2,36 +2,27 @@
 /// <reference types="vite/client" />
 
 import react from "@vitejs/plugin-react";
+import { loadEnv } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { configDefaults, defineConfig } from "vitest/config";
-import { loadEnv } from "vite";
 
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   test: {
     coverage: {
       exclude: [
-        ...(configDefaults.coverage.exclude
-          ? configDefaults.coverage.exclude
-          : []),
-        ".next/*",
-        "mocks/*",
-        "public/*",
-        "*.config.js",
+        ...configDefaults.coverage.exclude,
+        "**/__tests__",
         "src/generated/**",
-        "src/config/*",
-        "src/types/*",
-        "src/main.ts",
-        "src/config.ts",
-        "src/instrumentation.ts",
-        "**/__mocks__/**",
+
         // BE
         "src/app/*",
-        "src/lib/be/*",
+        "src/config/*",
+        "src/lib/bff/*",
       ],
       ignoreEmptyLines: true,
-      reporter: ["text", "json-summary", "json"],
-      reportsDirectory: `${configDefaults.coverage.reportsDirectory}/frontend`,
+      include: ["src/**/*.{tsx,ts}"],
+      reporter: ["text", "html"],
     },
     css: true,
     env: loadEnv("test", process.cwd(), ""),

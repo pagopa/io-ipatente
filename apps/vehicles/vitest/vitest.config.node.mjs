@@ -1,37 +1,23 @@
-import { configDefaults, defineConfig } from "vitest/config";
-import tsconfigPaths from "vite-tsconfig-paths";
 import { loadEnv } from "vite";
+import tsconfigPaths from "vite-tsconfig-paths";
+import { configDefaults, defineConfig } from "vitest/config";
 
 export default defineConfig({
   plugins: [tsconfigPaths()],
   test: {
     coverage: {
       exclude: [
-        ...(configDefaults.coverage.exclude
-          ? configDefaults.coverage.exclude
-          : []),
-        ".next/*",
-        "mocks/*",
-        "public/*",
-        "*.config.js",
+        ...configDefaults.coverage.exclude,
+        "**/__tests__",
         "src/generated/**",
-        "src/config/*",
-        "src/types/*",
-        "src/main.ts",
-        "src/config.ts",
-        "src/instrumentation.ts",
-        "**/__mocks__/**",
+        "src/app/api/auth/mocks/**",
         // FE
+        "src/common/*",
         "src/hooks/*",
-        "src/layouts/*",
       ],
-      extension: configDefaults.coverage.extension
-        ?.toString()
-        .replace(",.tsx", "")
-        .split(","),
       ignoreEmptyLines: true,
-      reporter: ["text", "json-summary", "json"],
-      reportsDirectory: `${configDefaults.coverage.reportsDirectory}/backend`,
+      include: ["src/**/*.ts"],
+      reporter: ["text", "html"],
     },
     env: loadEnv("test", process.cwd(), ""),
     exclude: [
