@@ -4,6 +4,7 @@ import {
   TopBar,
 } from "@io-ipatente/ui";
 import Box from "@mui/material/Box";
+import { usePathname } from "next/navigation";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { ReactNode } from "react";
@@ -23,6 +24,7 @@ const AppLayout = ({
 }: AppLayoutProps) => {
   const { t } = useTranslation();
   const router = useRouter();
+  const path = usePathname();
 
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh">
@@ -30,7 +32,9 @@ const AppLayout = ({
         assistance={{
           label: "",
           onClick: () => {
-            router.push("/"); // TODO -> add assistence routePath, done in IOPAE-1490
+            if (!path?.includes("assistance")) {
+              router.push("/assistance");
+            }
           },
         }}
         product={{
