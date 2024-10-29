@@ -10,7 +10,7 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-import { GetLayoutParams } from "../_app";
+import { GetLayoutProps } from "../_app";
 
 export default function VehicleDetails() {
   const router = useRouter();
@@ -50,7 +50,7 @@ export default function VehicleDetails() {
   );
 }
 
-VehicleDetails.getLayout = ({ page, router, t }: GetLayoutParams) => (
+VehicleDetails.getLayout = ({ page, router, t }: GetLayoutProps) => (
   <AppLayout
     breadcrumbs={[
       {

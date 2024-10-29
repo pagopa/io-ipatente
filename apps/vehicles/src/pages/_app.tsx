@@ -15,13 +15,13 @@ if (process.env.NEXT_PUBLIC_BACKEND_API_MOCKING === "true") {
   require("../../mocks");
 }
 
-export interface GetLayoutParams {
+export interface GetLayoutProps {
   page: ReactElement;
   router: Router;
   t: TFunction;
 }
 export type NextPageWithLayout<P = Record<never, never>, IP = P> = {
-  getLayout?: ({ page, router, t }: GetLayoutParams) => ReactNode;
+  getLayout?: ({ page, router, t }: GetLayoutProps) => ReactNode;
 } & NextPage<P, IP>;
 
 type AppPropsWithLayout = {

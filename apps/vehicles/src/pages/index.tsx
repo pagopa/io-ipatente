@@ -10,7 +10,7 @@ import { useSession } from "next-auth/react";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-import { GetLayoutParams } from "./_app";
+import { GetLayoutProps } from "./_app";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -74,7 +74,7 @@ export default function Home() {
   );
 }
 
-Home.getLayout = ({ page, t }: GetLayoutParams) => (
+Home.getLayout = ({ page, t }: GetLayoutProps) => (
   <AppLayout title={t("app.title")}>{page}</AppLayout>
 );
 

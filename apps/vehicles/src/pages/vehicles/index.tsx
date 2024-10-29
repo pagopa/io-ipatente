@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useCallback } from "react";
 
-import { GetLayoutParams } from "../_app";
+import { GetLayoutProps } from "../_app";
 
 export default function Vehicles() {
   const router = useRouter();
@@ -54,7 +54,7 @@ export default function Vehicles() {
   );
 }
 
-Vehicles.getLayout = ({ page, t }: GetLayoutParams) => (
+Vehicles.getLayout = ({ page, t }: GetLayoutProps) => (
   <AppLayout
     description={t("vehicles.description")}
     title={t("vehicles.title")}
