@@ -5,6 +5,19 @@ resource "azurerm_resource_group" "rg" {
   tags = local.tags
 }
 
+module "key_vault" {
+  source               = "../_modules/key_vault"
+  prefix               = local.prefix
+  env_short            = local.env_short
+  location_short       = local.location_short
+  domain               = local.domain
+  application_basename = local.application_basename
+  location             = local.location
+  resource_group_name  = azurerm_resource_group.rg.name
+
+  tags = local.tags
+}
+
 module "vehicles_app_service" {
   source              = "../_modules/vehicles_app_service"
   prefix              = local.prefix
