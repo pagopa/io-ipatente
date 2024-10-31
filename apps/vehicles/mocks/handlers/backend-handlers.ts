@@ -15,11 +15,16 @@ export const buildHandlers = () => {
     http.get(`${baseURL}/infoVeicoli`, () => {
       const resultArray = [
         HttpResponse.json(getInfoVeicoli200Response(), { status: 200 }),
-        HttpResponse.json({ status: 400 }),
-        HttpResponse.json({ status: 401 }),
-        HttpResponse.json({ status: 403 }),
-        HttpResponse.json({ status: 404 }),
-        HttpResponse.json({ status: 500 }),
+        HttpResponse.json({ description: `Bad request` }, { status: 400 }),
+        HttpResponse.json({ description: `Unauthorized` }, { status: 401 }),
+        HttpResponse.json({ description: `Forbidden` }, { status: 403 }),
+        HttpResponse.json({ description: `Not found` }, { status: 404 }),
+        HttpResponse.json(
+          {
+            description: `Internal server error`,
+          },
+          { status: 500 },
+        ),
       ];
       return resultArray[0];
     }),
