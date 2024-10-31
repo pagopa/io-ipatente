@@ -1,11 +1,23 @@
 import AppLayout from "@/components/layouts/AppLayout";
+import { AssistanceInfo } from "@io-ipatente/ui";
+import Stack from "@mui/material/Stack";
 import { GetServerSideProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "react-i18next";
 
 import { GetLayoutProps } from "../_app";
 
 export default function Assistance() {
-  return <></>;
+  const { t } = useTranslation();
+  return (
+    <Stack>
+      <AssistanceInfo
+        description={t("assistance.info.description")}
+        phone={t("assistance.info.phone")}
+        title={t("assistance.info.title")}
+      />
+    </Stack>
+  );
 }
 
 Assistance.getLayout = ({ page, router, t }: GetLayoutProps) => (
