@@ -36,17 +36,6 @@ export const theme = createTheme(
           },
         },
       },
-      MuiButton: {
-        variants: [
-          {
-            style: {
-              "&:hover": {
-                color: colorPrimaryContainedHover,
-              },
-            },
-          },
-        ],
-      },
       MuiCard: {
         styleOverrides: {
           root: {
