@@ -1,8 +1,10 @@
 import AppLayout from "@/components/layouts/AppLayout";
+import { GenericError } from "@/components/shared/GenericError";
 import { ListItemVehicle } from "@/components/vehicles/ListItemVehicle";
 import { useVehicles } from "@/hooks/useVehicles";
 import { EmptyState, ListItemAction } from "@io-ipatente/ui";
 import Stack from "@mui/material/Stack";
+import { AxiosError } from "axios";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -14,14 +16,14 @@ import { GetLayoutProps } from "../_app";
 export default function Vehicles() {
   const { t } = useTranslation();
   const router = useRouter();
-  const { data = [], error, isError, isLoading } = useVehicles();
+  const { data = [], error, isLoading, isRefetching, refetch } = useVehicles();
 
   const handleOnClick = useCallback(
     (licensePlate: string) => router.push(`/vehicles/${licensePlate}`),
     [router],
   );
 
-  if (isLoading) {
+  if (isLoading || isRefetching) {
     return (
       <Stack
         component="ul"
@@ -35,11 +37,19 @@ export default function Vehicles() {
     );
   }
 
-  if (isError) {
-    return <div>Error: {error.message}</div>;
+  if (error instanceof AxiosError) {
+    return <GenericError error={error} onRetry={refetch} />;
   }
 
-  return data.length ? (
+  if (data.length === 0) {
+    return (
+      <Stack marginTop={3}>
+        <EmptyState icon="car1Bold" title={t("vehicles.empty")} />
+      </Stack>
+    );
+  }
+
+  return (
     <Stack
       component="ul"
       spacing={2}
@@ -52,10 +62,6 @@ export default function Vehicles() {
           onClick={handleOnClick}
         />
       ))}
-    </Stack>
-  ) : (
-    <Stack marginTop={3}>
-      <EmptyState icon="car1Bold" title={t("vehicles.empty")} />
     </Stack>
   );
 }
