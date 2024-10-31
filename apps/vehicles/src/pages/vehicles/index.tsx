@@ -4,7 +4,6 @@ import { ListItemVehicle } from "@/components/vehicles/ListItemVehicle";
 import { useVehicles } from "@/hooks/useVehicles";
 import { EmptyState, ListItemAction } from "@io-ipatente/ui";
 import Stack from "@mui/material/Stack";
-import { AxiosError } from "axios";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -16,7 +15,14 @@ import { GetLayoutProps } from "../_app";
 export default function Vehicles() {
   const { t } = useTranslation();
   const router = useRouter();
-  const { data = [], error, isLoading, isRefetching, refetch } = useVehicles();
+  const {
+    data = [],
+    error,
+    isError,
+    isLoading,
+    isRefetching,
+    refetch,
+  } = useVehicles();
 
   const handleOnClick = useCallback(
     (licensePlate: string) => router.push(`/vehicles/${licensePlate}`),
@@ -37,7 +43,7 @@ export default function Vehicles() {
     );
   }
 
-  if (error instanceof AxiosError) {
+  if (isError) {
     return <GenericError error={error} onRetry={refetch} />;
   }
 

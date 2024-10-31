@@ -7,7 +7,6 @@ import { useVehicles } from "@/hooks/useVehicles";
 import { vehicleByType } from "@/utils/strings";
 import { SectionTitle } from "@io-ipatente/ui";
 import Stack from "@mui/material/Stack";
-import { AxiosError } from "axios";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
