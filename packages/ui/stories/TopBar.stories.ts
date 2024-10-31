@@ -24,6 +24,7 @@ export const Default: Story = {
 export const WithAssistance: Story = {
   args: {
     assistance: {
+      label: "Example",
       onClick: () => null,
     },
     product: {
