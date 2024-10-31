@@ -19,20 +19,17 @@ export default function VehicleDetails() {
   const licensePlate = router.query.licensePlate;
 
   // TODO: wrap the select function in useCallback
-  const { data, error, isLoading, isRefetching, refetch } = useVehicles(
-    (data) => data.find((vehicle) => vehicle.targaVeicolo === licensePlate),
-  );
+  const { data, error, isError, isLoading, isRefetching, refetch } =
+    useVehicles((data) =>
+      data.find((vehicle) => vehicle.targaVeicolo === licensePlate),
+    );
 
   if (isLoading || isRefetching) {
-    return <div>Loading...</div>;
+    return <Stack my={3}>Loading...</Stack>;
   }
 
-  if (error instanceof AxiosError) {
+  if (!data || isError) {
     return <GenericError error={error} onRetry={refetch} />;
-  }
-
-  if (data === undefined) {
-    return null;
   }
 
   const { icon } = vehicleByType[data.tipoVeicolo] ?? {

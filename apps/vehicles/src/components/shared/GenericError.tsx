@@ -5,33 +5,32 @@ import { AxiosError } from "axios";
 import { useTranslation } from "next-i18next";
 
 export interface GenericErrorProps {
-  error: AxiosError;
+  error: AxiosError | null;
   onRetry: () => void;
 }
 
 export const GenericError = ({ error, onRetry }: GenericErrorProps) => {
   const { t } = useTranslation();
 
-  // TODO: remove this check, handle refresh session in bff
-  if (error.status === 401 || error.status === 403) {
+  if (error && error.status !== 401 && error.status !== 403) {
     return (
       <OperationResult
+        action={{
+          endIcon: <Cached />,
+          label: t("failure.generic.retry"),
+          onClick: onRetry,
+        }}
+        description={t("failure.generic.description")}
         illustration={<IllusError />}
-        title={t("failure.expiredSession.title")}
+        title={t("failure.generic.title")}
       />
     );
   }
 
   return (
     <OperationResult
-      action={{
-        endIcon: <Cached />,
-        label: t("failure.generic.retry"),
-        onClick: onRetry,
-      }}
-      description={t("failure.generic.description")}
       illustration={<IllusError />}
-      title={t("failure.generic.title")}
+      title={t("failure.expiredSession.title")}
     />
   );
 };
