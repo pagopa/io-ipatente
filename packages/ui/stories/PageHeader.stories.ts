@@ -1,12 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { fn } from "@storybook/test";
-
 import { PageHeader } from "../lib/components/page-header";
 
 const meta = {
-  argTypes: {},
-  args: { topElement: { onBreadcrumbClick: fn() } },
   component: PageHeader,
   parameters: {
     layout: "centered",
@@ -18,36 +14,28 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const MainPage: Story = {
+export const Default: Story = {
   args: {
-    description: "This is a sample description.",
     title: "Sample Title",
   },
 };
 
-export const DetailsPage: Story = {
+export const WithBreadcrumbs: Story = {
   args: {
     title: "Sample Title",
-    topElement: {
-      breadcrumbs: [
-        {
-          label: "Root label",
-          routePath: "/root-path",
-        },
-        {
-          label: "Leaf label",
-        },
-      ],
+    description: "This is a sample description",
+    breadcrumbsProps: {
+      breadcrumbs: [{ label: "Home", routePath: "/" }, { label: "Details" }],
     },
   },
 };
 
-export const BackPage: Story = {
+export const WithBack: Story = {
   args: {
-    description: "This is a sample description.",
+    description: "This is a sample description",
     title: "Sample Title",
-    topElement: {
-      backLabel: "Back",
+    backButtonProps: {
+      label: "Back",
       onBackClick: () => null,
     },
   },

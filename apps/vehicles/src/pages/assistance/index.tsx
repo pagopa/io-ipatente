@@ -22,12 +22,12 @@ export default function Assistance() {
 
 Assistance.getLayout = ({ page, router, t }: GetLayoutProps) => (
   <AppLayout
-    description={t("assistance.description")}
-    title={t("assistance.title")}
-    topElement={{
-      backLabel: t("assistance.back"),
+    backButtonProps={{
+      label: t("assistance.back"),
       onBackClick: () => router.back(),
     }}
+    description={t("assistance.description")}
+    title={t("assistance.title")}
   >
     {page}
   </AppLayout>

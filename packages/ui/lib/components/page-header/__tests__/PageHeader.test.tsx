@@ -1,16 +1,15 @@
-import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
 import {
   DATA_TEST_ID_PREFIX,
   PageHeader,
-  PageHeaderBreadcrumb,
+  PageHeaderBreadcrumbsProps,
 } from "../PageHeader";
 
 const description = "sample-description";
 const title = "sample-title";
-const breadcrumbs: PageHeaderBreadcrumb[] = [
+const breadcrumbs: PageHeaderBreadcrumbsProps["breadcrumbs"] = [
   { label: "root-page", routePath: "/root" },
   { label: "leaf-page" },
 ];
@@ -19,9 +18,9 @@ describe("Test PageHeader Component", () => {
   it("Should match the snapshot with breadcrumbs props", () => {
     const comp = render(
       <PageHeader
+        breadcrumbsProps={{ breadcrumbs }}
         description={description}
         title={title}
-        topElement={{ breadcrumbs }}
       />,
     );
     expect(comp).toMatchSnapshot();
@@ -55,11 +54,11 @@ describe("Test PageHeader Component", () => {
 
     render(
       <PageHeader
-        title={title}
-        topElement={{
+        breadcrumbsProps={{
           breadcrumbs,
           onBreadcrumbClick: handleBreadcrumbClick,
         }}
+        title={title}
       />,
     );
 
@@ -96,15 +95,18 @@ describe("Test PageHeader Component", () => {
 
   it("Should not trigger onBreadcrumbClick for a root breadcrumb without routePath", () => {
     const handleBreadcrumbClick = vi.fn();
-    const breadcrumbs: PageHeaderBreadcrumb[] = [
+    const breadcrumbs: PageHeaderBreadcrumbsProps["breadcrumbs"] = [
       { label: "root-page" },
       { label: "leaf-page" },
     ];
 
     render(
       <PageHeader
+        breadcrumbsProps={{
+          breadcrumbs,
+          onBreadcrumbClick: handleBreadcrumbClick,
+        }}
         title={title}
-        topElement={{ breadcrumbs, onBreadcrumbClick: handleBreadcrumbClick }}
       />,
     );
 
@@ -126,16 +128,16 @@ describe("Test PageHeader Component", () => {
 
     render(
       <PageHeader
-        title={title}
-        topElement={{
-          backLabel: "Back",
+        backButtonProps={{
+          label: "back",
           onBackClick: handleBackClick,
         }}
+        title={title}
       />,
     );
 
     const pageHeaderBackButton = screen.queryByTestId(
-      `${DATA_TEST_ID_PREFIX}-breadcrumb-back-button`,
+      `${DATA_TEST_ID_PREFIX}-back-button`,
     );
 
     expect(pageHeaderBackButton).toBeInTheDocument();

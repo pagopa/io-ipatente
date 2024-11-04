@@ -7,56 +7,43 @@ import {
   Typography,
 } from "@mui/material";
 
-export interface PageHeaderBreadcrumbProps {
-  /** Page Header back button title label */
-  backLabel?: undefined;
-  /** A list of links that help visualize page's location within app hierarchical structure.
-   * It allows navigation up to any of the ancestors.
-   * */
-  breadcrumbs?: PageHeaderBreadcrumb[];
-  /** Event triggered when user click on the back button */
-  onBackClick?: undefined;
-  /** Event triggered when user click on a breadcrumb with `routePath` defined */
+interface PageHeaderBreadcrumbProps {
+  label: string;
+  routePath?: string;
+}
+
+export interface PageHeaderBreadcrumbsProps {
+  breadcrumbs: PageHeaderBreadcrumbProps[];
   onBreadcrumbClick?: (routePath: string) => void;
 }
 
-export interface PageHeaderBackProps {
-  /** Page Header back button title label */
-  backLabel: string;
-  /** A list of links that help visualize page's location within app hierarchical structure.
-   * It allows navigation up to any of the ancestors.
-   * */
-  breadcrumbs?: undefined;
-  /** Event triggered when user click on the back button */
+export interface PageHeaderBackButtonProps {
+  label: string;
   onBackClick: () => void;
-  /** Event triggered when user click on a breadcrumb with `routePath` defined */
-  onBreadcrumbClick?: undefined;
 }
 
-export interface PageHeaderProps {
+export interface PageHeaderBaseProps {
   /** Page Header description: if present, it is shown under the title */
   description?: string;
   /** Page Header main title label */
   title: string;
-  /** Page Header topElement with breadcrumbs or backButton */
-  topElement?: PageHeaderTopElementProps;
 }
 
-export type PageHeaderTopElementProps =
-  | PageHeaderBackProps
-  | PageHeaderBreadcrumbProps;
-
-export interface PageHeaderBreadcrumbsProps {
-  breadcrumbs: PageHeaderBreadcrumb[];
-  onBreadcrumbClick?: (routePath: string) => void;
-}
-
-export interface PageHeaderBreadcrumb {
-  /** Breadcrumb item displayed text */
-  label: string;
-  /** Breadcrumb item route path */
-  routePath?: string;
-}
+export type PageHeaderProps = (
+  | {
+      backButtonProps: PageHeaderBackButtonProps;
+      breadcrumbsProps?: undefined;
+    }
+  | {
+      backButtonProps?: undefined;
+      breadcrumbsProps: PageHeaderBreadcrumbsProps;
+    }
+  | {
+      backButtonProps?: undefined;
+      breadcrumbsProps?: undefined;
+    }
+) &
+  PageHeaderBaseProps;
 
 export const DATA_TEST_ID_PREFIX = "io-ipatente-page-header";
 
@@ -64,58 +51,50 @@ const BREADCRUMB_SEPARATOR_COLOR = "#64748B";
 
 /** Page Header component */
 export const PageHeader = ({
+  backButtonProps,
+  breadcrumbsProps,
   description,
   title,
-  topElement = {},
-}: PageHeaderProps) => {
-  const { backLabel, breadcrumbs, onBackClick, onBreadcrumbClick } = topElement;
-
-  return (
-    <Stack
-      bgcolor="background.pageHeader"
-      data-testid={DATA_TEST_ID_PREFIX}
-      paddingX={2}
-      paddingY={3}
-      spacing={1}
-    >
-      {backLabel && (
-        <Link
-          color="text.primary"
-          component="button"
-          data-testid={`${DATA_TEST_ID_PREFIX}-breadcrumb-back-button`}
-          onClick={onBackClick}
-          sx={{
-            alignItems: "center",
-            columnGap: 0.5,
-            display: "flex",
-            textDecoration: "underline",
-          }}
-          variant="sidenav"
-        >
-          <ArrowBackIcon />
-          {backLabel}
-        </Link>
-      )}
-      {breadcrumbs && (
-        <PageHeader.Breadcrumbs
-          breadcrumbs={breadcrumbs}
-          onBreadcrumbClick={onBreadcrumbClick}
-        />
-      )}
-      <Typography data-testid={`${DATA_TEST_ID_PREFIX}-title`} variant="h3">
-        {title}
+}: PageHeaderProps) => (
+  <Stack
+    bgcolor="background.pageHeader"
+    data-testid={DATA_TEST_ID_PREFIX}
+    paddingX={2}
+    paddingY={3}
+    spacing={1}
+  >
+    {backButtonProps && (
+      <Link
+        color="text.primary"
+        component="button"
+        data-testid={`${DATA_TEST_ID_PREFIX}-back-button`}
+        onClick={backButtonProps.onBackClick}
+        sx={{
+          alignItems: "center",
+          columnGap: 0.5,
+          display: "flex",
+          textDecoration: "underline",
+        }}
+        variant="sidenav"
+      >
+        <ArrowBackIcon />
+        {backButtonProps.label}
+      </Link>
+    )}
+    {breadcrumbsProps && <PageHeader.Breadcrumbs {...breadcrumbsProps} />}
+    <Typography data-testid={`${DATA_TEST_ID_PREFIX}-title`} variant="h3">
+      {title}
+    </Typography>
+    {description && (
+      <Typography
+        data-testid={`${DATA_TEST_ID_PREFIX}-description`}
+        variant="body2"
+      >
+        {description}
       </Typography>
-      {description && (
-        <Typography
-          data-testid={`${DATA_TEST_ID_PREFIX}-description`}
-          variant="body2"
-        >
-          {description}
-        </Typography>
-      )}
-    </Stack>
-  );
-};
+    )}
+  </Stack>
+);
 
 /** Page Header Breadcrumbs internal component */
 const Breadcrumbs = ({

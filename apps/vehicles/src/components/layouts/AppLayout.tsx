@@ -4,16 +4,11 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { ReactNode } from "react";
 
-interface AppLayoutProps {
+type AppLayoutProps = {
   children: ReactNode;
-}
+} & PageHeaderProps;
 
-const AppLayout = ({
-  children,
-  description,
-  title,
-  topElement,
-}: AppLayoutProps & PageHeaderProps) => {
+const AppLayout = ({ children, ...rest }: AppLayoutProps) => {
   const { t } = useTranslation();
   const router = useRouter();
 
@@ -22,9 +17,7 @@ const AppLayout = ({
       <TopBar
         assistance={{
           label: t("topBar.assistance"),
-          onClick: () => {
-            router.push("/assistance");
-          },
+          onClick: () => router.push("/assistance"),
         }}
         product={{
           logo: "ipatente",
@@ -32,11 +25,7 @@ const AppLayout = ({
           url: "",
         }}
       />
-      <PageHeader
-        description={description}
-        title={title}
-        topElement={topElement}
-      />
+      <PageHeader {...rest} />
       <Box sx={{ p: 2 }}>{children}</Box>
     </Box>
   );
