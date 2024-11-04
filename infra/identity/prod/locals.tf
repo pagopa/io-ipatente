@@ -2,6 +2,7 @@ locals {
   prefix    = "io"
   env_short = "p"
   env       = "prod"
+  location  = "italynorth"
   project   = "${local.prefix}-${local.env_short}"
   domain    = "ipatente"
 
