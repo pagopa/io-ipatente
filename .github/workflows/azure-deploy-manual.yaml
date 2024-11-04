@@ -10,7 +10,7 @@ permissions:
 
 env:
   RESOURCE_GROUP_NAME: io-p-itn-ipatente-rg-01
-  AZURE_VEHICLES_NAME: io-p-itn-svc-vehicles-app-01
+  AZURE_VEHICLES_NAME: io-p-itn-ipatente-vehicles-app-01
   VEHICLES_HEALTHCHECK_PATH: 'api/v1/info'
 
 jobs:
