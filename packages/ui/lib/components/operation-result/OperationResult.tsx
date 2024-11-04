@@ -16,9 +16,6 @@ type OperationResultAction = {
   label: string;
 } & Pick<ButtonProps, "endIcon" | "onClick" | "startIcon">;
 
-export const DATA_TEST_ID_OPERATION_RESULT_PREFIX =
-  "io-ipatente-operation-result";
-
 /** Operation result screen component */
 export const OperationResult = ({
   action,
@@ -42,7 +39,6 @@ export const OperationResult = ({
     </Stack>
     {action && (
       <Button
-        data-testid={`${DATA_TEST_ID_OPERATION_RESULT_PREFIX}-action`}
         endIcon={action.endIcon}
         onClick={action.onClick}
         size="small"

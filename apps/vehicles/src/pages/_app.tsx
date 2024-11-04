@@ -49,8 +49,8 @@ const App = ({ Component, pageProps, router }: AppPropsWithLayout) => {
   return (
     <SessionProvider>
       <ThemeProvider theme={theme}>
-        <CssBaseline />
         <QueryClientProvider client={queryClient}>
+          <CssBaseline />
           {getLayout({ page: <Component {...pageProps} />, router, t })}
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>

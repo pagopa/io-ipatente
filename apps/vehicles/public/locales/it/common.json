@@ -102,5 +102,15 @@
       "phone": "800 23 23 23",
       "description": "Attivo dal lunedì al venerdì dalle 8:00 alle 20:00 il sabato dalle 8:00 alle 14:00"
     }
+  },
+  "failure": {
+    "generic": {
+      "title": "Qualcosa è andato storto",
+      "description": "Si è verificato un errore imprevisto",
+      "retry": "Ricarica la pagina"
+    },
+    "expiredSession": {
+      "title": "La tua session è scaduta"
+    }
   }
 }
