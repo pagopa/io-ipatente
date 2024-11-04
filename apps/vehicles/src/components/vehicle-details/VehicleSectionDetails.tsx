@@ -103,20 +103,18 @@ export const VehicleSectionDetails = ({ data }: VehicleSectionDetailsProps) => {
 
 const EXTRA_MASS_ICON_MAP: Record<ExtraMassaEnum, ReactNode> = {
   [ExtraMassaEnum.Enum.EXTRAM_MSG_001]: (
-    <Icon fontSize="large" name="modalSuccess" />
+    <Icon fontSize="large" name="success" />
   ),
   [ExtraMassaEnum.Enum.EXTRAM_MSG_002]: (
-    <Icon fontSize="large" name="modalWarning" />
+    <Icon fontSize="large" name="warning" />
   ),
   [ExtraMassaEnum.Enum.EXTRAM_MSG_003]: (
-    <Icon fontSize="large" name="modalWarning" />
+    <Icon fontSize="large" name="warning" />
   ),
   [ExtraMassaEnum.Enum.EXTRAM_MSG_004]: (
-    <Icon fontSize="large" name="modalWarning" />
+    <Icon fontSize="large" name="warning" />
   ),
-  [ExtraMassaEnum.Enum.EXTRAM_MSG_005]: (
-    <Icon fontSize="large" name="modalError" />
-  ),
+  [ExtraMassaEnum.Enum.EXTRAM_MSG_005]: <Icon fontSize="large" name="error" />,
 };
 
 const ModalExtraMassBody = (
