@@ -1,6 +1,6 @@
 import { ExtraMassaEnum, Veicolo } from "@/generated/openapi";
 import { extraMassByCode, noviceByCode, vehicleByType } from "@/utils/strings";
-import { CardInfo, CardInfoItem, Icon, Modal } from "@io-ipatente/ui";
+import { CardInfo, CardInfoItem, Dialog, Icon } from "@io-ipatente/ui";
 import { Stack, Typography } from "@mui/material";
 import { useTranslation } from "next-i18next";
 import { ReactNode, useState } from "react";
@@ -83,12 +83,14 @@ export const VehicleSectionDetails = ({ data }: VehicleSectionDetailsProps) => {
 
   return (
     <>
-      <Modal
-        body={ModalExtraMassBody(
-          datiVeicolo?.extraMassa?.codice,
-          datiVeicolo?.extraMassa?.descrizione,
-        )}
-        close={() => setIsOpen(false)}
+      <Dialog
+        body={
+          <ModalExtraMassBody
+            code={datiVeicolo?.extraMassa?.codice}
+            description={datiVeicolo?.extraMassa?.descrizione}
+          />
+        }
+        onClose={() => setIsOpen(false)}
         open={isOpen}
         title={t("vehicleDetails.info.extraMass")}
       />
@@ -117,12 +119,17 @@ const EXTRA_MASS_ICON_MAP: Record<ExtraMassaEnum, ReactNode> = {
   [ExtraMassaEnum.Enum.EXTRAM_MSG_005]: <Icon fontSize="large" name="error" />,
 };
 
-const ModalExtraMassBody = (
-  code: ExtraMassaEnum | undefined,
-  description: string | undefined,
-) => (
-  <Stack p={2}>
-    <Stack alignItems="center" sx={{ marginBottom: 2 }}>
+interface ModalExtraMassBodyProps {
+  code?: ExtraMassaEnum;
+  description?: string;
+}
+
+export const ModalExtraMassBody = ({
+  code,
+  description,
+}: ModalExtraMassBodyProps) => (
+  <Stack spacing={3}>
+    <Stack alignItems="center">
       {EXTRA_MASS_ICON_MAP[code ?? ExtraMassaEnum.Enum.EXTRAM_MSG_005]}
     </Stack>
     <Typography textAlign="center" variant="body1">
