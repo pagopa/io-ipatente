@@ -39,3 +39,12 @@ export const DetailsPage: Story = {
     title: "Sample Title",
   },
 };
+
+export const BackPage: Story = {
+  args: {
+    backLabel: "Back",
+    description: "This is a sample description.",
+    onBackClick: () => null,
+    title: "Sample Title",
+  },
+};

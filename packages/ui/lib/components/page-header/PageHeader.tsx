@@ -6,31 +6,52 @@ import {
   Typography,
 } from "@mui/material";
 
-import { Icon, IconType } from "../icon";
+import { Icon } from "../icon";
 
-export interface PageHeaderProps {
+export interface PageHeaderBreadcrumbProps {
+  /** Page Header back button title label */
+  backLabel?: undefined;
   /** A list of links that help visualize page's location within app hierarchical structure.
    * It allows navigation up to any of the ancestors.
    * */
   breadcrumbs?: PageHeaderBreadcrumb[];
-  /** Page Header description: if present, it is shown under the title */
-  description?: string;
+  /** Event triggered when user click on the back button */
+  onBackClick?: undefined;
   /** Event triggered when user click on a breadcrumb with `routePath` defined */
   onBreadcrumbClick?: (routePath: string) => void;
+}
+
+export interface PageHeaderBackProps {
+  /** Page Header back button title label */
+  backLabel: string;
+  /** A list of links that help visualize page's location within app hierarchical structure.
+   * It allows navigation up to any of the ancestors.
+   * */
+  breadcrumbs?: undefined;
+  /** Event triggered when user click on the back button */
+  onBackClick: () => void;
+  /** Event triggered when user click on a breadcrumb with `routePath` defined */
+  onBreadcrumbClick?: undefined;
+}
+
+export interface PageHeaderPropsBase {
+  /** Page Header description: if present, it is shown under the title */
+  description?: string;
   /** Page Header main title label */
   title: string;
 }
 
+export type PageHeaderNavigationProps =
+  | PageHeaderBackProps
+  | PageHeaderBreadcrumbProps;
+
+export type PageHeaderProps = PageHeaderNavigationProps & PageHeaderPropsBase;
 export interface PageHeaderBreadcrumbsProps {
   breadcrumbs: PageHeaderBreadcrumb[];
   onBreadcrumbClick?: (routePath: string) => void;
 }
 
 export interface PageHeaderBreadcrumb {
-  /** Breadcrumb item clickable */
-  clickable?: boolean;
-  /** Breadcrumb item icon */
-  icon?: IconType;
   /** Breadcrumb item displayed text */
   label: string;
   /** Breadcrumb item route path */
@@ -43,8 +64,10 @@ const BREADCRUMB_SEPARATOR_COLOR = "#64748B";
 
 /** Page Header component */
 export const PageHeader = ({
+  backLabel,
   breadcrumbs,
   description,
+  onBackClick,
   onBreadcrumbClick,
   title,
 }: PageHeaderProps) => (
@@ -55,6 +78,24 @@ export const PageHeader = ({
     paddingY={3}
     spacing={1}
   >
+    {backLabel && (
+      <Link
+        color="text.primary"
+        component="button"
+        data-testid={`${DATA_TEST_ID_PREFIX}-breadcrumb-back-button`}
+        onClick={onBackClick}
+        sx={{
+          alignItems: "center",
+          columnGap: 0.5,
+          display: "flex",
+          textDecoration: "underline",
+        }}
+        variant="sidenav"
+      >
+        <Icon name="arrowBack" style={{ marginRight: 0 }} />
+        {backLabel}
+      </Link>
+    )}
     {breadcrumbs && (
       <PageHeader.Breadcrumbs
         breadcrumbs={breadcrumbs}
@@ -90,7 +131,7 @@ const Breadcrumbs = ({
     }
   >
     {breadcrumbs.map((item, index, items) =>
-      index < items.length - 1 || item.clickable ? (
+      index < items.length - 1 ? (
         <Link
           color="text.primary"
           component="button"
@@ -109,7 +150,6 @@ const Breadcrumbs = ({
           }}
           variant="sidenav"
         >
-          {item.icon && <Icon name={item.icon} style={{ marginRight: 0 }} />}
           {item.label}
         </Link>
       ) : (

@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Test PageHeader Component > Should match the snapshot with all props 1`] = `
+exports[`Test PageHeader Component > Should match the snapshot with breadcrumbs props 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>

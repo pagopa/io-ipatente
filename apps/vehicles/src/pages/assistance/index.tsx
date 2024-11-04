@@ -22,16 +22,9 @@ export default function Assistance() {
 
 Assistance.getLayout = ({ page, router, t }: GetLayoutProps) => (
   <AppLayout
-    breadcrumbs={[
-      {
-        clickable: true,
-        icon: "arrowBack",
-        label: t("assistance.back"),
-        routePath: "/",
-      },
-    ]}
+    backLabel={t("assistance.back")}
     description={t("assistance.description")}
-    onBreadcrumbClick={() => router.back()}
+    onBackClick={() => router.back()}
     title={t("assistance.title")}
   >
     {page}

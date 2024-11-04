@@ -16,7 +16,7 @@ const breadcrumbs: PageHeaderBreadcrumb[] = [
 ];
 
 describe("Test PageHeader Component", () => {
-  it("Should match the snapshot with all props", () => {
+  it("Should match the snapshot with breadcrumbs props", () => {
     const comp = render(
       <PageHeader
         breadcrumbs={breadcrumbs}
@@ -117,6 +117,28 @@ describe("Test PageHeader Component", () => {
       fireEvent.click(pageHeaderRootBreadcrumb);
       expect(handleBreadcrumbClick).not.toHaveBeenCalled();
       expect(pageHeaderRootBreadcrumb).toHaveTextContent(breadcrumbs[0].label);
+    }
+  });
+
+  it("Should render a page header with back button", () => {
+    const handleBackClick = vi.fn();
+
+    render(
+      <PageHeader
+        backLabel="Back"
+        onBackClick={handleBackClick}
+        title={title}
+      />,
+    );
+
+    const pageHeaderBackButton = screen.queryByTestId(
+      `${DATA_TEST_ID_PREFIX}-breadcrumb-back-button`,
+    );
+
+    expect(pageHeaderBackButton).toBeInTheDocument();
+
+    if (pageHeaderBackButton) {
+      fireEvent.click(pageHeaderBackButton);
     }
   });
 });
