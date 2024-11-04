@@ -77,9 +77,9 @@ export const VehicleSectionDetails = ({ data }: VehicleSectionDetailsProps) => {
     ],
   };
 
-  // const filteredMetadataListItems = metadataListItems.items.filter(
-  //   (item) => item.isVisible !== false,
-  // );
+  const filteredMetadataListItems = metadataListItems.items.filter(
+    (item) => item.isVisible !== false,
+  );
 
   return (
     <>
