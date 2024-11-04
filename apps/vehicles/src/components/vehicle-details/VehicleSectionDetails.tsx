@@ -81,15 +81,24 @@ export const VehicleSectionDetails = ({ data }: VehicleSectionDetailsProps) => {
     (item) => item.isVisible !== false,
   );
 
+  const renderExtraMassBody = (code?: ExtraMassaEnum, description?: string) => (
+    <Stack spacing={3}>
+      <Stack alignItems="center">
+        {EXTRA_MASS_ICON_MAP[code ?? ExtraMassaEnum.Enum.EXTRAM_MSG_005]}
+      </Stack>
+      <Typography textAlign="center" variant="body1">
+        {description}
+      </Typography>
+    </Stack>
+  );
+
   return (
     <>
       <Dialog
-        body={
-          <ModalExtraMassBody
-            code={datiVeicolo?.extraMassa?.codice}
-            description={datiVeicolo?.extraMassa?.descrizione}
-          />
-        }
+        body={renderExtraMassBody(
+          datiVeicolo?.extraMassa?.codice,
+          datiVeicolo?.extraMassa?.descrizione,
+        )}
         onClose={() => setIsOpen(false)}
         open={isOpen}
         title={t("vehicleDetails.info.extraMass")}
@@ -118,22 +127,3 @@ const EXTRA_MASS_ICON_MAP: Record<ExtraMassaEnum, ReactNode> = {
   ),
   [ExtraMassaEnum.Enum.EXTRAM_MSG_005]: <Icon fontSize="large" name="error" />,
 };
-
-interface ModalExtraMassBodyProps {
-  code?: ExtraMassaEnum;
-  description?: string;
-}
-
-export const ModalExtraMassBody = ({
-  code,
-  description,
-}: ModalExtraMassBodyProps) => (
-  <Stack spacing={3}>
-    <Stack alignItems="center">
-      {EXTRA_MASS_ICON_MAP[code ?? ExtraMassaEnum.Enum.EXTRAM_MSG_005]}
-    </Stack>
-    <Typography textAlign="center" variant="body1">
-      {description}
-    </Typography>
-  </Stack>
-);
