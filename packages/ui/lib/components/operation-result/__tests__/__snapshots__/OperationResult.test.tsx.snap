@@ -47,7 +47,6 @@ exports[`Test OperationResult Component > Should match the snapshot with all pro
         </div>
         <button
           class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeSmall MuiButton-containedSizeSmall MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeSmall MuiButton-containedSizeSmall MuiButton-colorPrimary css-11qr2p8-MuiButtonBase-root-MuiButton-root"
-          data-testid="io-ipatente-operation-result-action"
           tabindex="0"
           type="button"
         >
@@ -117,7 +116,6 @@ exports[`Test OperationResult Component > Should match the snapshot with all pro
       </div>
       <button
         class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeSmall MuiButton-containedSizeSmall MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeSmall MuiButton-containedSizeSmall MuiButton-colorPrimary css-11qr2p8-MuiButtonBase-root-MuiButton-root"
-        data-testid="io-ipatente-operation-result-action"
         tabindex="0"
         type="button"
       >

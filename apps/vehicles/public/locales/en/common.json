@@ -89,5 +89,14 @@
     "EXTRAM_MSG_002": "Non autorizzato alla guida",
     "EXTRAM_MSG_003": "Dato non verificabile"
   },
-  "welcome": "Welcome"
+  "failure": {
+    "generic": {
+      "title": "Qualcosa è andato storto",
+      "description": "Si è verificato un errore imprevisto",
+      "retry": "Ricarica la pagina"
+    },
+    "expiredSession": {
+      "title": "La tua session è scaduta"
+    }
+  }
 }
