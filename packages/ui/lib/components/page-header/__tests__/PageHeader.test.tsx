@@ -1,25 +1,24 @@
-import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
 import {
   DATA_TEST_ID_PREFIX,
   PageHeader,
-  PageHeaderBreadcrumb,
+  PageHeaderBreadcrumbsProps,
 } from "../PageHeader";
 
 const description = "sample-description";
 const title = "sample-title";
-const breadcrumbs: PageHeaderBreadcrumb[] = [
+const breadcrumbs: PageHeaderBreadcrumbsProps["breadcrumbs"] = [
   { label: "root-page", routePath: "/root" },
   { label: "leaf-page" },
 ];
 
 describe("Test PageHeader Component", () => {
-  it("Should match the snapshot with all props", () => {
+  it("Should match the snapshot with breadcrumbs props", () => {
     const comp = render(
       <PageHeader
-        breadcrumbs={breadcrumbs}
+        breadcrumbsProps={{ breadcrumbs }}
         description={description}
         title={title}
       />,
@@ -55,8 +54,10 @@ describe("Test PageHeader Component", () => {
 
     render(
       <PageHeader
-        breadcrumbs={breadcrumbs}
-        onBreadcrumbClick={handleBreadcrumbClick}
+        breadcrumbsProps={{
+          breadcrumbs,
+          onBreadcrumbClick: handleBreadcrumbClick,
+        }}
         title={title}
       />,
     );
@@ -94,15 +95,17 @@ describe("Test PageHeader Component", () => {
 
   it("Should not trigger onBreadcrumbClick for a root breadcrumb without routePath", () => {
     const handleBreadcrumbClick = vi.fn();
-    const breadcrumbs: PageHeaderBreadcrumb[] = [
+    const breadcrumbs: PageHeaderBreadcrumbsProps["breadcrumbs"] = [
       { label: "root-page" },
       { label: "leaf-page" },
     ];
 
     render(
       <PageHeader
-        breadcrumbs={breadcrumbs}
-        onBreadcrumbClick={handleBreadcrumbClick}
+        breadcrumbsProps={{
+          breadcrumbs,
+          onBreadcrumbClick: handleBreadcrumbClick,
+        }}
         title={title}
       />,
     );
@@ -117,6 +120,30 @@ describe("Test PageHeader Component", () => {
       fireEvent.click(pageHeaderRootBreadcrumb);
       expect(handleBreadcrumbClick).not.toHaveBeenCalled();
       expect(pageHeaderRootBreadcrumb).toHaveTextContent(breadcrumbs[0].label);
+    }
+  });
+
+  it("Should render a page header with back button", () => {
+    const handleBackClick = vi.fn();
+
+    render(
+      <PageHeader
+        backButtonProps={{
+          label: "back",
+          onBackClick: handleBackClick,
+        }}
+        title={title}
+      />,
+    );
+
+    const pageHeaderBackButton = screen.queryByTestId(
+      `${DATA_TEST_ID_PREFIX}-back-button`,
+    );
+
+    expect(pageHeaderBackButton).toBeInTheDocument();
+
+    if (pageHeaderBackButton) {
+      fireEvent.click(pageHeaderBackButton);
     }
   });
 });

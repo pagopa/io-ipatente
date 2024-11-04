@@ -1,3 +1,4 @@
+export * from "./assistance-info";
 export * from "./card-carousel";
 export * from "./card-info";
 export * from "./empty-state";
