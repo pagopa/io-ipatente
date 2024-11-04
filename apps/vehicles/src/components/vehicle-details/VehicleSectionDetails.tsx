@@ -1,4 +1,4 @@
-import { Veicolo } from "@/generated/openapi";
+import { Veicolo } from "@/generated/bff-openapi";
 import { extraMassByCode, noviceByCode, vehicleByType } from "@/utils/strings";
 import { CardInfo, CardInfoItem, Icon } from "@io-ipatente/ui";
 import { useTranslation } from "next-i18next";

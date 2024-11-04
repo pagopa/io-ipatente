@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Mock, describe, expect, it, vi } from "vitest";
 
 import { CustomUser } from "../../../../../types/next-auth";
-import { Veicolo } from "../../../../generated/openapi";
+import { Veicolo } from "../../../../generated/bff-openapi";
 import { retrieveVehicles } from "../../../../lib/bff/business";
 import {
   handleBadRequestErrorResponse,

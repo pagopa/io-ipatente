@@ -19,8 +19,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "generate": "npm-run-all 'generate:*'",
-    "generate:openapi-schema": "rimraf src/generated && mkdir -p src/generated && openapi-zod-client ./openapi.yaml -o src/generated/openapi.ts -t template-bff.hbs --additional-props-default-value=false"
+    "generate": "rimraf src/generated && mkdir -p src/generated && npm-run-all 'generate:*'",
+    "generate:bff-openapi-schema": "openapi-zod-client ./openapi/bff-openapi.yaml -o src/generated/bff-openapi.ts -t template-bff.hbs --additional-props-default-value=false",
+    "generate:ext-openapi-schema": "openapi-zod-client ./openapi/ext-openapi.yaml -o src/generated/ext-openapi.ts -t template-bff.hbs --additional-props-default-value=false"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",

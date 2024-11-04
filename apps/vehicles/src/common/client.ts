@@ -1,5 +1,5 @@
 import { getConfiguration } from "@/config";
-import { createApiClient } from "@/generated/openapi";
+import { createApiClient } from "@/generated/bff-openapi";
 import { ApiOf } from "@zodios/core";
 
 const { BFF_API_BASE_PATH, BFF_API_BASE_URL } = getConfiguration();

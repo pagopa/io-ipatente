@@ -1,5 +1,5 @@
 import { getConfiguration } from "@/config";
-import { createApiClient } from "@/generated/openapi";
+import { createApiClient } from "@/generated/ext-openapi";
 import { ApiOf, ZodiosInstance } from "@zodios/core";
 
 const { EXT_API_BASE_PATH, EXT_API_BASE_URL, EXT_API_MOCKING } =

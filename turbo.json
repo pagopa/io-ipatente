@@ -21,7 +21,7 @@
     "format": {},
     "format:check": {},
     "generate": {
-      "inputs": ["./openapi.yaml"],
+      "inputs": ["./*-openapi.yaml"],
       "outputs": ["src/generated/**/*"]
     },
     "lint": {

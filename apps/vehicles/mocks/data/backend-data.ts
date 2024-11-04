@@ -8,7 +8,7 @@ import {
   Revisione,
   TipoVeicoloEnum,
   Veicolo,
-} from "@/generated/openapi";
+} from "@/generated/bff-openapi";
 import { faker } from "@faker-js/faker/locale/it";
 
 const extraMassaValues: ExtraMassa[] = [

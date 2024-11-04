@@ -1,5 +1,5 @@
 import AppLayout from "@/components/layouts/AppLayout";
-import { Veicolo } from "@/generated/openapi";
+import { Veicolo } from "@/generated/bff-openapi";
 import { useVehicles } from "@/hooks/useVehicles";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";

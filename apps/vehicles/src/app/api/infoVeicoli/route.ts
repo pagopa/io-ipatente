@@ -1,4 +1,4 @@
-import { Veicolo } from "@/generated/openapi";
+import { Veicolo } from "@/generated/bff-openapi";
 import { retrieveVehicles } from "@/lib/bff/business";
 import {
   handleBadRequestErrorResponse,
@@ -19,10 +19,19 @@ import { CustomUser } from "../../../../types/next-auth";
 export const GET = withJWTAuthAndVoucherHandler(
   async (
     request: NextRequest,
-    { user, voucher }: { user: CustomUser; voucher: Voucher },
+    {
+      additionalDataJWS,
+      user,
+      voucher,
+    }: { additionalDataJWS: string; user: CustomUser; voucher: Voucher },
   ) => {
     try {
-      const res = await retrieveVehicles(voucher.access_token, user.fiscalCode);
+      const res = await retrieveVehicles(
+        additionalDataJWS,
+        voucher.access_token,
+        user.fiscalCode,
+      );
+
       const vehicles = z.array(Veicolo).safeParse(res);
 
       if (vehicles.success) {

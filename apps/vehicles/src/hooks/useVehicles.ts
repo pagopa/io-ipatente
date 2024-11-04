@@ -1,5 +1,5 @@
 import { client } from "@/common/client";
-import { Veicolo } from "@/generated/openapi";
+import { Veicolo } from "@/generated/bff-openapi";
 import { useQuery } from "@tanstack/react-query";
 
 const fetchVehicles = async () => {

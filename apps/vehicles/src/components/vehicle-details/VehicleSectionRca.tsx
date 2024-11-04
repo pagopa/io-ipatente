@@ -1,4 +1,4 @@
-import { CoperturaRCA } from "@/generated/openapi";
+import { CoperturaRCA } from "@/generated/bff-openapi";
 import { CardInfo, CardInfoItem, Icon, IconType } from "@io-ipatente/ui";
 import Chip, { ChipProps } from "@mui/material/Chip";
 import { useTranslation } from "next-i18next";

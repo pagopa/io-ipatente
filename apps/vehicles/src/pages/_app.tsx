@@ -22,7 +22,7 @@ type AppPropsWithLayout = {
   Component: NextPageWithLayout;
 } & AppProps;
 
-const FETCH_MAX_RETRIES = 5;
+const FETCH_MAX_RETRIES = 3;
 
 const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   const [queryClient] = useState(
