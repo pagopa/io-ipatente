@@ -33,7 +33,7 @@ type Story = StoryObj<typeof meta>;
 const Body = () => (
   <Stack p={2}>
     <Stack alignItems="center" sx={{ marginBottom: 2 }}>
-      <Icon fontSize="large" name="modalSuccess" />
+      <Icon fontSize="large" name="success" />
     </Stack>
     <Typography textAlign="center" variant="body1">
       {
