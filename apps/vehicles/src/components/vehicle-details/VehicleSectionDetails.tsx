@@ -94,7 +94,7 @@ export const VehicleSectionDetails = ({ data }: VehicleSectionDetailsProps) => {
       />
       <CardInfo
         icon={<Icon fontSize="medium" name={icon} />}
-        items={metadataListItems.items}
+        items={filteredMetadataListItems}
         title={t("vehicleDetails.info.title")}
       />
     </>
