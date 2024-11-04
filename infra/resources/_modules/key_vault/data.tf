@@ -20,11 +20,11 @@ data "azurerm_api_management" "apim_v2" {
 
 // TODO: Are these correct? or we need to create the specific ipatente ones?
 data "azurerm_user_assigned_identity" "managed_identity_infra_ci" {
-  name                = "${var.prefix}-${var.env_short}-services-cms-github-ci-identity"
+  name                = "${var.prefix}-${var.env_short}-ipatente-github-ci-identity"
   resource_group_name = "${var.prefix}-${var.env_short}-identity-rg"
 }
 
 data "azurerm_user_assigned_identity" "managed_identity_infra_cd" {
-  name                = "${var.prefix}-${var.env_short}-services-cms-github-cd-identity"
+  name                = "${var.prefix}-${var.env_short}-ipatente-github-cd-identity"
   resource_group_name = "${var.prefix}-${var.env_short}-identity-rg"
 }
