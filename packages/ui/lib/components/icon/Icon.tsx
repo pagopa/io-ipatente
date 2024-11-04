@@ -1,4 +1,3 @@
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { SvgIconProps } from "@mui/material/SvgIcon";
 
 import IconAirplane from "./svg/IconAirplane";
@@ -47,7 +46,6 @@ export const Icons = {
   airplane: IconAirplane,
   alarm: IconAlarm,
   anchor: IconAnchor,
-  arrowBack: ArrowBackIcon,
   arrowCircleLeftBold: IconArrowCircleLeftBold,
   arrowCircleRightBold: IconArrowCircleRightBold,
   bus: IconBus,

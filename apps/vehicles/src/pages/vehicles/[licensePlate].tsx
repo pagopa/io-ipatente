@@ -50,15 +50,17 @@ export default function VehicleDetails() {
 
 VehicleDetails.getLayout = ({ page, router, t }: GetLayoutProps) => (
   <AppLayout
-    breadcrumbs={[
-      {
-        label: t("vehicleDetails.breadcrumbs.vehicles"),
-        routePath: "/vehicles",
-      },
-      { label: t("vehicleDetails.breadcrumbs.vehicleDetail") },
-    ]}
-    onBreadcrumbClick={(path) => router.push(path)}
     title={t("vehicleDetails.title")}
+    topElement={{
+      breadcrumbs: [
+        {
+          label: t("vehicleDetails.breadcrumbs.vehicles"),
+          routePath: "/vehicles",
+        },
+        { label: t("vehicleDetails.breadcrumbs.vehicleDetail") },
+      ],
+      onBreadcrumbClick: (path) => router.push(path),
+    }}
   >
     {page}
   </AppLayout>

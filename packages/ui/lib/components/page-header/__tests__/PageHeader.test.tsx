@@ -19,9 +19,9 @@ describe("Test PageHeader Component", () => {
   it("Should match the snapshot with breadcrumbs props", () => {
     const comp = render(
       <PageHeader
-        breadcrumbs={breadcrumbs}
         description={description}
         title={title}
+        topElement={{ breadcrumbs }}
       />,
     );
     expect(comp).toMatchSnapshot();
@@ -55,9 +55,11 @@ describe("Test PageHeader Component", () => {
 
     render(
       <PageHeader
-        breadcrumbs={breadcrumbs}
-        onBreadcrumbClick={handleBreadcrumbClick}
         title={title}
+        topElement={{
+          breadcrumbs,
+          onBreadcrumbClick: handleBreadcrumbClick,
+        }}
       />,
     );
 
@@ -101,9 +103,8 @@ describe("Test PageHeader Component", () => {
 
     render(
       <PageHeader
-        breadcrumbs={breadcrumbs}
-        onBreadcrumbClick={handleBreadcrumbClick}
         title={title}
+        topElement={{ breadcrumbs, onBreadcrumbClick: handleBreadcrumbClick }}
       />,
     );
 
@@ -125,9 +126,11 @@ describe("Test PageHeader Component", () => {
 
     render(
       <PageHeader
-        backLabel="Back"
-        onBackClick={handleBackClick}
         title={title}
+        topElement={{
+          backLabel: "Back",
+          onBackClick: handleBackClick,
+        }}
       />,
     );
 

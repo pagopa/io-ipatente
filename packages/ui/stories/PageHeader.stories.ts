@@ -6,7 +6,7 @@ import { PageHeader } from "../lib/components/page-header";
 
 const meta = {
   argTypes: {},
-  args: { onBreadcrumbClick: fn() },
+  args: { topElement: { onBreadcrumbClick: fn() } },
   component: PageHeader,
   parameters: {
     layout: "centered",
@@ -27,24 +27,28 @@ export const MainPage: Story = {
 
 export const DetailsPage: Story = {
   args: {
-    breadcrumbs: [
-      {
-        label: "Root label",
-        routePath: "/root-path",
-      },
-      {
-        label: "Leaf label",
-      },
-    ],
     title: "Sample Title",
+    topElement: {
+      breadcrumbs: [
+        {
+          label: "Root label",
+          routePath: "/root-path",
+        },
+        {
+          label: "Leaf label",
+        },
+      ],
+    },
   },
 };
 
 export const BackPage: Story = {
   args: {
-    backLabel: "Back",
     description: "This is a sample description.",
-    onBackClick: () => null,
     title: "Sample Title",
+    topElement: {
+      backLabel: "Back",
+      onBackClick: () => null,
+    },
   },
 };

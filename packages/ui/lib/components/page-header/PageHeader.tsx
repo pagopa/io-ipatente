@@ -1,12 +1,11 @@
 import { ArrowForwardIos } from "@mui/icons-material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import {
   Link,
   Breadcrumbs as MuiBreadcrumbs,
   Stack,
   Typography,
 } from "@mui/material";
-
-import { Icon } from "../icon";
 
 export interface PageHeaderBreadcrumbProps {
   /** Page Header back button title label */
@@ -34,18 +33,19 @@ export interface PageHeaderBackProps {
   onBreadcrumbClick?: undefined;
 }
 
-export interface PageHeaderPropsBase {
+export interface PageHeaderProps {
   /** Page Header description: if present, it is shown under the title */
   description?: string;
   /** Page Header main title label */
   title: string;
+  /** Page Header topElement with breadcrumbs or backButton */
+  topElement?: PageHeaderTopElementProps;
 }
 
-export type PageHeaderNavigationProps =
+export type PageHeaderTopElementProps =
   | PageHeaderBackProps
   | PageHeaderBreadcrumbProps;
 
-export type PageHeaderProps = PageHeaderNavigationProps & PageHeaderPropsBase;
 export interface PageHeaderBreadcrumbsProps {
   breadcrumbs: PageHeaderBreadcrumb[];
   onBreadcrumbClick?: (routePath: string) => void;
@@ -64,57 +64,58 @@ const BREADCRUMB_SEPARATOR_COLOR = "#64748B";
 
 /** Page Header component */
 export const PageHeader = ({
-  backLabel,
-  breadcrumbs,
   description,
-  onBackClick,
-  onBreadcrumbClick,
   title,
-}: PageHeaderProps) => (
-  <Stack
-    bgcolor="background.pageHeader"
-    data-testid={DATA_TEST_ID_PREFIX}
-    paddingX={2}
-    paddingY={3}
-    spacing={1}
-  >
-    {backLabel && (
-      <Link
-        color="text.primary"
-        component="button"
-        data-testid={`${DATA_TEST_ID_PREFIX}-breadcrumb-back-button`}
-        onClick={onBackClick}
-        sx={{
-          alignItems: "center",
-          columnGap: 0.5,
-          display: "flex",
-          textDecoration: "underline",
-        }}
-        variant="sidenav"
-      >
-        <Icon name="arrowBack" style={{ marginRight: 0 }} />
-        {backLabel}
-      </Link>
-    )}
-    {breadcrumbs && (
-      <PageHeader.Breadcrumbs
-        breadcrumbs={breadcrumbs}
-        onBreadcrumbClick={onBreadcrumbClick}
-      />
-    )}
-    <Typography data-testid={`${DATA_TEST_ID_PREFIX}-title`} variant="h3">
-      {title}
-    </Typography>
-    {description && (
-      <Typography
-        data-testid={`${DATA_TEST_ID_PREFIX}-description`}
-        variant="body2"
-      >
-        {description}
+  topElement = {},
+}: PageHeaderProps) => {
+  const { backLabel, breadcrumbs, onBackClick, onBreadcrumbClick } = topElement;
+
+  return (
+    <Stack
+      bgcolor="background.pageHeader"
+      data-testid={DATA_TEST_ID_PREFIX}
+      paddingX={2}
+      paddingY={3}
+      spacing={1}
+    >
+      {backLabel && (
+        <Link
+          color="text.primary"
+          component="button"
+          data-testid={`${DATA_TEST_ID_PREFIX}-breadcrumb-back-button`}
+          onClick={onBackClick}
+          sx={{
+            alignItems: "center",
+            columnGap: 0.5,
+            display: "flex",
+            textDecoration: "underline",
+          }}
+          variant="sidenav"
+        >
+          <ArrowBackIcon />
+          {backLabel}
+        </Link>
+      )}
+      {breadcrumbs && (
+        <PageHeader.Breadcrumbs
+          breadcrumbs={breadcrumbs}
+          onBreadcrumbClick={onBreadcrumbClick}
+        />
+      )}
+      <Typography data-testid={`${DATA_TEST_ID_PREFIX}-title`} variant="h3">
+        {title}
       </Typography>
-    )}
-  </Stack>
-);
+      {description && (
+        <Typography
+          data-testid={`${DATA_TEST_ID_PREFIX}-description`}
+          variant="body2"
+        >
+          {description}
+        </Typography>
+      )}
+    </Stack>
+  );
+};
 
 /** Page Header Breadcrumbs internal component */
 const Breadcrumbs = ({
