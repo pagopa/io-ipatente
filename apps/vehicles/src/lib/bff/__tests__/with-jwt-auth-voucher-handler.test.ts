@@ -28,6 +28,7 @@ const mockVoucher: Voucher = {
   expires_in: 600,
   token_type: "Bearer",
 };
+const mockAdditionalDataJWS = "anAdditionalDataJWS";
 const mockNextRequest = {} as NextRequest;
 const mockParams = { param1: "value1" };
 
@@ -39,7 +40,11 @@ beforeEach(() => {
   );
   (withVoucherHandler as Mock).mockImplementation(
     (handler) => async (req, context) =>
-      handler(req, { ...context, voucher: mockVoucher }),
+      handler(req, {
+        ...context,
+        additionalDataJWS: mockAdditionalDataJWS,
+        voucher: mockVoucher,
+      }),
   );
 });
 
@@ -53,6 +58,7 @@ describe("withJWTAndVoucherHandler", () => {
     );
 
     expect(mockHandler).toHaveBeenCalledWith(mockNextRequest, {
+      additionalDataJWS: mockAdditionalDataJWS,
       params: mockParams,
       user: mockUser,
       voucher: mockVoucher,

@@ -9,6 +9,7 @@ vi.mock("../client", () => ({
 }));
 
 describe("retrieveVehicles", () => {
+  const mockAdditionalDataJWS = "additional-token";
   const mockToken = "test-token";
   const mockFiscalCode = "ABCDEF12G34H567I";
 
@@ -20,11 +21,16 @@ describe("retrieveVehicles", () => {
       getInfoVeicoli: mockGetInfoVeicoli,
     });
 
-    const result = await retrieveVehicles(mockToken, mockFiscalCode);
+    const result = await retrieveVehicles(
+      mockAdditionalDataJWS,
+      mockToken,
+      mockFiscalCode,
+    );
 
     expect(result).toEqual(mockResponse);
     expect(mockGetInfoVeicoli).toHaveBeenCalledWith({
       headers: {
+        "Agid-JWT-TrackingEvidence": mockAdditionalDataJWS,
         Authorization: `Bearer ${mockToken}`,
         codiceFiscale: mockFiscalCode,
       },
@@ -39,11 +45,16 @@ describe("retrieveVehicles", () => {
       getInfoVeicoli: mockGetInfoVeicoli,
     });
 
-    const result = await retrieveVehicles(mockToken, mockFiscalCode);
+    const result = await retrieveVehicles(
+      mockAdditionalDataJWS,
+      mockToken,
+      mockFiscalCode,
+    );
 
     expect(result).toBe(mockError);
     expect(mockGetInfoVeicoli).toHaveBeenCalledWith({
       headers: {
+        "Agid-JWT-TrackingEvidence": mockAdditionalDataJWS,
         Authorization: `Bearer ${mockToken}`,
         codiceFiscale: mockFiscalCode,
       },

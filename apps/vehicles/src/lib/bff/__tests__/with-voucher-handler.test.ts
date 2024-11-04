@@ -27,6 +27,7 @@ vi.mock("../../../config", () => ({
     INTEROP_CLIENT_ASSERTION_SUB: "subject",
     INTEROP_CLIENT_ASSERTION_TYPE: "assertionType",
     INTEROP_CLIENT_ID: "clientId",
+    INTEROP_ESERVICE_AUDIENCE: "eServiceAudience",
     INTEROP_GRANT_TYPE: "grantType",
   })),
 }));
@@ -56,6 +57,15 @@ vi.mock("../errors", async () => {
   };
 });
 
+const mockFiscalCode = "ABCDEF12G34H567I";
+const mockAssertion = "mockClientAssertion";
+const mockAdditionalDataJWS = "anAdditionalDataJWS";
+const mockVoucher: Voucher = {
+  access_token: "anAccessToken",
+  expires_in: 600,
+  token_type: "Bearer",
+};
+
 describe("withVoucherHandler", () => {
   let handlerMock: ReturnType<typeof vi.fn>;
 
@@ -65,21 +75,16 @@ describe("withVoucherHandler", () => {
   });
 
   it("should call handler with voucher on success", async () => {
-    // Mock valori di successo
-    const mockAssertion = "mockClientAssertion";
-    const mockVoucher: Voucher = {
-      access_token: "anAccessToken",
-      expires_in: 600,
-      token_type: "Bearer",
-    };
-
-    (generateClientAssertion as Mock).mockReturnValue(mockAssertion);
+    (generateClientAssertion as Mock).mockReturnValue({
+      additionalDataJWS: mockAdditionalDataJWS,
+      clientAssertionJWS: mockAssertion,
+    });
     (requestVoucher as Mock).mockResolvedValue(mockVoucher);
 
     const request = {} as NextRequest;
     const params = { param1: "value1" };
 
-    await withVoucherHandler(handlerMock)(request, { params });
+    await withVoucherHandler(handlerMock, mockFiscalCode)(request, { params });
 
     expect(generateClientAssertion).toHaveBeenCalledOnce();
     expect(requestVoucher).toHaveBeenCalledWith({
@@ -92,6 +97,7 @@ describe("withVoucherHandler", () => {
       },
     });
     expect(handlerMock).toHaveBeenCalledWith(request, {
+      additionalDataJWS: mockAdditionalDataJWS,
       params,
       voucher: mockVoucher,
     });
@@ -103,7 +109,7 @@ describe("withVoucherHandler", () => {
     const request = {} as NextRequest;
     const params = { param1: "value1" };
 
-    await withVoucherHandler(handlerMock)(request, { params });
+    await withVoucherHandler(handlerMock, mockFiscalCode)(request, { params });
 
     expect(handleUnauthorizedErrorResponse).toHaveBeenCalledWith(
       "No client assertion provided",
@@ -112,13 +118,16 @@ describe("withVoucherHandler", () => {
   });
 
   it("should return unauthorized response if voucher is missing", async () => {
-    (generateClientAssertion as Mock).mockReturnValue("mockClientAssertion");
+    (generateClientAssertion as Mock).mockReturnValue({
+      additionalDataJWS: mockAdditionalDataJWS,
+      clientAssertionJWS: mockAssertion,
+    });
     (requestVoucher as Mock).mockResolvedValue(null);
 
     const request = {} as NextRequest;
     const params = { param1: "value1" };
 
-    await withVoucherHandler(handlerMock)(request, { params });
+    await withVoucherHandler(handlerMock, mockFiscalCode)(request, { params });
 
     expect(handleUnauthorizedErrorResponse).toHaveBeenCalledWith(
       "No voucher provided",
@@ -134,7 +143,7 @@ describe("withVoucherHandler", () => {
     const request = {} as NextRequest;
     const params = { param1: "value1" };
 
-    await withVoucherHandler(handlerMock)(request, { params });
+    await withVoucherHandler(handlerMock, mockFiscalCode)(request, { params });
 
     expect(handleInternalErrorResponse).toHaveBeenCalledWith(
       "VoucherRequestError",

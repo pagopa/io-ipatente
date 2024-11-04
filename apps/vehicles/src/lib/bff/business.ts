@@ -1,9 +1,14 @@
 import { getExternalApiClient } from "./client";
 
-export const retrieveVehicles = async (token: string, fiscalCode: string) => {
+export const retrieveVehicles = async (
+  additionalDataJWS: string,
+  token: string,
+  fiscalCode: string,
+) => {
   try {
     return await getExternalApiClient().getInfoVeicoli({
       headers: {
+        "Agid-JWT-TrackingEvidence": additionalDataJWS,
         Authorization: `Bearer ${token}`,
         codiceFiscale: fiscalCode,
       },

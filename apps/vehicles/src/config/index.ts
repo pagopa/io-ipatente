@@ -19,6 +19,7 @@ export interface Configuration {
   INTEROP_CLIENT_ASSERTION_SUB: string;
   INTEROP_CLIENT_ASSERTION_TYPE: string;
   INTEROP_CLIENT_ID: string;
+  INTEROP_ESERVICE_AUDIENCE: string;
   INTEROP_GRANT_TYPE: string;
 
   IS_BROWSER: boolean;
@@ -64,6 +65,7 @@ export function getConfiguration(): Configuration {
     INTEROP_CLIENT_ASSERTION_TYPE: process.env
       .INTEROP_CLIENT_ASSERTION_TYPE as string,
     INTEROP_CLIENT_ID: process.env.INTEROP_CLIENT_ID as string,
+    INTEROP_ESERVICE_AUDIENCE: process.env.INTEROP_ESERVICE_AUDIENCE as string,
     INTEROP_GRANT_TYPE: process.env.INTEROP_GRANT_TYPE as string,
 
     IS_BROWSER: typeof window !== "undefined",

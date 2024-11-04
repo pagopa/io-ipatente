@@ -21,6 +21,7 @@ const {
   INTEROP_CLIENT_ASSERTION_SUB,
   INTEROP_CLIENT_ASSERTION_TYPE,
   INTEROP_CLIENT_ID,
+  INTEROP_ESERVICE_AUDIENCE,
   INTEROP_GRANT_TYPE,
 } = getConfiguration();
 
@@ -29,15 +30,22 @@ export const withVoucherHandler =
     handler: (
       nextRequest: NextRequest,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      context: { params: any; voucher: Voucher },
+      context: { additionalDataJWS: string; params: any; voucher: Voucher },
     ) => Promise<NextResponse> | Promise<Response>,
+    fiscalCode: string,
   ) =>
   async (
     nextRequest: NextRequest,
     { params }: { params: Record<string, unknown> },
   ) => {
     try {
-      const clientAssertion = generateClientAssertion({
+      const clientAssertionResult = generateClientAssertion({
+        additionalData: {
+          LoA: "high",
+          aud: INTEROP_ESERVICE_AUDIENCE,
+          userID: fiscalCode,
+          userLocation: "office", // TODO: to understand what and how to specify
+        },
         alg: "RS256",
         aud: INTEROP_CLIENT_ASSERTION_AUD,
         exp: 600,
@@ -49,14 +57,14 @@ export const withVoucherHandler =
         typ: "JWT",
       });
 
-      if (!clientAssertion) {
+      if (!clientAssertionResult) {
         return handleUnauthorizedErrorResponse("No client assertion provided");
       }
 
       const voucher = await requestVoucher({
         authServerEndpointUrl: INTEROP_AUTH_SERVER_ENDPOINT_URL,
         data: {
-          client_assertion: clientAssertion as string,
+          client_assertion: clientAssertionResult.clientAssertionJWS,
           client_assertion_type: INTEROP_CLIENT_ASSERTION_TYPE,
           client_id: INTEROP_CLIENT_ID,
           grant_type: INTEROP_GRANT_TYPE,
@@ -68,6 +76,7 @@ export const withVoucherHandler =
       }
 
       return handler(nextRequest, {
+        additionalDataJWS: clientAssertionResult.additionalDataJWS,
         params,
         voucher,
       });
