@@ -18,5 +18,26 @@ locals {
     secrets = {
       "ARM_CLIENT_ID" = data.azurerm_user_assigned_identity.identity_prod_cd.client_id
     }
+    reviewers_teams = ["io-platform-green-unit", "engineering-team-cloud-eng"]
+  }
+
+  cd_app = {
+    secrets = {
+      "ARM_CLIENT_ID" = data.azurerm_user_assigned_identity.identity_app_prod_cd.client_id
+    }
+    reviewers_teams = ["io-platform-green-unit", "engineering-team-cloud-eng"]
+  }
+
+  ci_opex = {
+    secrets = {
+      "ARM_CLIENT_ID" = data.azurerm_user_assigned_identity.identity_opex_prod_ci.client_id
+    }
+  }
+
+  cd_opex = {
+    secrets = {
+      "ARM_CLIENT_ID" = data.azurerm_user_assigned_identity.identity_opex_prod_cd.client_id
+    }
+    reviewers_teams = ["io-platform-green-unit", "engineering-team-cloud-eng"]
   }
 }
