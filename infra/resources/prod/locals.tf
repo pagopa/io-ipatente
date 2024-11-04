@@ -5,7 +5,7 @@ locals {
   location             = "italynorth"
   project              = "${local.prefix}-${local.env_short}-${local.location_short}"
   application_basename = "ipatente"
-  domain               = "svc"
+  domain               = "ipatente"
 
   # Picked as the first available non-allocated CIDR from the io-p-itn-common-vnet-01
   vehicles_snet_cidr = "10.20.20.0/24"

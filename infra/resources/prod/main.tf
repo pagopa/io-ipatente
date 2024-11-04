@@ -1,19 +1,18 @@
 resource "azurerm_resource_group" "rg" {
-  name     = "${local.project}-${local.application_basename}-rg-01"
+  name     = "${local.project}-${local.domain}-rg-01"
   location = local.location
 
   tags = local.tags
 }
 
 module "key_vault" {
-  source               = "../_modules/key_vault"
-  prefix               = local.prefix
-  env_short            = local.env_short
-  location_short       = local.location_short
-  domain               = local.domain
-  application_basename = local.application_basename
-  location             = local.location
-  resource_group_name  = azurerm_resource_group.rg.name
+  source              = "../_modules/key_vault"
+  prefix              = local.prefix
+  env_short           = local.env_short
+  location_short      = local.location_short
+  domain              = local.domain
+  location            = local.location
+  resource_group_name = azurerm_resource_group.rg.name
 
   tags = local.tags
 }

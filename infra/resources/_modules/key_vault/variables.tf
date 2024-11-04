@@ -38,11 +38,6 @@ variable "domain" {
   description = "Domain name of the application"
 }
 
-variable "application_basename" {
-  type        = string
-  description = "Base name of the application"
-}
-
 variable "tags" {
   type        = map(any)
   description = "Resource tags"
