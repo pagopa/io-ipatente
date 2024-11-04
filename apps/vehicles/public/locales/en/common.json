@@ -13,10 +13,15 @@
     "description": "Registered vehicles",
     "defaultLabel": "Vehicle",
     "rca": "RCA",
-    "inspection": "Inspection"
+    "inspection": "Inspection",
+    "empty": "There are no registered vehicles"
   },
   "vehicleDetails": {
     "title": "Vehicle details",
+    "breadcrumbs": {
+      "vehicles": "My vehicles",
+      "vehicleDetail": "Vehicle detail"
+    },
     "info": {
       "title": "Dettaglio veicolo",
       "plate": "Targa",
@@ -31,7 +36,7 @@
       "title": "Copertura RCA",
       "valid": "Valida",
       "expired": "Scaduta",
-      "notFound": "Non presente",
+      "notFound": "Non sono disponibili dati per questo veicolo.",
       "insuranceGroup": "Gruppo assicurativo",
       "dueDate": "Data fine copertura",
       "info": "La data di fine assicurazione è comprensiva del <strong>periodo di comporto</strong>"
@@ -40,7 +45,8 @@
       "title": "Storico revisioni",
       "date": "Data revisione: ",
       "licensePlate": "Targa alla revisione: ",
-      "kilometersDetected": "Km rilevati: "
+      "kilometersDetected": "Km rilevati: ",
+      "empty": "Non sono presenti revisioni da visualizzare per questo veicolo."
     }
   },
   "vehicle": {
@@ -83,5 +89,14 @@
     "EXTRAM_MSG_002": "Non autorizzato alla guida",
     "EXTRAM_MSG_003": "Dato non verificabile"
   },
-  "welcome": "Welcome"
+  "failure": {
+    "generic": {
+      "title": "Qualcosa è andato storto",
+      "description": "Si è verificato un errore imprevisto",
+      "retry": "Ricarica la pagina"
+    },
+    "expiredSession": {
+      "title": "La tua session è scaduta"
+    }
+  }
 }

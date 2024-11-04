@@ -1,4 +1,5 @@
 import AppLayout from "@/components/layouts/AppLayout";
+import { GenericError } from "@/components/shared/GenericError";
 import { VehicleSectionDetails } from "@/components/vehicle-details/VehicleSectionDetails";
 import { VehicleSectionInspections } from "@/components/vehicle-details/VehicleSectionInspections";
 import { VehicleSectionRca } from "@/components/vehicle-details/VehicleSectionRca";
@@ -9,27 +10,25 @@ import Stack from "@mui/material/Stack";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { ReactElement } from "react";
+
+import { GetLayoutProps } from "../_app";
 
 export default function VehicleDetails() {
   const router = useRouter();
   const licensePlate = router.query.licensePlate;
 
   // TODO: wrap the select function in useCallback
-  const { data, error, isError, isLoading } = useVehicles((data) =>
-    data.find((vehicle) => vehicle.targaVeicolo === licensePlate),
-  );
+  const { data, error, isError, isLoading, isRefetching, refetch } =
+    useVehicles((data) =>
+      data.find((vehicle) => vehicle.targaVeicolo === licensePlate),
+    );
 
-  if (isLoading) {
-    return <div>Loading...</div>;
+  if (isLoading || isRefetching) {
+    return <Stack my={3}>Loading...</Stack>;
   }
 
-  if (isError) {
-    return <div>Error: {error.message}</div>;
-  }
-
-  if (data === undefined) {
-    return <div>Vehicle not found</div>;
+  if (!data || isError) {
+    return <GenericError error={error} onRetry={refetch} />;
   }
 
   const { icon } = vehicleByType[data.tipoVeicolo] ?? {
@@ -43,17 +42,26 @@ export default function VehicleDetails() {
       <Stack my={3} spacing={2}>
         <VehicleSectionDetails data={data} />
         <VehicleSectionRca rca={data.coperturaRCA} />
-        <VehicleSectionInspections
-          inspections={data.storicoRevisioni}
-          plate={data.targaVeicolo}
-        />
+        <VehicleSectionInspections inspections={data.storicoRevisioni} />
       </Stack>
     </>
   );
 }
 
-VehicleDetails.getLayout = (page: ReactElement) => (
-  <AppLayout title="vehicleDetails.title">{page}</AppLayout>
+VehicleDetails.getLayout = ({ page, router, t }: GetLayoutProps) => (
+  <AppLayout
+    breadcrumbs={[
+      {
+        label: t("vehicleDetails.breadcrumbs.vehicles"),
+        routePath: "/vehicles",
+      },
+      { label: t("vehicleDetails.breadcrumbs.vehicleDetail") },
+    ]}
+    onBreadcrumbClick={(path) => router.push(path)}
+    title={t("vehicleDetails.title")}
+  >
+    {page}
+  </AppLayout>
 );
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({

@@ -2,4 +2,4 @@
 "io-ipatente-vehicles": minor
 ---
 
-Added withJWTAuthHandler bff wrapper
+Update icons mapping

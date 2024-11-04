@@ -3,4 +3,4 @@
 "@io-ipatente/ui": minor
 ---
 
-Add vehicle details
+Add Generic error component in vehicles

@@ -8,6 +8,17 @@ const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ["@pagopa/mui-italia"],
   i18n,
+  async redirects() {
+    return [
+      // Redirect root to vehicles base path
+      {
+        source: "/",
+        destination: "/vehicles",
+        basePath: false,
+        permanent: false,
+      },
+    ];
+  },
   // https://github.com/mswjs/msw/issues/1801
   // Setting `resolve.alias` to `false` will tell webpack to ignore a module.
   // `msw/node` is a server-only module that exports methods not available in the `browser`.

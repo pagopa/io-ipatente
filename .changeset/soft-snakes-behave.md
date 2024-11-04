@@ -3,4 +3,4 @@
 "@io-ipatente/ui": minor
 ---
 
-Refinement of ListItemAction
+Update CardInfo component and RCA list empty state

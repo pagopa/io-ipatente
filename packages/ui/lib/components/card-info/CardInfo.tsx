@@ -73,7 +73,7 @@ export const CardInfo = ({
         spacing={1}
       >
         {topContent}
-        <CardInfo.Items items={items ?? []} />
+        {items && items.length > 0 && <CardInfo.Items items={items} />}
         {bottomContent}
       </Stack>
     </CardContent>
@@ -127,7 +127,7 @@ const Items = ({ items }: CardInfoItemsProps) => (
             variant="caption"
           ></Typography>
         )}
-        {index < items.length - 1 ? <Divider sx={{ marginY: 1.5 }} /> : null}
+        {index < items.length - 1 ? <Divider /> : null}
       </React.Fragment>
     ))}
   </List>
