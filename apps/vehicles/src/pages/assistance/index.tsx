@@ -2,8 +2,8 @@ import AppLayout from "@/components/layouts/AppLayout";
 import { AssistanceInfo } from "@io-ipatente/ui";
 import Stack from "@mui/material/Stack";
 import { GetServerSideProps } from "next";
+import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "react-i18next";
 
 import { GetLayoutProps } from "../_app";
 
