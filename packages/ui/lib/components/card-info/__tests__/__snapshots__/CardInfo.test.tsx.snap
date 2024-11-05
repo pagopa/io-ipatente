@@ -57,12 +57,16 @@ exports[`Test CardInfo Component > Should match the snapshot with all props 1`] 
                   >
                     label-1
                   </p>
-                  <p
-                    class="MuiTypography-root MuiTypography-body1 css-cjx14g-MuiTypography-root"
-                    data-testid="io-ipatente-card-info-item-0-value"
+                  <div
+                    class="MuiStack-root css-1jv2z0n-MuiStack-root"
                   >
-                    value-1
-                  </p>
+                    <p
+                      class="MuiTypography-root MuiTypography-body1 css-cjx14g-MuiTypography-root"
+                      data-testid="io-ipatente-card-info-item-0-value"
+                    >
+                      value-1
+                    </p>
+                  </div>
                 </div>
               </li>
               <hr
@@ -117,12 +121,16 @@ exports[`Test CardInfo Component > Should match the snapshot with all props 1`] 
                   >
                     label-3
                   </p>
-                  <p
-                    class="MuiTypography-root MuiTypography-body1 css-cjx14g-MuiTypography-root"
-                    data-testid="io-ipatente-card-info-item-2-value"
+                  <div
+                    class="MuiStack-root css-1jv2z0n-MuiStack-root"
                   >
-                    value-3
-                  </p>
+                    <p
+                      class="MuiTypography-root MuiTypography-body1 css-cjx14g-MuiTypography-root"
+                      data-testid="io-ipatente-card-info-item-2-value"
+                    >
+                      value-3
+                    </p>
+                  </div>
                 </div>
               </li>
               <span
@@ -195,12 +203,16 @@ exports[`Test CardInfo Component > Should match the snapshot with all props 1`] 
                 >
                   label-1
                 </p>
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-cjx14g-MuiTypography-root"
-                  data-testid="io-ipatente-card-info-item-0-value"
+                <div
+                  class="MuiStack-root css-1jv2z0n-MuiStack-root"
                 >
-                  value-1
-                </p>
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-cjx14g-MuiTypography-root"
+                    data-testid="io-ipatente-card-info-item-0-value"
+                  >
+                    value-1
+                  </p>
+                </div>
               </div>
             </li>
             <hr
@@ -255,12 +267,16 @@ exports[`Test CardInfo Component > Should match the snapshot with all props 1`] 
                 >
                   label-3
                 </p>
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-cjx14g-MuiTypography-root"
-                  data-testid="io-ipatente-card-info-item-2-value"
+                <div
+                  class="MuiStack-root css-1jv2z0n-MuiStack-root"
                 >
-                  value-3
-                </p>
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-cjx14g-MuiTypography-root"
+                    data-testid="io-ipatente-card-info-item-2-value"
+                  >
+                    value-3
+                  </p>
+                </div>
               </div>
             </li>
             <span

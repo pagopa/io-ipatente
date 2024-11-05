@@ -6,9 +6,9 @@ import { EmptyState, ListItemAction } from "@io-ipatente/ui";
 import Stack from "@mui/material/Stack";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useCallback } from "react";
-import { useTranslation } from "react-i18next";
 
 import { GetLayoutProps } from "../_app";
 

@@ -1,6 +1,6 @@
 import type { AppProps } from "next/app";
 
-import { theme } from "@io-ipatente/ui";
+import { DialogProvider, theme } from "@io-ipatente/ui";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -49,11 +49,13 @@ const App = ({ Component, pageProps, router }: AppPropsWithLayout) => {
   return (
     <SessionProvider>
       <ThemeProvider theme={theme}>
-        <QueryClientProvider client={queryClient}>
-          <CssBaseline />
-          {getLayout({ page: <Component {...pageProps} />, router, t })}
-          <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
+        <DialogProvider>
+          <QueryClientProvider client={queryClient}>
+            <CssBaseline />
+            {getLayout({ page: <Component {...pageProps} />, router, t })}
+            <ReactQueryDevtools initialIsOpen={false} />
+          </QueryClientProvider>
+        </DialogProvider>
       </ThemeProvider>
     </SessionProvider>
   );

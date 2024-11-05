@@ -6,7 +6,8 @@
   "topBar": {
     "product": {
       "name": "Il portale dell'automobilista"
-    }
+    },
+    "assistance": "Assistenza"
   },
   "vehicles": {
     "title": "I miei veicoli",
@@ -90,6 +91,17 @@
     "EXTRAM_MSG_001": "Autorizzato alla guida",
     "EXTRAM_MSG_002": "Non autorizzato alla guida",
     "EXTRAM_MSG_003": "Dato non verificabile"
+  },
+  "welcome": "Benvenuto/a",
+  "assistance": {
+    "title": "Assistenza",
+    "description": "Se hai bisogno di supporto, contatta il servizio di assistenza.",
+    "back": "Indietro",
+    "info": {
+      "title": "Assistenza sul servizi digitali",
+      "phone": "800 23 23 23",
+      "description": "Attivo dal lunedì al venerdì dalle 8:00 alle 20:00 il sabato dalle 8:00 alle 14:00"
+    }
   },
   "failure": {
     "generic": {
