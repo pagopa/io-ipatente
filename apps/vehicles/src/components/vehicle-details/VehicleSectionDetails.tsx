@@ -99,13 +99,11 @@ export const VehicleSectionDetails = ({ data }: VehicleSectionDetailsProps) => {
   );
 
   return (
-    <>
-      <CardInfo
-        icon={<Icon fontSize="medium" name={icon} />}
-        items={filteredMetadataListItems}
-        title={t("vehicleDetails.info.title")}
-      />
-    </>
+    <CardInfo
+      icon={<Icon fontSize="medium" name={icon} />}
+      items={filteredMetadataListItems}
+      title={t("vehicleDetails.info.title")}
+    />
   );
 };
 

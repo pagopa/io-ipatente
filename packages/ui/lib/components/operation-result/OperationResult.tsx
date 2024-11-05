@@ -14,7 +14,7 @@ export interface OperationResultProps {
 
 type OperationResultAction = {
   label: string;
-} & Pick<ButtonProps, "disabled" | "endIcon" | "onClick" | "startIcon">;
+} & Pick<ButtonProps, "endIcon" | "onClick" | "startIcon">;
 
 /** Operation result screen component */
 export const OperationResult = ({
