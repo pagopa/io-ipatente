@@ -4,6 +4,7 @@ import {
   IconButton,
   Dialog as MuiDialog,
   DialogProps as MuiDialogProps,
+  Typography,
 } from "@mui/material";
 import { ReactNode } from "react";
 
@@ -16,20 +17,16 @@ export type DialogProps = {
 } & Pick<MuiDialogProps, "open">;
 
 export const Dialog = ({ body, onClose, open, title }: DialogProps) => (
-  <MuiDialog onClose={onClose} open={open}>
-    <DialogTitle sx={{ m: 0, p: 2 }}>{title}</DialogTitle>
-    <IconButton
-      aria-label="close"
-      onClick={onClose}
-      sx={{
-        color: (theme) => theme.palette.grey[500],
-        position: "absolute",
-        right: 8,
-        top: 8,
-      }}
+  <MuiDialog fullWidth={true} maxWidth="md" onClose={onClose} open={open}>
+    <DialogTitle
+      component="div"
+      sx={{ alignItems: "center", display: "flex", p: 2 }}
     >
-      <Icon color="primary" name="closeCircle" />
-    </IconButton>
+      <Typography variant="h6">{title}</Typography>
+      <IconButton sx={{ ml: "auto" }}>
+        <Icon color="primary" name="closeCircle" />
+      </IconButton>
+    </DialogTitle>
     <DialogContent dividers>{body}</DialogContent>
   </MuiDialog>
 );
