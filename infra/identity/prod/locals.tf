@@ -1,10 +1,8 @@
 locals {
-  prefix    = "io"
-  env_short = "p"
-  env       = "prod"
-  location  = "italynorth"
-  project   = "${local.prefix}-${local.env_short}"
-  domain    = "ipatente"
+  prefix   = "io"
+  env      = "prod"
+  location = "italynorth"
+  domain   = "ipatente"
 
   repo_name = "io-ipatente"
 
