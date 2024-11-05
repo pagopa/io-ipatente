@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { FloatingButton } from "../lib/components/floating-button";
 
-const variantOptions = ["circular", "extended"];
 const sizeOptions = ["small", "medium", "large"];
 const colorOptions = [
   "success",
@@ -33,11 +32,6 @@ const meta = {
       description: "Controls the size of the floating button",
       options: sizeOptions,
     },
-    variant: {
-      control: { type: "select" },
-      description: "Controls the shape of the floating button",
-      options: variantOptions,
-    },
   },
   component: FloatingButton,
   parameters: {
@@ -54,8 +48,8 @@ export const Default: Story = {
   args: {
     color: "secondary",
     icon: "expandUp",
+    label: "ciao",
     onClick: () => null,
     size: "small",
-    variant: "circular",
   },
 };
