@@ -23,7 +23,7 @@ export const Dialog = ({ body, onClose, open, title }: DialogProps) => (
       sx={{ alignItems: "center", display: "flex", p: 2 }}
     >
       <Typography variant="h6">{title}</Typography>
-      <IconButton sx={{ ml: "auto" }}>
+      <IconButton onClick={onClose} sx={{ ml: "auto" }}>
         <Icon color="primary" name="closeCircle" />
       </IconButton>
     </DialogTitle>

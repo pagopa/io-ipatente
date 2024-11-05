@@ -1,9 +1,9 @@
 import { ExtraMassaEnum, Veicolo } from "@/generated/openapi";
 import { extraMassByCode, noviceByCode, vehicleByType } from "@/utils/strings";
-import { CardInfo, CardInfoItem, Dialog, Icon } from "@io-ipatente/ui";
+import { CardInfo, CardInfoItem, Icon, useDialog } from "@io-ipatente/ui";
 import { Stack, Typography } from "@mui/material";
 import { useTranslation } from "next-i18next";
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 
 interface MetadataListItem {
   items: ({ isVisible: boolean } & CardInfoItem)[];
@@ -16,7 +16,7 @@ export interface VehicleSectionDetailsProps {
 export const VehicleSectionDetails = ({ data }: VehicleSectionDetailsProps) => {
   const { t } = useTranslation();
 
-  const [isOpen, setIsOpen] = useState(false);
+  const { showDialog } = useDialog();
 
   const { datiVeicolo, targaVeicolo, tipoVeicolo } = data;
 
@@ -52,7 +52,13 @@ export const VehicleSectionDetails = ({ data }: VehicleSectionDetailsProps) => {
           <Icon
             name="info"
             onClick={() => {
-              setIsOpen(true);
+              showDialog({
+                body: renderExtraMassBody(
+                  datiVeicolo?.extraMassa?.codice,
+                  datiVeicolo?.extraMassa?.descrizione,
+                ),
+                title: t("vehicleDetails.info.extraMass"),
+              });
             }}
           />
         ),
@@ -94,15 +100,6 @@ export const VehicleSectionDetails = ({ data }: VehicleSectionDetailsProps) => {
 
   return (
     <>
-      <Dialog
-        body={renderExtraMassBody(
-          datiVeicolo?.extraMassa?.codice,
-          datiVeicolo?.extraMassa?.descrizione,
-        )}
-        onClose={() => setIsOpen(false)}
-        open={isOpen}
-        title={t("vehicleDetails.info.extraMass")}
-      />
       <CardInfo
         icon={<Icon fontSize="medium" name={icon} />}
         items={filteredMetadataListItems}
