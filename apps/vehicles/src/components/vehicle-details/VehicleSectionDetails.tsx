@@ -1,7 +1,9 @@
-import { Veicolo } from "@/generated/openapi";
+import { ExtraMassaEnum, Veicolo } from "@/generated/openapi";
 import { extraMassByCode, noviceByCode, vehicleByType } from "@/utils/strings";
-import { CardInfo, CardInfoItem, Icon } from "@io-ipatente/ui";
+import { CardInfo, CardInfoItem, Icon, useDialog } from "@io-ipatente/ui";
+import { Stack, Typography } from "@mui/material";
 import { useTranslation } from "next-i18next";
+import { ReactNode } from "react";
 
 interface MetadataListItem {
   items: ({ isVisible: boolean } & CardInfoItem)[];
@@ -13,6 +15,8 @@ export interface VehicleSectionDetailsProps {
 
 export const VehicleSectionDetails = ({ data }: VehicleSectionDetailsProps) => {
   const { t } = useTranslation();
+
+  const { showDialog } = useDialog();
 
   const { datiVeicolo, targaVeicolo, tipoVeicolo } = data;
 
@@ -44,6 +48,20 @@ export const VehicleSectionDetails = ({ data }: VehicleSectionDetailsProps) => {
         value: datiVeicolo?.tipoDestinazioneUsoVeicolo,
       },
       {
+        icon: (
+          <Icon
+            name="info"
+            onClick={() => {
+              showDialog({
+                body: renderExtraMassBody(
+                  datiVeicolo?.extraMassa?.codice,
+                  datiVeicolo?.extraMassa?.descrizione,
+                ),
+                title: t("vehicleDetails.info.extraMass"),
+              });
+            }}
+          />
+        ),
         isVisible: !!datiVeicolo?.extraMassa?.codice,
         label: t("vehicleDetails.info.extraMass"),
         value: t(
@@ -69,6 +87,17 @@ export const VehicleSectionDetails = ({ data }: VehicleSectionDetailsProps) => {
     (item) => item.isVisible !== false,
   );
 
+  const renderExtraMassBody = (code?: ExtraMassaEnum, description?: string) => (
+    <Stack spacing={3}>
+      <Stack alignItems="center">
+        {EXTRA_MASS_ICON_MAP[code ?? ExtraMassaEnum.Enum.EXTRAM_MSG_005]}
+      </Stack>
+      <Typography textAlign="center" variant="body1">
+        {description}
+      </Typography>
+    </Stack>
+  );
+
   return (
     <CardInfo
       icon={<Icon fontSize="medium" name={icon} />}
@@ -76,4 +105,20 @@ export const VehicleSectionDetails = ({ data }: VehicleSectionDetailsProps) => {
       title={t("vehicleDetails.info.title")}
     />
   );
+};
+
+const EXTRA_MASS_ICON_MAP: Record<ExtraMassaEnum, ReactNode> = {
+  [ExtraMassaEnum.Enum.EXTRAM_MSG_001]: (
+    <Icon fontSize="large" name="success" />
+  ),
+  [ExtraMassaEnum.Enum.EXTRAM_MSG_002]: (
+    <Icon fontSize="large" name="warning" />
+  ),
+  [ExtraMassaEnum.Enum.EXTRAM_MSG_003]: (
+    <Icon fontSize="large" name="warning" />
+  ),
+  [ExtraMassaEnum.Enum.EXTRAM_MSG_004]: (
+    <Icon fontSize="large" name="warning" />
+  ),
+  [ExtraMassaEnum.Enum.EXTRAM_MSG_005]: <Icon fontSize="large" name="error" />,
 };
