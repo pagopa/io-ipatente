@@ -1,4 +1,4 @@
-import { ExtraMassaEnum, Veicolo } from "@/generated/openapi";
+import { ExtraMassaEnum, Veicolo } from "@/generated/bff-openapi";
 import { extraMassByCode, noviceByCode, vehicleByType } from "@/utils/strings";
 import { CardInfo, CardInfoItem, Icon, useDialog } from "@io-ipatente/ui";
 import { Stack, Typography } from "@mui/material";

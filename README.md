@@ -83,7 +83,7 @@ To enable MSW in a specific NextJS App, set the following environment variables 
 # enable MSW
 NEXT_PUBLIC_IS_MSW_ENABLED=true
 # enable mocks on Backend for frontend (for frontend development)
-NEXT_PUBLIC_BACKEND_API_MOCKING=true
+NEXT_PUBLIC_BFF_API_MOCKING=true
 # enable mocks for external APIs (for backend development)
 # !!! work in progress, to be confirmed !!!
 NEXT_PUBLIC_EXTERNAL_API_MOCKING=true

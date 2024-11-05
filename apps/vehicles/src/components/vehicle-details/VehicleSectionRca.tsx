@@ -1,4 +1,4 @@
-import { CoperturaRCA } from "@/generated/openapi";
+import { CoperturaRCA } from "@/generated/bff-openapi";
 import { CardInfo, CardInfoItem, CardInfoProps, Icon } from "@io-ipatente/ui";
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";

@@ -11,7 +11,7 @@ import { SessionProvider } from "next-auth/react";
 import { TFunction, appWithTranslation, useTranslation } from "next-i18next";
 import { ReactElement, ReactNode, useState } from "react";
 
-if (process.env.NEXT_PUBLIC_BACKEND_API_MOCKING === "true") {
+if (process.env.NEXT_PUBLIC_BFF_API_MOCKING === "true") {
   require("../../mocks");
 }
 
@@ -28,7 +28,7 @@ type AppPropsWithLayout = {
   Component: NextPageWithLayout;
 } & AppProps;
 
-const FETCH_MAX_RETRIES = 5;
+const FETCH_MAX_RETRIES = 3;
 
 const App = ({ Component, pageProps, router }: AppPropsWithLayout) => {
   const [queryClient] = useState(

@@ -1,4 +1,4 @@
-import { Revisione } from "@/generated/openapi";
+import { Revisione } from "@/generated/bff-openapi";
 import { inspectionResultByCode } from "@/utils/strings";
 import { CardCarousel, CardInfo, Icon } from "@io-ipatente/ui";
 import Chip from "@mui/material/Chip";

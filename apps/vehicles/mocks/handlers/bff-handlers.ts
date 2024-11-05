@@ -9,7 +9,7 @@ faker.seed();
 export const buildHandlers = () => {
   const configuration = getConfiguration();
   const baseURL =
-    configuration.BACKEND_API_BASE_URL + configuration.BACKEND_API_BASE_PATH;
+    configuration.BFF_API_BASE_URL + configuration.BFF_API_BASE_PATH;
 
   return [
     http.get(`${baseURL}/infoVeicoli`, () => {

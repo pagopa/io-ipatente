@@ -1,13 +1,13 @@
 openapi: 3.0.0
 info:
   title: Info Veicoli API
-  description: Specifica delle API backend for frontend (BFF) per la funzionalità **I miei veicoli**.
+  description: Specifica delle API del backend esterno di DG MOT per la funzionalità **I miei veicoli**.
   version: 1.0.0
 servers:
-  - url: http://localhost:8080
+  - url: https://gw-coll.servizidt.it/rest/in/MCTC/IMieiVeicoli_AppIO/v1
 
 paths:
-  /infoVeicoli:
+  /inte/veicoli:
     get:
       summary: Recupero di tutti i dati inerenti veicoli area privata
       operationId: getInfoVeicoli

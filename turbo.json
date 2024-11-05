@@ -1,23 +1,11 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": [
-    "**/.env.*local"
-  ],
+  "globalDependencies": ["**/.env.*local"],
   "tasks": {
     "build": {
-      "inputs": [
-        "lib/**/*.ts",
-        "src/**/*.ts",
-        "package.json",
-        "tsconfig.json"
-      ],
-      "outputs": [
-        "dist/**"
-      ],
-      "dependsOn": [
-        "generate",
-        "^build"
-      ]
+      "inputs": ["lib/**/*.ts", "src/**/*.ts", "package.json", "tsconfig.json"],
+      "outputs": ["dist/**"],
+      "dependsOn": ["generate", "^build"]
     },
     "typecheck": {
       "inputs": [
@@ -28,42 +16,25 @@
         "!vitest.config.*"
       ],
       "outputs": [],
-      "dependsOn": [
-        "^build",
-        "^typecheck"
-      ]
+      "dependsOn": ["^build", "^typecheck"]
     },
     "format": {},
     "format:check": {},
     "generate": {
-      "inputs": [
-        "./openapi.yaml"
-      ],
-      "outputs": [
-        "src/generated/**/*"
-      ]
+      "inputs": ["./*-openapi.yaml"],
+      "outputs": ["src/generated/**/*"]
     },
     "lint": {
-      "inputs": [
-        "lib/**/*.ts",
-        "src/**/*.ts"
-      ]
+      "inputs": ["lib/**/*.ts", "src/**/*.ts"]
     },
     "lint:check": {
-      "inputs": [
-        "lib/**/*.ts",
-        "src/**/*.ts"
-      ]
+      "inputs": ["lib/**/*.ts", "src/**/*.ts"]
     },
     "test": {
-      "dependsOn": [
-        "generate"
-      ]
+      "dependsOn": ["build"]
     },
     "test:coverage": {
-      "dependsOn": [
-        "generate"
-      ]
+      "dependsOn": ["build"]
     }
   }
 }

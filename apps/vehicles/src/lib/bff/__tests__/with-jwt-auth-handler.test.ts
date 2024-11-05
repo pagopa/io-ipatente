@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Session } from "next-auth";
 import { describe, expect, it, vi } from "vitest";
 
-import { withJWTAuthHandler } from "../wrappers";
+import { withJWTAuthHandler } from "../with-jwt-auth-handler";
 
 const localhostUrl = "http://localhost";
 

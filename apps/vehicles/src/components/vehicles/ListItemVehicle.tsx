@@ -1,4 +1,4 @@
-import { Veicolo } from "@/generated/openapi";
+import { Veicolo } from "@/generated/bff-openapi";
 import { vehicleByType } from "@/utils/strings";
 import { BadgeProps, ListItemAction } from "@io-ipatente/ui";
 import { useTranslation } from "next-i18next";

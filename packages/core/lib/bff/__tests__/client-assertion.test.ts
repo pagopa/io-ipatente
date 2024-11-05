@@ -9,6 +9,12 @@ vi.mock("uuid");
 
 describe("Client Assertion", () => {
   const mockClientAssertion: ClientAssertion = {
+    additionalData: {
+      LoA: "high",
+      aud: "eServiceAudience",
+      userID: "mockUserID",
+      userLocation: "mockUserLocation",
+    },
     alg: "RS256",
     aud: "https://example.com",
     exp: 600,

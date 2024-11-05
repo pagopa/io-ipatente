@@ -5,7 +5,7 @@ import {
   ExtraMassaEnum,
   NeopatentatiEnum,
   TipoVeicoloEnum,
-} from "@/generated/openapi";
+} from "@/generated/bff-openapi";
 import { IconType } from "@io-ipatente/ui";
 import { ChipProps } from "@mui/material/Chip";
 
