@@ -19,6 +19,7 @@ export const FloatingButton = ({
 }: FloatingButtonProps) => (
   <Fab
     color={color}
+    data-testid={"floating-button-component"}
     disabled={disabled}
     onClick={onClick}
     size={size}
