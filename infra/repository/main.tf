@@ -77,7 +77,7 @@ module "repo" {
   }
 
   subscription_id = data.azurerm_subscription.current.id
-  tenant_id       = data.azurerm_client_config.current.client_id
+  tenant_id       = data.azurerm_client_config.current.tenant_id
 
   entraid_groups = {
     admins_object_id = data.azuread_group.admins.object_id
