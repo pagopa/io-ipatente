@@ -9,6 +9,11 @@ terraform {
       source  = "hashicorp/azuread"
       version = "~>2.0"
     }
+
+    github = {
+      source  = "integrations/github"
+      version = "~>6.0"
+    }
   }
 
   backend "azurerm" {
@@ -24,26 +29,55 @@ provider "azurerm" {
   }
 }
 
+provider "github" {
+  owner = "pagopa"
+}
+
 data "azurerm_subscription" "current" {}
 
+data "azurerm_client_config" "current" {}
+
+data "azurerm_container_app_environment" "runner" {
+  name                = local.runner.cae_name
+  resource_group_name = local.runner.cae_resource_group_name
+}
+
 data "azuread_group" "admins" {
-  display_name = "io-p-adgroup-svc-admins"
+  display_name = local.adgroups.admins_name
 }
 
 data "azuread_group" "developers" {
-  display_name = "io-p-adgroup-svc-developers"
+  display_name = local.adgroups.devs_name
+}
+
+import {
+  id = local.repository.name
+  to = module.repo.github_branch_default.main
+}
+
+import {
+  id = local.repository.name
+  to = module.repo.github_repository.this
+}
+
+import {
+  id = "${local.repository.name}:main"
+  to = module.repo.github_branch_protection.main
 }
 
 module "repo" {
-  source = "github.com/pagopa/dx//infra/modules/azure_repo_starter_pack?ref=DEVEX-179-produrre-un-modulo-terraform-per-migliorare-la-gestione-dei-permessi-rbac-sui-resource-group"
+  source = "github.com/pagopa/dx//infra/modules/azure_monorepo_single_env_starter_pack?ref=DEVEX-179-produrre-un-modulo-terraform-per-migliorare-la-gestione-dei-permessi-rbac-sui-resource-group"
 
   environment = {
     prefix          = local.prefix
     env_short       = local.env_short
     location        = local.location
     domain          = local.domain
-    instance_number = "01"
+    instance_number = local.instance_number
   }
+
+  subscription_id = data.azurerm_subscription.current.id
+  tenant_id       = data.azurerm_client_config.current.client_id
 
   entraid_groups = {
     admins_object_id = data.azuread_group.admins.object_id
@@ -51,75 +85,25 @@ module "repo" {
   }
 
   terraform_storage_account = {
-    resource_group_name = "terraform-state-rg"
-    name                = "iopitntfst001"
+    name                = local.tf_storage_account.name
+    resource_group_name = local.tf_storage_account.resource_group_name
   }
 
-  subscription_id = data.azurerm_subscription.current.id
+  repository = {
+    name            = local.repository.name
+    description     = local.repository.description
+    topics          = local.repository.topics
+    reviewers_teams = local.repository.reviewers_teams
+  }
 
-  repository_name = local.repo_name
+  github_private_runner = {
+    container_app_environment_id       = data.azurerm_container_app_environment.runner.id
+    container_app_environment_location = data.azurerm_container_app_environment.runner.location
+    key_vault = {
+      name                = local.runner.secret.kv_name
+      resource_group_name = local.runner.secret.kv_resource_group_name
+    }
+  }
 
   tags = local.tags
 }
-
-# module "app_federated_identities" {
-#   source = "github.com/pagopa/dx//infra/modules/azure_federated_identity_with_github?ref=main"
-
-#   continuos_integration = { enable = false }
-
-#   prefix    = local.prefix
-#   env_short = local.env_short
-#   env       = "app-${local.env}"
-#   domain    = "${local.domain}-app"
-#   location  = local.location
-
-#   repositories = [local.repo_name]
-
-#   tags = local.tags
-# }
-
-# module "opex_federated_identities" {
-#   source = "github.com/pagopa/dx//infra/modules/azure_federated_identity_with_github?ref=main"
-
-#   prefix    = local.prefix
-#   env_short = local.env_short
-#   env       = "opex-${local.env}"
-#   domain    = "${local.domain}-opex"
-#   location  = local.location
-
-#   repositories = [local.repo_name]
-
-#   continuos_integration = {
-#     enable = true
-#     roles = {
-#       subscription = ["Reader"]
-#       resource_groups = {
-#         dashboards = [
-#           "Reader"
-#         ],
-#         terraform-state-rg = [
-#           "Storage Blob Data Reader",
-#           "Reader and Data Access",
-#         ]
-#       }
-#     }
-#   }
-
-#   continuos_delivery = {
-#     enable = true
-#     roles = {
-#       subscription = ["Reader"]
-#       resource_groups = {
-#         dashboards = [
-#           "Contributor"
-#         ],
-#         terraform-state-rg = [
-#           "Storage Blob Data Contributor",
-#           "Reader and Data Access"
-#         ]
-#       }
-#     }
-#   }
-
-#   tags = local.tags
-# }

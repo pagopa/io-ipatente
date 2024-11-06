@@ -1,10 +1,35 @@
 locals {
-  prefix   = "io"
-  env      = "prod"
-  location = "italynorth"
-  domain   = "ipatente"
+  prefix          = "io"
+  env_short       = "p"
+  location        = "italynorth"
+  domain          = "ipatente"
+  instance_number = "01"
 
-  repo_name = "io-ipatente"
+  adgroups = {
+    admins_name = "io-p-adgroup-svc-admins"
+    devs_name   = "io-p-adgroup-svc-developers"
+  }
+
+  runner = {
+    cae_name                = "${local.prefix}-${local.env_short}-itn-github-runner-cae-01"
+    cae_resource_group_name = "${local.prefix}-${local.env_short}-itn-github-runner-rg-01"
+    secret = {
+      kv_name                = "${local.prefix}-${local.env_short}-kv-common"
+      kv_resource_group_name = "${local.prefix}-${local.env_short}-rg-common"
+    }
+  }
+
+  tf_storage_account = {
+    name                = "iopitntfst001"
+    resource_group_name = "terraform-state-rg"
+  }
+
+  repository = {
+    name            = "io-ipatente"
+    description     = "iPatente services"
+    topics          = ["io", "ipatente"]
+    reviewers_teams = ["io-platform-green-unit", "engineering-team-cloud-eng"]
+  }
 
   tags = {
     CreatedBy      = "Terraform"
