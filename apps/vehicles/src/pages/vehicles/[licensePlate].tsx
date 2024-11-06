@@ -60,6 +60,7 @@ VehicleDetails.getLayout = ({ page, router, t }: GetLayoutProps) => (
       ],
       onBreadcrumbClick: (path) => router.push(path),
     }}
+    enableScrollTop
     title={t("vehicleDetails.title")}
   >
     {page}
