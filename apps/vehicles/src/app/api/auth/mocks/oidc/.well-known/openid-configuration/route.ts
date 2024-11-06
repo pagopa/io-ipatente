@@ -1,6 +1,6 @@
+import { getConfiguration } from "@io-ipatente/core";
 import { NextResponse } from "next/server";
 
-import { getConfiguration } from "../../../../../../../config";
 import { getMockForbiddenResponse } from "../../../mocks-util";
 
 export async function GET() {

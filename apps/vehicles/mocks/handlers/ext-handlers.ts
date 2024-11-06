@@ -1,4 +1,4 @@
-import { getConfiguration } from "@/config";
+import { getConfiguration } from "@io-ipatente/core";
 import { faker } from "@faker-js/faker/locale/it";
 import { HttpResponse, http } from "msw";
 
