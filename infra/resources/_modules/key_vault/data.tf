@@ -1,5 +1,3 @@
-data "azurerm_client_config" "current" {}
-
 data "azuread_group" "adgroup_admin" {
   display_name = "${var.prefix}-${var.env_short}-adgroup-admin"
 }

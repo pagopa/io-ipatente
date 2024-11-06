@@ -1,3 +1,3 @@
 output "key_vault_id" {
-  value = module.key_vault.id
+  value = azurerm_key_vault.this.id
 }

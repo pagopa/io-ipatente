@@ -47,3 +47,19 @@ variable "resource_group_name" {
   type        = string
   description = "Resource group name for the Function App services"
 }
+
+variable "tenant_id" {
+  type        = string
+  description = "Id of the Tenant to deploy the KeyVault"
+}
+
+
+variable "peps_snet_id" {
+  type        = string
+  description = "Id of the subnet which holds private endpoints"
+}
+
+variable "vault_private_dns_zone_id" {
+  type        = string
+  description = "Id of the KeyVault Private DNS Zone"
+}

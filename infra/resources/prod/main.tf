@@ -1,18 +1,18 @@
-resource "azurerm_resource_group" "rg" {
-  name     = "${local.project}-${local.domain}-rg-01"
-  location = local.location
-
-  tags = local.tags
+data "azurerm_resource_group" "main" {
+  name = "${local.project}-${local.domain}-rg-01"
 }
 
 module "key_vault" {
-  source              = "../_modules/key_vault"
-  prefix              = local.prefix
-  env_short           = local.env_short
-  location_short      = local.location_short
-  domain              = local.domain
-  location            = local.location
-  resource_group_name = azurerm_resource_group.rg.name
+  source                    = "../_modules/key_vault"
+  prefix                    = local.prefix
+  env_short                 = local.env_short
+  location_short            = local.location_short
+  domain                    = local.domain
+  location                  = local.location
+  resource_group_name       = data.azurerm_resource_group.main.name
+  tenant_id                 = data.azurerm_client_config.current.client_id
+  peps_snet_id              = data.azurerm_subnet.private_endpoints_subnet.id
+  vault_private_dns_zone_id = data.azurerm_private_dns_zone.key_vault.id
 
   tags = local.tags
 }
@@ -23,7 +23,7 @@ module "vehicles_app_service" {
   env_short           = local.env_short
   location            = local.location
   domain              = local.domain
-  resource_group_name = azurerm_resource_group.rg.name
+  resource_group_name = data.azurerm_resource_group.main.name
 
   virtual_network = {
     name                = data.azurerm_virtual_network.itn_common.name

@@ -1,3 +1,5 @@
+data "azurerm_client_config" "current" {}
+
 data "azurerm_resource_group" "weu-common" {
   name = "${local.prefix}-${local.env_short}-rg-common"
 }
@@ -16,4 +18,9 @@ data "azurerm_subnet" "private_endpoints_subnet" {
 data "azurerm_application_insights" "ai_common" {
   name                = "${local.prefix}-${local.env_short}-ai-common"
   resource_group_name = "${local.prefix}-${local.env_short}-rg-common"
+}
+
+data "azurerm_private_dns_zone" "key_vault" {
+  name                = "privatelink.vaultcore.azure.net"
+  resource_group_name = data.azurerm_resource_group.weu-common.name
 }
