@@ -1,7 +1,14 @@
 data "azurerm_client_config" "current" {}
 
+data "azurerm_subscription" "current" {}
+
 data "azurerm_resource_group" "weu-common" {
   name = "${local.prefix}-${local.env_short}-rg-common"
+}
+
+data "azurerm_api_management" "apim_v2" {
+  name                = "${local.prefix}-${local.env_short}-apim-v2-api"
+  resource_group_name = "${local.prefix}-${local.env_short}-rg-internal"
 }
 
 data "azurerm_virtual_network" "itn_common" {

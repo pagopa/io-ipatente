@@ -63,3 +63,8 @@ variable "vault_private_dns_zone_id" {
   type        = string
   description = "Id of the KeyVault Private DNS Zone"
 }
+
+variable "apim_principal_id" {
+  type = string
+  description = "Id of the APIM-assigned managed identity"
+}

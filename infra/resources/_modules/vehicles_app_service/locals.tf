@@ -39,7 +39,7 @@ locals {
       INTEROP_CLIENT_ASSERTION_PK         = "TODO: GET FROM KV"
 
       # Logs
-      AI_SDK_CONNECTION_STRING = data.azurerm_application_insights.ai_common.connection_string
+      AI_SDK_CONNECTION_STRING = var.ai_connection_string
     }
 
     prod_app_setting = {

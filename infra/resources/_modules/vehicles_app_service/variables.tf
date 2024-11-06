@@ -68,3 +68,9 @@ variable "private_dns_zone_resource_group_name" {
   type        = string
   description = "Resource group name of the private DNS zone to use for private endpoints"
 }
+
+variable "ai_connection_string" {
+  type = string
+  sensitive = true
+  description = "Application Insights connection string"
+}

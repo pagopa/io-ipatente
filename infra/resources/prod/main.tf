@@ -13,6 +13,7 @@ module "key_vault" {
   tenant_id                 = data.azurerm_client_config.current.client_id
   peps_snet_id              = data.azurerm_subnet.private_endpoints_subnet.id
   vault_private_dns_zone_id = data.azurerm_private_dns_zone.key_vault.id
+  apim_principal_id         = data.azurerm_api_management.apim_v2.identity[0].principal_id
 
   tags = local.tags
 }
@@ -33,6 +34,8 @@ module "vehicles_app_service" {
   peps_snet_id                         = data.azurerm_subnet.private_endpoints_subnet.id
   private_dns_zone_resource_group_name = data.azurerm_resource_group.weu-common.name
   vehicles_snet_cidr                   = local.vehicles_snet_cidr
+
+  ai_connection_string = data.azurerm_application_insights.ai_common.connection_string
 
   tags = local.tags
 }
