@@ -1,4 +1,4 @@
-import { getConfiguration } from "@/config";
+import { getConfiguration } from "@io-ipatente/core";
 import { HttpHandler } from "msw";
 
 import { buildHandlers as bffHandlers } from "./bff-handlers";

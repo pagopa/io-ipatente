@@ -1,6 +1,5 @@
+import { getConfiguration } from "@io-ipatente/core";
 import NextAuth from "next-auth";
-
-import { getConfiguration } from "./config";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   callbacks: {
