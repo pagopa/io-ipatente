@@ -22,9 +22,9 @@ export const handleAuthRequest: AuthParams[0] = (request) => {
         );
       return NextResponse.redirect(redirectUrl);
     }
-  }
-
-  if (!request.auth) {
-    return NextResponse.rewrite(new URL(SIGNIN_URL, request.nextUrl.origin));
+  } else {
+    if (!request.auth) {
+      return NextResponse.rewrite(new URL(SIGNIN_URL, request.nextUrl.origin));
+    }
   }
 };
