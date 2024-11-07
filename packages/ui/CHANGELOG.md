@@ -1,5 +1,17 @@
 # @io-ipatente/ui
 
+## 0.4.0
+
+### Minor Changes
+
+- 684bcfb: Add ButtonNaked to TopBar Component and add Assistance page
+- 0f6f4e1: Add AssistanceInfo component
+- e73b4a6: Add Generic error component in vehicles
+- 78c83ac: Update CardInfo component and RCA list empty state
+- 56b5fc5: Add DialogProvider and Dialog component
+- 56b5fc5: add some icons - add info icon for extra mass item - add modal component
+- 7615ce6: removed button naked from TopBar and add assistence in AppLayout
+
 ## 0.3.0
 
 ### Minor Changes

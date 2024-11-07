@@ -1,5 +1,37 @@
 # vehicles
 
+## 0.5.0
+
+### Minor Changes
+
+- 738cc18: move config to @io-ipatente/core
+- 57a77ac: Updated vitest config, added withVoucherHandler and withJWTAuthAndVoucherHandler wrappers, added singleton external api client, added business logic for retrieveVehicles, wrapped up infoVeicoli api
+- 684bcfb: Add ButtonNaked to TopBar Component and add Assistance page
+- c9c10de: Add breadcrumbs in vehicles detail page
+- fa97d5e: Added interop msw mock
+- e73b4a6: Add Generic error component in vehicles
+- d478796: Update RCA empty state in vehicle detail
+- 78c83ac: Update CardInfo component and RCA list empty state
+- 56b5fc5: Add DialogProvider and Dialog component
+- 56b5fc5: add some icons - add info icon for extra mass item - add modal component
+- 7615ce6: removed button naked from TopBar and add assistence in AppLayout
+- 8c5b99b: Update icons mapping
+
+### Patch Changes
+
+- 05390a1: Add redirect from root to vehicles base path
+- Updated dependencies [738cc18]
+- Updated dependencies [684bcfb]
+- Updated dependencies [0f6f4e1]
+- Updated dependencies [fa97d5e]
+- Updated dependencies [e73b4a6]
+- Updated dependencies [78c83ac]
+- Updated dependencies [56b5fc5]
+- Updated dependencies [56b5fc5]
+- Updated dependencies [7615ce6]
+  - @io-ipatente/core@0.2.0
+  - @io-ipatente/ui@0.4.0
+
 ## 0.4.0
 
 ### Minor Changes
