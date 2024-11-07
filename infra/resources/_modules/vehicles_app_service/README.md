@@ -14,6 +14,7 @@ No providers.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_vehicles"></a> [vehicles](#module\_vehicles) | github.com/pagopa/dx//infra/modules/azure_app_service | main |
+| <a name="module_vehicles_app_service_autoscaler"></a> [vehicles\_app\_service\_autoscaler](#module\_vehicles\_app\_service\_autoscaler) | github.com/pagopa/dx//infra/modules/azure_app_service_plan_autoscaler | main |
 
 ## Resources
 
@@ -33,7 +34,7 @@ No resources.
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | Resource group name for the Function App services | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Resource tags | `map(any)` | n/a | yes |
 | <a name="input_vehicles_snet_cidr"></a> [vehicles\_snet\_cidr](#input\_vehicles\_snet\_cidr) | Vehicles Subnet CIDR | `string` | n/a | yes |
-| <a name="input_virtual_network"></a> [virtual\_network](#input\_virtual\_network) | Virtual network to create subnet in | <pre>object({<br/>    name                = string<br/>    resource_group_name = string<br/>  })</pre> | n/a | yes |
+| <a name="input_virtual_network"></a> [virtual\_network](#input\_virtual\_network) | Virtual network to create subnet in | <pre>object({<br>    name                = string<br>    resource_group_name = string<br>  })</pre> | n/a | yes |
 
 ## Outputs
 
