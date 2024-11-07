@@ -6,37 +6,37 @@ locals {
       NODE_ENV                 = "production"
       WEBSITE_RUN_FROM_PACKAGE = "1"
 
-      AUTH_SECRET = "TODO: GET FROM KV"
+      AUTH_SECRET = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=AUTH-SECRET)"
 
-      OIDC_ISSUER_URL          = "TODO: "
-      OIDC_CLIENT_ID           = "TODO: "
-      OIDC_CLIENT_SECRET       = "TODO: "
-      OIDC_CLIENT_REDIRECT_URI = "TODO: "
+      OIDC_ISSUER_URL          = "https://io-p-itn-ipatente-vehicles-app-01.azurewebsites.net:3000/api/auth/mocks/oidc"
+      OIDC_CLIENT_ID           = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-CLIENT-ID)"
+      OIDC_CLIENT_SECRET       = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-CLIENT-SECRET)"
+      OIDC_CLIENT_REDIRECT_URI = "https://io-p-itn-ipatente-vehicles-app-01.azurewebsites.net:3000/api/auth/callback/fims"
 
-      OIDC_MOCK_JWT_PRIVATE_KEY = "TODO: GET FROM KV"
-      OIDC_MOCK_JWT_PUBLIC_KEY  = "TODO: GET FROM KV"
+      OIDC_MOCK_JWT_PRIVATE_KEY = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-JWT-PRIVATE-KEY)"
+      OIDC_MOCK_JWT_PUBLIC_KEY  = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-JWT-PUBLIC-KEY)"
 
-      NEXT_PUBLIC_IS_MSW_ENABLED  = false
-      NEXT_PUBLIC_BFF_API_MOCKING = false
+      NEXT_PUBLIC_IS_MSW_ENABLED  = true
+      NEXT_PUBLIC_BFF_API_MOCKING = true
 
-      NEXT_PUBLIC_BFF_API_BASE_URL  = "TODO: TO BE SET AFTER APP GATEWAY AND NS CONFIG"
+      NEXT_PUBLIC_BFF_API_BASE_URL  = "https://io-p-itn-ipatente-vehicles-app-01.azurewebsites.net:3000"
       NEXT_PUBLIC_BFF_API_BASE_PATH = "/api"
 
-      EXT_API_MOCKING   = false
+      EXT_API_MOCKING   = true
       EXT_API_BASE_URL  = "TODO:"
       EXT_API_BASE_PATH = "/api"
 
       INTEROP_AUTH_SERVER_ENDPOINT_URL = "https://auth.uat.interop.pagopa.it/token.oauth2"
-      INTEROP_CLIENT_ID                = "TODO: GET FROM KV"
+      INTEROP_CLIENT_ID                = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=INTEROP-CLIENT-ID)"
       INTEROP_CLIENT_ASSERTION_TYPE    = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
       INTEROP_GRANT_TYPE               = "client_credentials"
 
-      INTEROP_CLIENT_ASSERTION_KID        = "TODO: GET FROM KV"
-      INTEROP_CLIENT_ASSERTION_ISS        = "TODO: GET FROM KV"
-      INTEROP_CLIENT_ASSERTION_SUB        = "TODO: GET FROM KV"
+      INTEROP_CLIENT_ASSERTION_KID        = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=INTEROP-CLIENT-ASSERTION-KID)"
+      INTEROP_CLIENT_ASSERTION_ISS        = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=INTEROP-CLIENT-ASSERTION-ISS)"
+      INTEROP_CLIENT_ASSERTION_SUB        = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=INTEROP-CLIENT-ASSERTION-SUB)"
       INTEROP_CLIENT_ASSERTION_AUD        = "auth.uat.interop.pagopa.it / client-assertion"
-      INTEROP_CLIENT_ASSERTION_PURPOSE_ID = "TODO: GET FROM KV"
-      INTEROP_CLIENT_ASSERTION_PK         = "TODO: GET FROM KV"
+      INTEROP_CLIENT_ASSERTION_PURPOSE_ID = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=INTEROP-CLIENT-ASSERTION-PURPOSE-ID)"
+      INTEROP_CLIENT_ASSERTION_PK         = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=INTEROP-CLIENT-ASSERTION-PK)"
 
       # Logs
       AI_SDK_CONNECTION_STRING = var.ai_connection_string

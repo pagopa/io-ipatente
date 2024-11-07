@@ -74,3 +74,10 @@ variable "ai_connection_string" {
   sensitive   = true
   description = "Application Insights connection string"
 }
+
+
+variable "key_vault_name" {
+  type        = string
+  sensitive   = true
+  description = "Key Vault name"
+}
