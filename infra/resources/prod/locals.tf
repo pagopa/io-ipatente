@@ -8,7 +8,7 @@ locals {
   domain               = "ipatente"
 
   # Picked as the first available non-allocated CIDR from the io-p-itn-common-vnet-01
-  vehicles_snet_cidr = "10.20.20.0/24"
+  vehicles_snet_cidr = "10.20.21.0/24"
 
   tags = {
     CreatedBy      = "Terraform"
