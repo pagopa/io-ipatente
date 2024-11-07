@@ -10,7 +10,7 @@ module "key_vault" {
   domain                    = local.domain
   location                  = local.location
   resource_group_name       = data.azurerm_resource_group.main.name
-  tenant_id                 = data.azurerm_client_config.current.client_id
+  tenant_id                 = data.azurerm_client_config.current.tenant_id
   peps_snet_id              = data.azurerm_subnet.private_endpoints_subnet.id
   vault_private_dns_zone_id = data.azurerm_private_dns_zone.key_vault.id
   apim_principal_id         = data.azurerm_api_management.apim_v2.identity[0].principal_id
