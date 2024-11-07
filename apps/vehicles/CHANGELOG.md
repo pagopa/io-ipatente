@@ -1,5 +1,17 @@
 # vehicles
 
+## 0.6.0
+
+### Minor Changes
+
+- 6fd5a08: Move middleware and auth config to @io-ipatente/core
+
+### Patch Changes
+
+- acb14ab: Change Env Prod url
+- Updated dependencies [6fd5a08]
+  - @io-ipatente/core@0.3.0
+
 ## 0.5.0
 
 ### Minor Changes
