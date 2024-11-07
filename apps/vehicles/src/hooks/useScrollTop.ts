@@ -1,7 +1,15 @@
-import { MutableRefObject, useCallback, useEffect, useState } from "react";
+import {
+  ForwardedRef,
+  MutableRefObject,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 
 interface ScrollTopProps {
-  containerRef: MutableRefObject<HTMLDivElement | undefined>;
+  containerRef:
+    | ForwardedRef<HTMLDivElement | undefined>
+    | MutableRefObject<HTMLDivElement | undefined>;
   offset: number;
 }
 
@@ -17,21 +25,24 @@ export const useScrollTop = ({ containerRef, offset }: ScrollTopProps) => {
   );
 
   useEffect(() => {
-    const element = containerRef.current;
-    if (element) {
-      element.addEventListener("scroll", handleGoUpVisibility);
+    if (containerRef !== null && typeof containerRef !== "function") {
+      const element = containerRef.current;
+      if (element) {
+        element.addEventListener("scroll", handleGoUpVisibility);
+      }
+      return () => {
+        element?.removeEventListener("scroll", handleGoUpVisibility);
+      };
     }
-
-    return () => {
-      element?.removeEventListener("scroll", handleGoUpVisibility);
-    };
   }, [handleGoUpVisibility, containerRef]);
 
   const scrollToTop = useCallback(() => {
-    containerRef.current?.scrollTo({
-      behavior: "smooth",
-      top: 0,
-    });
+    if (containerRef !== null && typeof containerRef !== "function") {
+      containerRef.current?.scrollTo({
+        behavior: "smooth",
+        top: 0,
+      });
+    }
   }, [containerRef]);
 
   return { canGoUp, scrollToTop };

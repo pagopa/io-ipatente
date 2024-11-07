@@ -1,15 +1,10 @@
-import { useScrollTop } from "@/hooks/useScrollTop";
-import {
-  FloatingButton,
-  PageHeader,
-  PageHeaderProps,
-  TopBar,
-} from "@io-ipatente/ui";
-import { Stack } from "@mui/material";
+import { PageHeader, PageHeaderProps, TopBar } from "@io-ipatente/ui";
 import Box from "@mui/material/Box";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { ReactNode, useRef } from "react";
+
+import { ScrollToTopButton } from "../shared/ScrollToTopButton";
 
 type AppLayoutProps = {
   children: ReactNode;
@@ -20,8 +15,6 @@ const AppLayout = ({ children, enableScrollTop, ...rest }: AppLayoutProps) => {
   const { t } = useTranslation();
   const router = useRouter();
   const containerRef = useRef<HTMLDivElement>();
-
-  const { canGoUp, scrollToTop } = useScrollTop({ containerRef, offset: 100 });
 
   return (
     <Box
@@ -44,15 +37,7 @@ const AppLayout = ({ children, enableScrollTop, ...rest }: AppLayoutProps) => {
       />
       <PageHeader {...rest} />
       <Box sx={{ p: 2 }}>{children}</Box>
-      {enableScrollTop && canGoUp && (
-        <Stack bottom={16} position="fixed" right={16} zIndex={2}>
-          <FloatingButton
-            color="secondary"
-            icon="expandUp"
-            onClick={scrollToTop}
-          />
-        </Stack>
-      )}
+      {enableScrollTop && <ScrollToTopButton ref={containerRef} />}
     </Box>
   );
 };
