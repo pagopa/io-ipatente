@@ -9,11 +9,8 @@ on:
       - reopened
       - ready_for_review
     paths:
-      # Trigger the workflow when resources are modified
       - "infra/resources/**"
-      # Trigger the workflow when the involved workflows are modified
       - ".github/workflows/pr_infra.yaml"
-      - ".github/workflows/templates/infra_**"
 
 jobs:
   code_review_prod:
@@ -23,3 +20,4 @@ jobs:
     with:
       environment: prod
       base_path: infra/resources
+      override_github_environment: infra-prod
