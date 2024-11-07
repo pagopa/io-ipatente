@@ -42,6 +42,16 @@ data "azurerm_container_app_environment" "runner" {
   resource_group_name = local.runner.cae_resource_group_name
 }
 
+data "azurerm_api_management" "apim" {
+  name                = local.apim.name
+  resource_group_name = local.apim.resource_group_name
+}
+
+data "azurerm_virtual_network" "common" {
+  name                = local.vnet.name
+  resource_group_name = local.vnet.resource_group_name
+}
+
 data "azuread_group" "admins" {
   display_name = local.adgroups.admins_name
 }
@@ -104,6 +114,9 @@ module "repo" {
       resource_group_name = local.runner.secret.kv_resource_group_name
     }
   }
+
+  apim_id     = data.azurerm_api_management.apim.id
+  pep_vnet_id = data.azurerm_virtual_network.common.id
 
   tags = local.tags
 }

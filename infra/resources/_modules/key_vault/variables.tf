@@ -65,6 +65,6 @@ variable "vault_private_dns_zone_id" {
 }
 
 variable "apim_principal_id" {
-  type = string
+  type        = string
   description = "Id of the APIM-assigned managed identity"
 }
