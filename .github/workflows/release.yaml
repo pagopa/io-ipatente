@@ -26,12 +26,16 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@1a4442cacd436585916779262731d5b162bc6ec7 # v3
         with:
-          node-version-file: '.node-version'
-          cache: 'yarn'
-          cache-dependency-path: "yarn.lock"
+          node-version-file: ".node-version"
+          cache: "yarn"
+          cache-dependency-path: |
+            yarn.lock
+            package.json
+            apps/**/package.json
+            packages/**/package.json
 
       - name: Install Dependencies
-        run: yarn
+        run: yarn install --immutable
 
       - name: Create Release Pull Request or Tag
         id: changesets
@@ -39,7 +43,7 @@ jobs:
         with:
           version: yarn run version
           publish: yarn run release
-          commit: 'ci(changesets): version packages'
+          commit: "ci(changesets): version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -63,14 +67,52 @@ jobs:
       matrix:
         package: ${{ fromJson(needs.release.outputs.publishedPackages) }}
     steps:
+      - name: Check internal packages
+        # they are not supposed to be published
+        if: ${{ startsWith(matrix.package.name, '@') }}
+        run: |
+          echo '::warning title=Internal::Package ${{ matrix.package.name }} is not supposed to be published'
+          echo "SKIP_RELEASE_NO_PACK=true" >> $GITHUB_ENV
+
       - name: Checkout Repo
+        if: ${{ env.SKIP_RELEASE_NO_PACK != 'true' }}
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
         with:
           fetch-depth: 0
 
+      - name: Setup yarn
+        if: ${{ env.SKIP_RELEASE_NO_PACK != 'true' }}
+        run: corepack enable
+
+      - name: Setup Node.js environment
+        if: ${{ env.SKIP_RELEASE_NO_PACK != 'true' }}
+        uses: actions/setup-node@1a4442cacd436585916779262731d5b162bc6ec7 # v3
+        with:
+          node-version-file: ".node-version"
+          cache: "yarn"
+          cache-dependency-path: |
+            yarn.lock
+            package.json
+            apps/**/package.json
+            packages/**/package.json
+
+      - name: Install dependencies
+        if: ${{ env.SKIP_RELEASE_NO_PACK != 'true' }}
+        run: yarn
+
+      - name: Build
+        if: ${{ env.SKIP_RELEASE_NO_PACK != 'true' }}
+        run: yarn build --filter ${{ matrix.package.name }}
+
+      - name: Package
+        if: ${{ env.SKIP_RELEASE_NO_PACK != 'true' }}
+        run: yarn workspace ${{ matrix.package.name }} run build:package
+
       - name: Create release
+        if: ${{ env.SKIP_RELEASE_NO_PACK != 'true' }}
         uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844 # v1
         with:
-          draft: false
+          draft: true
+          files: apps/${{ matrix.package.name == 'io-ipatente-vehicles' && 'vehicles' || matrix.package.name }}/${{ matrix.package.name }}-${{ matrix.package.version }}.zip
           tag_name: ${{ matrix.package.name }}@${{ matrix.package.version }}
           generate_release_notes: true

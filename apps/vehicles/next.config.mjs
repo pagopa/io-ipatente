@@ -8,6 +8,7 @@ const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ["@pagopa/mui-italia"],
   i18n,
+  output: "standalone",
   async redirects() {
     return [
       // Redirect root to vehicles base path
