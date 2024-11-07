@@ -26,6 +26,7 @@ No resources.
 | <a name="input_ai_connection_string"></a> [ai\_connection\_string](#input\_ai\_connection\_string) | Application Insights connection string | `string` | n/a | yes |
 | <a name="input_domain"></a> [domain](#input\_domain) | Domain name of the application | `string` | n/a | yes |
 | <a name="input_env_short"></a> [env\_short](#input\_env\_short) | n/a | `string` | n/a | yes |
+| <a name="input_key_vault_name"></a> [key\_vault\_name](#input\_key\_vault\_name) | Key Vault name | `string` | n/a | yes |
 | <a name="input_location"></a> [location](#input\_location) | Azure region | `string` | n/a | yes |
 | <a name="input_peps_snet_id"></a> [peps\_snet\_id](#input\_peps\_snet\_id) | Id of the subnet which holds private endpoints | `string` | n/a | yes |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | n/a | `string` | `"io"` | no |
@@ -33,7 +34,7 @@ No resources.
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | Resource group name for the Function App services | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Resource tags | `map(any)` | n/a | yes |
 | <a name="input_vehicles_snet_cidr"></a> [vehicles\_snet\_cidr](#input\_vehicles\_snet\_cidr) | Vehicles Subnet CIDR | `string` | n/a | yes |
-| <a name="input_virtual_network"></a> [virtual\_network](#input\_virtual\_network) | Virtual network to create subnet in | <pre>object({<br/>    name                = string<br/>    resource_group_name = string<br/>  })</pre> | n/a | yes |
+| <a name="input_virtual_network"></a> [virtual\_network](#input\_virtual\_network) | Virtual network to create subnet in | <pre>object({<br>    name                = string<br>    resource_group_name = string<br>  })</pre> | n/a | yes |
 
 ## Outputs
 

@@ -15,7 +15,7 @@ locals {
     Environment    = "Prod"
     Owner          = "IO"
     ManagementTeam = "IO Enti & Servizi"
-    Source         = "https://github.com/pagopa/io-services-cms/infra/prod"
+    Source         = "https://github.com/pagopa/io-ipatente/infra/prod"
     CostCenter     = "TS310 - PAGAMENTI & SERVIZI"
   }
 }

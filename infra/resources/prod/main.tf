@@ -36,6 +36,7 @@ module "vehicles_app_service" {
   vehicles_snet_cidr                   = local.vehicles_snet_cidr
 
   ai_connection_string = data.azurerm_application_insights.ai_common.connection_string
+  key_vault_name       = module.key_vault.key_vault_name
 
   tags = local.tags
 }

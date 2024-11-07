@@ -1,8 +1,11 @@
 name: "Azure Deploy Manual"
 
 on:
-  release:
-    types: [published]
+  workflow_dispatch:
+    inputs:
+      package_url:
+        required: true
+        type: string
 
 permissions:
   id-token: write
