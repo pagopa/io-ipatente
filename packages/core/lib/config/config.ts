@@ -10,6 +10,7 @@ export interface Configuration {
   EXT_API_MOCKING: boolean;
 
   // PDND Interoperability
+  INTEROP_API_MOCKING: boolean;
   INTEROP_AUTH_SERVER_ENDPOINT_URL: string;
   INTEROP_CLIENT_ASSERTION_AUD: string;
   INTEROP_CLIENT_ASSERTION_ISS: string;
@@ -47,6 +48,7 @@ export const getConfiguration = (): Configuration => ({
   EXT_API_BASE_URL: process.env.EXT_API_BASE_URL as string,
   EXT_API_MOCKING: process.env.EXT_API_MOCKING === "true",
 
+  INTEROP_API_MOCKING: process.env.INTEROP_API_MOCKING === "true",
   INTEROP_AUTH_SERVER_ENDPOINT_URL: process.env
     .INTEROP_AUTH_SERVER_ENDPOINT_URL as string,
   INTEROP_CLIENT_ASSERTION_AUD: process.env

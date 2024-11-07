@@ -3,6 +3,7 @@ import { HttpHandler } from "msw";
 
 import { buildHandlers as bffHandlers } from "./bff-handlers";
 import { buildHandlers as extHandlers } from "./ext-handlers";
+import { buildHandlers as interopHandlers } from "./interop-handlers";
 
 /** List of handlers managed by MSW */
 export const getHandlers = () => {
@@ -14,6 +15,9 @@ export const getHandlers = () => {
   }
   if (config.EXT_API_MOCKING) {
     handlers.push(...extHandlers());
+  }
+  if (config.INTEROP_API_MOCKING) {
+    handlers.push(...interopHandlers());
   }
   return handlers;
 };

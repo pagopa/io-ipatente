@@ -1,5 +1,5 @@
-import { getConfiguration } from "@io-ipatente/core";
 import { faker } from "@faker-js/faker/locale/it";
+import { getConfiguration } from "@io-ipatente/core";
 import { HttpResponse, http } from "msw";
 
 import { getMockVehicles } from "../data/backend-data";
@@ -12,7 +12,7 @@ export const buildHandlers = () => {
     configuration.EXT_API_BASE_URL + configuration.EXT_API_BASE_PATH;
 
   return [
-    http.get(`${baseURL}/infoVeicoli`, ({ request }) => {
+    http.get(`${baseURL}/inte/veicoli`, ({ request }) => {
       const resultArray = [
         HttpResponse.json(getInfoVeicoli200Response(), { status: 200 }),
         HttpResponse.json({ description: `Bad request` }, { status: 400 }),
