@@ -23,7 +23,7 @@ locals {
       NEXT_PUBLIC_BFF_API_BASE_PATH = "/api"
 
       EXT_API_MOCKING   = true
-      EXT_API_BASE_URL  = "TODO:"
+      EXT_API_BASE_URL  = "http://localhost:3001"
       EXT_API_BASE_PATH = "/api"
 
       INTEROP_AUTH_SERVER_ENDPOINT_URL = "https://auth.uat.interop.pagopa.it/token.oauth2"
