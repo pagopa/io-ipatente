@@ -1,4 +1,4 @@
-name: 'Azure Deploy'
+name: "Azure Deploy Manual"
 
 on:
   release:
@@ -11,7 +11,7 @@ permissions:
 env:
   RESOURCE_GROUP_NAME: io-p-itn-ipatente-rg-01
   AZURE_VEHICLES_NAME: io-p-itn-ipatente-vehicles-app-01
-  VEHICLES_HEALTHCHECK_PATH: 'api/v1/info'
+  VEHICLES_HEALTHCHECK_PATH: "api/v1/info"
 
 jobs:
   deployments:
@@ -22,7 +22,7 @@ jobs:
     steps:
       - name: Download artifact
         id: download_artifact
-        run: 'curl --output artifact.zip --location ${{ github.event.inputs.package_url }}'
+        run: "curl --output artifact.zip --location ${{ github.event.inputs.package_url }}"
 
       - name: Login
         id: login
@@ -43,14 +43,14 @@ jobs:
           slot-name: staging
           clean: true
 
-      - name: 'Vehicles Healthcheck'
+      - name: "Vehicles Healthcheck"
         if: contains(github.event.inputs.package_url, 'vehicles')
         id: healthcheck_vehicles
         run: |
           sleep 30
           curl --retry 5 --retry-max-time 120 --retry-all-errors --fail-with-body 'https://${{ env.AZURE_VEHICLES_NAME }}-staging.azurewebsites.net/${{ env.VEHICLES_HEALTHCHECK_PATH }}'
 
-      - name: 'Swap Vehicles staging to production'
+      - name: "Swap Vehicles staging to production"
         if: contains(github.event.inputs.package_url, 'vehicles')
         id: swap_to_production_vehicles
         run: az webapp deployment slot swap -g ${{ env.RESOURCE_GROUP_NAME }} -n ${{ env.AZURE_VEHICLES_NAME }} --slot staging --target-slot production
