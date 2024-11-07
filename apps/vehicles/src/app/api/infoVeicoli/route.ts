@@ -9,21 +9,20 @@ import { Voucher } from "@io-ipatente/core";
 import { ZodiosError } from "@zodios/core";
 import { AxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
+import { User } from "next-auth";
 import { z } from "zod";
-
-import { CustomUser } from "../../../../types/next-auth";
 
 /**
  * @description Retrieve user vehicles
  */
 export const GET = withJWTAuthAndVoucherHandler(
   async (
-    request: NextRequest,
+    _: NextRequest,
     {
       additionalDataJWS,
       user,
       voucher,
-    }: { additionalDataJWS: string; user: CustomUser; voucher: Voucher },
+    }: { additionalDataJWS: string; user: User; voucher: Voucher },
   ) => {
     try {
       const res = await retrieveVehicles(

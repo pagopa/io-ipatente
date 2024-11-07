@@ -1,7 +1,7 @@
 import { auth } from "@/auth";
 import { NextRequest, NextResponse } from "next/server";
+import { User } from "next-auth";
 
-import { CustomUser } from "../../../types/next-auth";
 import { handleUnauthorizedErrorResponse } from "./errors";
 
 export const withJWTAuthHandler =
@@ -9,7 +9,7 @@ export const withJWTAuthHandler =
     handler: (
       nextRequest: NextRequest,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      context: { params: any; user: CustomUser },
+      context: { params: any; user: User },
     ) => Promise<NextResponse> | Promise<Response>,
   ) =>
   async (
