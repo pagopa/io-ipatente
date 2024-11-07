@@ -1,5 +1,12 @@
 # @io-ipatente/core
 
+## 0.2.0
+
+### Minor Changes
+
+- 738cc18: move config to @io-ipatente/core
+- fa97d5e: Added interop msw mock
+
 ## 0.1.0
 
 ### Minor Changes
