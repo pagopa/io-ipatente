@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 
 import { getMockForbiddenResponse } from "@/app/api/auth/mocks/mocks-util";
-import { getConfiguration } from "@/config";
+import { getConfiguration } from "@io-ipatente/core";
 import { NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {

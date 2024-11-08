@@ -1,22 +1,26 @@
 terraform {
-
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.100.0"
+      version = "~>4.0"
+    }
+
+    azuread = {
+      source  = "hashicorp/azuread"
+      version = "~>2.0"
     }
 
     github = {
       source  = "integrations/github"
-      version = "6.1.0"
+      version = "~>6.0"
     }
   }
 
   backend "azurerm" {
     resource_group_name  = "terraform-state-rg"
-    storage_account_name = "tfappprodio"
+    storage_account_name = "iopitntfst001"
     container_name       = "terraform-state"
-    key                  = "io-ipatente.repository.tfstate"
+    key                  = "io-ipatente.identity.prod.tfstate"
   }
 }
 
@@ -29,6 +33,90 @@ provider "github" {
   owner = "pagopa"
 }
 
+data "azurerm_subscription" "current" {}
+
 data "azurerm_client_config" "current" {}
 
-data "azurerm_subscription" "current" {}
+data "azurerm_container_app_environment" "runner" {
+  name                = local.runner.cae_name
+  resource_group_name = local.runner.cae_resource_group_name
+}
+
+data "azurerm_api_management" "apim" {
+  name                = local.apim.name
+  resource_group_name = local.apim.resource_group_name
+}
+
+data "azurerm_virtual_network" "common" {
+  name                = local.vnet.name
+  resource_group_name = local.vnet.resource_group_name
+}
+
+data "azuread_group" "admins" {
+  display_name = local.adgroups.admins_name
+}
+
+data "azuread_group" "developers" {
+  display_name = local.adgroups.devs_name
+}
+
+import {
+  id = local.repository.name
+  to = module.repo.github_branch_default.main
+}
+
+import {
+  id = local.repository.name
+  to = module.repo.github_repository.this
+}
+
+import {
+  id = "${local.repository.name}:main"
+  to = module.repo.github_branch_protection.main
+}
+
+module "repo" {
+  source = "github.com/pagopa/dx//infra/modules/azure_monorepo_single_env_starter_pack?ref=DEVEX-179-produrre-un-modulo-terraform-per-migliorare-la-gestione-dei-permessi-rbac-sui-resource-group"
+
+  environment = {
+    prefix          = local.prefix
+    env_short       = local.env_short
+    location        = local.location
+    domain          = local.domain
+    instance_number = local.instance_number
+  }
+
+  subscription_id = data.azurerm_subscription.current.id
+  tenant_id       = data.azurerm_client_config.current.tenant_id
+
+  entraid_groups = {
+    admins_object_id = data.azuread_group.admins.object_id
+    devs_object_id   = data.azuread_group.developers.object_id
+  }
+
+  terraform_storage_account = {
+    name                = local.tf_storage_account.name
+    resource_group_name = local.tf_storage_account.resource_group_name
+  }
+
+  repository = {
+    name            = local.repository.name
+    description     = local.repository.description
+    topics          = local.repository.topics
+    reviewers_teams = local.repository.reviewers_teams
+  }
+
+  github_private_runner = {
+    container_app_environment_id       = data.azurerm_container_app_environment.runner.id
+    container_app_environment_location = data.azurerm_container_app_environment.runner.location
+    key_vault = {
+      name                = local.runner.secret.kv_name
+      resource_group_name = local.runner.secret.kv_resource_group_name
+    }
+  }
+
+  apim_id     = data.azurerm_api_management.apim.id
+  pep_vnet_id = data.azurerm_virtual_network.common.id
+
+  tags = local.tags
+}

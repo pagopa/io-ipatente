@@ -1,11 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
-import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
-
 import {
   Voucher,
   generateClientAssertion,
   requestVoucher,
-} from "../../../../../../packages/core";
+} from "@io-ipatente/core";
+import { NextRequest, NextResponse } from "next/server";
+import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
+
 import {
   HTTP_STATUS_INTERNAL_SERVER_ERROR,
   HTTP_STATUS_UNAUTHORIZED,
@@ -16,30 +16,24 @@ import {
 } from "../errors";
 import { withVoucherHandler } from "../with-voucher-handler";
 
-vi.mock("../../../config", () => ({
-  getConfiguration: vi.fn(() => ({
-    INTEROP_AUTH_SERVER_ENDPOINT_URL: "https://auth-server.com",
-    INTEROP_CLIENT_ASSERTION_AUD: "audience",
-    INTEROP_CLIENT_ASSERTION_ISS: "issuer",
-    INTEROP_CLIENT_ASSERTION_KID: "kid",
-    INTEROP_CLIENT_ASSERTION_PK: "privateKey",
-    INTEROP_CLIENT_ASSERTION_PURPOSE_ID: "purposeId",
-    INTEROP_CLIENT_ASSERTION_SUB: "subject",
-    INTEROP_CLIENT_ASSERTION_TYPE: "assertionType",
-    INTEROP_CLIENT_ID: "clientId",
-    INTEROP_ESERVICE_AUDIENCE: "eServiceAudience",
-    INTEROP_GRANT_TYPE: "grantType",
-  })),
-}));
-
-vi.mock("@io-ipatente/core", async () => {
-  const actual =
-    await vi.importActual<typeof import("../../../../../../packages/core")>(
-      "@io-ipatente/core",
-    );
+vi.mock(import("@io-ipatente/core"), async (importOriginal) => {
+  const mod = await importOriginal();
   return {
-    ...actual,
+    ...mod,
     generateClientAssertion: vi.fn(),
+    getConfiguration: vi.fn().mockReturnValue({
+      INTEROP_AUTH_SERVER_ENDPOINT_URL: "https://auth-server.com",
+      INTEROP_CLIENT_ASSERTION_AUD: "audience",
+      INTEROP_CLIENT_ASSERTION_ISS: "issuer",
+      INTEROP_CLIENT_ASSERTION_KID: "kid",
+      INTEROP_CLIENT_ASSERTION_PK: "privateKey",
+      INTEROP_CLIENT_ASSERTION_PURPOSE_ID: "purposeId",
+      INTEROP_CLIENT_ASSERTION_SUB: "subject",
+      INTEROP_CLIENT_ASSERTION_TYPE: "assertionType",
+      INTEROP_CLIENT_ID: "clientId",
+      INTEROP_ESERVICE_AUDIENCE: "eServiceAudience",
+      INTEROP_GRANT_TYPE: "grantType",
+    }),
     requestVoucher: vi.fn(),
   };
 });

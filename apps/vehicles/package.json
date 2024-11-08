@@ -3,7 +3,7 @@
   "author": {
     "name": "PagoPA"
   },
-  "version": "0.4.0",
+  "version": "0.6.2",
   "private": true,
   "scripts": {
     "format": "prettier --write .",
@@ -18,6 +18,8 @@
     "coverage:fe": "vitest run --config ./vitest/vitest.config.react.mjs --coverage",
     "dev": "next dev",
     "build": "next build",
+    "build:pre-package": "cp -r .next/static .next/standalone/apps/vehicles/.next && cp -r public .next/standalone/apps/vehicles",
+    "build:package": "yarn build:pre-package && (cd .next/standalone/apps/vehicles && zip -r -q ../../../../${npm_package_name}-${npm_package_version}.zip . -x package.json)",
     "start": "next start",
     "generate": "rimraf src/generated && mkdir -p src/generated && npm-run-all 'generate:*'",
     "generate:bff-openapi-schema": "openapi-zod-client ./openapi/bff-openapi.yaml -o src/generated/bff-openapi.ts -t template-bff.hbs --additional-props-default-value=false",
@@ -32,10 +34,12 @@
     "@mui/lab": "^5.0.0-alpha.140",
     "@mui/material": "^5.14.5",
     "@mui/system": "^5.14.5",
+    "@opentelemetry/instrumentation-undici": "^0.3.0",
     "@pagopa/mui-italia": "^1.5.0",
     "@tanstack/react-query": "^5.56.2",
     "@tanstack/react-query-devtools": "^5.56.2",
     "@zodios/core": "^10.9.6",
+    "applicationinsights": "^3.1.0",
     "axios": "^1.7.7",
     "i18next": "^23.15.1",
     "jsonwebtoken": "^9.0.2",

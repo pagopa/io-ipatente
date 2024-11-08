@@ -1,22 +1,52 @@
 locals {
-  project = "io-p"
+  prefix          = "io"
+  env_short       = "p"
+  location        = "italynorth"
+  domain          = "ipatente"
+  instance_number = "01"
 
-  identity_resource_group_name = "${local.project}-identity-rg"
-
-  repo_secrets = {
-    "ARM_TENANT_ID"       = data.azurerm_client_config.current.tenant_id,
-    "ARM_SUBSCRIPTION_ID" = data.azurerm_subscription.current.subscription_id
+  adgroups = {
+    admins_name = "io-p-adgroup-svc-admins"
+    devs_name   = "io-p-adgroup-svc-developers"
   }
 
-  ci = {
-    secrets = {
-      "ARM_CLIENT_ID" = data.azurerm_user_assigned_identity.identity_prod_ci.client_id
+  runner = {
+    cae_name                = "${local.prefix}-${local.env_short}-itn-github-runner-cae-01"
+    cae_resource_group_name = "${local.prefix}-${local.env_short}-itn-github-runner-rg-01"
+    secret = {
+      kv_name                = "${local.prefix}-${local.env_short}-kv-common"
+      kv_resource_group_name = "${local.prefix}-${local.env_short}-rg-common"
     }
   }
 
-  cd = {
-    secrets = {
-      "ARM_CLIENT_ID" = data.azurerm_user_assigned_identity.identity_prod_cd.client_id
-    }
+  apim = {
+    name                = "${local.prefix}-${local.env_short}-apim-v2-api"
+    resource_group_name = "${local.prefix}-${local.env_short}-rg-internal"
+  }
+
+  vnet = {
+    name                = "${local.prefix}-${local.env_short}-itn-common-vnet-01"
+    resource_group_name = "${local.prefix}-${local.env_short}-itn-common-rg-01"
+  }
+
+  tf_storage_account = {
+    name                = "iopitntfst001"
+    resource_group_name = "terraform-state-rg"
+  }
+
+  repository = {
+    name            = "io-ipatente"
+    description     = "iPatente services"
+    topics          = ["io", "ipatente"]
+    reviewers_teams = ["io-platform-green-unit", "engineering-team-cloud-eng"]
+  }
+
+  tags = {
+    CreatedBy      = "Terraform"
+    Environment    = "Prod"
+    Owner          = "IO"
+    ManagementTeam = "IO Enti & Servizi"
+    Source         = "https://github.com/pagopa/io-ipatente/blob/main/infra/identity/prod"
+    CostCenter     = "TS310 - PAGAMENTI & SERVIZI"
   }
 }

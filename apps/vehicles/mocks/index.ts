@@ -1,4 +1,4 @@
-import { getConfiguration } from "@/config";
+import { getConfiguration } from "@io-ipatente/core";
 
 /**
  * MSW Setup
