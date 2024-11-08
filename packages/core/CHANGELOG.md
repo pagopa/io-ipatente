@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.4.1
+
+### Patch Changes
+
+- 937ee93: Set Trust Host AuthJS conf
+
 ## 0.4.0
 
 ### Minor Changes
