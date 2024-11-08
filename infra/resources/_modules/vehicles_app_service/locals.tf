@@ -8,7 +8,6 @@ locals {
 
       AUTH_SECRET     = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=AUTH-SECRET)"
       AUTH_TRUST_HOST = true
-      AUTH_URL        = "http://169.254.131.2:8080/api/auth"
 
 
       OIDC_CLIENT_ID           = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-CLIENT-ID)"
@@ -49,7 +48,7 @@ locals {
     }
 
     staging_app_setting = {
-      APP_ENV = "test"
+      APP_ENV = "staging"
     }
 
     sticky_settings = [
