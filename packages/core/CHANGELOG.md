@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.3.0
+
+### Minor Changes
+
+- 6fd5a08: Move middleware and auth config to @io-ipatente/core
+
 ## 0.2.0
 
 ### Minor Changes
