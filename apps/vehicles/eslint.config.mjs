@@ -15,5 +15,14 @@ const compat = new FlatCompat({
 export default [
   ...pagopa,
   ...compat.extends("next/core-web-vitals"),
+  {
+    rules: {
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+      ],
+      "no-console": "off",
+    },
+  },
   ...pluginQuery.configs["flat/recommended"],
 ];
