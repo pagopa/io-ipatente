@@ -1,8 +1,8 @@
-import { Voucher } from "@io-ipatente/core";
 import { NextRequest, NextResponse } from "next/server";
+import { User } from "next-auth";
 import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { CustomUser } from "../../../../types/next-auth";
+import { Voucher } from "../../interop/voucher";
 import { withJWTAuthAndVoucherHandler } from "../with-jwt-auth-voucher-handler";
 
 vi.mock("../with-jwt-auth-handler", () => ({ withJWTAuthHandler }));
@@ -18,7 +18,7 @@ const { withVoucherHandler } = vi.hoisted(() => ({
 
 const mockHandler = vi.fn(async () => NextResponse.json({ success: true }));
 
-const mockUser: CustomUser = {
+const mockUser: User = {
   familyName: "aFamilyName",
   fiscalCode: "aFiscalCode",
   givenName: "aGivenName",
@@ -35,11 +35,13 @@ const mockParams = { param1: "value1" };
 beforeEach(() => {
   vi.clearAllMocks();
   (withJWTAuthHandler as Mock).mockImplementation(
-    (handler) => async (req, context) =>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (handler) => async (req: NextRequest, context: any) =>
       handler(req, { ...context, user: mockUser }),
   );
   (withVoucherHandler as Mock).mockImplementation(
-    (handler) => async (req, context) =>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (handler) => async (req: NextRequest, context: any) =>
       handler(req, {
         ...context,
         additionalDataJWS: mockAdditionalDataJWS,

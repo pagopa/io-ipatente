@@ -1,15 +1,12 @@
-import { getConfiguration } from "@io-ipatente/core";
-import {
-  Voucher,
-  generateClientAssertion,
-  requestVoucher,
-} from "@io-ipatente/core";
 import { NextRequest, NextResponse } from "next/server";
 
+import { getConfiguration } from "../config";
+import { generateClientAssertion } from "../interop/client-assertion";
+import { Voucher, requestVoucher } from "../interop/voucher";
 import {
   handleInternalErrorResponse,
   handleUnauthorizedErrorResponse,
-} from "./errors";
+} from "../utils/errors";
 
 const {
   INTEROP_AUTH_SERVER_ENDPOINT_URL,

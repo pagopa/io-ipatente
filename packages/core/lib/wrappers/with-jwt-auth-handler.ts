@@ -1,8 +1,8 @@
-import { auth } from "@/auth";
 import { NextRequest, NextResponse } from "next/server";
-import { User } from "next-auth";
+import NextAuth, { User } from "next-auth";
 
-import { handleUnauthorizedErrorResponse } from "./errors";
+import { authConfig } from "../auth";
+import { handleUnauthorizedErrorResponse } from "../utils/errors";
 
 export const withJWTAuthHandler =
   (
@@ -16,6 +16,7 @@ export const withJWTAuthHandler =
     nextRequest: NextRequest,
     { params }: { params: Record<string, unknown> },
   ) => {
+    const { auth } = NextAuth(authConfig);
     const session = await auth();
 
     if (!session) {

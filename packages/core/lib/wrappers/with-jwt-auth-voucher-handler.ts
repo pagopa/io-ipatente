@@ -1,7 +1,7 @@
-import { Voucher } from "@io-ipatente/core";
 import { NextRequest, NextResponse } from "next/server";
 import { User } from "next-auth";
 
+import { Voucher } from "../interop/voucher";
 import { withJWTAuthHandler } from "./with-jwt-auth-handler";
 import { withVoucherHandler } from "./with-voucher-handler";
 

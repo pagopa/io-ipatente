@@ -1,16 +1,14 @@
-import { Voucher } from "@io-ipatente/core";
+import {
+  handleBadRequestErrorResponse,
+  handleInternalErrorResponse,
+} from "@io-ipatente/core";
 import { ZodiosError } from "@zodios/core";
 import { AxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
 import { Mock, describe, expect, it, vi } from "vitest";
 
-import { CustomUser } from "../../../../../types/next-auth";
 import { Veicolo } from "../../../../generated/bff-openapi";
 import { retrieveVehicles } from "../../../../lib/bff/business";
-import {
-  handleBadRequestErrorResponse,
-  handleInternalErrorResponse,
-} from "../../../../lib/bff/errors";
 import { GET } from "../route";
 
 vi.mock("../../../../auth", () => ({ auth: vi.fn() }));
@@ -19,24 +17,14 @@ vi.mock("../../../../lib/bff/business", () => ({
   retrieveVehicles: vi.fn(),
 }));
 
-vi.mock("../../../../lib/bff/errors", () => ({
+vi.mock("@io-ipatente/core", () => ({
   handleBadRequestErrorResponse: vi.fn(),
   handleInternalErrorResponse: vi.fn(),
-}));
-
-vi.mock("../../../../lib/bff/with-jwt-auth-voucher-handler", () => ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   withJWTAuthAndVoucherHandler: (handler: any) => handler,
 }));
 
 describe("GET /api/vehicles", () => {
-  const mockUser: CustomUser = { fiscalCode: "ABCDEF12G34H567I" };
-  const mockVoucher: Voucher = {
-    access_token: "test-token",
-    expires_in: 600,
-    token_type: "Bearer",
-  };
-
   const mockRequest = {} as NextRequest;
 
   it("should return vehicles data on success", async () => {
@@ -46,8 +34,7 @@ describe("GET /api/vehicles", () => {
     (retrieveVehicles as Mock).mockResolvedValue(mockVehicles);
 
     const response = await GET(mockRequest, {
-      user: mockUser,
-      voucher: mockVoucher,
+      params: {},
     });
 
     expect(response).toBeInstanceOf(NextResponse);
@@ -61,8 +48,7 @@ describe("GET /api/vehicles", () => {
     (retrieveVehicles as Mock).mockResolvedValue(axiosError);
 
     const response = await GET(mockRequest, {
-      user: mockUser,
-      voucher: mockVoucher,
+      params: {},
     });
 
     expect(response).toBeInstanceOf(NextResponse);
@@ -77,7 +63,7 @@ describe("GET /api/vehicles", () => {
     const zodiosError = new ZodiosError("Bad Request Error");
     (retrieveVehicles as Mock).mockResolvedValue(zodiosError);
 
-    await GET(mockRequest, { user: mockUser, voucher: mockVoucher });
+    await GET(mockRequest, { params: {} });
 
     expect(handleBadRequestErrorResponse).toHaveBeenCalledWith(
       zodiosError.message,
@@ -88,7 +74,7 @@ describe("GET /api/vehicles", () => {
     const error = new Error("Unexpected Error");
     (retrieveVehicles as Mock).mockRejectedValue(error);
 
-    await GET(mockRequest, { user: mockUser, voucher: mockVoucher });
+    await GET(mockRequest, { params: {} });
 
     expect(handleInternalErrorResponse).toHaveBeenCalledWith(
       "VehiclesRetrieveError",

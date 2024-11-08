@@ -1,3 +1,5 @@
+import { NextResponse } from "next/server";
+
 import {
   HTTP_STATUS_BAD_REQUEST,
   HTTP_STATUS_FORBIDDEN,
@@ -6,8 +8,7 @@ import {
   HTTP_TITLE_BAD_REQUEST,
   HTTP_TITLE_FORBIDDEN,
   HTTP_TITLE_UNAUTHORIZED,
-} from "@/lib/bff/constants";
-import { NextResponse } from "next/server";
+} from "./constants";
 
 export class ManagedInternalError extends Error {
   additionalDetails?: string;
