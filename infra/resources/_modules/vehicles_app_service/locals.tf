@@ -6,7 +6,8 @@ locals {
       NODE_ENV                 = "production"
       WEBSITE_RUN_FROM_PACKAGE = "1"
 
-      AUTH_SECRET = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=AUTH-SECRET)"
+      AUTH_SECRET     = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=AUTH-SECRET)"
+      AUTH_TRUST_HOST = true
 
       OIDC_ISSUER_URL          = "https://io-p-itn-ipatente-vehicles-app-01.azurewebsites.net/api/auth/mocks/oidc"
       OIDC_CLIENT_ID           = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-CLIENT-ID)"
