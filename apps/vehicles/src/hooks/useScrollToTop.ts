@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 
-interface ScrollTopProps {
+interface ScrollToTopProps {
   container: HTMLElement | null;
   threshold: number;
 }
 
-export const useScrollToTop = ({ container, threshold }: ScrollTopProps) => {
+export const useScrollToTop = ({ container, threshold }: ScrollToTopProps) => {
   const [isButtonVisible, setIsButtonVisible] = useState(false);
 
   const handleScroll = useCallback(
