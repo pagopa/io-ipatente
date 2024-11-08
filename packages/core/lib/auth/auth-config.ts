@@ -72,5 +72,4 @@ export const authConfig: NextAuthConfig = {
       type: "oidc",
     },
   ],
-  trustHost: true,
 };
