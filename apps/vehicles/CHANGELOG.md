@@ -1,5 +1,18 @@
 # vehicles
 
+## 0.7.0
+
+### Minor Changes
+
+- df1a3d5: Add floating button component
+
+### Patch Changes
+
+- Updated dependencies [df1a3d5]
+- Updated dependencies [fafc2a6]
+  - @io-ipatente/ui@0.5.0
+  - @io-ipatente/core@0.4.2
+
 ## 0.6.2
 
 ### Patch Changes
