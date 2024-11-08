@@ -1,5 +1,13 @@
 # vehicles
 
+## 0.6.1
+
+### Patch Changes
+
+- 7655100: Instantiate Otel Application Insight throgh nextJS instrumentation hook
+- Updated dependencies [f67d2b9]
+  - @io-ipatente/core@0.4.0
+
 ## 0.6.0
 
 ### Minor Changes
