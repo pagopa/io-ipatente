@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.4.2
+
+### Patch Changes
+
+- fafc2a6: Remove trustHost config, now this is handled through ENV conf
+
 ## 0.4.1
 
 ### Patch Changes
