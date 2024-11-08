@@ -3,6 +3,7 @@ locals {
   vehicles = {
     tier = "standard"
     base_app_settings = {
+      NODE_ENV                 = "production"
       WEBSITE_RUN_FROM_PACKAGE = "1"
 
       AUTH_SECRET     = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=AUTH-SECRET)"
@@ -53,8 +54,7 @@ locals {
     }
 
     sticky_settings = [
-      "APP_ENV",
-      "NODE_ENV"
+      "APP_ENV"
     ]
 
     autoscale_settings = {
