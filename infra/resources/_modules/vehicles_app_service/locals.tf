@@ -16,6 +16,7 @@ locals {
 
       OIDC_MOCK_JWT_PRIVATE_KEY = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-JWT-PRIVATE-KEY)"
       OIDC_MOCK_JWT_PUBLIC_KEY  = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-JWT-PUBLIC-KEY)"
+      OIDC_MOCK_FORCED_ENABLED  = true
 
       NEXT_PUBLIC_IS_MSW_ENABLED  = true
       NEXT_PUBLIC_BFF_API_MOCKING = true

@@ -5,7 +5,8 @@ import { getConfiguration } from "@io-ipatente/core";
 import { NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
-  if (getConfiguration().IS_PRODUCTION) return getMockForbiddenResponse();
+  if (!getConfiguration().OIDC_MOCK_FORCED_ENABLE)
+    return getMockForbiddenResponse();
 
   // Get query params
   const redirect_uri = request.nextUrl.searchParams.get("redirect_uri") ?? "";
