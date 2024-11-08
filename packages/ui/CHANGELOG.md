@@ -1,5 +1,11 @@
 # @io-ipatente/ui
 
+## 0.5.0
+
+### Minor Changes
+
+- df1a3d5: Add floating button component
+
 ## 0.4.0
 
 ### Minor Changes
