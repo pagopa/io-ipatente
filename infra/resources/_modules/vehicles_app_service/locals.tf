@@ -9,7 +9,7 @@ locals {
       AUTH_SECRET     = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=AUTH-SECRET)"
       AUTH_TRUST_HOST = true
 
-
+      OIDC_ISSUER_URL          = "https://io-p-itn-ipatente-vehicles-app-01.azurewebsites.net/api/auth/mocks/oidc"
       OIDC_CLIENT_ID           = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-CLIENT-ID)"
       OIDC_CLIENT_SECRET       = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-CLIENT-SECRET)"
       OIDC_CLIENT_REDIRECT_URI = "https://io-p-itn-ipatente-vehicles-app-01.azurewebsites.net/api/auth/callback/fims"
