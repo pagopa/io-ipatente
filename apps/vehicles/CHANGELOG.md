@@ -1,5 +1,11 @@
 # vehicles
 
+## 0.7.2
+
+### Patch Changes
+
+- cc2d7ea: Check for OIDC_MOCK_FORCED_ENABLE instead of IS_PRODUCTION in all OIDC mocks
+
 ## 0.7.1
 
 ### Patch Changes
