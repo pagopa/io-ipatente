@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.4.0
+
+### Minor Changes
+
+- f67d2b9: fix authentication flow in dev mode
+
 ## 0.3.0
 
 ### Minor Changes
