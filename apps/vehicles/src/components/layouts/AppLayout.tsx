@@ -15,10 +15,14 @@ const TopBar = dynamic(
 
 type AppLayoutProps = {
   children: ReactNode;
-  enableScrollTop?: boolean;
+  enableScrollToTop?: boolean;
 } & PageHeaderProps;
 
-const AppLayout = ({ children, enableScrollTop, ...rest }: AppLayoutProps) => {
+const AppLayout = ({
+  children,
+  enableScrollToTop,
+  ...rest
+}: AppLayoutProps) => {
   const { t } = useTranslation();
   const router = useRouter();
   const containerRef = useRef<HTMLElement>(null);
@@ -44,7 +48,7 @@ const AppLayout = ({ children, enableScrollTop, ...rest }: AppLayoutProps) => {
       />
       <PageHeader {...rest} />
       <Box sx={{ p: 2 }}>{children}</Box>
-      {enableScrollTop && (
+      {enableScrollToTop && (
         <ScrollToTopButton container={containerRef.current} />
       )}
     </Box>
