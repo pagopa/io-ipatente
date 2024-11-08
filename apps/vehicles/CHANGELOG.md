@@ -1,5 +1,13 @@
 # vehicles
 
+## 0.7.1
+
+### Patch Changes
+
+- 359000c: Added OIDC_MOCK_FORCED_ENABLE env config, for OIDC issuer explicit mock enable
+- Updated dependencies [359000c]
+  - @io-ipatente/core@0.4.3
+
 ## 0.7.0
 
 ### Minor Changes
