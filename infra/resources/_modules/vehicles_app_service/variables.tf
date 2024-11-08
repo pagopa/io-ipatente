@@ -78,6 +78,5 @@ variable "ai_connection_string" {
 
 variable "key_vault_name" {
   type        = string
-  sensitive   = true
   description = "Key Vault name"
 }

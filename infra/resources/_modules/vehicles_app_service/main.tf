@@ -36,3 +36,18 @@ module "vehicles" {
 
   tags = var.tags
 }
+
+module "vehicles_app_service_roles" {
+  source       = "github.com/pagopa/dx//infra/modules/azure_role_assignments?ref=main"
+  principal_id = module.vehicles.app_service.app_service.principal_id
+
+  key_vault = [
+    {
+      name                = var.key_vault_name
+      resource_group_name = var.resource_group_name
+      roles = {
+        secrets = "reader"
+      }
+    }
+  ]
+}
