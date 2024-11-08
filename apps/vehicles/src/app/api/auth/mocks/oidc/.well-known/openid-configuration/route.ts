@@ -4,7 +4,8 @@ import { NextResponse } from "next/server";
 import { getMockForbiddenResponse } from "../../../mocks-util";
 
 export async function GET() {
-  if (getConfiguration().IS_PRODUCTION) return getMockForbiddenResponse();
+  if (!getConfiguration().OIDC_MOCK_FORCED_ENABLE)
+    return getMockForbiddenResponse();
 
   const oidcIssuerUrl = getConfiguration().OIDC_ISSUER_URL;
 

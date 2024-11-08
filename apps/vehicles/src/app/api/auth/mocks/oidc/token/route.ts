@@ -20,7 +20,8 @@ const generateToken = (payload: MockTokenPayload): string =>
   });
 
 export async function POST() {
-  if (getConfiguration().IS_PRODUCTION) return getMockForbiddenResponse();
+  if (!getConfiguration().OIDC_MOCK_FORCED_ENABLE)
+    return getMockForbiddenResponse();
 
   const data = {
     aud: getConfiguration().OIDC_CLIENT_ID,
