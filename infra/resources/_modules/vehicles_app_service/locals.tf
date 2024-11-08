@@ -44,13 +44,11 @@ locals {
     }
 
     prod_app_setting = {
-      APP_ENV  = "production"
-      NODE_ENV = "production"
+      APP_ENV = "production"
     }
 
     staging_app_setting = {
-      APP_ENV  = "staging",
-      NODE_ENV = "development"
+      APP_ENV = "staging"
     }
 
     sticky_settings = [
