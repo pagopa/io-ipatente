@@ -8,12 +8,11 @@ locals {
 
       AUTH_SECRET     = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=AUTH-SECRET)"
       AUTH_TRUST_HOST = true
-      AUTH_URL        = "http://169.254.131.2:8080/api/auth"
 
-      OIDC_ISSUER_URL          = "https://io-p-itn-ipatente-vehicles-app-01.azurewebsites.net/api/auth/mocks/oidc"
-      OIDC_CLIENT_ID           = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-CLIENT-ID)"
-      OIDC_CLIENT_SECRET       = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-CLIENT-SECRET)"
-      OIDC_CLIENT_REDIRECT_URI = "https://io-p-itn-ipatente-vehicles-app-01.azurewebsites.net/api/auth/callback/fims"
+
+      OIDC_CLIENT_ID     = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-CLIENT-ID)"
+      OIDC_CLIENT_SECRET = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-CLIENT-SECRET)"
+
 
       OIDC_MOCK_JWT_PRIVATE_KEY = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-JWT-PRIVATE-KEY)"
       OIDC_MOCK_JWT_PUBLIC_KEY  = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-JWT-PUBLIC-KEY)"
@@ -21,17 +20,16 @@ locals {
       NEXT_PUBLIC_IS_MSW_ENABLED  = true
       NEXT_PUBLIC_BFF_API_MOCKING = true
 
-      NEXT_PUBLIC_BFF_API_BASE_URL  = "https://io-p-itn-ipatente-vehicles-app-01.azurewebsites.net"
+
       NEXT_PUBLIC_BFF_API_BASE_PATH = "/api"
 
       EXT_API_MOCKING   = true
-      EXT_API_BASE_URL  = "http://example.com"
       EXT_API_BASE_PATH = "/api"
 
-      INTEROP_AUTH_SERVER_ENDPOINT_URL = "https://auth.uat.interop.pagopa.it/token.oauth2"
-      INTEROP_CLIENT_ID                = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=INTEROP-CLIENT-ID)"
-      INTEROP_CLIENT_ASSERTION_TYPE    = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
-      INTEROP_GRANT_TYPE               = "client_credentials"
+
+      INTEROP_CLIENT_ID             = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=INTEROP-CLIENT-ID)"
+      INTEROP_CLIENT_ASSERTION_TYPE = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
+      INTEROP_GRANT_TYPE            = "client_credentials"
 
       INTEROP_CLIENT_ASSERTION_KID        = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=INTEROP-CLIENT-ASSERTION-KID)"
       INTEROP_CLIENT_ASSERTION_ISS        = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=INTEROP-CLIENT-ASSERTION-ISS)"
@@ -45,15 +43,30 @@ locals {
     }
 
     prod_app_setting = {
-      APP_ENV = "production"
+      APP_ENV                          = "production"
+      OIDC_ISSUER_URL                  = "https://io-p-itn-ipatente-vehicles-app-01.azurewebsites.net/api/auth/mocks/oidc",
+      OIDC_CLIENT_REDIRECT_URI         = "https://io-p-itn-ipatente-vehicles-app-01.azurewebsites.net/api/auth/callback/fims",
+      NEXT_PUBLIC_BFF_API_BASE_URL     = "https://io-p-itn-ipatente-vehicles-app-01.azurewebsites.net",
+      INTEROP_AUTH_SERVER_ENDPOINT_URL = "https://auth.uat.interop.pagopa.it/token.oauth2",
+      EXT_API_BASE_URL                 = "http://example.com"
     }
 
     staging_app_setting = {
-      APP_ENV = "staging"
+      APP_ENV                          = "test"
+      OIDC_ISSUER_URL                  = "https://io-p-itn-ipatente-vehicles-app-01-staging.azurewebsites.net/api/auth/mocks/oidc",
+      OIDC_CLIENT_REDIRECT_URI         = "https://io-p-itn-ipatente-vehicles-app-01-staging.azurewebsites.net/api/auth/callback/fims",
+      NEXT_PUBLIC_BFF_API_BASE_URL     = "https://io-p-itn-ipatente-vehicles-app-01-staging.azurewebsites.net",
+      INTEROP_AUTH_SERVER_ENDPOINT_URL = "https://example.com",
+      EXT_API_BASE_URL                 = "http://example.com"
     }
 
     sticky_settings = [
-      "APP_ENV"
+      "APP_ENV",
+      "OIDC_ISSUER_URL",
+      "OIDC_CLIENT_REDIRECT_URI",
+      "NEXT_PUBLIC_BFF_API_BASE_URL",
+      "INTEROP_AUTH_SERVER_ENDPOINT_URL",
+      "EXT_API_BASE_URL"
     ]
 
     autoscale_settings = {
