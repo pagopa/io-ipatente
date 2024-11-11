@@ -25,7 +25,7 @@ const mockNextAuthRequest = {
   auth: mockSession,
 };
 
-const mockRequest = {};
+const mockRequest = {} as Request;
 
 vi.mock("../../../../auth", () => ({
   auth: (handler) => () => handler(mockNextAuthRequest, {}),
@@ -41,6 +41,16 @@ vi.mock(import("@io-ipatente/core"), async (importOriginal) => {
     ...mod,
     handleBadRequestErrorResponse: vi.fn(),
     handleInternalErrorResponse: vi.fn(),
+    withJWTAuthAndVoucherHandler: (handler) => () =>
+      handler(mockRequest, {
+        additionalDataJWS: "anAdditional",
+        user: mockSession.user,
+        voucher: {
+          access_token: "anAccessToken",
+          expires_in: 600,
+          token_type: "Bearer",
+        },
+      }),
   };
 });
 

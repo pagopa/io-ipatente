@@ -25,7 +25,7 @@ const {
 export const withVoucherHandler =
   (
     handler: (
-      nextRequest: Request,
+      request: Request,
       context: {
         additionalDataJWS: string;
         voucher: Voucher;
@@ -33,7 +33,7 @@ export const withVoucherHandler =
     ) => Promise<NextResponse> | Promise<Response>,
     fiscalCode: string,
   ) =>
-  async (nextRequest: Request) => {
+  async (request: Request) => {
     try {
       const clientAssertionResult = generateClientAssertion({
         additionalData: {
@@ -71,7 +71,7 @@ export const withVoucherHandler =
         return handleUnauthorizedErrorResponse("No voucher provided");
       }
 
-      return handler(nextRequest, {
+      return handler(request, {
         additionalDataJWS: clientAssertionResult.additionalDataJWS,
         voucher,
       });
