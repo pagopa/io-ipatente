@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 import { getConfiguration } from "../config";
 import { generateClientAssertion } from "../interop/client-assertion";
@@ -25,7 +25,7 @@ const {
 export const withVoucherHandler =
   (
     handler: (
-      request: NextRequest,
+      request: Request,
       context: {
         additionalDataJWS: string;
         voucher: Voucher;
@@ -33,7 +33,7 @@ export const withVoucherHandler =
     ) => Promise<NextResponse> | Promise<Response>,
     fiscalCode: string,
   ) =>
-  async (request: NextRequest) => {
+  async (request: Request) => {
     try {
       const clientAssertionResult = generateClientAssertion({
         additionalData: {

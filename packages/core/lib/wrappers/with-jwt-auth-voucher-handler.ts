@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { NextAuthResult, User } from "next-auth";
 
 import { Voucher } from "../interop/voucher";
@@ -9,7 +9,7 @@ type AuthParams = Parameters<NextAuthResult["auth"]>;
 
 export const withJWTAuthAndVoucherHandler = (
   handler: (
-    request: NextRequest,
+    request: Request,
     context: {
       additionalDataJWS: string;
       user: User;

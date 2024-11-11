@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { NextAuthResult, User } from "next-auth";
 
 import { handleUnauthorizedErrorResponse } from "../utils/errors";
@@ -8,7 +8,7 @@ type AuthParams = Parameters<NextAuthResult["auth"]>;
 export const withJWTAuthHandler =
   (
     handler: (
-      request: NextRequest,
+      request: Request,
       context: { user: User },
     ) => Promise<NextResponse> | Promise<Response>,
   ): AuthParams[0] =>
