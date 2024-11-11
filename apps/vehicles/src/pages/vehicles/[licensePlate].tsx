@@ -3,6 +3,7 @@ import { GenericError } from "@/components/shared/GenericError";
 import { VehicleSectionDetails } from "@/components/vehicle-details/VehicleSectionDetails";
 import { VehicleSectionInspections } from "@/components/vehicle-details/VehicleSectionInspections";
 import { VehicleSectionRca } from "@/components/vehicle-details/VehicleSectionRca";
+import { Veicolo } from "@/generated/bff-openapi";
 import { useVehicles } from "@/hooks/useVehicles";
 import { vehicleByType } from "@/utils/strings";
 import { SectionTitle } from "@io-ipatente/ui";
@@ -10,6 +11,7 @@ import Stack from "@mui/material/Stack";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useCallback } from "react";
 
 import { GetLayoutProps } from "../_app";
 
@@ -17,11 +19,14 @@ export default function VehicleDetails() {
   const router = useRouter();
   const licensePlate = router.query.licensePlate;
 
-  // TODO: wrap the select function in useCallback
-  const { data, error, isError, isLoading, isRefetching, refetch } =
-    useVehicles((data) =>
+  const selectVehicleByLicensePlate = useCallback(
+    (data: Veicolo[]) =>
       data.find((vehicle) => vehicle.targaVeicolo === licensePlate),
-    );
+    [licensePlate],
+  );
+
+  const { data, error, isError, isLoading, isRefetching, refetch } =
+    useVehicles(selectVehicleByLicensePlate);
 
   if (isLoading || isRefetching) {
     return <Stack my={3}>Loading...</Stack>;
