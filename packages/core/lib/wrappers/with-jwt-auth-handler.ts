@@ -8,7 +8,7 @@ type AuthParams = Parameters<NextAuthResult["auth"]>;
 export const withJWTAuthHandler =
   (
     handler: (
-      nextRequest: NextRequest,
+      request: NextRequest,
       context: { user: User },
     ) => Promise<NextResponse> | Promise<Response>,
   ): AuthParams[0] =>
