@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
-import NextAuth, { Session } from "next-auth";
-import { Mock, describe, expect, it, vi } from "vitest";
+import { NextResponse } from "next/server";
+import { Session } from "next-auth";
+import { describe, expect, it, vi } from "vitest";
 
 import { HTTP_STATUS_UNAUTHORIZED } from "../../utils/constants";
 import { handleUnauthorizedErrorResponse } from "../../utils/errors";
@@ -24,20 +24,16 @@ vi.mock("../../utils/errors", async () => {
   };
 });
 
-const localhostUrl = "http://localhost";
-
 describe("withJWTAuthHandler", () => {
   it("should return unauthorized error response if no session is provided", async () => {
-    // Mock della funzione auth di NextAuth per restituire una sessione nulla
-    const mockAuth = vi.fn().mockResolvedValue(null);
-    (NextAuth as unknown as Mock).mockReturnValue({ auth: mockAuth });
+    // TODO: fix type
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const mockNextAuthRequest: any = {};
+    const mockContext = {};
 
     const mockHandler = vi.fn();
-    const request = new NextRequest(new URL(localhostUrl));
-    const context = { params: {} };
 
-    // Chiama il wrapper
-    await withJWTAuthHandler(mockHandler)(request, context);
+    await withJWTAuthHandler(mockHandler)(mockNextAuthRequest, mockContext);
 
     // Verifica che handleUnauthorizedErrorResponse venga chiamato
     expect(handleUnauthorizedErrorResponse).toHaveBeenCalledWith(
@@ -55,21 +51,23 @@ describe("withJWTAuthHandler", () => {
         givenName: "aGivenName",
       },
     };
-    const mockAuth = vi.fn().mockResolvedValue(mockSession);
-    (NextAuth as unknown as Mock).mockReturnValue({ auth: mockAuth });
+    // TODO: fix type
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const mockNextAuthRequest: any = {
+      auth: mockSession,
+    };
+    const mockContext = {};
 
     const mockHandler = vi
       .fn()
       .mockResolvedValue(NextResponse.json({ success: true }));
-    const request = new NextRequest(new URL(localhostUrl));
-    const context = { params: { id: 123 } };
 
-    // Chiama il wrapper
-    const response = await withJWTAuthHandler(mockHandler)(request, context);
+    const response = (await withJWTAuthHandler(mockHandler)(
+      mockNextAuthRequest,
+      mockContext,
+    )) as Response;
 
-    // Verifica che il mockHandler venga chiamato con i parametri corretti
-    expect(mockHandler).toHaveBeenCalledWith(request, {
-      params: context.params,
+    expect(mockHandler).toHaveBeenCalledWith(mockNextAuthRequest, {
       user: mockSession.user,
     });
     const jsonResponse = await response.json();

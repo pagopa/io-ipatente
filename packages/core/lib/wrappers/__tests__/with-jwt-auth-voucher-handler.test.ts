@@ -29,8 +29,8 @@ const mockVoucher: Voucher = {
   token_type: "Bearer",
 };
 const mockAdditionalDataJWS = "anAdditionalDataJWS";
-const mockNextRequest = {} as NextRequest;
-const mockParams = { param1: "value1" };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const mockNextRequest = {} as any;
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -52,16 +52,13 @@ beforeEach(() => {
 
 describe("withJWTAndVoucherHandler", () => {
   it("should call handler with user and voucher context", async () => {
-    const response = await withJWTAuthAndVoucherHandler(mockHandler)(
+    const response = (await withJWTAuthAndVoucherHandler(mockHandler)(
       mockNextRequest,
-      {
-        params: mockParams,
-      },
-    );
+      {},
+    )) as Response;
 
     expect(mockHandler).toHaveBeenCalledWith(mockNextRequest, {
       additionalDataJWS: mockAdditionalDataJWS,
-      params: mockParams,
       user: mockUser,
       voucher: mockVoucher,
     });
@@ -79,12 +76,10 @@ describe("withJWTAndVoucherHandler", () => {
         ),
     );
 
-    const response = await withJWTAuthAndVoucherHandler(mockHandler)(
+    const response = (await withJWTAuthAndVoucherHandler(mockHandler)(
       mockNextRequest,
-      {
-        params: mockParams,
-      },
-    );
+      {},
+    )) as Response;
 
     expect(mockHandler).not.toHaveBeenCalled();
     expect(response.status).toBe(401);
@@ -99,12 +94,10 @@ describe("withJWTAndVoucherHandler", () => {
         NextResponse.json({ error: "No voucher provided" }, { status: 401 }),
     );
 
-    const response = await withJWTAuthAndVoucherHandler(mockHandler)(
+    const response = (await withJWTAuthAndVoucherHandler(mockHandler)(
       mockNextRequest,
-      {
-        params: mockParams,
-      },
-    );
+      {},
+    )) as Response;
 
     expect(mockHandler).not.toHaveBeenCalled();
     expect(response.status).toBe(401);
@@ -119,12 +112,10 @@ describe("withJWTAndVoucherHandler", () => {
         NextResponse.json({ error: "VoucherRequestError" }, { status: 500 }),
     );
 
-    const response = await withJWTAuthAndVoucherHandler(mockHandler)(
+    const response = (await withJWTAuthAndVoucherHandler(mockHandler)(
       mockNextRequest,
-      {
-        params: mockParams,
-      },
-    );
+      {},
+    )) as Response;
 
     expect(mockHandler).not.toHaveBeenCalled();
     expect(response.status).toBe(500);

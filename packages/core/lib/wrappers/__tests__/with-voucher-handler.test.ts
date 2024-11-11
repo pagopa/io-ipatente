@@ -90,9 +90,8 @@ describe("withVoucherHandler", () => {
     (requestVoucher as Mock).mockResolvedValue(mockVoucher);
 
     const request = {} as NextRequest;
-    const params = { param1: "value1" };
 
-    await withVoucherHandler(handlerMock, mockFiscalCode)(request, { params });
+    await withVoucherHandler(handlerMock, mockFiscalCode)(request);
 
     expect(generateClientAssertion).toHaveBeenCalledOnce();
     expect(requestVoucher).toHaveBeenCalledWith({
@@ -106,7 +105,6 @@ describe("withVoucherHandler", () => {
     });
     expect(handlerMock).toHaveBeenCalledWith(request, {
       additionalDataJWS: mockAdditionalDataJWS,
-      params,
       voucher: mockVoucher,
     });
   });
@@ -115,9 +113,8 @@ describe("withVoucherHandler", () => {
     (generateClientAssertion as Mock).mockReturnValue(null);
 
     const request = {} as NextRequest;
-    const params = { param1: "value1" };
 
-    await withVoucherHandler(handlerMock, mockFiscalCode)(request, { params });
+    await withVoucherHandler(handlerMock, mockFiscalCode)(request);
 
     expect(handleUnauthorizedErrorResponse).toHaveBeenCalledWith(
       "No client assertion provided",
@@ -133,9 +130,8 @@ describe("withVoucherHandler", () => {
     (requestVoucher as Mock).mockResolvedValue(null);
 
     const request = {} as NextRequest;
-    const params = { param1: "value1" };
 
-    await withVoucherHandler(handlerMock, mockFiscalCode)(request, { params });
+    await withVoucherHandler(handlerMock, mockFiscalCode)(request);
 
     expect(handleUnauthorizedErrorResponse).toHaveBeenCalledWith(
       "No voucher provided",
@@ -149,9 +145,8 @@ describe("withVoucherHandler", () => {
     });
 
     const request = {} as NextRequest;
-    const params = { param1: "value1" };
 
-    await withVoucherHandler(handlerMock, mockFiscalCode)(request, { params });
+    await withVoucherHandler(handlerMock, mockFiscalCode)(request);
 
     expect(handleInternalErrorResponse).toHaveBeenCalledWith(
       "VoucherRequestError",

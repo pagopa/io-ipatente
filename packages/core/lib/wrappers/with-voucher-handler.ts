@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 import { getConfiguration } from "../config";
 import { generateClientAssertion } from "../interop/client-assertion";
@@ -25,16 +25,15 @@ const {
 export const withVoucherHandler =
   (
     handler: (
-      nextRequest: NextRequest,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      context: { additionalDataJWS: string; params: any; voucher: Voucher },
+      nextRequest: Request,
+      context: {
+        additionalDataJWS: string;
+        voucher: Voucher;
+      },
     ) => Promise<NextResponse> | Promise<Response>,
     fiscalCode: string,
   ) =>
-  async (
-    nextRequest: NextRequest,
-    { params }: { params: Record<string, unknown> },
-  ) => {
+  async (nextRequest: Request) => {
     try {
       const clientAssertionResult = generateClientAssertion({
         additionalData: {
@@ -74,7 +73,6 @@ export const withVoucherHandler =
 
       return handler(nextRequest, {
         additionalDataJWS: clientAssertionResult.additionalDataJWS,
-        params,
         voucher,
       });
     } catch (error) {
