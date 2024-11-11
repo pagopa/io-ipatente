@@ -1,5 +1,32 @@
 # vehicles
 
+## 0.7.2
+
+### Patch Changes
+
+- cc2d7ea: Check for OIDC_MOCK_FORCED_ENABLE instead of IS_PRODUCTION in all OIDC mocks
+
+## 0.7.1
+
+### Patch Changes
+
+- 359000c: Added OIDC_MOCK_FORCED_ENABLE env config, for OIDC issuer explicit mock enable
+- Updated dependencies [359000c]
+  - @io-ipatente/core@0.4.3
+
+## 0.7.0
+
+### Minor Changes
+
+- df1a3d5: Add floating button component
+
+### Patch Changes
+
+- Updated dependencies [df1a3d5]
+- Updated dependencies [fafc2a6]
+  - @io-ipatente/ui@0.5.0
+  - @io-ipatente/core@0.4.2
+
 ## 0.6.2
 
 ### Patch Changes

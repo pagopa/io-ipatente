@@ -20,6 +20,7 @@ import IconDocumentText from "./svg/IconDocumentText";
 import IconDriving from "./svg/IconDriving";
 import IconEletricMoped from "./svg/IconEletricMoped";
 import IconError from "./svg/IconError";
+import IconExpandUp from "./svg/IconExpandUp";
 import IconFerryBoat from "./svg/IconFerryBoat";
 import IconForbidden from "./svg/IconForbidden";
 import IconGasStation from "./svg/IconGasStation";
@@ -68,6 +69,7 @@ export const Icons = {
   driving: IconDriving,
   eletricMoped: IconEletricMoped,
   error: IconError,
+  expandUp: IconExpandUp,
   ferryBoat: IconFerryBoat,
   forbidden: IconForbidden,
   gasStation: IconGasStation,

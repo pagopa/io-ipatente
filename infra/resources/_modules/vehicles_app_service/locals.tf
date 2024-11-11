@@ -6,7 +6,8 @@ locals {
       NODE_ENV                 = "production"
       WEBSITE_RUN_FROM_PACKAGE = "1"
 
-      AUTH_SECRET = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=AUTH-SECRET)"
+      AUTH_SECRET     = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=AUTH-SECRET)"
+      AUTH_TRUST_HOST = true
 
       OIDC_ISSUER_URL          = "https://io-p-itn-ipatente-vehicles-app-01.azurewebsites.net/api/auth/mocks/oidc"
       OIDC_CLIENT_ID           = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-CLIENT-ID)"
@@ -15,6 +16,7 @@ locals {
 
       OIDC_MOCK_JWT_PRIVATE_KEY = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-JWT-PRIVATE-KEY)"
       OIDC_MOCK_JWT_PUBLIC_KEY  = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-JWT-PUBLIC-KEY)"
+      OIDC_MOCK_FORCED_ENABLE   = true
 
       NEXT_PUBLIC_IS_MSW_ENABLED  = true
       NEXT_PUBLIC_BFF_API_MOCKING = true

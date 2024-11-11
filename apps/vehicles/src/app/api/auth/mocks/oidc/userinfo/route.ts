@@ -3,7 +3,8 @@ import { getConfiguration } from "@io-ipatente/core";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  if (getConfiguration().IS_PRODUCTION) return getMockForbiddenResponse();
+  if (!getConfiguration().OIDC_MOCK_FORCED_ENABLE)
+    return getMockForbiddenResponse();
 
   return NextResponse.json(
     {

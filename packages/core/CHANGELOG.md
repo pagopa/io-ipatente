@@ -1,5 +1,17 @@
 # @io-ipatente/core
 
+## 0.4.3
+
+### Patch Changes
+
+- 359000c: Added OIDC_MOCK_FORCED_ENABLE env config, for OIDC issuer explicit mock enable
+
+## 0.4.2
+
+### Patch Changes
+
+- fafc2a6: Remove trustHost config, now this is handled through ENV conf
+
 ## 0.4.1
 
 ### Patch Changes
