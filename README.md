@@ -7,8 +7,10 @@ The project `io-ipatente` aims to provide, through [App IO](https://io.italia.it
 ### 🚧 Work in Progress 🚧
 This repository contains the code of the iPatente services that will be exposed as web applications through the App IO *services*.
 
-1. `apps/vehicles` that exposes the web application for "I tuoi veicoli" service.
-2. `apps/prj-name` tbd
+1. `apps/licences` that exposes the web application for "Le mie patenti" service.
+2. `apps/payments` that exposes the web application for "I miei pagamenti" service.
+3. `apps/practices` that exposes the web application for "Le mie pratiche" service.
+4. `apps/vehicles` that exposes the web application for "I miei veicoli" service.
 
 These web applications are all [NextJS](https://nextjs.org/) projects.
 

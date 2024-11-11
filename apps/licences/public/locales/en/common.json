@@ -1,0 +1,51 @@
+{
+  "app": {
+    "title": "My licences",
+    "description": "My licences"
+  },
+  "topBar": {
+    "product": {
+      "name": "The driver's portal"
+    },
+    "assistance": "Assistance"
+  },
+  "licences": {
+    "title": "My licences",
+    "description": "Registered licences",
+    "defaultLabel": "Licence",
+    "empty": "There are no registered licences"
+  },
+  "licenceDetails": {
+    "title": "Licence details",
+    "breadcrumbs": {
+      "licences": "My licences",
+      "licenceDetail": "Licence detail"
+    },
+    "info": {
+      "title": "Licence detail",
+      "number": "Licence number"
+    }
+  },
+  "licence": {},
+  "welcome": "Welcome",
+  "assistance": {
+    "title": "Assistenza",
+    "description": "Se hai bisogno di supporto, contatta il servizio di assistenza.",
+    "back": "Back",
+    "info": {
+      "title": "Assistenza sul servizi digitali",
+      "phone": "800 23 23 23",
+      "description": "Attivo dal lunedì al venerdì dalle 8:00 alle 20:00 il sabato dalle 8:00 alle 14:00"
+    }
+  },
+  "failure": {
+    "generic": {
+      "title": "Qualcosa è andato storto",
+      "description": "Si è verificato un errore imprevisto",
+      "retry": "Ricarica la pagina"
+    },
+    "expiredSession": {
+      "title": "La tua session è scaduta"
+    }
+  }
+}
