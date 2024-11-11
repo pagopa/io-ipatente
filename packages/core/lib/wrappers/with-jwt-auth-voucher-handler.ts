@@ -1,29 +1,29 @@
-import { Voucher } from "@io-ipatente/core";
-import { NextRequest, NextResponse } from "next/server";
-import { User } from "next-auth";
+import { NextResponse } from "next/server";
+import { NextAuthResult, User } from "next-auth";
 
+import { Voucher } from "../interop/voucher";
 import { withJWTAuthHandler } from "./with-jwt-auth-handler";
 import { withVoucherHandler } from "./with-voucher-handler";
 
+type AuthParams = Parameters<NextAuthResult["auth"]>;
+
 export const withJWTAuthAndVoucherHandler = (
   handler: (
-    nextRequest: NextRequest,
+    request: Request,
     context: {
       additionalDataJWS: string;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      params: any;
       user: User;
       voucher: Voucher;
     },
   ) => Promise<NextResponse> | Promise<Response>,
-) =>
-  withJWTAuthHandler(async (nextRequest, jwtContext) =>
+): AuthParams[0] =>
+  withJWTAuthHandler((request, jwtContext) =>
     withVoucherHandler(
-      async (nextRequest, voucherContext) =>
-        handler(nextRequest, {
+      (request, voucherContext) =>
+        handler(request, {
           ...jwtContext,
           ...voucherContext,
         }),
       jwtContext.user.fiscalCode,
-    )(nextRequest, jwtContext),
+    )(request),
   );

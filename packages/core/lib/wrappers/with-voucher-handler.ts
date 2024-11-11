@@ -1,15 +1,12 @@
-import { getConfiguration } from "@io-ipatente/core";
-import {
-  Voucher,
-  generateClientAssertion,
-  requestVoucher,
-} from "@io-ipatente/core";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
+import { getConfiguration } from "../config";
+import { generateClientAssertion } from "../interop/client-assertion";
+import { Voucher, requestVoucher } from "../interop/voucher";
 import {
   handleInternalErrorResponse,
   handleUnauthorizedErrorResponse,
-} from "./errors";
+} from "../utils/errors";
 
 const {
   INTEROP_AUTH_SERVER_ENDPOINT_URL,
@@ -28,16 +25,15 @@ const {
 export const withVoucherHandler =
   (
     handler: (
-      nextRequest: NextRequest,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      context: { additionalDataJWS: string; params: any; voucher: Voucher },
+      request: Request,
+      context: {
+        additionalDataJWS: string;
+        voucher: Voucher;
+      },
     ) => Promise<NextResponse> | Promise<Response>,
     fiscalCode: string,
   ) =>
-  async (
-    nextRequest: NextRequest,
-    { params }: { params: Record<string, unknown> },
-  ) => {
+  async (request: Request) => {
     try {
       const clientAssertionResult = generateClientAssertion({
         additionalData: {
@@ -75,9 +71,8 @@ export const withVoucherHandler =
         return handleUnauthorizedErrorResponse("No voucher provided");
       }
 
-      return handler(nextRequest, {
+      return handler(request, {
         additionalDataJWS: clientAssertionResult.additionalDataJWS,
-        params,
         voucher,
       });
     } catch (error) {

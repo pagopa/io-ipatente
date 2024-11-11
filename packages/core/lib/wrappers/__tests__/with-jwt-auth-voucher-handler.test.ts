@@ -1,8 +1,8 @@
-import { Voucher } from "@io-ipatente/core";
 import { NextRequest, NextResponse } from "next/server";
+import { User } from "next-auth";
 import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { CustomUser } from "../../../../types/next-auth";
+import { Voucher } from "../../interop/voucher";
 import { withJWTAuthAndVoucherHandler } from "../with-jwt-auth-voucher-handler";
 
 vi.mock("../with-jwt-auth-handler", () => ({ withJWTAuthHandler }));
@@ -18,7 +18,7 @@ const { withVoucherHandler } = vi.hoisted(() => ({
 
 const mockHandler = vi.fn(async () => NextResponse.json({ success: true }));
 
-const mockUser: CustomUser = {
+const mockUser: User = {
   familyName: "aFamilyName",
   fiscalCode: "aFiscalCode",
   givenName: "aGivenName",
@@ -29,17 +29,19 @@ const mockVoucher: Voucher = {
   token_type: "Bearer",
 };
 const mockAdditionalDataJWS = "anAdditionalDataJWS";
-const mockNextRequest = {} as NextRequest;
-const mockParams = { param1: "value1" };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const mockNextRequest = {} as any;
 
 beforeEach(() => {
   vi.clearAllMocks();
   (withJWTAuthHandler as Mock).mockImplementation(
-    (handler) => async (req, context) =>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (handler) => async (req: NextRequest, context: any) =>
       handler(req, { ...context, user: mockUser }),
   );
   (withVoucherHandler as Mock).mockImplementation(
-    (handler) => async (req, context) =>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (handler) => async (req: NextRequest, context: any) =>
       handler(req, {
         ...context,
         additionalDataJWS: mockAdditionalDataJWS,
@@ -50,16 +52,13 @@ beforeEach(() => {
 
 describe("withJWTAndVoucherHandler", () => {
   it("should call handler with user and voucher context", async () => {
-    const response = await withJWTAuthAndVoucherHandler(mockHandler)(
+    const response = (await withJWTAuthAndVoucherHandler(mockHandler)(
       mockNextRequest,
-      {
-        params: mockParams,
-      },
-    );
+      {},
+    )) as Response;
 
     expect(mockHandler).toHaveBeenCalledWith(mockNextRequest, {
       additionalDataJWS: mockAdditionalDataJWS,
-      params: mockParams,
       user: mockUser,
       voucher: mockVoucher,
     });
@@ -77,12 +76,10 @@ describe("withJWTAndVoucherHandler", () => {
         ),
     );
 
-    const response = await withJWTAuthAndVoucherHandler(mockHandler)(
+    const response = (await withJWTAuthAndVoucherHandler(mockHandler)(
       mockNextRequest,
-      {
-        params: mockParams,
-      },
-    );
+      {},
+    )) as Response;
 
     expect(mockHandler).not.toHaveBeenCalled();
     expect(response.status).toBe(401);
@@ -97,12 +94,10 @@ describe("withJWTAndVoucherHandler", () => {
         NextResponse.json({ error: "No voucher provided" }, { status: 401 }),
     );
 
-    const response = await withJWTAuthAndVoucherHandler(mockHandler)(
+    const response = (await withJWTAuthAndVoucherHandler(mockHandler)(
       mockNextRequest,
-      {
-        params: mockParams,
-      },
-    );
+      {},
+    )) as Response;
 
     expect(mockHandler).not.toHaveBeenCalled();
     expect(response.status).toBe(401);
@@ -117,12 +112,10 @@ describe("withJWTAndVoucherHandler", () => {
         NextResponse.json({ error: "VoucherRequestError" }, { status: 500 }),
     );
 
-    const response = await withJWTAuthAndVoucherHandler(mockHandler)(
+    const response = (await withJWTAuthAndVoucherHandler(mockHandler)(
       mockNextRequest,
-      {
-        params: mockParams,
-      },
-    );
+      {},
+    )) as Response;
 
     expect(mockHandler).not.toHaveBeenCalled();
     expect(response.status).toBe(500);
