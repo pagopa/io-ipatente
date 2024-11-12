@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.4.4
+
+### Patch Changes
+
+- e56699e: App vehicles: bff code refactored into @io-ipatente/core package
+
 ## 0.4.3
 
 ### Patch Changes
