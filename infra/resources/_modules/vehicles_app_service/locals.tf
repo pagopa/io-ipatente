@@ -8,7 +8,7 @@ locals {
 
       AUTH_SECRET     = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=AUTH-SECRET)"
       AUTH_TRUST_HOST = true
-      AUT_URL         = "https://io-p-itn-ipatente-vehicles-app-01.azurewebsites.net/"
+      AUTH_URL        = "https://io-p-itn-ipatente-vehicles-app-01.azurewebsites.net/"
 
       OIDC_ISSUER_URL          = "https://io-p-itn-ipatente-vehicles-app-01.azurewebsites.net/api/auth/mocks/oidc"
       OIDC_CLIENT_ID           = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-CLIENT-ID)"
