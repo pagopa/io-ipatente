@@ -6,7 +6,8 @@ import { HTTP_STATUS_UNAUTHORIZED } from "../../utils/constants";
 import { handleUnauthorizedErrorResponse } from "../../utils/errors";
 import { withJWTAuthHandler } from "../with-jwt-auth-handler";
 
-// Mock delle dipendenze
+type NextAuthRequest = Parameters<ReturnType<typeof withJWTAuthHandler>>[0];
+
 vi.mock("next-auth", () => ({
   default: vi.fn(),
 }));
@@ -26,9 +27,7 @@ vi.mock("../../utils/errors", async () => {
 
 describe("withJWTAuthHandler", () => {
   it("should return unauthorized error response if no session is provided", async () => {
-    // TODO: fix type
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const mockNextAuthRequest: any = {};
+    const mockNextAuthRequest = {} as NextAuthRequest;
     const mockContext = {};
 
     const mockHandler = vi.fn();
@@ -51,11 +50,10 @@ describe("withJWTAuthHandler", () => {
         givenName: "aGivenName",
       },
     };
-    // TODO: fix type
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const mockNextAuthRequest: any = {
+
+    const mockNextAuthRequest = {
       auth: mockSession,
-    };
+    } as NextAuthRequest;
     const mockContext = {};
 
     const mockHandler = vi

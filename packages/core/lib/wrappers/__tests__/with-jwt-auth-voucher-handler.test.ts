@@ -5,6 +5,13 @@ import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
 import { Voucher } from "../../interop/voucher";
 import { withJWTAuthAndVoucherHandler } from "../with-jwt-auth-voucher-handler";
 
+type WithJWTAuthAndVoucherHandlerParameters = Parameters<
+  ReturnType<typeof withJWTAuthAndVoucherHandler>
+>;
+
+type NextAuthRequest = WithJWTAuthAndVoucherHandlerParameters[0];
+type Context = WithJWTAuthAndVoucherHandlerParameters[1];
+
 vi.mock("../with-jwt-auth-handler", () => ({ withJWTAuthHandler }));
 vi.mock("../with-voucher-handler", () => ({ withVoucherHandler }));
 
@@ -29,19 +36,17 @@ const mockVoucher: Voucher = {
   token_type: "Bearer",
 };
 const mockAdditionalDataJWS = "anAdditionalDataJWS";
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const mockNextRequest = {} as any;
+
+const mockNextRequest = {} as NextAuthRequest;
 
 beforeEach(() => {
   vi.clearAllMocks();
   (withJWTAuthHandler as Mock).mockImplementation(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (handler) => async (req: NextRequest, context: any) =>
+    (handler) => async (req: NextRequest, context: Context) =>
       handler(req, { ...context, user: mockUser }),
   );
   (withVoucherHandler as Mock).mockImplementation(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (handler) => async (req: NextRequest, context: any) =>
+    (handler) => async (req: NextRequest, context: Context) =>
       handler(req, {
         ...context,
         additionalDataJWS: mockAdditionalDataJWS,
