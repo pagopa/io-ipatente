@@ -1,15 +1,25 @@
-/**
- * https://nextjs.org/docs/app/building-your-application/optimizing/open-telemetry
- * https://pagopa.atlassian.net/wiki/spaces/DevEx/pages/1086619751/Azure+e+tracing+per+applicativi+NodeJS
- */
+import type { SpanExporter } from "@opentelemetry/sdk-trace-base";
+
+import { registerOTel } from "@vercel/otel";
+
 export async function register() {
   if (process.env.APP_ENV === "production") {
+    let traceExporter: SpanExporter | undefined;
+
     if (process.env.NEXT_RUNTIME === "nodejs") {
-      await import("./instrumentation.node");
-      console.info("Instrumentation for Node.js runtime is set!");
+      const { AzureMonitorTraceExporter } = await import(
+        "@azure/monitor-opentelemetry-exporter"
+      );
+      traceExporter = new AzureMonitorTraceExporter({
+        connectionString: process.env["AI_SDK_CONNECTION_STRING"],
+        // you can read from ENV if you prefer to
+        // connectionString: process.env.APP_INSIGHTS_CONNECTION_STRING,
+      });
     }
-    if (process.env.NEXT_RUNTIME === "edge") {
-      console.info("Currently no edge instrumentations is set!");
-    }
+
+    registerOTel({
+      serviceName: "io-p-itn-ipatente-licences-app-01",
+      traceExporter,
+    });
   }
 }

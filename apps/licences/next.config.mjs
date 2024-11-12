@@ -33,6 +33,11 @@ const nextConfig = {
         ...config.resolve.alias,
         "msw/browser": false,
       };
+      config.resolve.fallback ??= {};
+      config.resolve.fallback.os = false;
+      config.resolve.fallback.fs = false;
+      config.resolve.fallback.child_process = false;
+      config.resolve.fallback.path = false;
     } else {
       config.resolve.alias = {
         ...config.resolve.alias,
