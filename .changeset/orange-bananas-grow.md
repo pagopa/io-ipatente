@@ -1,5 +1,5 @@
 ---
-"@io-ipatente/core": minor
+"@io-ipatente/core": patch
 ---
 
 fix test types
