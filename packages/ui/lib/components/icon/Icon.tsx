@@ -27,6 +27,7 @@ import IconGasStation from "./svg/IconGasStation";
 import IconGasStationOff from "./svg/IconGasStationOff";
 import IconHambulance from "./svg/IconHambulance";
 import IconInfo from "./svg/IconInfo";
+import IconLicenceCard from "./svg/IconLicenceCard";
 import IconMetro from "./svg/IconMetro";
 import IconMoped from "./svg/IconMoped";
 import IconMotor from "./svg/IconMotor";
@@ -76,6 +77,7 @@ export const Icons = {
   gasStationOff: IconGasStationOff,
   hambulance: IconHambulance,
   info: IconInfo,
+  licenceCard: IconLicenceCard,
   metro: IconMetro,
   moped: IconMoped,
   motor: IconMotor,
