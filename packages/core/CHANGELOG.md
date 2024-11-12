@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.4.5
+
+### Patch Changes
+
+- 1ee2fcb: fix test types
+
 ## 0.4.4
 
 ### Patch Changes
