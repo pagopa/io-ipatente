@@ -7,4 +7,11 @@ import { setupServer } from "msw/node";
 
 import { getHandlers } from "./handlers";
 
-export const server = setupServer(...getHandlers());
+const server = setupServer(...getHandlers());
+
+// Disabilita l'avviso per le richieste non gestite
+server.events.on("request:unhandled", () => {
+  // Intenzionalmente vuoto per sopprimere l'avviso
+});
+
+export { server };
