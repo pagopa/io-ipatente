@@ -121,4 +121,5 @@ const EXTRA_MASS_ICON_MAP: Record<ExtraMassaEnum, ReactNode> = {
     <Icon fontSize="large" name="warning" />
   ),
   [ExtraMassaEnum.Enum.EXTRAM_MSG_005]: <Icon fontSize="large" name="error" />,
+  [ExtraMassaEnum.Enum.EXTRAM_MSG_006]: <Icon fontSize="large" name="error" />,
 };
