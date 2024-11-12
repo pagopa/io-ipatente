@@ -27,7 +27,7 @@ export const GET = auth(
         const vehicles = z.array(Veicolo).safeParse(res);
 
         if (vehicles.success) {
-          console.log("test-log, to check ai otel working", vehicles.data);
+          console.log("test-log, to check ai otel working");
           return NextResponse.json(vehicles.data);
         }
 
