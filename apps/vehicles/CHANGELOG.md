@@ -1,5 +1,15 @@
 # vehicles
 
+## 0.7.3
+
+### Patch Changes
+
+- e56699e: App vehicles: bff code refactored into @io-ipatente/core package
+- e4f2a25: Register OpenTelementry exporter to Azure Monitor using @vercel/otel
+- a7a7641: wrap the select function in useCallback
+- Updated dependencies [e56699e]
+  - @io-ipatente/core@0.4.4
+
 ## 0.7.2
 
 ### Patch Changes
