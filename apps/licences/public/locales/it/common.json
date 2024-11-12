@@ -1,0 +1,51 @@
+{
+  "app": {
+    "title": "Le mie patenti",
+    "description": "Le mie patenti"
+  },
+  "topBar": {
+    "product": {
+      "name": "Il portale dell'automobilista"
+    },
+    "assistance": "Assistenza"
+  },
+  "licences": {
+    "title": "Le mie patenti",
+    "description": "Di seguito trovi tutte le tue patenti",
+    "defaultLabel": "Patente",
+    "empty": "Non sono presenti patenti registrate"
+  },
+  "licenceDetails": {
+    "title": "Dettaglio Patente",
+    "breadcrumbs": {
+      "licences": "Le mie patenti",
+      "licenceDetail": "Dettaglio patente"
+    },
+    "info": {
+      "title": "Dettaglio patente",
+      "number": "Numero patente"
+    }
+  },
+  "licence": {},
+  "welcome": "Benvenuto/a",
+  "assistance": {
+    "title": "Assistenza",
+    "description": "Se hai bisogno di supporto, contatta il servizio di assistenza.",
+    "back": "Indietro",
+    "info": {
+      "title": "Assistenza sul servizi digitali",
+      "phone": "800 23 23 23",
+      "description": "Attivo dal lunedì al venerdì dalle 8:00 alle 20:00 il sabato dalle 8:00 alle 14:00"
+    }
+  },
+  "failure": {
+    "generic": {
+      "title": "Qualcosa è andato storto",
+      "description": "Si è verificato un errore imprevisto",
+      "retry": "Ricarica la pagina"
+    },
+    "expiredSession": {
+      "title": "La tua session è scaduta"
+    }
+  }
+}

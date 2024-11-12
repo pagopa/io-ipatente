@@ -1,0 +1,174 @@
+openapi: 3.0.0
+info:
+  title: Punti Patente API
+  description: Specifica delle API del backend esterno di DG MOT per la funzionalità **Le mie patenti**.
+  version: 1.0.0
+servers:
+  - url: https://gw-coll.servizidt.it/rest/in/MCTC/LeMiePatenti_AppIO/v1/
+paths:
+  /inte/patenti:
+    get:
+      summary: Ottiene i dati dei punti patente per un utente
+      operationId: getPuntiPatente
+      responses:
+        200:
+          description: Dati dei punti patente restituiti con successo
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Patenti"
+        400:
+          description: Badrequest
+        401:
+          description: unauthorized
+        403:
+          description: forbidden
+        404:
+          description: notfound
+        500:
+          description: Internal server error
+
+components:
+  schemas:
+    Patenti:
+      type: object
+      required:
+        - anagrafica
+        - datiPatente
+      properties:
+        anagrafica:
+          $ref: "#/components/schemas/Anagrafica"
+        datiPatente:
+          type: array
+          description: Elenco dei dati relativi alla patente
+          items:
+            $ref: "#/components/schemas/DatiPatente"
+        datiPatenteCqc:
+          type: array
+          description: Elenco dei dati relativi alla patente CQC (se presente)
+          items:
+            $ref: "#/components/schemas/DatiPatente"
+    Anagrafica:
+      type: object
+      required:
+        - progressivoPosizioneAnagrafica
+      properties:
+        codiceFiscale:
+          type: string
+          description: Codice fiscale dell'utente
+          example: BRTFBA77R30G273T
+        progressivoPosizioneAnagrafica:
+          type: integer
+          description: Progressivo posizione anagrafica
+          example: 42517799
+        descrizioneCognome:
+          type: string
+          description: Cognome dell'utente
+          example: BARTOLONE
+        descrizioneNome:
+          type: string
+          description: Nome dell'utente
+          example: FABIO
+        dataNascita:
+          type: string
+          format: date
+          description: Data di nascita dell'utente
+          example: 1977-10-30
+    DatiPatente:
+      type: object
+      properties:
+        dataScadenza:
+          type: string
+          description: Data di scadenza della patente
+          example: 2016-06-20 02:00:00.0
+        numeroPatente:
+          type: string
+          description: Numero della patente
+          example: PA5254373J
+        saldoPunti:
+          type: integer
+          description: Saldo punti attuale della patente
+          example: 28
+        movPat:
+          type: array
+          description: Elenco delle movimentazioni di punti
+          items:
+            $ref: "#/components/schemas/MovPat"
+        tipoCqc:
+          $ref: "#/components/schemas/TipoCqc"
+    MovPat:
+      type: object
+      required:
+        - dataAttribuzionePunteggio
+        - tipoEvento
+      properties:
+        dataAttribuzionePunteggio:
+          type: string
+          description: Data dell'attribuzione del punteggio
+          example: 2011-07-01
+        tipoEvento:
+          $ref: "#/components/schemas/TipoEvento"
+        punteggioEffettuato:
+          type: integer
+          description: Punti associati all'evento
+          example: 2
+        descrizioneEventoPunteggio:
+          type: string
+          description: Descrizione dell'evento associato ai punti
+          example: INCREMENTO ASSENZA VIOLAZIONI
+        codiceVerbale:
+          type: string
+          description: Codice del verbale associato all'evento (se presente)
+        dataEmissioneVerbale:
+          type: string
+          description: Data di emissione del verbale (se presente)
+        descrizioneDenominazioneEnteAccertatore:
+          type: string
+          description: Denominazione dell'ente accertatore (se presente)
+        descrizioneAusiliarioAge:
+          type: string
+          description: Ausiliario accertatore (se presente)
+        descrizioneDenonimazioneEnteAccertatoreEmissione:
+          type: string
+          description: Denominazione ente che ha emesso il verbale (se presente)
+        punteggioNominativo:
+          type: integer
+          description: Punti assegnati al nominativo
+          example: 2
+    TipoEvento:
+      type: object
+      properties:
+        codice:
+          $ref: "#/components/schemas/TipoEventoEnum"
+        descrizione:
+          description: Descrizione del tipo di evento
+          type: string
+    TipoEventoEnum:
+      type: string
+      description: |
+        ### Tipo Evento
+        - "0001" (ATTRIBUZIONE PUNTEGGIO INIZIALE)
+        - "0002" (CORSO DI AGGIORNAMENTO)
+        - "0003" (RIPRISTINO PUNTEGGIO)
+        - "0004" (VERBALE DI VIOLAZIONE)
+        - "0005" (INFRAZIONE VERBALE)
+        - "0006" (BLOCCO REINTEGRO PUNTI)
+      enum: ["0001", "0002", "0003", "0004", "0005", "0006"]
+      example: "0001"
+    TipoCqc:
+      type: object
+      properties:
+        codice:
+          $ref: "#/components/schemas/TipoCqcEnum"
+        descrizione:
+          description: Descrizione del tipo cqc
+          type: string
+    TipoCqcEnum:
+      type: string
+      description: |
+        ### Tipo CQC
+        - "M"  ("MERCI")
+        - "P"  ("PERSONE") 
+        - "MP" ("MERCI E PERSONE")
+      enum: ["M", "P", "MP"]
+      example: "M"
