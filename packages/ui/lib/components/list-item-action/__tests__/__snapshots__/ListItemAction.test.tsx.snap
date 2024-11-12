@@ -151,16 +151,16 @@ exports[`Test ListItemAction Components > Should match the snapshot with badges 
         <div
           class="MuiListItemText-root MuiListItemText-multiline css-konndc-MuiListItemText-root"
         >
-          <span
-            class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
+          <p
+            class="MuiTypography-root MuiTypography-caption-semibold css-37jdci-MuiTypography-root"
           >
             Autoveicolo
-          </span>
-          <h6
-            class="MuiTypography-root MuiTypography-h6 css-14y9ogl-MuiTypography-root"
+          </p>
+          <h5
+            class="MuiTypography-root MuiTypography-h5 css-1jcm1rz-MuiTypography-root"
           >
             FT 561 YC
-          </h6>
+          </h5>
           <div
             class="MuiStack-root css-10k1dl5-MuiStack-root"
           >
@@ -231,16 +231,16 @@ exports[`Test ListItemAction Components > Should match the snapshot with badges 
       <div
         class="MuiListItemText-root MuiListItemText-multiline css-konndc-MuiListItemText-root"
       >
-        <span
-          class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
+        <p
+          class="MuiTypography-root MuiTypography-caption-semibold css-37jdci-MuiTypography-root"
         >
           Autoveicolo
-        </span>
-        <h6
-          class="MuiTypography-root MuiTypography-h6 css-14y9ogl-MuiTypography-root"
+        </p>
+        <h5
+          class="MuiTypography-root MuiTypography-h5 css-1jcm1rz-MuiTypography-root"
         >
           FT 561 YC
-        </h6>
+        </h5>
         <div
           class="MuiStack-root css-10k1dl5-MuiStack-root"
         >
@@ -368,16 +368,16 @@ exports[`Test ListItemAction Components > Should match the snapshot with default
         <div
           class="MuiListItemText-root MuiListItemText-multiline css-konndc-MuiListItemText-root"
         >
-          <span
-            class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
+          <p
+            class="MuiTypography-root MuiTypography-caption-semibold css-37jdci-MuiTypography-root"
           >
             Autoveicolo
-          </span>
-          <h6
-            class="MuiTypography-root MuiTypography-h6 css-14y9ogl-MuiTypography-root"
+          </p>
+          <h5
+            class="MuiTypography-root MuiTypography-h5 css-1jcm1rz-MuiTypography-root"
           >
             FT 561 YC
-          </h6>
+          </h5>
           <div
             class="MuiStack-root css-10k1dl5-MuiStack-root"
           />
@@ -427,16 +427,16 @@ exports[`Test ListItemAction Components > Should match the snapshot with default
       <div
         class="MuiListItemText-root MuiListItemText-multiline css-konndc-MuiListItemText-root"
       >
-        <span
-          class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
+        <p
+          class="MuiTypography-root MuiTypography-caption-semibold css-37jdci-MuiTypography-root"
         >
           Autoveicolo
-        </span>
-        <h6
-          class="MuiTypography-root MuiTypography-h6 css-14y9ogl-MuiTypography-root"
+        </p>
+        <h5
+          class="MuiTypography-root MuiTypography-h5 css-1jcm1rz-MuiTypography-root"
         >
           FT 561 YC
-        </h6>
+        </h5>
         <div
           class="MuiStack-root css-10k1dl5-MuiStack-root"
         />
