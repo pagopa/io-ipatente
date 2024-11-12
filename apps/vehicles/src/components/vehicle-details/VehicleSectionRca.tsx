@@ -21,7 +21,7 @@ export const VehicleSectionRca = ({ rca }: VehicleSectionRcaProps) => {
           textAlign="center"
           variant="body2"
         >
-          {t("vehicleDetails.rca.notFound")}
+          {t("vehicleDetails.rca.empty")}
         </Typography>
       );
     }

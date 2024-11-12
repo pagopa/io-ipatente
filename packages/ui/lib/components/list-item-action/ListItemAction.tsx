@@ -53,10 +53,14 @@ export const ListItemAction = (props: ListItemActionProps) => {
       </ListItemIcon>
       <ListItemText
         disableTypography
-        primary={<Typography variant="caption">{label}</Typography>}
+        primary={
+          <Typography component={"p"} variant="caption-semibold">
+            {label}
+          </Typography>
+        }
         secondary={
           <>
-            <Typography mb={1} variant="h6">
+            <Typography mb={1} variant="h5">
               {value}
             </Typography>
             <Stack direction="row" sx={{ flexWrap: "wrap", gap: 1 }} useFlexGap>

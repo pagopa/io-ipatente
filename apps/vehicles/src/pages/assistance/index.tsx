@@ -9,6 +9,7 @@ import { GetLayoutProps } from "../_app";
 
 export default function Assistance() {
   const { t } = useTranslation();
+
   return (
     <Stack>
       <AssistanceInfo
@@ -26,7 +27,6 @@ Assistance.getLayout = ({ page, router, t }: GetLayoutProps) => (
       label: t("assistance.back"),
       onBackClick: () => router.back(),
     }}
-    description={t("assistance.description")}
     title={t("assistance.title")}
   >
     {page}

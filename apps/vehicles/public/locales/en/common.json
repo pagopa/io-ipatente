@@ -11,11 +11,10 @@
   },
   "vehicles": {
     "title": "My vehicles",
-    "description": "Registered vehicles",
     "defaultLabel": "Vehicle",
     "rca": "RCA",
     "inspection": "Inspection",
-    "empty": "There are no registered vehicles"
+    "empty": "Non sono presenti veicoli a te intestati"
   },
   "vehicleDetails": {
     "title": "Vehicle details",
@@ -24,7 +23,7 @@
       "vehicleDetail": "Vehicle detail"
     },
     "info": {
-      "title": "Dettaglio veicolo",
+      "title": "Dettagli veicolo",
       "plate": "Targa",
       "type": "Tipologia veicolo",
       "use": "Uso",
@@ -37,16 +36,16 @@
       "title": "Copertura RCA",
       "valid": "Valida",
       "expired": "Scaduta",
-      "notFound": "Non sono disponibili dati per questo veicolo.",
+      "empty": "Non sono disponibili dati per questo veicolo.",
       "insuranceGroup": "Gruppo assicurativo",
       "dueDate": "Data fine copertura",
       "info": "La data di fine assicurazione è comprensiva del <strong>periodo di comporto</strong>"
     },
     "inspections": {
       "title": "Storico revisioni",
-      "date": "Data revisione: ",
-      "licensePlate": "Targa alla revisione: ",
-      "kilometersDetected": "Km rilevati: ",
+      "date": "Data revisione:",
+      "result": "Esito revisione:",
+      "kilometersDetected": "Km rilevati:",
       "empty": "Non sono presenti revisioni da visualizzare per questo veicolo."
     }
   },
@@ -90,13 +89,11 @@
     "EXTRAM_MSG_002": "Non autorizzato alla guida",
     "EXTRAM_MSG_003": "Dato non verificabile"
   },
-  "welcome": "Welcome",
   "assistance": {
     "title": "Assistenza",
-    "description": "Se hai bisogno di supporto, contatta il servizio di assistenza.",
     "back": "Back",
     "info": {
-      "title": "Assistenza sul servizi digitali",
+      "title": "Assistenza sui servizi digitali de il Portale dell’Automobilista",
       "phone": "800 23 23 23",
       "description": "Attivo dal lunedì al venerdì dalle 8:00 alle 20:00 il sabato dalle 8:00 alle 14:00"
     }
@@ -104,8 +101,8 @@
   "failure": {
     "generic": {
       "title": "Qualcosa è andato storto",
-      "description": "Si è verificato un errore imprevisto",
-      "retry": "Ricarica la pagina"
+      "description": "Al momento il servizio non è disponibile.",
+      "retry": "Riprova"
     },
     "expiredSession": {
       "title": "La tua session è scaduta"
