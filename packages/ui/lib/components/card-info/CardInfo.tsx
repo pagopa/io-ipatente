@@ -33,13 +33,12 @@ export interface CardInfoItem {
   /** Item icon */
   icon?: ReactNode;
   /** Item label */
-  label: string;
+  label: ReactNode | string;
   /** Item value */
   value: ReactNode | string;
 }
 
 const DATA_TEST_ID_PREFIX = "io-ipatente-card-info";
-const TEXT_SECONDARY_COLOR = "text.secondary";
 
 /** Basic info card component */
 export const CardInfo = ({
@@ -94,19 +93,21 @@ const Items = ({ items }: CardInfoItemsProps) => (
           <ListItemText
             disableTypography
             primary={
-              <Typography
-                color={TEXT_SECONDARY_COLOR}
-                data-testid={`${DATA_TEST_ID_PREFIX}-item-${index}-label`}
-                fontSize={18}
-                fontWeight={600}
-              >
-                {item.label}
-              </Typography>
+              typeof item.label === "string" ? (
+                <Typography
+                  color="text.secondary"
+                  data-testid={`${DATA_TEST_ID_PREFIX}-item-${index}-label`}
+                  fontSize={18}
+                  fontWeight={600}
+                >
+                  {item.label}
+                </Typography>
+              ) : (
+                item.label
+              )
             }
             secondary={
-              React.isValidElement(item.value) ? (
-                item.value
-              ) : (
+              typeof item.value === "string" ? (
                 <Stack
                   alignItems="center"
                   direction="row"
@@ -121,13 +122,15 @@ const Items = ({ items }: CardInfoItemsProps) => (
                   </Typography>
                   {item?.icon}
                 </Stack>
+              ) : (
+                item.value
               )
             }
           />
         </ListItem>
         {item.footerText && (
           <Typography
-            color={TEXT_SECONDARY_COLOR}
+            color="text.secondary"
             dangerouslySetInnerHTML={{
               __html: item.footerText,
             }}
