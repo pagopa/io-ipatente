@@ -4,7 +4,7 @@ import { retrieveVehicles } from "@/lib/bff/business";
 import {
   handleBadRequestErrorResponse,
   handleInternalErrorResponse,
-  withApiKeyAndVoucherHandler,
+  withTestUserAndVoucherInternalHandler
 } from "@io-ipatente/core";
 import { ZodiosError } from "@zodios/core";
 import { AxiosError } from "axios";
@@ -15,7 +15,7 @@ import { z } from "zod";
  * @description Retrieve user vehicles
  */
 export const GET = auth(
-  withApiKeyAndVoucherHandler(
+  withTestUserAndVoucherInternalHandler(
     async (_request: Request, { additionalDataJWS, testUser, voucher }) => {
       try {
         const res = await retrieveVehicles(
