@@ -98,6 +98,7 @@ export const extraMassByCode: {
   [ExtraMassaEnum.Enum.EXTRAM_MSG_003]: "extraMass.EXTRAM_MSG_003",
   [ExtraMassaEnum.Enum.EXTRAM_MSG_004]: "extraMass.EXTRAM_MSG_004",
   [ExtraMassaEnum.Enum.EXTRAM_MSG_005]: "extraMass.EXTRAM_MSG_005",
+  [ExtraMassaEnum.Enum.EXTRAM_MSG_006]: "extraMass.EXTRAM_MSG_006",
 };
 
 export const noviceByCode: {
