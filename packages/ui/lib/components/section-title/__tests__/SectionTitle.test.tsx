@@ -13,4 +13,9 @@ describe("Test SectionTitle Components", () => {
     const comp = render(<SectionTitle {...defaultProps} />);
     expect(comp).toMatchSnapshot();
   });
+
+  it("Should match the snapshot for loading", () => {
+    const comp = render(<SectionTitle isLoading={true} />);
+    expect(comp).toMatchSnapshot();
+  });
 });

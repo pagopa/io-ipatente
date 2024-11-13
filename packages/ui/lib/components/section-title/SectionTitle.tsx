@@ -1,16 +1,30 @@
-import { Avatar, Stack, Typography } from "@mui/material";
+import { Avatar, Skeleton, Stack, Typography } from "@mui/material";
 import { alpha, useTheme } from "@mui/material/styles";
 import { memo } from "react";
 
 import { Icon, IconType } from "../icon";
 
-export interface SectionTitleProps {
+export interface SectionTitleBaseProps {
   icon: IconType;
   label: string;
 }
 
-export const SectionTitle = memo(({ icon, label }: SectionTitleProps) => {
+export type SectionTitleProps =
+  | {
+      isLoading: true;
+    }
+  | ({
+      isLoading?: false;
+    } & SectionTitleBaseProps);
+
+export const SectionTitle = memo((props: SectionTitleProps) => {
   const theme = useTheme();
+
+  if (props.isLoading) {
+    return <SectionTitleSkeleton />;
+  }
+
+  const { icon, label } = props;
 
   // TODO: Check second color and move to theme
   const BG_LINEAR_GRADIENT = `linear-gradient(180deg, ${alpha(
@@ -34,3 +48,10 @@ export const SectionTitle = memo(({ icon, label }: SectionTitleProps) => {
     </Stack>
   );
 });
+
+const SectionTitleSkeleton = () => (
+  <Stack alignItems="center" direction="row" gap={1}>
+    <Skeleton height={56} variant="circular" width={56} />
+    <Skeleton height={32} width="20%" />
+  </Stack>
+);
