@@ -19,7 +19,7 @@ export default function LicenceDetails() {
 
   const selectLicenseByLicenseNumber = useCallback(
     (data: Patenti) =>
-      data.datiPatente.find(
+      [...data.datiPatente, ...(data.datiPatenteCqc || [])].find(
         (license) => license.numeroPatente === licenseNumber,
       ),
     [licenseNumber],
@@ -37,7 +37,7 @@ export default function LicenceDetails() {
 
   return (
     <>
-      <SectionTitle icon="driveLicense" label={data.numeroPatente ?? ""} />
+      <SectionTitle icon="driveLicense" label={data.numeroPatente} />
       <Stack my={3} spacing={2}>
         <LicenceSectionDetails data={data} />
         {/** TODO: Storico punti */}
