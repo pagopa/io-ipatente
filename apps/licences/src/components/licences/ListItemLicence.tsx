@@ -37,7 +37,7 @@ export const ListItemLicence = ({
       badges={badges}
       icon="car1"
       label={label}
-      onClick={() => onClick(numeroPatente as string)}
+      onClick={() => onClick(numeroPatente)}
       value={numeroPatente}
     />
   );
