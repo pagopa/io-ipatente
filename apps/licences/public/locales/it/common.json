@@ -23,6 +23,13 @@
     "info": {
       "title": "Dettaglio patente",
       "number": "Numero patente"
+    },
+    "history": {
+      "columns": {
+        "detail": "Dettaglio",
+        "variation": "Variazione Punti"
+      },
+      "title": "Storico punti"
     }
   },
   "licence": {},

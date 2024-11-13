@@ -2,17 +2,25 @@ import AppLayout from "@/components/layouts/AppLayout";
 import { LicenceSectionDetails } from "@/components/licence-details/LicenceSectionDetails";
 import { GenericError } from "@/components/shared/GenericError";
 import { useLicences } from "@/hooks/useLicences";
-import { SectionTitle, Table, TableProps } from "@io-ipatente/ui";
+import {
+  CardInfo,
+  Icon,
+  SectionTitle,
+  Table,
+  TableProps,
+} from "@io-ipatente/ui";
 import Stack from "@mui/material/Stack";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 import { GetLayoutProps } from "../_app";
 
 export default function LicenceDetails() {
   const router = useRouter();
+  const { t } = useTranslation();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const licenseNumber = router.query.licenseNumber;
 
@@ -20,6 +28,7 @@ export default function LicenceDetails() {
   const { data, error, isError, isLoading, isRefetching, refetch } =
     useLicences();
 
+  // TODO: check this logic if openApi changes
   const rows = useMemo<TableProps["rows"]>(
     () =>
       (data?.datiPatente ?? []).flatMap(({ movPat }) =>
@@ -39,6 +48,14 @@ export default function LicenceDetails() {
     [data?.datiPatente],
   );
 
+  const columns = useMemo(
+    () => [
+      t("licenceDetails.history.columns.detail"),
+      t("licenceDetails.history.columns.variation"),
+    ],
+    [t],
+  );
+
   if (isLoading || isRefetching) {
     return <Stack my={3}>Loading...</Stack>;
   }
@@ -55,8 +72,11 @@ export default function LicenceDetails() {
       />
       <Stack my={3} spacing={2}>
         <LicenceSectionDetails data={data.datiPatente[0]} />
-        <Table columns={["Dettaglio", "Variazione Punti"]} rows={rows} />
-        {/** TODO: Storico punti */}
+        <CardInfo
+          bottomContent={<Table columns={columns} rows={rows} />}
+          icon={<Icon fontSize="medium" name="documentText" />}
+          title={t("licenceDetails.history.title")}
+        />
       </Stack>
     </>
   );
