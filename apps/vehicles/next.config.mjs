@@ -33,11 +33,12 @@ const nextConfig = {
         ...config.resolve.alias,
         "msw/browser": false,
       };
-      config.resolve.fallback ??= {};
-      config.resolve.fallback.os = false;
-      config.resolve.fallback.fs = false;
-      config.resolve.fallback.child_process = false;
-      config.resolve.fallback.path = false;
+      config.externals = [
+        ...(config.externals || []),
+        "@azure/functions-core",
+        "@opentelemetry/instrumentation",
+        "@opentelemetry/exporter-jaeger",
+      ];
     } else {
       config.resolve.alias = {
         ...config.resolve.alias,

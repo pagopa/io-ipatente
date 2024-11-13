@@ -1,5 +1,15 @@
 # vehicles
 
+## 0.7.5
+
+### Patch Changes
+
+- 27cca97: Revert to ApplicationInsight SDK OTel
+- 050ecb9: Copy review
+- cf878e3: add EXTRAM_MSG_006 code
+- Updated dependencies [050ecb9]
+  - @io-ipatente/ui@0.5.1
+
 ## 0.7.4
 
 ### Patch Changes

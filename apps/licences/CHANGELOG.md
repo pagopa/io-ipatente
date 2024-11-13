@@ -1,5 +1,13 @@
 # io-ipatente-licences
 
+## 0.1.1
+
+### Patch Changes
+
+- 27cca97: Revert to ApplicationInsight SDK OTel
+- Updated dependencies [050ecb9]
+  - @io-ipatente/ui@0.5.1
+
 ## 0.1.0
 
 ### Minor Changes

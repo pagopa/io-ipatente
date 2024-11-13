@@ -1,5 +1,11 @@
 # @io-ipatente/ui
 
+## 0.5.1
+
+### Patch Changes
+
+- 050ecb9: Copy review
+
 ## 0.5.0
 
 ### Minor Changes

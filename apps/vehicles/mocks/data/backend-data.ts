@@ -37,6 +37,11 @@ const extraMassaValues: ExtraMassa[] = [
     descrizione:
       "ERRORE IMPREVISTO, CONTROLLARE IL LOG PER MAGGIORI INFORMAZIONI",
   },
+  {
+    codice: "EXTRAM_MSG_006",
+    descrizione:
+      "Il veicolo non rientra nelle condizioni di cui all'articolo 116, co.3, lett. f), n. 2, cds",
+  },
 ];
 
 const neopatentatiValues: Neopatentati[] = [
