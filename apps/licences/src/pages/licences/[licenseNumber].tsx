@@ -3,11 +3,12 @@ import { LicenceSectionDetails } from "@/components/licence-details/LicenceSecti
 import { GenericError } from "@/components/shared/GenericError";
 import { DatiPatente } from "@/generated/bff-openapi";
 import { useLicences } from "@/hooks/useLicences";
-import { SectionTitle } from "@io-ipatente/ui";
+import { SectionTitle, Table, TableProps } from "@io-ipatente/ui";
 import Stack from "@mui/material/Stack";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useMemo } from "react";
 
 import { GetLayoutProps } from "../_app";
 
@@ -19,6 +20,46 @@ export default function LicenceDetails() {
   // TODO: wrap the select function in useCallback
   const { data, error, isError, isLoading, isRefetching, refetch } =
     useLicences();
+
+  const rows = useMemo<TableProps["rows"]>(
+    () =>
+      (data?.datiPatente ?? []).flatMap(({ movPat }) =>
+        (movPat ?? [])?.map(
+          ({
+            dataAttribuzionePunteggio,
+            descrizioneEventoPunteggio,
+            punteggioNominativo,
+          }) => ({
+            date: dataAttribuzionePunteggio ?? "",
+            detail: descrizioneEventoPunteggio ?? "",
+            key: `${descrizioneEventoPunteggio}-${dataAttribuzionePunteggio}`,
+            variation: punteggioNominativo || 0,
+          }),
+        ),
+      ),
+    [data?.datiPatente],
+  );
+
+  console.log(
+    {
+      dati: data?.datiPatente,
+      res: data?.datiPatente.map(({ movPat }) =>
+        movPat?.map(
+          ({
+            dataAttribuzionePunteggio,
+            descrizioneEventoPunteggio,
+            punteggioEffettuato,
+          }) => ({
+            date: dataAttribuzionePunteggio,
+            detail: descrizioneEventoPunteggio,
+            key: `${descrizioneEventoPunteggio}-${dataAttribuzionePunteggio}`,
+            variation: punteggioEffettuato,
+          }),
+        ),
+      ),
+    },
+    "TEST DATA",
+  );
 
   if (isLoading || isRefetching) {
     return <Stack my={3}>Loading...</Stack>;
@@ -36,6 +77,7 @@ export default function LicenceDetails() {
       />
       <Stack my={3} spacing={2}>
         <LicenceSectionDetails data={data.datiPatente as DatiPatente} />
+        <Table columns={["Dettaglio", "Variazione Punti"]} rows={rows} />
         {/** TODO: Storico punti */}
       </Stack>
     </>
