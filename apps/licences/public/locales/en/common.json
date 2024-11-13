@@ -12,7 +12,11 @@
   "licences": {
     "title": "My licences",
     "defaultLabel": "Licence",
-    "empty": "There are no registered licences"
+    "empty": "There are no registered licences",
+    "driverLicense": "Driver license",
+    "cqcLicense": "CQC {{cqcType}}",
+    "valid": "Valid",
+    "expired": "Expired"
   },
   "licenceDetails": {
     "title": "Licence details",
