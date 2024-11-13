@@ -73,12 +73,7 @@ export default function Vehicles() {
 }
 
 Vehicles.getLayout = ({ page, t }: GetLayoutProps) => (
-  <AppLayout
-    description={t("vehicles.description")}
-    title={t("vehicles.title")}
-  >
-    {page}
-  </AppLayout>
+  <AppLayout title={t("vehicles.title")}>{page}</AppLayout>
 );
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({

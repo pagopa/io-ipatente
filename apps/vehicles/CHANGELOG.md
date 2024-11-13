@@ -1,5 +1,13 @@
 # vehicles
 
+## 0.7.4
+
+### Patch Changes
+
+- d3cb87b: CleanUp OpenTelemetry Configuration
+- Updated dependencies [1ee2fcb]
+  - @io-ipatente/core@0.4.5
+
 ## 0.7.3
 
 ### Patch Changes
