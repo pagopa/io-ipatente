@@ -1,16 +1,13 @@
 import { NextResponse } from "next/server";
 
-// Definisci l'interfaccia per il contesto
-interface ApiKeyContext {
-  apiKey: string;
-  testUser: string;
-}
-
 export const withApiKeyHandler =
   <
     T extends (
       request: Request,
-      context: ApiKeyContext,
+      context: {
+        apiKey: string;
+        testUser: string;
+      },
     ) => Promise<NextResponse> | Promise<Response>,
   >(
     handler: T,
@@ -33,8 +30,8 @@ export const withApiKeyHandler =
 
     if (!testUser || !allowedTestUsers.includes(testUser)) {
       return NextResponse.json(
-        { error: "Unauthorized: Invalid Test User" },
-        { status: 401 },
+        { error: "Forbidden: Invalid Test User" },
+        { status: 403 },
       );
     }
 
