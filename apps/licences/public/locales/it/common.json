@@ -11,7 +11,6 @@
   },
   "licences": {
     "title": "Le mie patenti",
-    "description": "Di seguito trovi tutte le tue patenti",
     "defaultLabel": "Patente",
     "empty": "Non sono presenti patenti registrate"
   },
