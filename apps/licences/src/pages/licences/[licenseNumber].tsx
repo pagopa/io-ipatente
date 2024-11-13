@@ -1,6 +1,7 @@
 import AppLayout from "@/components/layouts/AppLayout";
 import { LicenceSectionDetails } from "@/components/licence-details/LicenceSectionDetails";
 import { GenericError } from "@/components/shared/GenericError";
+import { Patenti } from "@/generated/bff-openapi";
 import { useLicences } from "@/hooks/useLicences";
 import {
   CardInfo,
@@ -14,6 +15,7 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useMemo } from "react";
+import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
 import { GetLayoutProps } from "../_app";
@@ -21,31 +23,35 @@ import { GetLayoutProps } from "../_app";
 export default function LicenceDetails() {
   const router = useRouter();
   const { t } = useTranslation();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
   const licenseNumber = router.query.licenseNumber;
 
-  // TODO: wrap the select function in useCallback
+  const selectLicenseByLicenseNumber = useCallback(
+    (data: Patenti) =>
+      [...data.datiPatente, ...(data.datiPatenteCqc || [])].find(
+        (license) => license.numeroPatente === licenseNumber,
+      ),
+    [licenseNumber],
+  );
   const { data, error, isError, isLoading, isRefetching, refetch } =
-    useLicences();
+    useLicences(selectLicenseByLicenseNumber);
 
   // TODO: check this logic if openApi changes
   const rows = useMemo<TableProps["rows"]>(
     () =>
-      (data?.datiPatente ?? []).flatMap(({ movPat }) =>
-        (movPat ?? [])?.map(
-          ({
-            dataAttribuzionePunteggio,
-            descrizioneEventoPunteggio,
-            punteggioNominativo,
-          }) => ({
-            date: dataAttribuzionePunteggio ?? "",
-            detail: descrizioneEventoPunteggio ?? "",
-            key: `${descrizioneEventoPunteggio}-${dataAttribuzionePunteggio}`,
-            variation: punteggioNominativo || 0,
-          }),
-        ),
+      (data?.movPat || [])?.map(
+        ({
+          dataAttribuzionePunteggio,
+          descrizioneEventoPunteggio,
+          punteggioNominativo,
+        }) => ({
+          date: dataAttribuzionePunteggio ?? "",
+          detail: descrizioneEventoPunteggio ?? "",
+          key: `${descrizioneEventoPunteggio}-${dataAttribuzionePunteggio}`,
+          variation: punteggioNominativo || 0,
+        }),
       ),
-    [data?.datiPatente],
+    [data],
   );
 
   const columns = useMemo(
@@ -66,14 +72,15 @@ export default function LicenceDetails() {
 
   return (
     <>
-      <SectionTitle icon="driving" label={data.datiPatente[0].numeroPatente} />
+      <SectionTitle icon="driveLicense" label={data.numeroPatente} />
       <Stack my={3} spacing={2}>
-        <LicenceSectionDetails data={data.datiPatente[0]} />
+        <LicenceSectionDetails data={data} />
         <CardInfo
           bottomContent={<Table columns={columns} rows={rows} />}
           icon={<Icon fontSize="medium" name="documentText" />}
           title={t("licenceDetails.history.title")}
         />
+        {/** TODO: Storico punti */}
       </Stack>
     </>
   );
