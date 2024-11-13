@@ -20,7 +20,7 @@ export const setupMocks = async () => {
   }
 
   const { server } = await import("./server");
-  return server.listen({ onUnhandledRequest: "warn" });
+  return server.listen({ onUnhandledRequest: "bypass" });
 };
 
 setupMocks();
