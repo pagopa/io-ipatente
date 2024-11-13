@@ -58,6 +58,17 @@ export default function Licences() {
         <ListItemLicence
           data={item}
           key={`licence-${item.numeroPatente}`}
+          label={t("licences.driverLicense")}
+          onClick={handleOnClick}
+        />
+      ))}
+      {data?.datiPatenteCqc?.map((item) => (
+        <ListItemLicence
+          data={item}
+          key={`licence-${item.numeroPatente}`}
+          label={t("licences.cqcLicense", {
+            cqcType: item.tipoCqc?.descrizione,
+          })}
           onClick={handleOnClick}
         />
       ))}

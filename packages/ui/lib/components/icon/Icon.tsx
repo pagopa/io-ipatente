@@ -16,7 +16,9 @@ import IconCarParking from "./svg/IconCarParking";
 import IconCaravan from "./svg/IconCaravan";
 import IconCloseCircle from "./svg/IconCloseCircle";
 import IconComponent from "./svg/IconComponent";
+import IconDetail from "./svg/IconDetail";
 import IconDocumentText from "./svg/IconDocumentText";
+import IconDriveLicense from "./svg/IconDriveLicense";
 import IconDriving from "./svg/IconDriving";
 import IconEletricMoped from "./svg/IconEletricMoped";
 import IconError from "./svg/IconError";
@@ -65,7 +67,9 @@ export const Icons = {
   caravan: IconCaravan,
   closeCircle: IconCloseCircle,
   component: IconComponent,
+  detail: IconDetail,
   documentText: IconDocumentText,
+  driveLicense: IconDriveLicense,
   driving: IconDriving,
   eletricMoped: IconEletricMoped,
   error: IconError,

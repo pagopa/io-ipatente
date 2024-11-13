@@ -12,7 +12,11 @@
   "licences": {
     "title": "My licences",
     "defaultLabel": "Licence",
-    "empty": "There are no registered licences"
+    "empty": "There are no registered licences",
+    "driverLicense": "Driver license",
+    "cqcLicense": "CQC {{cqcType}}",
+    "valid": "Valid",
+    "expired": "Expired"
   },
   "licenceDetails": {
     "title": "Licence details",
@@ -22,7 +26,13 @@
     },
     "info": {
       "title": "Licence detail",
-      "number": "Licence number"
+      "number": "Licence number",
+      "expiryDate": "Expiry date",
+      "documentType": "Document type",
+      "points": {
+        "title": "Points",
+        "description": "{{value}} of {{total}}"
+      }
     }
   },
   "licence": {},

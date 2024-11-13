@@ -12,7 +12,11 @@
   "licences": {
     "title": "Le mie patenti",
     "defaultLabel": "Patente",
-    "empty": "Non sono presenti patenti registrate"
+    "empty": "Non sono presenti patenti registrate",
+    "driverLicense": "Patente di guida",
+    "cqcLicense": "CQC {{cqcType}}",
+    "valid": "Valida",
+    "expired": "Scaduta"
   },
   "licenceDetails": {
     "title": "Dettaglio Patente",
@@ -22,7 +26,13 @@
     },
     "info": {
       "title": "Dettaglio patente",
-      "number": "Numero patente"
+      "number": "Numero patente",
+      "expiryDate": "Data di scadenza",
+      "documentType": "Tipo di documento",
+      "points": {
+        "title": "Punti",
+        "description": "{{value}} di {{total}}"
+      }
     }
   },
   "licence": {},
