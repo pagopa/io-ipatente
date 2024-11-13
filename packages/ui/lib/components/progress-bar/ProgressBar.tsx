@@ -14,7 +14,7 @@ export const ProgressBar = ({
 }: ProgressBarProps) => (
   <Stack rowGap="8px" width={"100%"}>
     {(title || description) && (
-      <Stack direction="row" justifyContent="space-between">
+      <Stack direction="row" justifyContent={title ? "space-between" : "end"}>
         {title && (
           <Typography
             data-testid="progress-bar-title"
