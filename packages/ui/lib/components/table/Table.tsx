@@ -53,6 +53,7 @@ export const Table = ({ columns, rows }: TableProps) => (
         <TableRow>
           {columns.map((title) => (
             <TableCell
+              key={title}
               style={{
                 background: theme.palette.text.primary,
                 border: "1px solid #BFDFFF",
