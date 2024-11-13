@@ -3,7 +3,8 @@ import { LicenceSectionDetails } from "@/components/licence-details/LicenceSecti
 import { GenericError } from "@/components/shared/GenericError";
 import { Patenti } from "@/generated/bff-openapi";
 import { useLicences } from "@/hooks/useLicences";
-import { SectionTitle } from "@io-ipatente/ui";
+import { CardInfo, SectionTitle } from "@io-ipatente/ui";
+import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
@@ -24,11 +25,25 @@ export default function LicenceDetails() {
       ),
     [licenseNumber],
   );
+
   const { data, error, isError, isLoading, isRefetching, refetch } =
     useLicences(selectLicenseByLicenseNumber);
 
   if (isLoading || isRefetching) {
-    return <Stack my={3}>Loading...</Stack>;
+    return (
+      <>
+        <SectionTitle isLoading />
+        <Stack my={3} spacing={2}>
+          <CardInfo
+            icon={<Skeleton height={24} variant="rounded" width={24} />}
+            items={Array.from({ length: 3 }).map(() => ({
+              label: <Skeleton height={24} width="25%" />,
+              value: <Skeleton height={24} width="100%" />,
+            }))}
+          />
+        </Stack>
+      </>
+    );
   }
 
   if (!data || isError) {
