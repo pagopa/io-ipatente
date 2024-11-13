@@ -13,7 +13,7 @@ exports[`Test ListItemAction Components > Should match the snapshot for loading 
         >
           <span
             class="MuiSkeleton-root MuiSkeleton-circular MuiSkeleton-pulse css-wkdwxb-MuiSkeleton-root"
-            style="width: 40px; height: 40px;"
+            style="width: 24px; height: 24px;"
           />
         </div>
         <div
@@ -21,16 +21,24 @@ exports[`Test ListItemAction Components > Should match the snapshot for loading 
         >
           <span
             class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
-            style="width: 60%;"
+            style="width: 20%; height: 12px;"
           />
           <span
             class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
             style="width: 40%;"
           />
-          <span
-            class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
-            style="width: 20%;"
-          />
+          <div
+            class="MuiStack-root css-10k1dl5-MuiStack-root"
+          >
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
+              style="width: 15%; height: 24px;"
+            />
+            <span
+              class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
+              style="width: 25%; height: 24px;"
+            />
+          </div>
         </div>
       </li>
     </div>
@@ -44,7 +52,7 @@ exports[`Test ListItemAction Components > Should match the snapshot for loading 
       >
         <span
           class="MuiSkeleton-root MuiSkeleton-circular MuiSkeleton-pulse css-wkdwxb-MuiSkeleton-root"
-          style="width: 40px; height: 40px;"
+          style="width: 24px; height: 24px;"
         />
       </div>
       <div
@@ -52,16 +60,24 @@ exports[`Test ListItemAction Components > Should match the snapshot for loading 
       >
         <span
           class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
-          style="width: 60%;"
+          style="width: 20%; height: 12px;"
         />
         <span
           class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
           style="width: 40%;"
         />
-        <span
-          class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
-          style="width: 20%;"
-        />
+        <div
+          class="MuiStack-root css-10k1dl5-MuiStack-root"
+        >
+          <span
+            class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
+            style="width: 15%; height: 24px;"
+          />
+          <span
+            class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
+            style="width: 25%; height: 24px;"
+          />
+        </div>
       </div>
     </li>
   </div>,

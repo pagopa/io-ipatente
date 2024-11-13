@@ -88,15 +88,18 @@ const ListItemActionSkeleton = () => (
     }}
   >
     <ListItemIcon>
-      <Skeleton height={40} variant="circular" width={40} />
+      <Skeleton height={24} variant="circular" width={24} />
     </ListItemIcon>
     <ListItemText
       disableTypography
-      primary={<Skeleton width="60%" />}
+      primary={<Skeleton height={12} width="20%" />}
       secondary={
         <>
           <Skeleton width="40%" />
-          <Skeleton width="20%" />
+          <Stack direction="row" sx={{ flexWrap: "wrap", gap: 1 }} useFlexGap>
+            <Skeleton height={24} width="15%" />
+            <Skeleton height={24} width="25%" />
+          </Stack>
         </>
       }
     />
