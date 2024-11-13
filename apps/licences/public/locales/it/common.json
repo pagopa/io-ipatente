@@ -26,7 +26,13 @@
     },
     "info": {
       "title": "Dettaglio patente",
-      "number": "Numero patente"
+      "number": "Numero patente",
+      "expiryDate": "Data di scadenza",
+      "documentType": "Tipo di documento",
+      "points": {
+        "title": "Punti",
+        "description": "{{value}} di {{total}}"
+      }
     }
   },
   "licence": {},

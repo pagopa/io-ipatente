@@ -26,7 +26,13 @@
     },
     "info": {
       "title": "Licence detail",
-      "number": "Licence number"
+      "number": "Licence number",
+      "expiryDate": "Expiry date",
+      "documentType": "Document type",
+      "points": {
+        "title": "Points",
+        "description": "{{value}} of {{total}}"
+      }
     }
   },
   "licence": {},
