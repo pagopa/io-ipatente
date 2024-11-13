@@ -42,14 +42,19 @@ export const GET = auth(
           return handleBadRequestErrorResponse(res.message);
         }
 
-        return handleInternalErrorResponse("VehiclesRetrieveError", res);
+        return handleInternalErrorResponse(
+          "VehiclesInternalRetrieveError",
+          res,
+        );
       } catch (error) {
-        // eslint-disable-next-line no-console
         console.error(
           `An Error has occurred while retrieving user vehicles, caused by: `,
           error,
         );
-        return handleInternalErrorResponse("VehiclesRetrieveError", error);
+        return handleInternalErrorResponse(
+          "VehiclesInternalRetrieveError",
+          error,
+        );
       }
     },
   ),
