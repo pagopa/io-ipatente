@@ -26,7 +26,7 @@
       "number": "Numero patente",
       "expiryDate": "Data di scadenza",
       "documentType": "Tipo di documento",
-      "points":{
+      "points": {
         "title": "Punti",
         "description": "{{value}} di {{total}}"
       }

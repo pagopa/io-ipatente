@@ -15,12 +15,20 @@ export const ProgressBar = ({
   <Stack rowGap="8px" width={"100%"}>
     <Stack direction="row" justifyContent="space-between">
       {title && (
-        <Typography fontSize={20} fontWeight={600}>
+        <Typography
+          data-testid="progress-bar-title"
+          fontSize={20}
+          fontWeight={600}
+        >
           {title}
         </Typography>
       )}
       {description && (
-        <Typography fontSize={20} fontWeight={600}>
+        <Typography
+          data-testid="progress-bar-description"
+          fontSize={20}
+          fontWeight={600}
+        >
           {description}
         </Typography>
       )}
