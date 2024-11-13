@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { getConfiguration } from "../../config";
+import { handleForbiddenErrorResponse } from "../../utils/errors";
 
 const { INTERNAL_ROUTES_ENABLED, INTERNAL_ROUTES_TEST_USER } =
   getConfiguration();
@@ -30,19 +31,13 @@ export const withTestUserInternalHandler =
   ) =>
   async (request: Request): Promise<NextResponse | Response> => {
     if (!INTERNAL_ROUTES_ENABLED) {
-      return NextResponse.json(
-        { error: "Forbidden: Internal routes are disabled" },
-        { status: 403 },
-      );
+      return handleForbiddenErrorResponse("Internal routes are disabled");
     }
 
     const testUser = request.headers.get("X-TEST-USER");
 
     if (!testUser || !INTERNAL_ROUTES_TEST_USER.includes(testUser)) {
-      return NextResponse.json(
-        { error: "Forbidden: Invalid Test User" },
-        { status: 403 },
-      );
+      return handleForbiddenErrorResponse("Invalid Test User");
     }
 
     return handler(request, { testUser });

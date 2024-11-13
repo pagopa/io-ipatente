@@ -4,7 +4,7 @@ import { retrieveVehicles } from "@/lib/bff/business";
 import {
   handleBadRequestErrorResponse,
   handleInternalErrorResponse,
-  withTestUserAndVoucherInternalHandler
+  withTestUserAndVoucherInternalHandler,
 } from "@io-ipatente/core";
 import { ZodiosError } from "@zodios/core";
 import { AxiosError } from "axios";
