@@ -1,4 +1,4 @@
-import { Badge, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import MuiTable from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -7,6 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { theme } from "@pagopa/mui-italia";
+import { useMemo } from "react";
 
 export interface TableProps {
   columns: string[];
@@ -18,9 +19,32 @@ export interface TableProps {
   }[];
 }
 
-const VariationViewer = ({ variation }: { variation: number }) => (
-  <Badge badgeContent={variation} color={"primary"}></Badge>
-);
+const VariationViewer = ({ variation }: { variation: number }) => {
+  const bgColor = useMemo(
+    () => (variation < 0 ? "error.light" : "primary.light"),
+    [],
+  );
+
+  const textColor = useMemo(
+    () =>
+      variation < 0 ? theme.palette.error.main : theme.palette.primary.main,
+    [],
+  );
+  return (
+    <Box
+      bgcolor={bgColor}
+      borderRadius={1}
+      height={24}
+      justifySelf="end"
+      paddingInline={1}
+      width="fit-content"
+    >
+      <Typography color={textColor} fontWeight="medium" variant="body1">
+        {variation}
+      </Typography>
+    </Box>
+  );
+};
 
 export const Table = ({ columns, rows }: TableProps) => (
   <TableContainer component={Paper}>
@@ -67,7 +91,7 @@ export const Table = ({ columns, rows }: TableProps) => (
               </Typography>
             </TableCell>
             <TableCell align="right">
-              {<VariationViewer variation={row.variation} />}
+              <VariationViewer variation={row.variation} />
             </TableCell>
           </TableRow>
         ))}

@@ -40,27 +40,6 @@ export default function LicenceDetails() {
     [data?.datiPatente],
   );
 
-  console.log(
-    {
-      dati: data?.datiPatente,
-      res: data?.datiPatente.map(({ movPat }) =>
-        movPat?.map(
-          ({
-            dataAttribuzionePunteggio,
-            descrizioneEventoPunteggio,
-            punteggioEffettuato,
-          }) => ({
-            date: dataAttribuzionePunteggio,
-            detail: descrizioneEventoPunteggio,
-            key: `${descrizioneEventoPunteggio}-${dataAttribuzionePunteggio}`,
-            variation: punteggioEffettuato,
-          }),
-        ),
-      ),
-    },
-    "TEST DATA",
-  );
-
   if (isLoading || isRefetching) {
     return <Stack my={3}>Loading...</Stack>;
   }
