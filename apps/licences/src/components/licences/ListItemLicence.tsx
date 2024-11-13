@@ -35,7 +35,7 @@ export const ListItemLicence = ({
   return (
     <ListItemAction
       badges={badges}
-      icon="licenceCard"
+      icon="car1"
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       label={t(label as any)}
       onClick={() => onClick(numeroPatente as string)}
