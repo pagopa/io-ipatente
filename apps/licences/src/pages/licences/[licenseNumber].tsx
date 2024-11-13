@@ -1,7 +1,6 @@
 import AppLayout from "@/components/layouts/AppLayout";
 import { LicenceSectionDetails } from "@/components/licence-details/LicenceSectionDetails";
 import { GenericError } from "@/components/shared/GenericError";
-import { DatiPatente } from "@/generated/bff-openapi";
 import { useLicences } from "@/hooks/useLicences";
 import { SectionTitle } from "@io-ipatente/ui";
 import Stack from "@mui/material/Stack";
@@ -30,12 +29,9 @@ export default function LicenceDetails() {
 
   return (
     <>
-      <SectionTitle
-        icon="driving"
-        label={data.datiPatente[0].numeroPatente ?? ""}
-      />
+      <SectionTitle icon="driving" label={data.datiPatente[0].numeroPatente} />
       <Stack my={3} spacing={2}>
-        <LicenceSectionDetails data={data.datiPatente as DatiPatente} />
+        <LicenceSectionDetails data={data.datiPatente[0]} />
         {/** TODO: Storico punti */}
       </Stack>
     </>

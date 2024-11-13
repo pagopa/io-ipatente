@@ -58,7 +58,7 @@ export default function Licences() {
         <ListItemLicence
           data={item}
           key={`licence-${item.numeroPatente}`}
-          label="Patente di guida"
+          label={t("licences.driverLicense")}
           onClick={handleOnClick}
         />
       ))}
@@ -66,7 +66,9 @@ export default function Licences() {
         <ListItemLicence
           data={item}
           key={`licence-${item.numeroPatente}`}
-          label={`CQC ${item.tipoCqc?.descrizione}`}
+          label={t("licences.cqcLicense", {
+            cqcType: item.tipoCqc?.descrizione,
+          })}
           onClick={handleOnClick}
         />
       ))}

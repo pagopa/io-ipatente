@@ -13,7 +13,11 @@
     "title": "Le mie patenti",
     "description": "Di seguito trovi tutte le tue patenti",
     "defaultLabel": "Patente",
-    "empty": "Non sono presenti patenti registrate"
+    "empty": "Non sono presenti patenti registrate",
+    "driverLicense": "Patente di guida",
+    "cqcLicense": "CQC {{cqcType}}",
+    "valid": "Valida",
+    "expired": "Scaduta"
   },
   "licenceDetails": {
     "title": "Dettaglio Patente",

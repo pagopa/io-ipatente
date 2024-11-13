@@ -27,19 +27,18 @@ export const ListItemLicence = ({
       {
         color: isValid ? "success" : "warning",
         icon: isValid ? "success" : "warning",
-        label: isValid ? "Valida" : "Scaduta",
+        label: isValid ? t("licences.valid") : t("licences.expired"),
       },
     ];
-  }, [dataScadenza]);
+  }, [dataScadenza, t]);
 
   return (
     <ListItemAction
       badges={badges}
       icon="car1"
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      label={t(label as any)}
+      label={label}
       onClick={() => onClick(numeroPatente as string)}
-      value={numeroPatente as string}
+      value={numeroPatente}
     />
   );
 };
