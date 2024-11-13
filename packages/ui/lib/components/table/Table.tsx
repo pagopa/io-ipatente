@@ -69,7 +69,10 @@ export const Table = ({ columns, rows }: TableProps) => (
         {rows.map((row) => (
           <TableRow
             key={row.key}
-            sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+            sx={{
+              "&:last-child td, &:last-child th": { border: 0 },
+              "&>td, &>th": { borderBottom: "1px solid #CBD5E1" },
+            }}
           >
             <TableCell component="th" scope="row">
               <Typography
@@ -91,7 +94,7 @@ export const Table = ({ columns, rows }: TableProps) => (
                 {row.detail}
               </Typography>
             </TableCell>
-            <TableCell align="right">
+            <TableCell align="right" component="th" scope="row">
               <VariationViewer variation={row.variation} />
             </TableCell>
           </TableRow>
