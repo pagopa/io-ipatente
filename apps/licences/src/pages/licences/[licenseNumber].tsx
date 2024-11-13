@@ -66,10 +66,7 @@ export default function LicenceDetails() {
 
   return (
     <>
-      <SectionTitle
-        icon="driving"
-        label={data.datiPatente[0].numeroPatente ?? ""}
-      />
+      <SectionTitle icon="driving" label={data.datiPatente[0].numeroPatente} />
       <Stack my={3} spacing={2}>
         <LicenceSectionDetails data={data.datiPatente[0]} />
         <CardInfo
