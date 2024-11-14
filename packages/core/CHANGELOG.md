@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.4.6
+
+### Patch Changes
+
+- e1fa273: ADD Internal Route for InfoVeicoli API SOAK Test
+
 ## 0.4.5
 
 ### Patch Changes
