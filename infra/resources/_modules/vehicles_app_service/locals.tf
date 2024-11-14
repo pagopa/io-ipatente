@@ -43,6 +43,10 @@ locals {
 
       # Logs
       AI_SDK_CONNECTION_STRING = var.ai_connection_string
+
+      # Interanl API for test
+      INTERNAL_ROUTES_ENABLED   = false
+      INTERNAL_ROUTES_TEST_USER = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=INTERNAL-ROUTES-TEST-USER-VEHICLES)"
     }
 
     prod_app_setting = {

@@ -52,7 +52,6 @@ describe("withTestUserInternalHandler", () => {
 
     const resp = await withTestUserInternalHandler(mockHandler)(request);
 
-    // eslint-disable-next-line no-console
     expect(resp.status).toBe(HTTP_STATUS_FORBIDDEN);
     expect(mockHandler).not.toHaveBeenCalled();
   });
@@ -66,7 +65,6 @@ describe("withTestUserInternalHandler", () => {
 
     const resp = await withTestUserInternalHandler(mockHandler)(request);
 
-    // eslint-disable-next-line no-console
     expect(resp.status).toBe(HTTP_STATUS_FORBIDDEN);
     expect(mockHandler).not.toHaveBeenCalled();
   });
@@ -85,7 +83,6 @@ describe("withTestUserInternalHandler", () => {
 
     const resp = await withTestUserInternalHandler(mockHandler)(request);
 
-    // eslint-disable-next-line no-console
     expect(resp.status).toBe(HTTP_STATUS_OK);
     expect(mockHandler).toHaveBeenCalledWith(request, {
       testUser: "testUser",
