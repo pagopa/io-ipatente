@@ -12,7 +12,7 @@ import {
   Table,
   useDialog,
 } from "@io-ipatente/ui";
-import { Chip, Link, Stack, Typography } from "@mui/material";
+import { Chip, Link, Skeleton, Stack, Typography } from "@mui/material";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
