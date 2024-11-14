@@ -1,4 +1,3 @@
-import { Checkbox } from "@mui/material";
 import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
@@ -7,19 +6,16 @@ import { Column, Table } from "../Table";
 interface Row {
   test_1: string;
   test_2: number;
-  test_3: boolean;
 }
 
 const rows = [
   {
-    test_1: "Simple string",
+    test_1: "Test String",
     test_2: 10,
-    test_3: true,
   },
   {
-    test_1: "Simple string 2",
+    test_1: "Test String 2",
     test_2: 20,
-    test_3: false,
   },
 ];
 
@@ -33,11 +29,6 @@ const columns: Column<Row>[] = [
     key: "test_2",
     title: "test_2",
     widthFactor: 0.2,
-  },
-  {
-    key: "test_3",
-    render: (_, item) => <Checkbox defaultChecked={item.test_3} />,
-    title: "test_3",
   },
 ];
 
