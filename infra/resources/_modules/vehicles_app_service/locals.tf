@@ -6,7 +6,7 @@ locals {
       NODE_ENV                 = "production"
       WEBSITE_RUN_FROM_PACKAGE = "1"
 
-      AUTH_SECRET     = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=AUTH-SECRET)"
+      AUTH_SECRET     = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=AUTH-SECRET-VEHICLES)"
       AUTH_TRUST_HOST = true
       AUTH_URL        = "https://io-p-itn-ipatente-vehicles-app-01.azurewebsites.net/"
 

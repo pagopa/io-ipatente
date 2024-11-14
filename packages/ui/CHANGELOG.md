@@ -1,5 +1,14 @@
 # @io-ipatente/ui
 
+## 0.6.0
+
+### Minor Changes
+
+- eb328f0: Add detail mov Dialog
+- 31a7ce5: add progress bar component e and license detail card
+- 6af362e: add loading state to LicenceDetails and VehicleDetails
+- 4d3da08: Added Table component - Added point movement history in licence detail
+
 ## 0.5.1
 
 ### Patch Changes

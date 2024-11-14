@@ -38,7 +38,6 @@ export default function Vehicles() {
       >
         <ListItemAction isLoading />
         <ListItemAction isLoading />
-        <ListItemAction isLoading />
       </Stack>
     );
   }

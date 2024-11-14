@@ -12,6 +12,8 @@ env:
   RESOURCE_GROUP_NAME: io-p-itn-ipatente-rg-01
   AZURE_VEHICLES_NAME: io-p-itn-ipatente-vehicles-app-01
   VEHICLES_HEALTHCHECK_PATH: "api/info"
+  AZURE_LICENCES_NAME: io-p-itn-ipatente-licences-app-01
+  LICENCES_HEALTHCHECK_PATH: "api/info"
 
 jobs:
   deployments:
@@ -54,3 +56,25 @@ jobs:
         if: contains(github.event.release.assets[0].name, 'vehicles')
         id: swap_to_production_vehicles
         run: az webapp deployment slot swap -g ${{ env.RESOURCE_GROUP_NAME }} -n ${{ env.AZURE_VEHICLES_NAME }} --slot staging --target-slot production
+
+      # Deploy Licences App Service
+      - name: Deploy Licences to staging
+        if: contains(github.event.release.assets[0].name, 'licences')
+        uses: azure/webapps-deploy@145a0687697df1d8a28909569f6e5d86213041f9 #v3.0.0
+        with:
+          app-name: ${{ env.AZURE_LICENCES_NAME }}
+          package: artifact.zip
+          slot-name: staging
+          clean: true
+
+      - name: "Licences Healthcheck"
+        if: contains(github.event.release.assets[0].name, 'licences')
+        id: healthcheck_licences
+        run: |
+          sleep 30
+          curl --retry 5 --retry-max-time 120 --retry-all-errors --fail-with-body 'https://${{ env.AZURE_LICENCES_NAME }}-staging.azurewebsites.net/${{ env.LICENCES_HEALTHCHECK_PATH }}'
+
+      - name: "Swap Licences staging to production"
+        if: contains(github.event.release.assets[0].name, 'licences')
+        id: swap_to_production_licences
+        run: az webapp deployment slot swap -g ${{ env.RESOURCE_GROUP_NAME }} -n ${{ env.AZURE_LICENCES_NAME }} --slot staging --target-slot production
