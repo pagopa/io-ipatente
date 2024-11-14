@@ -12,7 +12,7 @@
   "licences": {
     "title": "Le mie patenti",
     "defaultLabel": "Patente",
-    "empty": "Non sono presenti patenti registrate",
+    "empty": "Non risultano patenti a te associate",
     "driverLicense": "Patente di guida",
     "cqcLicense": "CQC {{cqcType}}",
     "valid": "Valida",
@@ -39,6 +39,15 @@
       "columns": {
         "detail": "Dettaglio",
         "variation": "Variazione Punti"
+      },
+      "detail": {
+        "title": "{{description}} {{date}}",
+        "code": "Codice verbale",
+        "releaseDate": "Emesso il",
+        "detectedBy": "Rilevato da",
+        "verifiedBy": "Verificato da",
+        "issuer": "Ente emittente",
+        "points": "Punti"
       }
     }
   },
