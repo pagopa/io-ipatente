@@ -3,8 +3,6 @@ import { NextResponse } from "next/server";
 import { getConfiguration } from "../../config";
 import { handleForbiddenErrorResponse } from "../../utils/errors";
 
-const { INTERNAL_ROUTES_ENABLED, INTERNAL_ROUTES_TEST_USER } =
-  getConfiguration();
 /**
  * @description Wraps a handler to be used only by internal routes with a test user
  * @param handler - The handler to wrap
@@ -30,6 +28,9 @@ export const withTestUserInternalHandler =
     handler: T,
   ) =>
   async (request: Request): Promise<NextResponse | Response> => {
+    const { INTERNAL_ROUTES_ENABLED, INTERNAL_ROUTES_TEST_USER } =
+      getConfiguration();
+
     if (!INTERNAL_ROUTES_ENABLED) {
       return handleForbiddenErrorResponse("Internal routes are disabled");
     }
