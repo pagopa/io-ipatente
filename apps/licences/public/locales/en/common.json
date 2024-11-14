@@ -33,6 +33,22 @@
         "title": "Points",
         "description": "{{value}} of {{total}}"
       }
+    },
+    "history": {
+      "title": "Points History",
+      "columns": {
+        "detail": "Detail",
+        "variation": "Points Variation"
+      },
+      "detail": {
+        "title": "{{description}} {{date}}",
+        "code": "Violation Code",
+        "releaseDate": "Issued On",
+        "detectedBy": "Detected By",
+        "verifiedBy": "Verified By",
+        "issuer": "Issuing Authority",
+         "points": "Points"
+      }
     }
   },
   "licence": {},

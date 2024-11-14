@@ -39,6 +39,15 @@
       "columns": {
         "detail": "Dettaglio",
         "variation": "Variazione Punti"
+      },
+      "detail":{
+        "title": "{{description}} {{date}}",
+        "code": "Codice verbale",
+        "releaseDate": "Emesso il",
+        "detectedBy": "Rilevato da",
+        "verifiedBy": "Verificato da",
+        "issuer": "Ente emittente",
+        "points": "Punti"
       }
     }
   },
