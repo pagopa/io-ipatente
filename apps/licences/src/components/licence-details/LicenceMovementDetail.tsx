@@ -1,5 +1,4 @@
 import { MovPat } from "@/generated/bff-openapi";
-import { CardInfoItem } from "@io-ipatente/ui";
 import {
   Chip,
   Divider,
@@ -10,10 +9,10 @@ import {
   Typography,
 } from "@mui/material";
 import { useTranslation } from "next-i18next";
-import React from "react";
+import React, { Fragment, ReactNode } from "react";
 
 interface MetadataListItem {
-  items: ({ isVisible: boolean } & CardInfoItem)[];
+  items: { isVisible: boolean; label: string; value: ReactNode | string }[];
 }
 
 export interface LicenceSectionDetailsProps {
@@ -74,7 +73,7 @@ export const LicenceMovementDetail = ({ data }: LicenceSectionDetailsProps) => {
   return (
     <List sx={{ padding: 0, width: "100%" }}>
       {filteredMetadataListItems.map((item, index, items) => (
-        <>
+        <Fragment key={item.label}>
           <ListItem disablePadding>
             <ListItemText
               disableTypography
@@ -99,7 +98,6 @@ export const LicenceMovementDetail = ({ data }: LicenceSectionDetailsProps) => {
                     <Typography fontSize={20} fontWeight={600}>
                       {item.value}
                     </Typography>
-                    {item?.icon}
                   </Stack>
                 )
               }
@@ -107,7 +105,7 @@ export const LicenceMovementDetail = ({ data }: LicenceSectionDetailsProps) => {
           </ListItem>
 
           {index < items.length - 1 ? <Divider /> : null}
-        </>
+        </Fragment>
       ))}
     </List>
   );
