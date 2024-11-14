@@ -40,7 +40,7 @@
         "detail": "Dettaglio",
         "variation": "Variazione Punti"
       },
-      "detail":{
+      "detail": {
         "title": "{{description}} {{date}}",
         "code": "Codice verbale",
         "releaseDate": "Emesso il",
