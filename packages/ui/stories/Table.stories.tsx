@@ -43,17 +43,17 @@ const columns: Column<Row>[] = [
 ];
 
 const meta = {
-  component: Table,
+  component: Table<Row>,
   tags: ["autodocs"],
   title: "Components/Table",
-} satisfies Meta<typeof Table>;
+} satisfies Meta<typeof Table<Row>>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    columns: columns as Column<unknown>[],
-    rows,
+    columns: columns,
+    rows: rows,
   },
 };
