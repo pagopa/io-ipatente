@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useTranslation } from "next-i18next";
-import React, { ReactNode } from "react";
+import React, { Fragment, ReactNode } from "react";
 
 interface MetadataListItem {
   items: { isVisible: boolean; label: string; value: ReactNode | string }[];
@@ -73,7 +73,7 @@ export const LicenceMovementDetail = ({ data }: LicenceSectionDetailsProps) => {
   return (
     <List sx={{ padding: 0, width: "100%" }}>
       {filteredMetadataListItems.map((item, index, items) => (
-        <Stack key={item.label}>
+        <Fragment key={item.label}>
           <ListItem disablePadding>
             <ListItemText
               disableTypography
@@ -105,7 +105,7 @@ export const LicenceMovementDetail = ({ data }: LicenceSectionDetailsProps) => {
           </ListItem>
 
           {index < items.length - 1 ? <Divider /> : null}
-        </Stack>
+        </Fragment>
       ))}
     </List>
   );
