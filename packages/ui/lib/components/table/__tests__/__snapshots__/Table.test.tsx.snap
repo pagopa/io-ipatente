@@ -1,0 +1,226 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test Table Components > Should match the snapshot with default props 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiTableContainer-root css-11xur9t-MuiPaper-root-MuiTableContainer-root"
+      >
+        <table
+          aria-label="table"
+          class="MuiTable-root css-rqglhn-MuiTable-root"
+        >
+          <thead
+            class="MuiTableHead-root css-15wwp11-MuiTableHead-root"
+          >
+            <tr
+              class="MuiTableRow-root MuiTableRow-head css-1q1u3t4-MuiTableRow-root"
+            >
+              <th
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1flh0t9-MuiTableCell-root"
+                scope="col"
+              >
+                test_1
+              </th>
+              <th
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-13iu7n7-MuiTableCell-root"
+                scope="col"
+              >
+                test_2
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            class="MuiTableBody-root css-apqrd9-MuiTableBody-root"
+          >
+            <tr
+              class="MuiTableRow-root css-kjco9e-MuiTableRow-root"
+            >
+              <th
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                scope="row"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-crn0fq-MuiTypography-root"
+                >
+                  Test String
+                </p>
+              </th>
+              <th
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                scope="row"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-crn0fq-MuiTypography-root"
+                >
+                  10
+                </p>
+              </th>
+            </tr>
+            <tr
+              class="MuiTableRow-root css-kjco9e-MuiTableRow-root"
+            >
+              <th
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                scope="row"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-crn0fq-MuiTypography-root"
+                >
+                  Test String 2
+                </p>
+              </th>
+              <th
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                scope="row"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-crn0fq-MuiTypography-root"
+                >
+                  20
+                </p>
+              </th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiTableContainer-root css-11xur9t-MuiPaper-root-MuiTableContainer-root"
+    >
+      <table
+        aria-label="table"
+        class="MuiTable-root css-rqglhn-MuiTable-root"
+      >
+        <thead
+          class="MuiTableHead-root css-15wwp11-MuiTableHead-root"
+        >
+          <tr
+            class="MuiTableRow-root MuiTableRow-head css-1q1u3t4-MuiTableRow-root"
+          >
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1flh0t9-MuiTableCell-root"
+              scope="col"
+            >
+              test_1
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-13iu7n7-MuiTableCell-root"
+              scope="col"
+            >
+              test_2
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="MuiTableBody-root css-apqrd9-MuiTableBody-root"
+        >
+          <tr
+            class="MuiTableRow-root css-kjco9e-MuiTableRow-root"
+          >
+            <th
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+              scope="row"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-crn0fq-MuiTypography-root"
+              >
+                Test String
+              </p>
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+              scope="row"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-crn0fq-MuiTypography-root"
+              >
+                10
+              </p>
+            </th>
+          </tr>
+          <tr
+            class="MuiTableRow-root css-kjco9e-MuiTableRow-root"
+          >
+            <th
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+              scope="row"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-crn0fq-MuiTypography-root"
+              >
+                Test String 2
+              </p>
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+              scope="row"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-crn0fq-MuiTypography-root"
+              >
+                20
+              </p>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

@@ -33,6 +33,13 @@
         "title": "Punti",
         "description": "{{value}} di {{total}}"
       }
+    },
+    "history": {
+      "title": "Storico punti",
+      "columns": {
+        "detail": "Dettaglio",
+        "variation": "Variazione Punti"
+      }
     }
   },
   "licence": {},
