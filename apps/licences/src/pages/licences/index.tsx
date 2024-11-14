@@ -43,7 +43,7 @@ export default function Licences() {
   if (data?.datiPatente.length === 0) {
     return (
       <Stack marginTop={3}>
-        <EmptyState icon="driving" title={t("licences.empty")} />
+        <EmptyState icon="driveLicense" title={t("licences.empty")} />
       </Stack>
     );
   }

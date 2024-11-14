@@ -42,7 +42,7 @@ const TableHeader = <T,>({ columns }: TableHeaderProps<T>) => {
       <TableRow>
         {columns.map(({ key, title }, index) => (
           <TableCell
-            key={key.toString()}
+            key={`${key.toString()}-${index}`}
             sx={{
               backgroundColor: "text.primary",
               border: "1px solid #BFDFFF",

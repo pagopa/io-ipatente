@@ -1,10 +1,18 @@
 import AppLayout from "@/components/layouts/AppLayout";
+import { LicenceMovementDetail } from "@/components/licence-details/LicenceMovementDetail";
 import { LicenceSectionDetails } from "@/components/licence-details/LicenceSectionDetails";
 import { GenericError } from "@/components/shared/GenericError";
 import { MovPat, Patenti } from "@/generated/bff-openapi";
 import { useLicences } from "@/hooks/useLicences";
-import { CardInfo, Column, Icon, SectionTitle, Table } from "@io-ipatente/ui";
-import { Chip, Stack, Typography } from "@mui/material";
+import {
+  CardInfo,
+  Column,
+  Icon,
+  SectionTitle,
+  Table,
+  useDialog,
+} from "@io-ipatente/ui";
+import { Chip, Link, Stack, Typography } from "@mui/material";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -17,6 +25,7 @@ import { GetLayoutProps } from "../_app";
 export default function LicenceDetails() {
   const router = useRouter();
   const { t } = useTranslation();
+  const { showDialog } = useDialog();
 
   const licenseNumber = router.query.licenseNumber;
 
@@ -33,6 +42,21 @@ export default function LicenceDetails() {
 
   const rows = useMemo(() => data?.movPat || [], [data]);
 
+  const onDetailClicked = useCallback(
+    (movDetail: MovPat) => {
+      showDialog({
+        body: <LicenceMovementDetail data={movDetail} />,
+        title: t("licenceDetails.history.detail.title", {
+          date: movDetail.dataEmissioneVerbale
+            ? new Date(movDetail.dataEmissioneVerbale).toLocaleDateString()
+            : "",
+          description: movDetail.descrizioneEventoPunteggio,
+        }),
+      });
+    },
+    [showDialog, t],
+  );
+
   const columns: Column<MovPat>[] = useMemo(
     () => [
       {
@@ -45,16 +69,30 @@ export default function LicenceDetails() {
               textAlign="initial"
               variant="body1"
             >
-              {item.dataAttribuzionePunteggio}
+              {new Date(item.dataAttribuzionePunteggio).toLocaleDateString()}
             </Typography>
-            <Typography
-              color="text.secondary"
-              fontWeight="medium"
-              textAlign="initial"
-              variant="body1"
-            >
-              {item.descrizioneEventoPunteggio}
-            </Typography>
+            {item.codiceVerbale ? (
+              <Link
+                color="text.primary"
+                component="button"
+                onClick={() => onDetailClicked?.(item)}
+                sx={{
+                  textAlign: "left",
+                  textDecoration: "underline",
+                }}
+              >
+                {item.descrizioneEventoPunteggio}
+              </Link>
+            ) : (
+              <Typography
+                color="text.secondary"
+                fontWeight="medium"
+                textAlign="initial"
+                variant="body1"
+              >
+                {item.descrizioneEventoPunteggio}
+              </Typography>
+            )}
           </>
         ),
         title: t("licenceDetails.history.columns.detail"),
@@ -75,7 +113,7 @@ export default function LicenceDetails() {
         title: t("licenceDetails.history.columns.variation"),
       },
     ],
-    [t],
+    [onDetailClicked, t],
   );
 
   if (isLoading || isRefetching) {
