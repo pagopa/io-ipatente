@@ -4,7 +4,7 @@ import { retrieveVehicles } from "@/lib/bff/business";
 import {
   handleBadRequestErrorResponse,
   handleInternalErrorResponse,
-  withJWTAuthAndVoucherHandler,
+  withTestUserAndVoucherInternalHandler,
 } from "@io-ipatente/core";
 import { ZodiosError } from "@zodios/core";
 import { AxiosError } from "axios";
@@ -15,18 +15,19 @@ import { z } from "zod";
  * @description Retrieve user vehicles
  */
 export const GET = auth(
-  withJWTAuthAndVoucherHandler(
-    async (_request: Request, { additionalDataJWS, user, voucher }) => {
+  withTestUserAndVoucherInternalHandler(
+    async (_request: Request, { additionalDataJWS, testUser, voucher }) => {
       try {
         const res = await retrieveVehicles(
           additionalDataJWS,
           voucher.access_token,
-          user.fiscalCode,
+          testUser,
         );
 
         const vehicles = z.array(Veicolo).safeParse(res);
 
         if (vehicles.success) {
+          console.log("test-log, to check ai otel working");
           return NextResponse.json(vehicles.data);
         }
 
@@ -41,14 +42,19 @@ export const GET = auth(
           return handleBadRequestErrorResponse(res.message);
         }
 
-        return handleInternalErrorResponse("VehiclesRetrieveError", res);
+        return handleInternalErrorResponse(
+          "VehiclesInternalRetrieveError",
+          res,
+        );
       } catch (error) {
-        // eslint-disable-next-line no-console
         console.error(
           `An Error has occurred while retrieving user vehicles, caused by: `,
           error,
         );
-        return handleInternalErrorResponse("VehiclesRetrieveError", error);
+        return handleInternalErrorResponse(
+          "VehiclesInternalRetrieveError",
+          error,
+        );
       }
     },
   ),
