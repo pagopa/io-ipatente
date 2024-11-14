@@ -38,7 +38,7 @@ exports[`Test SectionTitle Components > Should match the snapshot with default p
             class="MuiTableBody-root css-apqrd9-MuiTableBody-root"
           >
             <tr
-              class="MuiTableRow-root css-34nofg-MuiTableRow-root"
+              class="MuiTableRow-root css-kjco9e-MuiTableRow-root"
             >
               <th
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
@@ -55,8 +55,9 @@ exports[`Test SectionTitle Components > Should match the snapshot with default p
                   Test
                 </p>
               </th>
-              <td
+              <th
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium css-177gid-MuiTableCell-root"
+                scope="row"
               >
                 <div
                   class="MuiBox-root css-1ar0c0i"
@@ -67,10 +68,10 @@ exports[`Test SectionTitle Components > Should match the snapshot with default p
                     3
                   </p>
                 </div>
-              </td>
+              </th>
             </tr>
             <tr
-              class="MuiTableRow-root css-34nofg-MuiTableRow-root"
+              class="MuiTableRow-root css-kjco9e-MuiTableRow-root"
             >
               <th
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
@@ -87,8 +88,9 @@ exports[`Test SectionTitle Components > Should match the snapshot with default p
                   Test_Error
                 </p>
               </th>
-              <td
+              <th
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium css-177gid-MuiTableCell-root"
+                scope="row"
               >
                 <div
                   class="MuiBox-root css-j1p0c0"
@@ -99,7 +101,7 @@ exports[`Test SectionTitle Components > Should match the snapshot with default p
                     -3
                   </p>
                 </div>
-              </td>
+              </th>
             </tr>
           </tbody>
         </table>
@@ -140,7 +142,7 @@ exports[`Test SectionTitle Components > Should match the snapshot with default p
           class="MuiTableBody-root css-apqrd9-MuiTableBody-root"
         >
           <tr
-            class="MuiTableRow-root css-34nofg-MuiTableRow-root"
+            class="MuiTableRow-root css-kjco9e-MuiTableRow-root"
           >
             <th
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
@@ -157,8 +159,9 @@ exports[`Test SectionTitle Components > Should match the snapshot with default p
                 Test
               </p>
             </th>
-            <td
+            <th
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium css-177gid-MuiTableCell-root"
+              scope="row"
             >
               <div
                 class="MuiBox-root css-1ar0c0i"
@@ -169,10 +172,10 @@ exports[`Test SectionTitle Components > Should match the snapshot with default p
                   3
                 </p>
               </div>
-            </td>
+            </th>
           </tr>
           <tr
-            class="MuiTableRow-root css-34nofg-MuiTableRow-root"
+            class="MuiTableRow-root css-kjco9e-MuiTableRow-root"
           >
             <th
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
@@ -189,8 +192,9 @@ exports[`Test SectionTitle Components > Should match the snapshot with default p
                 Test_Error
               </p>
             </th>
-            <td
+            <th
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium css-177gid-MuiTableCell-root"
+              scope="row"
             >
               <div
                 class="MuiBox-root css-j1p0c0"
@@ -201,7 +205,7 @@ exports[`Test SectionTitle Components > Should match the snapshot with default p
                   -3
                 </p>
               </div>
-            </td>
+            </th>
           </tr>
         </tbody>
       </table>
