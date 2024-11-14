@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import MuiTable from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -6,100 +6,108 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { theme } from "@pagopa/mui-italia";
-import { useMemo } from "react";
+import { ReactElement } from "react";
 
-export interface TableProps {
-  columns: string[];
-  rows: {
-    date: string;
-    detail: string;
-    key: string;
-    variation: number;
-  }[];
+type WidthFactor = 0.1 | 0.2 | 0.3 | 0.4 | 0.5 | 0.6 | 0.7 | 0.8 | 0.9;
+export interface Column<T> {
+  key: keyof T;
+  render?: (key: Column<T>["key"], item: T) => ReactElement;
+  title: string;
+  widthFactor?: WidthFactor;
 }
 
-const VariationViewer = ({ variation }: { variation: number }) => {
-  const bgColor = useMemo(
-    () => (variation < 0 ? "error.light" : "primary.light"),
-    [],
-  );
+export interface TableProps<T> {
+  columns: Column<T>[];
+  rows: T[];
+}
 
-  const textColor = useMemo(
-    () =>
-      variation < 0 ? theme.palette.error.main : theme.palette.primary.main,
-    [],
-  );
-  return (
-    <Box
-      bgcolor={bgColor}
-      borderRadius={1}
-      height={24}
-      justifySelf="end"
-      paddingInline={1}
-      width="fit-content"
-    >
-      <Typography color={textColor} fontWeight="medium" variant="body1">
-        {variation}
-      </Typography>
-    </Box>
-  );
-};
-
-export const Table = ({ columns, rows }: TableProps) => (
+export const Table = <T,>({ columns, rows }: TableProps<T>) => (
   <TableContainer component={Paper}>
-    <MuiTable aria-label="simple table">
-      <TableHead>
-        <TableRow>
-          {columns.map((title) => (
-            <TableCell
-              key={title}
-              style={{
-                background: theme.palette.text.primary,
-                border: "1px solid #BFDFFF",
-                color: theme.palette.background.default,
-              }}
-            >
-              {title}
-            </TableCell>
-          ))}
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {rows.map((row) => (
-          <TableRow
-            key={row.key}
-            sx={{
-              "&:last-child td, &:last-child th": { border: 0 },
-              "&>td, &>th": { borderBottom: "1px solid #CBD5E1" },
-            }}
-          >
-            <TableCell component="th" scope="row">
-              <Typography
-                color="text.secondary"
-                fontWeight="regular"
-                paddingTop={2}
-                textAlign="initial"
-                variant="body1"
-              >
-                {row.date}
-              </Typography>
-              <Typography
-                color="text.secondary"
-                fontWeight="medium"
-                paddingTop={2}
-                textAlign="initial"
-                variant="body1"
-              >
-                {row.detail}
-              </Typography>
-            </TableCell>
-            <TableCell align="right" component="th" scope="row">
-              <VariationViewer variation={row.variation} />
-            </TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
+    <MuiTable aria-label="table">
+      <TableHeader columns={columns} />
+      <TableContent columns={columns} rows={rows} />
     </MuiTable>
   </TableContainer>
 );
+
+interface TableHeaderProps<T> {
+  columns: Column<T>[];
+}
+
+const TableHeader = <T,>({ columns }: TableHeaderProps<T>) => {
+  const columnsWidths = calculateWidth(columns);
+
+  return (
+    <TableHead>
+      <TableRow>
+        {columns.map(({ key, title }, index) => (
+          <TableCell
+            key={key.toString()}
+            sx={{
+              backgroundColor: "text.primary",
+              border: "1px solid #BFDFFF",
+              color: "background.default",
+              width: `${columnsWidths[index] * 100}%`,
+            }}
+          >
+            {title}
+          </TableCell>
+        ))}
+      </TableRow>
+    </TableHead>
+  );
+};
+
+const TableContent = <T,>({ columns, rows }: TableProps<T>) => (
+  <TableBody>
+    {rows.map((row, index) => (
+      <TableRow
+        key={index}
+        sx={{
+          "&:last-child td, &:last-child th": { border: 0 },
+          "&>td, &>th": { borderBottom: "1px solid #CBD5E1" },
+        }}
+      >
+        {columns.map(({ key, render }, cellIndex) => (
+          <TableCell
+            component="th"
+            key={`${key.toString()}-${index}-${cellIndex}`}
+            scope="row"
+          >
+            {render ? (
+              render(key, row)
+            ) : (
+              <Typography
+                color="text.secondary"
+                fontWeight="regular"
+                textAlign="initial"
+                variant="body1"
+              >
+                {row[key] as string}
+              </Typography>
+            )}
+          </TableCell>
+        ))}
+      </TableRow>
+    ))}
+  </TableBody>
+);
+
+function calculateWidth<T>(columns: Column<T>[]) {
+  const widths = columns.map(({ widthFactor }) => widthFactor);
+  const { emptyCount, sum } = widths.reduce<{
+    emptyCount: number;
+    sum: number;
+  }>(
+    ({ emptyCount, sum }, width) =>
+      width
+        ? { emptyCount, sum: sum + width }
+        : { emptyCount: emptyCount + 1, sum },
+    { emptyCount: 0, sum: 0 },
+  );
+
+  const defaultWidth = emptyCount
+    ? Number(((1 - sum) / emptyCount).toFixed(1))
+    : Number((1 / columns.length).toFixed(1));
+  return widths.map((width) => (width ? width : defaultWidth));
+}

@@ -1,16 +1,10 @@
 import AppLayout from "@/components/layouts/AppLayout";
 import { LicenceSectionDetails } from "@/components/licence-details/LicenceSectionDetails";
 import { GenericError } from "@/components/shared/GenericError";
-import { Patenti } from "@/generated/bff-openapi";
+import { MovPat, Patenti } from "@/generated/bff-openapi";
 import { useLicences } from "@/hooks/useLicences";
-import {
-  CardInfo,
-  Icon,
-  SectionTitle,
-  Table,
-  TableProps,
-} from "@io-ipatente/ui";
-import Stack from "@mui/material/Stack";
+import { CardInfo, Column, Icon, SectionTitle, Table } from "@io-ipatente/ui";
+import { Chip, Stack, Typography } from "@mui/material";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -36,28 +30,49 @@ export default function LicenceDetails() {
   const { data, error, isError, isLoading, isRefetching, refetch } =
     useLicences(selectLicenseByLicenseNumber);
 
-  // TODO: check this logic if openApi changes
-  const rows = useMemo<TableProps["rows"]>(
-    () =>
-      (data?.movPat || [])?.map(
-        ({
-          dataAttribuzionePunteggio,
-          descrizioneEventoPunteggio,
-          punteggioNominativo,
-        }) => ({
-          date: dataAttribuzionePunteggio ?? "",
-          detail: descrizioneEventoPunteggio ?? "",
-          key: `${descrizioneEventoPunteggio}-${dataAttribuzionePunteggio}`,
-          variation: punteggioNominativo || 0,
-        }),
-      ),
-    [data],
-  );
+  const rows = useMemo(() => data?.movPat || [], [data]);
 
-  const columns = useMemo(
+  const columns: Column<MovPat>[] = useMemo(
     () => [
-      t("licenceDetails.history.columns.detail"),
-      t("licenceDetails.history.columns.variation"),
+      {
+        key: "dataAttribuzionePunteggio",
+        render: (_, item) => (
+          <>
+            <Typography
+              color="text.secondary"
+              fontWeight="regular"
+              textAlign="initial"
+              variant="body1"
+            >
+              {item.dataAttribuzionePunteggio}
+            </Typography>
+            <Typography
+              color="text.secondary"
+              fontWeight="medium"
+              textAlign="initial"
+              variant="body1"
+            >
+              {item.descrizioneEventoPunteggio}
+            </Typography>
+          </>
+        ),
+        title: t("licenceDetails.history.columns.detail"),
+        widthFactor: 0.8,
+      },
+      {
+        key: "dataAttribuzionePunteggio",
+        render: (_, item) => (
+          <Stack alignItems="end" width="100%">
+            <Chip
+              color={(item.punteggioNominativo || 0) < 0 ? "error" : "info"}
+              label={item.punteggioNominativo || 0}
+              sx={{ borderRadius: 1, justifySelf: "end", paddingInline: 1 }}
+            />
+          </Stack>
+        ),
+
+        title: t("licenceDetails.history.columns.variation"),
+      },
     ],
     [t],
   );
@@ -80,7 +95,6 @@ export default function LicenceDetails() {
           icon={<Icon fontSize="medium" name="documentText" />}
           title={t("licenceDetails.history.title")}
         />
-        {/** TODO: Storico punti */}
       </Stack>
     </>
   );
