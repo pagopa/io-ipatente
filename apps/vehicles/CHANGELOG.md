@@ -1,5 +1,14 @@
 # vehicles
 
+## 0.8.1
+
+### Patch Changes
+
+- e1fa273: ADD Internal Route for InfoVeicoli API SOAK Test
+- Updated dependencies [e1fa273]
+  - @io-ipatente/core@0.4.6
+  - @io-ipatente/ui@0.6.1
+
 ## 0.8.0
 
 ### Minor Changes

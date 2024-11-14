@@ -1,5 +1,15 @@
 # io-ipatente-licences
 
+## 0.2.1
+
+### Patch Changes
+
+- e1fa273: ADD Internal Route for InfoVeicoli API SOAK Test
+- 5fef754: add key inside map
+- Updated dependencies [e1fa273]
+  - @io-ipatente/core@0.4.6
+  - @io-ipatente/ui@0.6.1
+
 ## 0.2.0
 
 ### Minor Changes
