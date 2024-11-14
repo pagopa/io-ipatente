@@ -12,7 +12,7 @@
   "licences": {
     "title": "My licences",
     "defaultLabel": "Licence",
-    "empty": "There are no registered licences",
+    "empty": "There are no licenses associated with you",
     "driverLicense": "Driver license",
     "cqcLicense": "CQC {{cqcType}}",
     "valid": "Valid",
@@ -32,6 +32,22 @@
       "points": {
         "title": "Points",
         "description": "{{value}} of {{total}}"
+      }
+    },
+    "history": {
+      "title": "Points History",
+      "columns": {
+        "detail": "Detail",
+        "variation": "Points Variation"
+      },
+      "detail": {
+        "title": "{{description}} {{date}}",
+        "code": "Violation Code",
+        "releaseDate": "Issued On",
+        "detectedBy": "Detected By",
+        "verifiedBy": "Verified By",
+        "issuer": "Issuing Authority",
+        "points": "Points"
       }
     }
   },

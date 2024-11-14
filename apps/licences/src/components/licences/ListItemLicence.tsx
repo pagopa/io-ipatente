@@ -26,8 +26,9 @@ export const ListItemLicence = ({
     return [
       {
         color: isValid ? "success" : "warning",
-        icon: isValid ? "success" : "warning",
+        icon: isValid ? "tickCircleBold" : "warning2Bold",
         label: isValid ? t("licences.valid") : t("licences.expired"),
+        size: "small",
       },
     ];
   }, [dataScadenza, t]);
@@ -35,7 +36,7 @@ export const ListItemLicence = ({
   return (
     <ListItemAction
       badges={badges}
-      icon="car1"
+      icon="driveLicense"
       label={label}
       onClick={() => onClick(numeroPatente)}
       value={numeroPatente}
