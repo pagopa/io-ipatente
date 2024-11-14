@@ -3,9 +3,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 import {
   HTTP_STATUS_FORBIDDEN,
-  HTTP_STATUS_INTERNAL_SERVER_ERROR,
   HTTP_STATUS_OK,
-  HTTP_STATUS_UNAUTHORIZED,
 } from "../../../utils/constants";
 import { withTestUserInternalHandler } from "../with-test-user-internal-handler";
 
