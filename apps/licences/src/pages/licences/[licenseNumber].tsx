@@ -79,6 +79,7 @@ export default function LicenceDetails() {
                 component="button"
                 onClick={() => onDetailClicked?.(item)}
                 sx={{
+                  textAlign: "left",
                   textDecoration: "underline",
                 }}
               >
