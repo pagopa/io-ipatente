@@ -1,8 +1,9 @@
-import { Checkbox } from "@mui/material";
-import { render } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { Column, Table } from "../Table";
+import { Checkbox } from "@mui/material";
+import React from "react";
+
+import { Column, Table } from "../lib/components/table";
 
 interface Row {
   test_1: string;
@@ -41,9 +42,18 @@ const columns: Column<Row>[] = [
   },
 ];
 
-describe("Test Table Components", () => {
-  it("Should match the snapshot with default props", () => {
-    const comp = render(<Table columns={columns} rows={rows} />);
-    expect(comp).toMatchSnapshot();
-  });
-});
+const meta = {
+  component: Table,
+  tags: ["autodocs"],
+  title: "Components/Table",
+} satisfies Meta<typeof Table>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    columns: columns as Column<unknown>[],
+    rows,
+  },
+};

@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Test SectionTitle Components > Should match the snapshot with default props 1`] = `
+exports[`Test Table Components > Should match the snapshot with default props 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
@@ -9,7 +9,7 @@ exports[`Test SectionTitle Components > Should match the snapshot with default p
         class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiTableContainer-root css-11xur9t-MuiPaper-root-MuiTableContainer-root"
       >
         <table
-          aria-label="simple table"
+          aria-label="table"
           class="MuiTable-root css-rqglhn-MuiTable-root"
         >
           <thead
@@ -19,18 +19,22 @@ exports[`Test SectionTitle Components > Should match the snapshot with default p
               class="MuiTableRow-root MuiTableRow-head css-1q1u3t4-MuiTableRow-root"
             >
               <th
-                class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1ygcj2i-MuiTableCell-root"
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1flh0t9-MuiTableCell-root"
                 scope="col"
-                style="background: rgb(23, 50, 77); border: 1px solid #bfdfff; color: rgb(242, 242, 242);"
               >
-                header-1
+                test_1
               </th>
               <th
-                class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1ygcj2i-MuiTableCell-root"
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-13iu7n7-MuiTableCell-root"
                 scope="col"
-                style="background: rgb(23, 50, 77); border: 1px solid #bfdfff; color: rgb(242, 242, 242);"
               >
-                header-2
+                test_2
+              </th>
+              <th
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1flh0t9-MuiTableCell-root"
+                scope="col"
+              >
+                test_3
               </th>
             </tr>
           </thead>
@@ -45,29 +49,49 @@ exports[`Test SectionTitle Components > Should match the snapshot with default p
                 scope="row"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1bgd6jc-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-crn0fq-MuiTypography-root"
                 >
-                  01/01/1970
-                </p>
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-340yy5-MuiTypography-root"
-                >
-                  Test
+                  Simple string
                 </p>
               </th>
               <th
-                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium css-177gid-MuiTableCell-root"
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
                 scope="row"
               >
-                <div
-                  class="MuiBox-root css-1ar0c0i"
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-crn0fq-MuiTypography-root"
                 >
-                  <p
-                    class="MuiTypography-root MuiTypography-body1 css-ljyaez-MuiTypography-root"
+                  10
+                </p>
+              </th>
+              <th
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                scope="row"
+              >
+                <span
+                  class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium Mui-checked MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+                >
+                  <input
+                    checked=""
+                    class="PrivateSwitchBase-input css-1m9pwf3"
+                    data-indeterminate="false"
+                    type="checkbox"
+                  />
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                    data-testid="CheckBoxIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
                   >
-                    3
-                  </p>
-                </div>
+                    <path
+                      d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                    />
+                  </svg>
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </span>
               </th>
             </tr>
             <tr
@@ -78,29 +102,48 @@ exports[`Test SectionTitle Components > Should match the snapshot with default p
                 scope="row"
               >
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-1bgd6jc-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-crn0fq-MuiTypography-root"
                 >
-                  02/01/1970
-                </p>
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-340yy5-MuiTypography-root"
-                >
-                  Test_Error
+                  Simple string 2
                 </p>
               </th>
               <th
-                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium css-177gid-MuiTableCell-root"
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
                 scope="row"
               >
-                <div
-                  class="MuiBox-root css-j1p0c0"
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-crn0fq-MuiTypography-root"
                 >
-                  <p
-                    class="MuiTypography-root MuiTypography-body1 css-1xywyiu-MuiTypography-root"
+                  20
+                </p>
+              </th>
+              <th
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                scope="row"
+              >
+                <span
+                  class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+                >
+                  <input
+                    class="PrivateSwitchBase-input css-1m9pwf3"
+                    data-indeterminate="false"
+                    type="checkbox"
+                  />
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                    data-testid="CheckBoxOutlineBlankIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
                   >
-                    -3
-                  </p>
-                </div>
+                    <path
+                      d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                    />
+                  </svg>
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </span>
               </th>
             </tr>
           </tbody>
@@ -113,7 +156,7 @@ exports[`Test SectionTitle Components > Should match the snapshot with default p
       class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiTableContainer-root css-11xur9t-MuiPaper-root-MuiTableContainer-root"
     >
       <table
-        aria-label="simple table"
+        aria-label="table"
         class="MuiTable-root css-rqglhn-MuiTable-root"
       >
         <thead
@@ -123,18 +166,22 @@ exports[`Test SectionTitle Components > Should match the snapshot with default p
             class="MuiTableRow-root MuiTableRow-head css-1q1u3t4-MuiTableRow-root"
           >
             <th
-              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1ygcj2i-MuiTableCell-root"
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1flh0t9-MuiTableCell-root"
               scope="col"
-              style="background: rgb(23, 50, 77); border: 1px solid #bfdfff; color: rgb(242, 242, 242);"
             >
-              header-1
+              test_1
             </th>
             <th
-              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1ygcj2i-MuiTableCell-root"
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-13iu7n7-MuiTableCell-root"
               scope="col"
-              style="background: rgb(23, 50, 77); border: 1px solid #bfdfff; color: rgb(242, 242, 242);"
             >
-              header-2
+              test_2
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1flh0t9-MuiTableCell-root"
+              scope="col"
+            >
+              test_3
             </th>
           </tr>
         </thead>
@@ -149,29 +196,49 @@ exports[`Test SectionTitle Components > Should match the snapshot with default p
               scope="row"
             >
               <p
-                class="MuiTypography-root MuiTypography-body1 css-1bgd6jc-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-body1 css-crn0fq-MuiTypography-root"
               >
-                01/01/1970
-              </p>
-              <p
-                class="MuiTypography-root MuiTypography-body1 css-340yy5-MuiTypography-root"
-              >
-                Test
+                Simple string
               </p>
             </th>
             <th
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium css-177gid-MuiTableCell-root"
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
               scope="row"
             >
-              <div
-                class="MuiBox-root css-1ar0c0i"
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-crn0fq-MuiTypography-root"
               >
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-ljyaez-MuiTypography-root"
+                10
+              </p>
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+              scope="row"
+            >
+              <span
+                class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium Mui-checked MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+              >
+                <input
+                  checked=""
+                  class="PrivateSwitchBase-input css-1m9pwf3"
+                  data-indeterminate="false"
+                  type="checkbox"
+                />
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                  data-testid="CheckBoxIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
                 >
-                  3
-                </p>
-              </div>
+                  <path
+                    d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                  />
+                </svg>
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </span>
             </th>
           </tr>
           <tr
@@ -182,29 +249,48 @@ exports[`Test SectionTitle Components > Should match the snapshot with default p
               scope="row"
             >
               <p
-                class="MuiTypography-root MuiTypography-body1 css-1bgd6jc-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-body1 css-crn0fq-MuiTypography-root"
               >
-                02/01/1970
-              </p>
-              <p
-                class="MuiTypography-root MuiTypography-body1 css-340yy5-MuiTypography-root"
-              >
-                Test_Error
+                Simple string 2
               </p>
             </th>
             <th
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium css-177gid-MuiTableCell-root"
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
               scope="row"
             >
-              <div
-                class="MuiBox-root css-j1p0c0"
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-crn0fq-MuiTypography-root"
               >
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-1xywyiu-MuiTypography-root"
+                20
+              </p>
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+              scope="row"
+            >
+              <span
+                class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+              >
+                <input
+                  class="PrivateSwitchBase-input css-1m9pwf3"
+                  data-indeterminate="false"
+                  type="checkbox"
+                />
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                  data-testid="CheckBoxOutlineBlankIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
                 >
-                  -3
-                </p>
-              </div>
+                  <path
+                    d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                  />
+                </svg>
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </span>
             </th>
           </tr>
         </tbody>
