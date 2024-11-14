@@ -12,7 +12,7 @@ import {
   Table,
   useDialog,
 } from "@io-ipatente/ui";
-import { Chip, Link, Stack, Typography } from "@mui/material";
+import { Chip, Link, Skeleton, Stack, Typography } from "@mui/material";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -36,6 +36,7 @@ export default function LicenceDetails() {
       ),
     [licenseNumber],
   );
+
   const { data, error, isError, isLoading, isRefetching, refetch } =
     useLicences(selectLicenseByLicenseNumber);
 
@@ -116,7 +117,20 @@ export default function LicenceDetails() {
   );
 
   if (isLoading || isRefetching) {
-    return <Stack my={3}>Loading...</Stack>;
+    return (
+      <>
+        <SectionTitle isLoading />
+        <Stack my={3} spacing={2}>
+          <CardInfo
+            icon={<Skeleton height={24} variant="rounded" width={24} />}
+            items={Array.from({ length: 3 }).map(() => ({
+              label: <Skeleton height={24} width="25%" />,
+              value: <Skeleton height={24} width="100%" />,
+            }))}
+          />
+        </Stack>
+      </>
+    );
   }
 
   if (!data || isError) {
