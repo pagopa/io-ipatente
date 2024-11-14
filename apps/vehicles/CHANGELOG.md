@@ -1,5 +1,19 @@
 # vehicles
 
+## 0.8.0
+
+### Minor Changes
+
+- 6af362e: add loading state to LicenceDetails and VehicleDetails
+
+### Patch Changes
+
+- Updated dependencies [eb328f0]
+- Updated dependencies [31a7ce5]
+- Updated dependencies [6af362e]
+- Updated dependencies [4d3da08]
+  - @io-ipatente/ui@0.6.0
+
 ## 0.7.5
 
 ### Patch Changes
