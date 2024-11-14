@@ -48,9 +48,7 @@ export default function LicenceDetails() {
         body: <LicenceMovementDetail data={movDetail} />,
         title: t("licenceDetails.history.detail.title", {
           date: movDetail.dataEmissioneVerbale
-            ? new Date(
-                movDetail.dataEmissioneVerbale || "",
-              ).toLocaleDateString()
+            ? new Date(movDetail.dataEmissioneVerbale).toLocaleDateString()
             : "",
           description: movDetail.descrizioneEventoPunteggio,
         }),
