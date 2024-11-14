@@ -11,4 +11,5 @@ export * from "./operation-result";
 export * from "./page-header";
 export * from "./progress-bar";
 export * from "./section-title";
+export * from "./table";
 export * from "./top-bar";
