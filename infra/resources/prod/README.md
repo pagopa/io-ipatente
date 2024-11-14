@@ -19,6 +19,7 @@
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_key_vault"></a> [key\_vault](#module\_key\_vault) | ../_modules/key_vault | n/a |
+| <a name="module_licences_app_service"></a> [licences\_app\_service](#module\_licences\_app\_service) | ../_modules/licences_app_service | n/a |
 | <a name="module_vehicles_app_service"></a> [vehicles\_app\_service](#module\_vehicles\_app\_service) | ../_modules/vehicles_app_service | n/a |
 
 ## Resources
