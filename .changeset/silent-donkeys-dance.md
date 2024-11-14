@@ -3,4 +3,4 @@
 "@io-ipatente/ui": minor
 ---
 
-Add Table component- test - story in ui
+Added Table component - Added point movement history in licence detail
