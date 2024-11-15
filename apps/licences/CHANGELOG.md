@@ -1,5 +1,11 @@
 # io-ipatente-licences
 
+## 0.2.2
+
+### Patch Changes
+
+- 3a1eca6: Updated licence mov mock with negative points
+
 ## 0.2.1
 
 ### Patch Changes
