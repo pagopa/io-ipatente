@@ -53,11 +53,11 @@ const getMovimentazione = (): MovPat => ({
   descrizioneEventoPunteggio: "INCREMENTO ASSENZA VIOLAZIONI",
   punteggioEffettuato: faker.number.int({
     max: 5,
-    min: 0,
+    min: -5,
   }),
   punteggioNominativo: faker.number.int({
     max: 5,
-    min: 0,
+    min: -5,
   }),
   tipoEvento: faker.helpers.arrayElement([...tipoEventoValues]),
 });
