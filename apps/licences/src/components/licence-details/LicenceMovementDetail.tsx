@@ -59,7 +59,7 @@ export const LicenceMovementDetail = ({ data }: LicenceSectionDetailsProps) => {
           <Chip
             color={(punteggioNominativo || 0) < 0 ? "error" : "info"}
             label={punteggioNominativo || 0}
-            sx={{ borderRadius: 1, justifySelf: "end", paddingInline: 1 }}
+            sx={{ borderRadius: 1 }}
           />
         ),
       },
@@ -103,7 +103,6 @@ export const LicenceMovementDetail = ({ data }: LicenceSectionDetailsProps) => {
               }
             />
           </ListItem>
-
           {index < items.length - 1 ? <Divider /> : null}
         </Fragment>
       ))}
