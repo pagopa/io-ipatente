@@ -105,7 +105,7 @@ export default function LicenceDetails() {
             <Chip
               color={(item.punteggioNominativo || 0) < 0 ? "error" : "info"}
               label={item.punteggioNominativo || 0}
-              sx={{ borderRadius: 1, justifySelf: "end", paddingInline: 1 }}
+              sx={{ borderRadius: 1 }}
             />
           </Stack>
         ),
