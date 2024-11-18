@@ -1,5 +1,13 @@
 # vehicles
 
+## 0.8.3
+
+### Patch Changes
+
+- fd391b1: add keepalive config
+- Updated dependencies [fd391b1]
+  - @io-ipatente/core@0.4.7
+
 ## 0.8.2
 
 ### Patch Changes

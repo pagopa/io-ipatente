@@ -1,5 +1,13 @@
 # io-ipatente-licences
 
+## 0.2.4
+
+### Patch Changes
+
+- fd391b1: add keepalive config
+- Updated dependencies [fd391b1]
+  - @io-ipatente/core@0.4.7
+
 ## 0.2.3
 
 ### Patch Changes
