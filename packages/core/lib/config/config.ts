@@ -9,10 +9,14 @@ export interface Configuration {
   EXT_API_BASE_URL: string;
   EXT_API_MOCKING: boolean;
 
+  // Fetch keepalive
+  FETCH_KEEPALIVE_MAX_FREE_SOCKETS: number | undefined;
+  FETCH_KEEPALIVE_MAX_SOCKETS: number | undefined;
+  FETCH_KEEPALIVE_TIMEOUT: number | undefined;
+
   // INTERNAL TEST API
   INTERNAL_ROUTES_ENABLED: boolean;
   INTERNAL_ROUTES_TEST_USER: string[];
-
   // PDND Interoperability
   INTEROP_API_MOCKING: boolean;
   INTEROP_AUTH_SERVER_ENDPOINT_URL: string;
@@ -22,22 +26,23 @@ export interface Configuration {
   INTEROP_CLIENT_ASSERTION_PK: string;
   INTEROP_CLIENT_ASSERTION_PURPOSE_ID: string;
   INTEROP_CLIENT_ASSERTION_SUB: string;
+
   INTEROP_CLIENT_ASSERTION_TYPE: string;
   INTEROP_CLIENT_ID: string;
-
   INTEROP_ESERVICE_AUDIENCE: string;
   INTEROP_GRANT_TYPE: string;
   IS_BROWSER: boolean;
   IS_DEVELOPMENT: boolean;
+
   IS_MSW_ENABLED: boolean; // Mock Service Worker - API mocking library for browser and Node.js
   IS_PRODUCTION: boolean;
-
   IS_SERVER: boolean;
   IS_TEST: boolean;
   // FIMS OIDC
   OIDC_CLIENT_ID: string;
   OIDC_CLIENT_REDIRECT_URI: string;
   OIDC_CLIENT_SECRET: string;
+
   OIDC_ISSUER_URL: string;
   OIDC_MOCK_FORCED_ENABLE?: boolean;
 
@@ -53,6 +58,19 @@ export const getConfiguration = (): Configuration => ({
   EXT_API_BASE_PATH: process.env.EXT_API_BASE_PATH as string,
   EXT_API_BASE_URL: process.env.EXT_API_BASE_URL as string,
   EXT_API_MOCKING: process.env.EXT_API_MOCKING === "true",
+
+  FETCH_KEEPALIVE_MAX_FREE_SOCKETS:
+    process.env.FETCH_KEEPALIVE_MAX_FREE_SOCKETS === undefined
+      ? undefined
+      : parseInt(process.env.FETCH_KEEPALIVE_MAX_FREE_SOCKETS, 10),
+  FETCH_KEEPALIVE_MAX_SOCKETS:
+    process.env.FETCH_KEEPALIVE_MAX_SOCKETS === undefined
+      ? undefined
+      : parseInt(process.env.FETCH_KEEPALIVE_MAX_SOCKETS, 10),
+  FETCH_KEEPALIVE_TIMEOUT:
+    process.env.FETCH_KEEPALIVE_TIMEOUT === undefined
+      ? undefined
+      : parseInt(process.env.FETCH_KEEPALIVE_TIMEOUT, 10),
 
   INTERNAL_ROUTES_ENABLED: process.env.INTERNAL_ROUTES_ENABLED === "true",
   INTERNAL_ROUTES_TEST_USER: process.env.INTERNAL_ROUTES_TEST_USER
