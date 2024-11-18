@@ -1,5 +1,11 @@
 # io-ipatente-licences
 
+## 0.2.3
+
+### Patch Changes
+
+- 22f0f53: copy review
+
 ## 0.2.2
 
 ### Patch Changes

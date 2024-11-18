@@ -1,5 +1,11 @@
 # vehicles
 
+## 0.8.2
+
+### Patch Changes
+
+- 22f0f53: copy review
+
 ## 0.8.1
 
 ### Patch Changes
