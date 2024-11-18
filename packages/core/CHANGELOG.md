@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.4.7
+
+### Patch Changes
+
+- fd391b1: add keepalive config
+
 ## 0.4.6
 
 ### Patch Changes
