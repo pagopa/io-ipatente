@@ -1,0 +1,246 @@
+openapi: 3.0.0
+info:
+  title: Pagamenti API
+  description: Specifica delle API del backend esterno di DG MOT per la funzionalit **I miei pagamenti**.
+  version: 1.0.0
+servers:
+  - url: https://gw-coll.servizidt.it/rest/in/MCTC/IMieiPagamenti_AppIO/v2
+
+paths:
+  /inte/pagamenti:
+    get:
+      summary: Recupero di tutti i dati i pagamenti inerenti un cf
+      operationId: getPagamenti
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Pagamento"
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+        404:
+          description: Not found
+        500:
+          description: Internal server error
+
+  /inte/pagamenti/ricevuta/{idRichiestaPagamento}:
+    get:
+      summary: Stampa di una ricevuta telematica
+      operationId: stampaRicevutaTelematica
+      parameters:
+        - name: idRichiestaPagamento
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EsitoStampaTelematica"
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+        404:
+          description: Not found
+        500:
+          description: Internal server error
+
+components:
+  schemas:
+    EsitoRestResponse:
+      type: object
+      required:
+        - codice
+        - descrizione
+      properties:
+        codice:
+          type: string
+        descrizione:
+          type: string
+      title: EsitoRestResponse
+    FileWrapper:
+      type: object
+      required:
+        - ext
+        - file
+        - fileName
+      properties:
+        ext:
+          type: string
+        file:
+          type: string
+          format: byte
+        fileName:
+          type: string
+      title: FileWrapper
+    EsitoStampaTelematica:
+      description: Risultato della stampa telematica
+      required:
+        - esito
+      type: "object"
+      properties:
+        esito:
+          $ref: "#/components/schemas/EsitoRestResponse"
+        risultato:
+          $ref: "#/components/schemas/FileWrapper"
+    Pagamento:
+      description: Dati relativi ad un pagamento spontaneo effettuato tramite PagoPA
+      type: "object"
+      required:
+        - idRichiesta
+        - idCarrello
+        - numeroPratiche
+        - tariffario
+        - flagEsenzione
+        - flagCumulativo
+        - flagUrgenza
+        - flagAbbinamento
+        - statoPratica
+        - dataInserimentoRichiesta
+        - listaIuv
+      properties:
+        idRichiesta:
+          description: Identifica univocamente una richiesta di pagamento spontaneo
+          type: integer
+          format: int64
+        idCarrello:
+          description: Identificatore per raggruppare tutte le richieste di un invio
+          type: integer
+          format: int64
+        numeroPratiche:
+          description: Numero di pratiche
+          type: integer
+          format: int64
+        tariffario:
+          description: |
+            ### Descrizione breve del tipo tariffa
+            - NAZIONALE
+            - TRENTO
+            - BOLZANO
+            - SICILIA
+            - AOSTA
+          type: string
+        flagEsenzione:
+          description: Esenzione del bollo per una tipologia di pratica non relativa al DU
+          type: boolean
+        flagCumulativo:
+          description: Specifica se la richiesta si riferisce ad una pratica di tipo cumulativo
+          type: boolean
+        flagUrgenza:
+          description: Specifica se la pratica è urgente
+          type: boolean
+        flagAbbinamento:
+          description: Specifica se contiene il protocollo della pratica MCTC per abbinamento manuale
+          type: boolean
+        nomePagatore:
+          description: Nome del richiedente del pagamento spontaneo
+          type: string
+        cognomePagatore:
+          description: Cognome del richiedente del pagamento spontaneo
+          type: string
+        codiceFiscalePagatore:
+          description: Codice fiscale della persona fisica che richiede il pagamento
+          type: string
+        statoPratica:
+          $ref: "#/components/schemas/StatoRichiestaPagamento"
+        codiceTipoPratica:
+          description: Codice del tipo di pratica
+          type: string
+        descrizioneTipoPratica:
+          description: Descrizione del tipo di pratica
+          type: string
+        causale:
+          description: Descrizione della causale del pagamento
+          type: string
+        dataInserimentoRichiesta:
+          description: Data in cui è stata inserita la richiesta di pagamento
+          type: string
+        listaIuv:
+          type: array
+          items:
+            $ref: "#/components/schemas/Iuv"
+    Iuv:
+      type: "object"
+      required:
+        - statoIuv
+        - importo
+      properties:
+        codiceIuv:
+          description: Identificativo univoco di versamento
+          type: string
+        statoIuv:
+          $ref: "#/components/schemas/StatoIuv"
+        contoCorrente:
+          description: Codice di conto corrente postale su cui viene effettuato il versamento
+          type: string
+        tipoIncasso:
+          description: Descrizione del conto corrente postale su cui viene effettuato il versamento
+          type: string
+        importo:
+          description: Importo comunicato all'intermediario tecnologico dopo aver confermato la richiesta di pagamento
+          type: number
+        dataScadenzaIuv:
+          description: Data entro la quale l'identificativo univoco di versamento deve essere pagato
+          type: string
+    StatoRichiestaPagamento:
+      type: object
+      properties:
+        codice:
+          $ref: "#/components/schemas/StatoRichiestaPagamentoEnum"
+        descrizione:
+          type: string
+          description: Descrizione dello stato della pratica
+    StatoRichiestaPagamentoEnum:
+      type: string
+      description: |
+        ### Codice stato richiesta pagamento
+        - "C" (CREAZIONE IN CORSO)
+        - "D" (DA PAGARE)
+        - "P" (PAGATA)
+        - "B" (BRUCIATA)
+        - "L" (CANCELLATA)
+        - "Z" (PARZIALMENTE CANCELLATA)
+        - "A" (PARZIALMENTE ANNULLATA)
+        - "N" (DA INTEGRARE)
+        - "E" (DA INTEGRARE IN ERRORE)
+        - "X" (ELABORATA CON ERRORE)
+        - "I" (PAGAMENTO IN CORSO)
+        - "R" (RIMBORSATA)
+        - "M" (PARZIALMENTE RIMBORSATA)
+        - "G" (DISAGGREGATA)
+      enum: [C, D, P, B, L, Z, A, N, E, X, I, R, M, G]
+    StatoIuv:
+      type: object
+      description: Stato del versamento generato
+      properties:
+        codice:
+          $ref: "#/components/schemas/StatoIuvEnum"
+        descrizione:
+          type: string
+          description: Descrizione dello stato dell'identificativo univoco di versamento generato
+    StatoIuvEnum:
+      type: string
+      description: |
+        ### Codice stato iuv
+        - "M" (DA RIMBORSARE)
+        - "C" (CREAZIONE IN CORSO)
+        - "E" (INVIO IN ERRORE)
+        - "D" (DA PAGARE)
+        - "A" (ANNULLATO)
+        - "P" (PAGATO)
+        - "B" (BRUCIATO)
+        - "R" (RIVITALIZZATO)
+        - "S" (SCADUTO)
+        - "N" (PAGAMENTO IN CORSO)
+        - "T" (RIMBORSATO)
+      enum: [M, C, E, D, A, P, B, R, S, N, T]
