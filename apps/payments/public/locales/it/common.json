@@ -1,0 +1,47 @@
+{
+  "app": {
+    "title": "I miei pagamenti",
+    "description": "I miei pagamenti"
+  },
+  "topBar": {
+    "product": {
+      "name": "Il portale dell'automobilista"
+    },
+    "assistance": "Assistenza"
+  },
+  "payments": {
+    "title": "I miei pagamenti",
+    "defaultLabel": "Pagamento",
+    "empty": "Non sono presenti pagamenti"
+  },
+  "paymentDetails": {
+    "title": "Dettaglio Pagamento",
+    "breadcrumbs": {
+      "payments": "I miei pagamenti",
+      "paymentDetail": "Dettaglio pagamento"
+    },
+    "info": {
+      "title": "Dettagli pagamento"
+    }
+  },
+  "payment": {},
+  "assistance": {
+    "title": "Assistenza",
+    "back": "Indietro",
+    "info": {
+      "title": "Assistenza sui servizi digitali del Portale dell'Automobilista",
+      "phone": "800 23 23 23",
+      "description": "Attivo dal lunedì al venerdì dalle 8:00 alle 20:00 il sabato dalle 8:00 alle 14:00"
+    }
+  },
+  "failure": {
+    "generic": {
+      "title": "Qualcosa è andato storto",
+      "description": "Al momento il servizio non è disponibile.",
+      "retry": "Riprova"
+    },
+    "expiredSession": {
+      "title": "La tua session è scaduta"
+    }
+  }
+}

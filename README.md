@@ -7,10 +7,10 @@ The project `io-ipatente` aims to provide, through [App IO](https://io.italia.it
 ### 🚧 Work in Progress 🚧
 This repository contains the code of the iPatente services that will be exposed as web applications through the App IO *services*.
 
-1. `apps/licences` that exposes the web application for "Le mie patenti" service.
-2. `apps/payments` that exposes the web application for "I miei pagamenti" service.
-3. `apps/practices` that exposes the web application for "Le mie pratiche" service.
-4. `apps/vehicles` that exposes the web application for "I miei veicoli" service.
+1. `apps/licences` : web application for "Le mie patenti" service.
+2. `apps/payments` : web application for "I miei pagamenti" service.
+3. `apps/practices`: web application for "Le mie pratiche" service.
+4. `apps/vehicles` : web application for "I miei veicoli" service.
 
 These web applications are all [NextJS](https://nextjs.org/) projects.
 
@@ -87,8 +87,7 @@ NEXT_PUBLIC_IS_MSW_ENABLED=true
 # enable mocks on Backend for frontend (for frontend development)
 NEXT_PUBLIC_BFF_API_MOCKING=true
 # enable mocks for external APIs (for backend development)
-# !!! work in progress, to be confirmed !!!
-NEXT_PUBLIC_EXTERNAL_API_MOCKING=true
+NEXT_PUBLIC_EXT_API_MOCKING=true
 ```
 
 ## Release management
