@@ -3,7 +3,6 @@ import { Mock, describe, expect, it, vi } from "vitest";
 import { retrievePayments } from "../business";
 import { getExternalApiClient } from "../client";
 
-// Mock della funzione getExternalApiClient
 vi.mock("../client", () => ({
   getExternalApiClient: vi.fn(),
 }));
