@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~>4.0"
+      version = "~>4.10"
     }
 
     azuread = {
@@ -50,6 +50,10 @@ data "azurerm_api_management" "apim" {
 data "azurerm_virtual_network" "common" {
   name                = local.vnet.name
   resource_group_name = local.vnet.resource_group_name
+}
+
+data "azurerm_resource_group" "external" {
+  name = local.dns.resource_group_name
 }
 
 data "azuread_group" "admins" {
@@ -115,8 +119,9 @@ module "repo" {
     }
   }
 
-  apim_id     = data.azurerm_api_management.apim.id
-  pep_vnet_id = data.azurerm_virtual_network.common.id
+  apim_id                    = data.azurerm_api_management.apim.id
+  pep_vnet_id                = data.azurerm_virtual_network.common.id
+  resource_group_dns_zone_id = data.azurerm_resource_group.external.id
 
   tags = local.tags
 }
