@@ -1,5 +1,11 @@
 # vehicles
 
+## 0.8.6
+
+### Patch Changes
+
+- 8a9ded0: Deploy vehicles to root appGateway instead of subfolder
+
 ## 0.8.5
 
 ### Patch Changes
