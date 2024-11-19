@@ -29,6 +29,10 @@ locals {
     resource_group_name = "${local.prefix}-${local.env_short}-itn-common-rg-01"
   }
 
+  dns = {
+    resource_group_name = "${local.prefix}-${local.env_short}-rg-external"
+  }
+
   tf_storage_account = {
     name                = "iopitntfst001"
     resource_group_name = "terraform-state-rg"
