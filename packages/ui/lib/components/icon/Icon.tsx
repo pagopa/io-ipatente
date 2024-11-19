@@ -35,6 +35,7 @@ import IconMotor from "./svg/IconMotor";
 import IconMotorbike1 from "./svg/IconMotorbike1";
 import IconMotorbike2 from "./svg/IconMotorbike2";
 import IconParking from "./svg/IconParking";
+import IconRefresh2 from "./svg/IconRefresh2";
 import IconRoad from "./svg/IconRoad";
 import IconSailboat from "./svg/IconSailboat";
 import IconScooter from "./svg/IconScooter";
@@ -86,6 +87,7 @@ export const Icons = {
   motorbike1: IconMotorbike1,
   motorbike2: IconMotorbike2,
   parking: IconParking,
+  refresh2: IconRefresh2,
   road: IconRoad,
   sailboat: IconSailboat,
   scooter: IconScooter,

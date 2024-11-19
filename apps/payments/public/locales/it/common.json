@@ -21,7 +21,23 @@
       "paymentDetail": "Dettaglio pagamento"
     },
     "info": {
-      "title": "Dettagli pagamento"
+      "title": "ID carrello",
+      "statoPratica": {
+        "C": "Creazione in corso",
+        "D": "Da pagare",
+        "P": "Pagata",
+        "B": "Bruciata",
+        "L": "Cancellata",
+        "Z": "Parzialmente cancellata",
+        "A": "Parzialmente annullata",
+        "N": "Da integrare",
+        "E": "Da integrare in errore",
+        "X": "Elaborata con errore",
+        "I": "Pagamento in corso",
+        "R": "Rimborsata",
+        "M": "Parzialmente rimborsata",
+        "G": "Disaggregata"
+      }
     }
   },
   "payment": {},

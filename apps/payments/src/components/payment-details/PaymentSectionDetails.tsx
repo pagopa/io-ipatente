@@ -1,5 +1,5 @@
 import { Pagamento } from "@/generated/bff-openapi";
-import { CardInfo, CardInfoItem, Icon } from "@io-ipatente/ui";
+import { CardInfo, CardInfoItem } from "@io-ipatente/ui";
 import { useTranslation } from "next-i18next";
 
 interface MetadataListItem {
@@ -28,7 +28,6 @@ export const PaymentSectionDetails = ({ data }: PaymentSectionDetailsProps) => {
 
   return (
     <CardInfo
-      icon={<Icon fontSize="medium" name="error" />}
       items={filteredMetadataListItems}
       title={t("paymentDetails.info.title")}
     />
