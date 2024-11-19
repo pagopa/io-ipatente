@@ -1,5 +1,11 @@
 # vehicles
 
+## 0.8.5
+
+### Patch Changes
+
+- cdb11c2: Vehicles App on domain root
+
 ## 0.8.4
 
 ### Patch Changes
