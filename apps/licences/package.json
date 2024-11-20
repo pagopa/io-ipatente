@@ -22,8 +22,7 @@
     "build:package": "yarn build:pre-package && (cd .next/standalone/apps/licences && zip -r -q ../../../../${npm_package_name}-${npm_package_version}.zip . -x package.json)",
     "start": "next start",
     "generate": "rimraf src/generated && mkdir -p src/generated && npm-run-all 'generate:*'",
-    "generate:bff-openapi-schema": "openapi-zod-client ./openapi/bff-openapi.yaml -o src/generated/bff-openapi.ts -t template-bff.hbs --additional-props-default-value=false",
-    "generate:ext-openapi-schema": "openapi-zod-client ./openapi/ext-openapi.yaml -o src/generated/ext-openapi.ts -t template-bff.hbs --additional-props-default-value=false"
+    "generate:api-models": "tsx ./generate.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -52,6 +51,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@apidevtools/swagger-parser": "^10.1.0",
     "@faker-js/faker": "^9.0.0",
     "@pagopa/eslint-config": "^4.0.1",
     "@tanstack/eslint-plugin-query": "^5.57.1",
@@ -70,8 +70,10 @@
     "msw": "^2.4.4",
     "npm-run-all": "^4.1.5",
     "openapi-zod-client": "^1.18.2",
+    "openapi3-ts": "3.1.0",
     "prettier": "^3.3.3",
     "rimraf": "^6.0.1",
+    "tsx": "^4.19.2",
     "typescript": "^5",
     "vite": "^5.4.4",
     "vite-tsconfig-paths": "^5.0.1",
