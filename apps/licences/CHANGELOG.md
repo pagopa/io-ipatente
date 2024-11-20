@@ -1,5 +1,11 @@
 # io-ipatente-licences
 
+## 0.2.5
+
+### Patch Changes
+
+- 50a5472: update app service
+
 ## 0.2.4
 
 ### Patch Changes
