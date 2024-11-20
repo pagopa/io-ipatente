@@ -38,7 +38,7 @@ export const BADGES_CONFIG_BY_CODE: Record<
   I: {
     color: "info",
     icon: "refresh2",
-    size: "medium",
+    size: "small",
   },
   L: {
     color: "default",
