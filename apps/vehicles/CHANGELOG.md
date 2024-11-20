@@ -1,5 +1,11 @@
 # vehicles
 
+## 0.8.7
+
+### Patch Changes
+
+- 50a5472: update app service
+
 ## 0.8.6
 
 ### Patch Changes
