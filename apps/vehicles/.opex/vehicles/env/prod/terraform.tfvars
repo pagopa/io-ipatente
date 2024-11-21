@@ -1,5 +1,4 @@
-prefix    = "IO"
-env       = "prod"
+prefix    = "io"
 env_short = "p"
 
 tags = {
