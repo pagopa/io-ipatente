@@ -27,6 +27,7 @@ jobs:
         id: check_licences
         run: |
           if [[ "${{ github.event.head_commit.modified }}" =~ ^apps/licences/openapi/bff-openapi.yaml|^\.opex/licences/|^\.github/workflows/test-opex-multi.yml ]]; then
+            echo "licences changes detected"
             echo "licences" >> changed_apps.txt
           fi
 
@@ -34,6 +35,7 @@ jobs:
         id: check_vehicles
         run: |
           if [[ "${{ github.event.head_commit.modified }}" =~ ^apps/vehicles/openapi/bff-openapi.yaml|^\.opex/vehicles/|^\.github/workflows/test-opex-multi.yml ]]; then
+            echo "vehicles changes detected"
             echo "vehicles" >> changed_apps.txt
           fi
 
