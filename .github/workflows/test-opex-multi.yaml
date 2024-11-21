@@ -24,39 +24,28 @@ jobs:
         with:
           fetch-depth: ${{ github.event_name == 'pull_request' && 2 || 0 }}
       - name: Get changed files
-        id: changed-files
+        id: get_changed_files
         run: |
           if ${{ github.event_name == 'pull_request' }}; then
               echo "changed_files=$(git diff --name-only -r HEAD^1 HEAD | xargs)" >> $GITHUB_OUTPUT
           else
               echo "changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | xargs)" >> $GITHUB_OUTPUT
           fi
-      - name: List changed files
-        run: |
-          for file in ${{ steps.changed-files.outputs.changed_files }}; do
-              echo "$file was changed"
-          done
 
       - name: Check changes for licences
         id: check_licences
         run: |
-          if echo "${{ steps.changed-files.outputs.changed_files }}" | grep -qE 'apps/licences/openapi/bff-openapi.yaml|\.opex/licences/|\.github/workflows/test-opex-multi.yaml'; then
+          if echo "${{ steps.get_changed_files.outputs.changed_files }}" | grep -qE 'apps/licences/openapi/bff-openapi.yaml|\.opex/licences/|\.github/workflows/test-opex-multi.yaml'; then
             echo "licences changes detected"
             echo "licences" >> changed_apps.txt
-          else
-            echo "licences changes not detected"
-            echo "$github.event.head_commit.modified"
           fi
 
       - name: Check changes for vehicles
         id: check_vehicles
         run: |
-          if echo "${{ steps.changed-files.outputs.changed_files }}" | grep -qE 'apps/vehicles/openapi/bff-openapi.yaml|\.opex/vehicles/|\.github/workflows/test-opex-multi.yaml'; then
+          if echo "${{ steps.get_changed_files.outputs.changed_files }}" | grep -qE 'apps/vehicles/openapi/bff-openapi.yaml|\.opex/vehicles/|\.github/workflows/test-opex-multi.yaml'; then
             echo "vehicles changes detected"
             echo "vehicles" >> changed_apps.txt
-          else
-            echo "vehicles changes not detected"
-            echo "$github.event.head_commit.modified"
           fi
 
       - name: Set output
@@ -68,15 +57,13 @@ jobs:
             echo "changed_apps=$changed_apps" >> $GITHUB_OUTPUT
             echo "Changed apps: $changed_apps"
           else
-            echo "changed_apps=[]" >> $GITHUB_ENV
-            echo "changed_apps=[]" >> $GITHUB_OUTPUT
             echo "No changes detected"
           fi
 
   build:
     needs: check-changes
     runs-on: ubuntu-22.04
-    environment: opex-prod-ci
+    environment: opex-prod-cd
     strategy:
       matrix:
         app: ${{ fromJson(needs.check-changes.outputs.changed_apps) }}
