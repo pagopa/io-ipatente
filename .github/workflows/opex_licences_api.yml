@@ -8,9 +8,9 @@ on:
       - main
       - IOPAE-1531-opex-dashboard
     paths:
-      - 'apps/licences/openapi/bff-openapi.yaml'
-      - '.github/workflows/opex_licences_api.yml'
-      - '.opex/licences/**'
+      - "apps/licences/openapi/bff-openapi.yaml"
+      - ".github/workflows/opex_licences_api.yml"
+      - "apps/licences/.opex/**"
 
 env:
   API_NAME: licences
@@ -33,7 +33,7 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-      
+
       # mitigation: opex-dashboard-azure-action currently does not support .opex
       # directory parameter
       - run: |
