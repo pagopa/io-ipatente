@@ -19,7 +19,7 @@ export type BadgeProps = {
 
 interface ListItemActionBaseProps {
   badges?: BadgeProps[];
-  icon: IconType;
+  icon?: IconType;
   label: string;
   onClick: () => void;
   value: string;
@@ -48,9 +48,11 @@ export const ListItemAction = (props: ListItemActionProps) => {
         boxShadow: (theme) => theme.shadows[4],
       }}
     >
-      <ListItemIcon>
-        <Icon fontSize="medium" name={icon} />
-      </ListItemIcon>
+      {icon && (
+        <ListItemIcon>
+          <Icon fontSize="medium" name={icon} />
+        </ListItemIcon>
+      )}
       <ListItemText
         disableTypography
         primary={

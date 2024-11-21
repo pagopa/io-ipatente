@@ -1,5 +1,5 @@
 import { Pagamento } from "@/generated/bff-openapi";
-import { CardCarousel, Icon } from "@io-ipatente/ui";
+import { CardCarousel, CardInfo, Icon } from "@io-ipatente/ui";
 import { Chip } from "@mui/material";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -15,6 +15,25 @@ export interface PaymentSectionIUVListProps {
 
 const IUVListDetails = ({ iuvList = [] }: PaymentSectionIUVListProps) => {
   const { t } = useTranslation();
+
+  if (iuvList.length === 0) {
+    return (
+      <CardInfo
+        icon={<Icon fontSize="medium" name="documentText" />}
+        title={t("paymentDetails.info.iuv.title")}
+        topContent={
+          <Typography
+            color="text.secondary"
+            paddingTop={2}
+            textAlign="center"
+            variant="body2"
+          >
+            {t("paymentDetails.info.iuv.empty")}
+          </Typography>
+        }
+      />
+    );
+  }
 
   return (
     <CardCarousel

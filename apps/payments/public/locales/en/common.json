@@ -15,7 +15,8 @@
     "empty": "Non sono presenti pagamenti"
   },
   "paymentDetails": {
-    "title": "Dettaglio Pagamento",
+    "title": "Dettagli pagamento",
+    "cartID": "ID Carrello",
     "breadcrumbs": {
       "payments": "I miei pagamenti",
       "paymentDetail": "Dettaglio pagamento"
@@ -44,6 +45,7 @@
         "amount": "Importo",
         "expiration": "Scadenza",
         "collectionType": "Tipo di incasso",
+        "empty": "Non sono presenti richieste.",
         "statuses": {
           "M": "Da rimborsare",
           "C": "Creazione in corso",
