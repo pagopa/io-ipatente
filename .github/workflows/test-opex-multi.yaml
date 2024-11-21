@@ -29,6 +29,9 @@ jobs:
           if [[ "${{ github.event.head_commit.modified }}" =~ (^| )apps/licences/openapi/bff-openapi.yaml|(^| )\.opex/licences/|(^| )\.github/workflows/test-opex-multi.yaml ]]; then
             echo "licences changes detected"
             echo "licences" >> changed_apps.txt
+          else
+            echo "licences changes not detected"
+            echo "$github.event.head_commit.modified"
           fi
 
       - name: Check changes for vehicles
@@ -37,6 +40,9 @@ jobs:
           if [[ "${{ github.event.head_commit.modified }}" =~ (^| )apps/vehicles/openapi/bff-openapi.yaml|(^| )\.opex/vehicles/|(^| )\.github/workflows/test-opex-multi.yaml ]]; then
             echo "vehicles changes detected"
             echo "vehicles" >> changed_apps.txt
+          else
+            echo "vehicles changes not detected"
+            echo "$github.event.head_commit.modified"
           fi
 
       - name: Set output
