@@ -1,3 +1,4 @@
+import IUVListDetails from "@/components/iuv-list-details/IUVListDetails";
 import AppLayout from "@/components/layouts/AppLayout";
 import { PaymentSectionDetails } from "@/components/payment-details/PaymentSectionDetails";
 import { GenericError } from "@/components/shared/GenericError";
@@ -51,9 +52,9 @@ export default function PaymentDetails() {
 
   return (
     <>
-      <SectionTitle icon="error" label={`${data.idRichiesta}`} />
       <Stack my={3} spacing={2}>
         <PaymentSectionDetails data={data} />
+        <IUVListDetails iuvList={data.listaIuv} />
       </Stack>
     </>
   );
