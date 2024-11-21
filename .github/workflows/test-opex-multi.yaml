@@ -40,9 +40,16 @@ jobs:
       - name: Set output
         id: set-output
         run: |
-          changed_apps=$(cat changed_apps.txt | sort | uniq | jq -R -s -c 'split("\n") | map(select(length > 0))')
-          echo "changed_apps=$changed_apps" >> $GITHUB_ENV
-          echo "::set-output name=changed_apps::$changed_apps"
+          if [ -f changed_apps.txt ]; then
+            changed_apps=$(cat changed_apps.txt | sort | uniq | jq -R -s -c 'split("\n") | map(select(length > 0))')
+            echo "changed_apps=$changed_apps" >> $GITHUB_ENV
+            echo "changed_apps=$changed_apps" >> $GITHUB_OUTPUT
+            echo "Changed apps: $changed_apps"
+          else
+            echo "changed_apps=[]" >> $GITHUB_ENV
+            echo "changed_apps=[]" >> $GITHUB_OUTPUT
+            echo "No changes detected"
+          fi
 
   build:
     needs: check-changes
