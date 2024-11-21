@@ -3,7 +3,7 @@ import { CardInfo, CardInfoItem, Icon } from "@io-ipatente/ui";
 import { Chip } from "@mui/material";
 import { useTranslation } from "next-i18next";
 
-import { BADGES_CONFIG_BY_CODE } from "./consts";
+import { BADGES_CONFIG_BY_CODE } from "../payments/consts";
 
 interface MetadataListItem {
   items: ({ isVisible: boolean } & CardInfoItem)[];
