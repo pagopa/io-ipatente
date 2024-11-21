@@ -10,9 +10,9 @@ on:
     paths:
       - ".github/workflows/test-opex-multi.yaml"
       - "apps/vehicles/openapi/bff-openapi.yaml"
-      - ".opex/vehicles/**"
+      - "apps/vehicles/.opex/**"
       - "apps/licences/openapi/bff-openapi.yaml"
-      - ".opex/licences/**"
+      - "apps/licences/.opex/**"
 
 jobs:
   check-changes:
@@ -35,7 +35,7 @@ jobs:
       - name: Check changes for licences
         id: check_licences
         run: |
-          if echo "${{ steps.get_changed_files.outputs.changed_files }}" | grep -qE 'apps/licences/openapi/bff-openapi.yaml|\.opex/licences/|\.github/workflows/test-opex-multi.yaml'; then
+          if echo "${{ steps.get_changed_files.outputs.changed_files }}" | grep -qE 'apps/licences/openapi/bff-openapi.yaml|\apps/licences/.opex/|\.github/workflows/test-opex-multi.yaml'; then
             echo "licences changes detected"
             echo "licences" >> changed_apps.txt
           fi
@@ -43,7 +43,7 @@ jobs:
       - name: Check changes for vehicles
         id: check_vehicles
         run: |
-          if echo "${{ steps.get_changed_files.outputs.changed_files }}" | grep -qE 'apps/vehicles/openapi/bff-openapi.yaml|\.opex/vehicles/|\.github/workflows/test-opex-multi.yaml'; then
+          if echo "${{ steps.get_changed_files.outputs.changed_files }}" | grep -qE 'apps/vehicles/openapi/bff-openapi.yaml|\apps/vehicles/.opex/|\.github/workflows/test-opex-multi.yaml'; then
             echo "vehicles changes detected"
             echo "vehicles" >> changed_apps.txt
           fi
