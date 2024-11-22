@@ -152,9 +152,12 @@ jobs:
             })
             const commentBody = `#### 📖 Terraform Plan Opex ('${{ matrix.app }}') - ${status}
             <details>
+            <summary>Terraform Plan</summary>
+
             \`\`\`hcl
             ${output}
             \`\`\`
+
             </details>
             `;
             if (botComment) {
