@@ -27,6 +27,7 @@ env:
 jobs:
   check-changes:
     runs-on: ubuntu-22.04
+    name: Check Changes
     outputs:
       changed_apps: ${{ steps.set-output.outputs.changed_apps }}
     steps:
