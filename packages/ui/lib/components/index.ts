@@ -1,6 +1,7 @@
 export * from "./assistance-info";
 export * from "./card-carousel";
 export * from "./card-info";
+export * from "./consent-view";
 export * from "./dialog";
 export * from "./empty-state";
 export * from "./floating-button";
