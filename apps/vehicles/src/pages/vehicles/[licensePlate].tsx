@@ -22,7 +22,7 @@ export default function VehicleDetails() {
 
   const selectVehicleByLicensePlate = useCallback(
     (data: Veicolo[]) =>
-      data.find((vehicle) => vehicle.targaVeicolo === licensePlate),
+      data.find((vehicle) => vehicle.targaVeicolo.trim() === licensePlate),
     [licensePlate],
   );
 
