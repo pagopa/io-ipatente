@@ -11,6 +11,7 @@ on:
       - reopened
     branches:
       - master
+      - IOPAE-1531-opex-dashboard
     paths:
       - ".github/workflows/release-opex-multi.yaml"
       - ".github/workflows/pr-opex-multi.yaml"
