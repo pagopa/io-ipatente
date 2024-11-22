@@ -49,7 +49,7 @@ export default function Payments() {
   if (data.length === 0) {
     return (
       <Stack marginTop={3}>
-        <EmptyState icon="error" title={t("payments.empty")} />
+        <EmptyState icon="wallet" title={t("payments.empty")} />
       </Stack>
     );
   }
