@@ -4,17 +4,10 @@ on:
   workflow_dispatch:
 
   pull_request:
-    types:
-      - opened
-      - edited
-      - synchronize
-      - reopened
-    branches:
-      - master
-      - IOPAE-1531-opex-dashboard
+    types: [opened, synchronize]
     paths:
-      - ".github/workflows/release-opex-multi.yaml"
       - ".github/workflows/pr-opex-multi.yaml"
+      - ".github/workflows/release-opex-multi.yaml"
       - "apps/vehicles/openapi/bff-openapi.yaml"
       - "apps/vehicles/.opex/**"
       - "apps/licences/openapi/bff-openapi.yaml"
@@ -28,6 +21,56 @@ env:
   TEMPLATE_DIR: azure-dashboard
 
 jobs:
+  check-changes:
+    runs-on: ubuntu-22.04
+    name: Check Changes
+    outputs:
+      changed_apps: ${{ steps.set-output.outputs.changed_apps }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: ${{ github.event_name == 'pull_request' && 2 || 0 }}
+      - name: Get changed files
+        id: get_changed_files
+        run: |
+          if ${{ github.event_name == 'pull_request' }}; then
+              echo "changed_files=$(git diff --name-only -r HEAD^1 HEAD | xargs)" >> $GITHUB_OUTPUT
+          else
+              echo "changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | xargs)" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Initialize changed_apps
+        run: echo "changed_apps=" >> $GITHUB_ENV
+
+      - name: Check changes for Licences Application
+        id: check_licences
+        run: |
+          if echo "${{ steps.get_changed_files.outputs.changed_files }}" | grep -qE 'apps/licences/openapi/bff-openapi.yaml|\apps/licences/.opex/|\.github/workflows/release-opex-multi.yaml'; then
+            if [ -z "${changed_apps}" ]; then
+              echo "changed_apps=licences" >> $GITHUB_ENV
+            else
+              echo "changed_apps=${changed_apps} licences" >> $GITHUB_ENV
+            fi
+          fi
+
+      - name: Check changes for Vehicles Application
+        id: check_vehicles
+        run: |
+          if echo "${{ steps.get_changed_files.outputs.changed_files }}" | grep -qE 'apps/vehicles/openapi/bff-openapi.yaml|\apps/vehicles/.opex/|\.github/workflows/release-opex-multi.yaml'; then
+            if [ -z "${changed_apps}" ]; then
+              echo "changed_apps=vehicles" >> $GITHUB_ENV
+            else
+              echo "changed_apps=${changed_apps} vehicles" >> $GITHUB_ENV
+            fi
+          fi
+
+      - name: Set output
+        id: set-output
+        run: |
+          changed_apps=$(echo "${changed_apps}" | sed 's/ $//' | tr ' ' '\n' | sort | uniq | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          echo "changed_apps=${changed_apps}" >> $GITHUB_OUTPUT
+          echo "Changed apps: ${changed_apps}"
+
   tf_plan:
     runs-on: ubuntu-22.04
     name: Terraform Plan
@@ -38,10 +81,12 @@ jobs:
       contents: read
     env:
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-
+    continue-on-error: true
+    strategy:
+      matrix:
+        app: ${{ fromJson(needs.check-changes.outputs.changed_apps) }}
     steps:
-
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      - uses: actions/checkout@3b9b8c884f6b4bb4d5be2779c26374abadae0871 # v4.2.2
         name: Checkout
 
       - name: Azure Login
