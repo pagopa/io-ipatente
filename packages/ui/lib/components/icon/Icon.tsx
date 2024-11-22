@@ -46,6 +46,7 @@ import IconSuccess from "./svg/IconSuccess";
 import IconTickCircleBold from "./svg/IconTickCircleBold";
 import IconTruck from "./svg/IconTruck";
 import IconTruckFast from "./svg/IconTruckFast";
+import IconWallet from "./svg/IconWallet";
 import IconWarning from "./svg/IconWarning";
 import IconWarning2Bold from "./svg/IconWarning2Bold";
 import IconWarningBold from "./svg/IconWarningBold";
@@ -98,6 +99,7 @@ export const Icons = {
   tickCircleBold: IconTickCircleBold,
   truck: IconTruck,
   truckFast: IconTruckFast,
+  wallet: IconWallet,
   warning: IconWarning,
   warning2Bold: IconWarning2Bold,
   warningBold: IconWarningBold,
