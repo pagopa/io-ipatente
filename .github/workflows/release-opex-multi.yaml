@@ -50,16 +50,22 @@ jobs:
         id: check_licences
         run: |
           if echo "${{ steps.get_changed_files.outputs.changed_files }}" | grep -qE 'apps/licences/openapi/bff-openapi.yaml|\apps/licences/.opex/|\.github/workflows/release-opex-multi.yaml'; then
-            echo "licences changes detected"
-            echo "licences " >> $GITHUB_ENV
+            if [ -z "${changed_apps}" ]; then
+              echo "changed_apps=licences" >> $GITHUB_ENV
+            else
+              echo "changed_apps=${changed_apps}licences" >> $GITHUB_ENV
+            fi
           fi
 
       - name: Check changes for Vehicles Application
         id: check_vehicles
         run: |
           if echo "${{ steps.get_changed_files.outputs.changed_files }}" | grep -qE 'apps/vehicles/openapi/bff-openapi.yaml|\apps/vehicles/.opex/|\.github/workflows/release-opex-multi.yaml'; then
-            echo "vehicles changes detected"
-            echo "vehicles " >> $GITHUB_ENV
+            if [ -z "${changed_apps}" ]; then
+              echo "changed_apps=vehicles" >> $GITHUB_ENV
+            else
+              echo "changed_apps=${changed_apps}vehicles" >> $GITHUB_ENV
+            fi
           fi
 
       - name: Set output
