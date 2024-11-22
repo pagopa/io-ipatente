@@ -1,9 +1,8 @@
 import { Pagamento } from "@/generated/bff-openapi";
+import { BADGES_CONFIG_BY_CODE } from "@/utils/consts";
 import { CardInfo, CardInfoItem, Icon } from "@io-ipatente/ui";
 import { Chip } from "@mui/material";
 import { useTranslation } from "next-i18next";
-
-import { BADGES_CONFIG_BY_CODE } from "../payments/consts";
 
 interface MetadataListItem {
   items: ({ isVisible: boolean } & CardInfoItem)[];
@@ -102,22 +101,30 @@ export const PaymentSectionDetails = ({ data }: PaymentSectionDetailsProps) => {
       {
         isVisible: flagCumulativo !== undefined,
         label: t("paymentDetails.info.cumulative"),
-        value: flagCumulativo ? "SI" : "NO",
+        value: flagCumulativo
+          ? t("paymentDetails.info.yes")
+          : t("paymentDetails.info.no"),
       },
       {
         isVisible: flagUrgenza !== undefined,
         label: t("paymentDetails.info.urgency"),
-        value: flagUrgenza ? "SI" : "NO",
+        value: flagUrgenza
+          ? t("paymentDetails.info.yes")
+          : t("paymentDetails.info.no"),
       },
       {
         isVisible: flagEsenzione !== undefined,
         label: t("paymentDetails.info.exemption"),
-        value: flagEsenzione ? "SI" : "NO",
+        value: flagEsenzione
+          ? t("paymentDetails.info.yes")
+          : t("paymentDetails.info.no"),
       },
       {
         isVisible: flagAbbinamento !== undefined,
         label: t("paymentDetails.info.combine"),
-        value: flagAbbinamento ? "SI" : "NO",
+        value: flagAbbinamento
+          ? t("paymentDetails.info.yes")
+          : t("paymentDetails.info.no"),
       },
     ],
   };

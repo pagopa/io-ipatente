@@ -1,5 +1,5 @@
-import IUVListDetails from "@/components/iuv-list-details/IUVListDetails";
 import AppLayout from "@/components/layouts/AppLayout";
+import IUVListDetails from "@/components/payment-details/IUVListDetails";
 import { PaymentSectionDetails } from "@/components/payment-details/PaymentSectionDetails";
 import { GenericError } from "@/components/shared/GenericError";
 import { Pagamento } from "@/generated/bff-openapi";
@@ -47,8 +47,6 @@ export default function PaymentDetails() {
   if (!data || isError) {
     return <GenericError error={error} onRetry={refetch} />;
   }
-
-  // const { icon } = TODO
 
   return (
     <>

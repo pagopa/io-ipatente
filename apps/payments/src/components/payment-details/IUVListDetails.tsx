@@ -1,4 +1,5 @@
 import { Pagamento } from "@/generated/bff-openapi";
+import { BADGES_BY_IUV_STATUS } from "@/utils/consts";
 import { CardCarousel, CardInfo, Icon } from "@io-ipatente/ui";
 import { Chip } from "@mui/material";
 import List from "@mui/material/List";
@@ -6,8 +7,6 @@ import ListItem from "@mui/material/ListItem";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import { useTranslation } from "react-i18next";
-
-import { BADGES_BY_IUV_STATUS } from "./consts";
 
 export interface PaymentSectionIUVListProps {
   iuvList?: Pagamento["listaIuv"];

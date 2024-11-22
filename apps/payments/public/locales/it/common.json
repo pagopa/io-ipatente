@@ -37,6 +37,8 @@
       "urgency": "Urgenza",
       "exemption": "Esenzione",
       "combine": "Abbinata",
+      "yes": "SI",
+      "no": "NO",
       "iuv": {
         "title": "Lista degli IUV della richiesta",
         "code": "Codice IUV",
