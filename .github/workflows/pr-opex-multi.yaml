@@ -33,9 +33,10 @@ jobs:
       - name: Get changed files
         id: get_changed_files
         run: |
-          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            git fetch origin ${{ github.base_ref }}
-            changed_files=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | xargs)
+          if ${{ github.event_name == 'pull_request' }}; then
+              git fetch origin ${{ github.base_ref }}
+              changed_files=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | xargs)
+              echo "Changed files: ${changed_files}"
           else
               echo "changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | xargs)" >> $GITHUB_OUTPUT
           fi
