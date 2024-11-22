@@ -81,6 +81,7 @@ jobs:
       contents: read
     env:
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+    continue-on-error: true
     strategy:
       matrix:
         app: ${{ fromJson(needs.check-changes.outputs.changed_apps) }}
