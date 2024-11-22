@@ -22,8 +22,7 @@
     "build:package": "yarn build:pre-package && (cd .next/standalone/apps/payments && zip -r -q ../../../../${npm_package_name}-${npm_package_version}.zip . -x package.json)",
     "start": "next start",
     "generate": "rimraf src/generated && mkdir -p src/generated && npm-run-all 'generate:*'",
-    "generate:bff-openapi-schema": "openapi-zod-client ./openapi/bff-openapi.yaml -o src/generated/bff-openapi.ts -t template-bff.hbs --additional-props-default-value=false",
-    "generate:ext-openapi-schema": "openapi-zod-client ./openapi/ext-openapi.yaml -o src/generated/ext-openapi.ts -t template-bff.hbs --additional-props-default-value=false"
+    "generate:api-models": "tsx ./generate.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -49,6 +48,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-i18next": "^15.0.2",
+    "tsx": "^4.19.2",
     "zod": "^3.23.8"
   },
   "devDependencies": {
