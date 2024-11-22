@@ -13,9 +13,17 @@ on:
       - "apps/licences/openapi/bff-openapi.yaml"
       - "apps/licences/.opex/**"
 
-permissions:
-  id-token: write
-  contents: read
+concurrency:
+  group: ipatente-opex
+  cancel-in-progress: false
+
+env:
+  ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+  ARM_USE_OIDC: true
+  DOCKER_IMAGE_TAG: sha256:04d8ead53c772d23b094c2a395292dc159e6f2905e1b13b5f828f31eac6eb27f
+  TEMPLATE_DIR: azure-dashboard
+  API_NAME: management
 
 jobs:
   check-changes:
@@ -63,21 +71,24 @@ jobs:
             echo "No changes detected"
           fi
 
-  build:
+  tf_apply:
     needs: check-changes
     runs-on: ubuntu-22.04
+    name: Terraform Apply
     environment: opex-prod-cd
+    permissions:
+      id-token: write
+      contents: read
+    env:
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
     strategy:
       matrix:
         app: ${{ fromJson(needs.check-changes.outputs.changed_apps) }}
     steps:
       - name: Checkout
-        id: checkout
         # from https://github.com/actions/checkout/commits/main
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-        with:
-          persist-credentials: false
-          fetch-depth: 0
+
       # mitigation: opex-dashboard-azure-action currently does not support .opex
       # directory parameter
       - run: |
@@ -89,10 +100,9 @@ jobs:
       - uses: pagopa/opex-dashboard-azure-action@3ad80a5e4a2d5a8f342615637072f21b687320ce # action v1.2.1
         with:
           environment: prod
-          api-name: ${{ matrix.app }}
+          api-name: ${{ env.API_NAME }}
           config: .opex/${{ matrix.app }}/env/prod/config.yaml
-          client-id: ${{ secrets.ARM_CLIENT_ID }}
-          tenant-id: ${{ secrets.ARM_TENANT_ID }}
-          subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-          # from https://github.com/pagopa/opex-dashboard-azure-action/pkgs/container/opex-dashboard-azure-action
-          docker-version: sha256:04d8ead53c772d23b094c2a395292dc159e6f2905e1b13b5f828f31eac6eb27f
+          client-id: ${{ env.ARM_CLIENT_ID }}
+          tenant-id: ${{ env.ARM_TENANT_ID }}
+          subscription-id: ${{ env.ARM_SUBSCRIPTION_ID }}
+          docker-version: ${{ env.DOCKER_IMAGE_TAG }}
