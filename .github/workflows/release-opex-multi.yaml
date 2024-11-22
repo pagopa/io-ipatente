@@ -53,7 +53,7 @@ jobs:
             if [ -z "${changed_apps}" ]; then
               echo "changed_apps=licences" >> $GITHUB_ENV
             else
-              echo "changed_apps=${changed_apps}licences" >> $GITHUB_ENV
+              echo "changed_apps=${changed_apps} licences" >> $GITHUB_ENV
             fi
           fi
 
@@ -64,14 +64,14 @@ jobs:
             if [ -z "${changed_apps}" ]; then
               echo "changed_apps=vehicles" >> $GITHUB_ENV
             else
-              echo "changed_apps=${changed_apps}vehicles" >> $GITHUB_ENV
+              echo "changed_apps=${changed_apps} vehicles" >> $GITHUB_ENV
             fi
           fi
 
       - name: Set output
         id: set-output
         run: |
-          changed_apps=$(echo "${changed_apps}" | tr ' ' '\n' | sort | uniq | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          changed_apps=$(echo "${changed_apps}" | sed 's/ $//' | tr ' ' '\n' | sort | uniq | jq -R -s -c 'split("\n") | map(select(length > 0))')
           echo "changed_apps=${changed_apps}" >> $GITHUB_OUTPUT
           echo "Changed apps: ${changed_apps}"
 
