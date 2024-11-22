@@ -43,33 +43,31 @@ jobs:
               echo "changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | xargs)" >> $GITHUB_OUTPUT
           fi
 
-      - name: Check changes for licences
+      - name: Initialize changed_apps
+        run: echo "changed_apps=" >> $GITHUB_ENV
+
+      - name: Check changes for Licences Application
         id: check_licences
         run: |
           if echo "${{ steps.get_changed_files.outputs.changed_files }}" | grep -qE 'apps/licences/openapi/bff-openapi.yaml|\apps/licences/.opex/|\.github/workflows/release-opex-multi.yaml'; then
             echo "licences changes detected"
-            echo "licences" >> changed_apps.txt
+            echo "licences " >> $GITHUB_ENV
           fi
 
-      - name: Check changes for vehicles
+      - name: Check changes for Vehicles Application
         id: check_vehicles
         run: |
           if echo "${{ steps.get_changed_files.outputs.changed_files }}" | grep -qE 'apps/vehicles/openapi/bff-openapi.yaml|\apps/vehicles/.opex/|\.github/workflows/release-opex-multi.yaml'; then
             echo "vehicles changes detected"
-            echo "vehicles" >> changed_apps.txt
+            echo "vehicles " >> $GITHUB_ENV
           fi
 
       - name: Set output
         id: set-output
         run: |
-          if [ -f changed_apps.txt ]; then
-            changed_apps=$(cat changed_apps.txt | sort | uniq | jq -R -s -c 'split("\n") | map(select(length > 0))')
-            echo "changed_apps=$changed_apps" >> $GITHUB_ENV
-            echo "changed_apps=$changed_apps" >> $GITHUB_OUTPUT
-            echo "Changed apps: $changed_apps"
-          else
-            echo "No changes detected"
-          fi
+          changed_apps=$(echo "${changed_apps}" | tr ' ' '\n' | sort | uniq | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          echo "changed_apps=${changed_apps}" >> $GITHUB_OUTPUT
+          echo "Changed apps: ${changed_apps}"
 
   tf_apply:
     needs: check-changes
