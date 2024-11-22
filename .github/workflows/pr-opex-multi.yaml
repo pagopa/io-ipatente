@@ -12,7 +12,8 @@ on:
     branches:
       - master
     paths:
-      - ".github/workflows/test-opex-multi.yaml"
+      - ".github/workflows/release-opex-multi.yaml"
+      - ".github/workflows/pr-opex-multi.yaml"
       - "apps/vehicles/openapi/bff-openapi.yaml"
       - "apps/vehicles/.opex/**"
       - "apps/licences/openapi/bff-openapi.yaml"

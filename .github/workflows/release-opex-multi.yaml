@@ -7,7 +7,7 @@ on:
       - main
       - IOPAE-1531-opex-dashboard
     paths:
-      - ".github/workflows/test-opex-multi.yaml"
+      - ".github/workflows/release-opex-multi.yaml"
       - "apps/vehicles/openapi/bff-openapi.yaml"
       - "apps/vehicles/.opex/**"
       - "apps/licences/openapi/bff-openapi.yaml"
