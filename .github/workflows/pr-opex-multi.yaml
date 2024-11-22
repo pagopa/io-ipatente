@@ -126,10 +126,10 @@ jobs:
         id: plan
         working-directory: ${{ env.TEMPLATE_DIR }}
         run: |
-          bash ./terraform.sh plan prod -no-color 2>&1 | grep -v "hidden-link:"  | tee plan_output.txt
-          OUTPUT=$(grep -Ev "Refreshing state|state lock|Reading|Read" plan_output.txt | tail -c 60000)
-          printf "%s" "$OUTPUT" > plan_output_multiline.txt
-          if grep -q "::error::Terraform exited with code" plan_output.txt; then
+          bash ./terraform.sh plan prod -no-color 2>&1 | grep -v "hidden-link:"  | tee ${{ matrix.app }}_plan_output.txt
+          OUTPUT=$(grep -Ev "Refreshing state|state lock|Reading|Read" ${{ matrix.app }}_plan_output.txt | tail -c 60000)
+          printf "%s" "$OUTPUT" > ${{ matrix.app }}_plan_output_multiline.txt
+          if grep -q "::error::Terraform exited with code" ${{ matrix.app }}_plan_output.txt; then
             echo "failed"
             exit 1
           fi
@@ -140,7 +140,7 @@ jobs:
         with:
           script: |
             const fs = require('fs');
-            const output = fs.readFileSync('${{ env.TEMPLATE_DIR }}/plan_output_multiline.txt', 'utf8');
+            const output = fs.readFileSync('${{ env.TEMPLATE_DIR }}/${{ matrix.app }}_plan_output_multiline.txt', 'utf8');
             const status = '${{ steps.plan.outcome }}'
             const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
@@ -152,7 +152,6 @@ jobs:
             })
             const commentBody = `#### 📖 Terraform Plan Opex ('${{ matrix.app }}') - ${status}
             <details>
-            <summary>Terraform Plan</summary>
             \`\`\`hcl
             ${output}
             \`\`\`
