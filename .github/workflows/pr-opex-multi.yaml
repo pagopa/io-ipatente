@@ -35,6 +35,7 @@ jobs:
         run: |
           if ${{ github.event_name == 'pull_request' }}; then
               echo "changed_files=$(git diff --name-only -r HEAD^1 HEAD | xargs)" >> $GITHUB_OUTPUT
+              echo "Changed files: ${changed_files}"
           else
               echo "changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | xargs)" >> $GITHUB_OUTPUT
           fi
