@@ -109,12 +109,12 @@ jobs:
           docker run \
             --workdir /github/workspace --rm \
             -v $(pwd):"/github/workspace" \
-            ghcr.io/pagopa/opex-dashboard-azure-action@${{ env.DOCKER_IMAGE_TAG }} ${{ env.TEMPLATE_DIR }}/${{ matrix.app }} apps/${{ matrix.app }}/.opex/${{ matrix.app }}/env/prod/config.yaml
+            ghcr.io/pagopa/opex-dashboard-azure-action@${{ env.DOCKER_IMAGE_TAG }} ${{ env.TEMPLATE_DIR }} apps/${{ matrix.app }}/.opex/${{ matrix.app }}/env/prod/config.yaml
       - name: Copy Environments
         shell: bash
         id: opex_copy
         run: |
-          cp -R apps/${{ matrix.app }}/.opex/${{ matrix.app }}/env ./${{ env.TEMPLATE_DIR }}/${{ matrix.app }}
+          cp -R apps/${{ matrix.app }}/.opex/${{ matrix.app }}/env ./${{ env.TEMPLATE_DIR }}
       - name: Setup Terraform
         id: terraform_setup
         uses: hashicorp/setup-terraform@a1502cd9e758c50496cc9ac5308c4843bcd56d36 # v3.0.0
@@ -124,7 +124,7 @@ jobs:
       - name: Terraform Plan
         shell: bash
         id: plan
-        working-directory: ${{ env.TEMPLATE_DIR }}/${{ matrix.app }}
+        working-directory: ${{ env.TEMPLATE_DIR }}
         run: |
           bash ./terraform.sh plan prod -no-color 2>&1 | grep -v "hidden-link:"  | tee plan_output.txt
           OUTPUT=$(grep -Ev "Refreshing state|state lock|Reading|Read" plan_output.txt | tail -c 60000)
@@ -140,7 +140,7 @@ jobs:
         with:
           script: |
             const fs = require('fs');
-            const output = fs.readFileSync('${{ env.TEMPLATE_DIR }}/${{ matrix.app }}/plan_output_multiline.txt', 'utf8');
+            const output = fs.readFileSync('${{ env.TEMPLATE_DIR }}/plan_output_multiline.txt', 'utf8');
             const status = '${{ steps.plan.outcome }}'
             const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
@@ -150,7 +150,7 @@ jobs:
             const botComment = comments.find(comment => {
               return comment.user.type === 'Bot' && comment.body.includes(`Terraform Plan ('Opex')`)
             })
-            const commentBody = `#### 📖 Terraform Plan ('${{ matrix.app }}') - ${status}
+            const commentBody = `#### 📖 Terraform Plan Opex ('${{ matrix.app }}') - ${status}
             <details>
             <summary>Terraform Plan</summary>
             \`\`\`hcl
