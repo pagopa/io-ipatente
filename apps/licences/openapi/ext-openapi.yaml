@@ -45,6 +45,7 @@ components:
             $ref: "#/components/schemas/DatiPatente"
         datiPatenteCqc:
           type: array
+          nullable: true
           description: Elenco dei dati relativi alla patente CQC (se presente)
           items:
             $ref: "#/components/schemas/DatiPatente"
@@ -55,22 +56,27 @@ components:
       properties:
         codiceFiscale:
           type: string
+          nullable: true
           description: Codice fiscale dell'utente
           example: BRTFBA77R30G273T
         progressivoPosizioneAnagrafica:
           type: integer
+          nullable: true
           description: Progressivo posizione anagrafica
           example: 42517799
         descrizioneCognome:
           type: string
+          nullable: true
           description: Cognome dell'utente
           example: BARTOLONE
         descrizioneNome:
           type: string
+          nullable: true
           description: Nome dell'utente
           example: FABIO
         dataNascita:
           type: string
+          nullable: true
           format: date
           description: Data di nascita dell'utente
           example: 1977-10-30
@@ -79,18 +85,22 @@ components:
       properties:
         dataScadenza:
           type: string
+          nullable: true
           description: Data di scadenza della patente
           example: 2016-06-20 02:00:00.0
         numeroPatente:
           type: string
+          nullable: true
           description: Numero della patente
           example: PA5254373J
         saldoPunti:
           type: integer
+          nullable: true
           description: Saldo punti attuale della patente
           example: 28
         movPat:
           type: array
+          nullable: true
           description: Elenco delle movimentazioni di punti
           items:
             $ref: "#/components/schemas/MovPat"
@@ -110,29 +120,37 @@ components:
           $ref: "#/components/schemas/TipoEvento"
         punteggioEffettuato:
           type: integer
+          nullable: true
           description: Punti associati all'evento
           example: 2
         descrizioneEventoPunteggio:
           type: string
+          nullable: true
           description: Descrizione dell'evento associato ai punti
           example: INCREMENTO ASSENZA VIOLAZIONI
         codiceVerbale:
           type: string
+          nullable: true
           description: Codice del verbale associato all'evento (se presente)
         dataEmissioneVerbale:
           type: string
+          nullable: true
           description: Data di emissione del verbale (se presente)
         descrizioneDenominazioneEnteAccertatore:
           type: string
+          nullable: true
           description: Denominazione dell'ente accertatore (se presente)
         descrizioneAusiliarioAge:
           type: string
+          nullable: true
           description: Ausiliario accertatore (se presente)
         descrizioneDenonimazioneEnteAccertatoreEmissione:
           type: string
+          nullable: true
           description: Denominazione ente che ha emesso il verbale (se presente)
         punteggioNominativo:
           type: integer
+          nullable: true
           description: Punti assegnati al nominativo
           example: 2
     TipoEvento:
@@ -157,6 +175,7 @@ components:
       example: "0001"
     TipoCqc:
       type: object
+      nullable: true
       properties:
         codice:
           $ref: "#/components/schemas/TipoCqcEnum"
@@ -168,7 +187,7 @@ components:
       description: |
         ### Tipo CQC
         - "M"  ("MERCI")
-        - "P"  ("PERSONE") 
+        - "P"  ("PERSONE")
         - "MP" ("MERCI E PERSONE")
       enum: ["M", "P", "MP"]
       example: "M"

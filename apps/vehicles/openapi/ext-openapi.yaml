@@ -43,23 +43,30 @@ components:
         tipoVeicolo:
           $ref: "#/components/schemas/TipoVeicoloEnum"
         datiVeicolo:
+          nullable: true
           $ref: "#/components/schemas/DatiVeicolo"
         storicoRevisioni:
           type: array
+          nullable: true
           items:
             $ref: "#/components/schemas/Revisione"
         coperturaRCA:
+          nullable: true
           $ref: "#/components/schemas/CoperturaRCA"
     DatiVeicolo:
       type: "object"
       properties:
         extraMassa:
+          nullable: true
           $ref: "#/components/schemas/ExtraMassa"
         neopatentati:
+          nullable: true
           $ref: "#/components/schemas/Neopatentati"
         classeAmbientale:
+          nullable: true
           $ref: "#/components/schemas/ClasseAmbientaleEnum"
         tipoUsoVeicolo:
+          nullable: true
           type: "string"
           description: |
             - AUTOVEICOLO IN SERVIZIO PUBBLICO DI LINEA INTEGRATIVO
@@ -155,8 +162,10 @@ components:
           $ref: "#/components/schemas/EsitoRevisione"
         kmPercorsi:
           type: "number"
+          nullable: true
         kmTotali:
           type: "number"
+          nullable: true
     EsitoRevisione:
       type: object
       required:

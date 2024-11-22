@@ -2,8 +2,17 @@ import { makeApi, Zodios, type ZodiosOptions } from "@zodios/core";
 import { z } from "zod";
 
 {{#each schemas}}
-export const {{@key}} = {{{this}}};
-export type {{@key}} = z.infer<typeof {{@key}}>;
+	export const {{@key}} =
+		{{#if (is_zobject this)}}
+			{{this}}.transform((obj) =>
+				Object.fromEntries(
+					Object.entries(obj).map(([_, value]) => [_, value ?? undefined]),
+				) as typeof obj,
+			);
+		{{else}}
+			{{{this}}}
+		{{/if}};
+	export type {{@key}} = z.infer<typeof {{@key}}>;
 
 {{/each}}
 

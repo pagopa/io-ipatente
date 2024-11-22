@@ -1,4 +1,5 @@
 import AppLayout from "@/components/layouts/AppLayout";
+import IUVListDetails from "@/components/payment-details/IUVListDetails";
 import { PaymentSectionDetails } from "@/components/payment-details/PaymentSectionDetails";
 import { GenericError } from "@/components/shared/GenericError";
 import { Pagamento } from "@/generated/bff-openapi";
@@ -47,13 +48,11 @@ export default function PaymentDetails() {
     return <GenericError error={error} onRetry={refetch} />;
   }
 
-  // const { icon } = TODO
-
   return (
     <>
-      <SectionTitle icon="error" label={`${data.idRichiesta}`} />
       <Stack my={3} spacing={2}>
         <PaymentSectionDetails data={data} />
+        <IUVListDetails iuvList={data.listaIuv} />
       </Stack>
     </>
   );
