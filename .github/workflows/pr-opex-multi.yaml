@@ -114,7 +114,7 @@ jobs:
         shell: bash
         id: opex_copy
         run: |
-          cp -R apps/${{ env.APP_NAME }}/.opex/${{ env.API_NAME }}/env ./${{ env.TEMPLATE_DIR }}
+          cp -R apps/${{ matrix.app }}/.opex/${{ matrix.app }}/env ./${{ env.TEMPLATE_DIR }}
       - name: Setup Terraform
         id: terraform_setup
         uses: hashicorp/setup-terraform@a1502cd9e758c50496cc9ac5308c4843bcd56d36 # v3.0.0
