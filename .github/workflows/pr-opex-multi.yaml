@@ -29,11 +29,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 2
+          fetch-depth: 0
       - name: Get changed files
         id: get_changed_files
         run: |
-          echo "changed_files=$(git diff --name-only -r HEAD^1 HEAD | xargs)" >> $GITHUB_OUTPUT
+          git fetch origin ${{ github.base_ref }}
+          changed_files=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | xargs)
+          echo "changed_files=${changed_files}" >> $GITHUB_OUTPUT
           echo "Changed files: ${changed_files}"
 
       - name: Initialize changed_apps
@@ -46,7 +48,7 @@ jobs:
             if [ -z "${changed_apps}" ]; then
               echo "changed_apps=licences" >> $GITHUB_ENV
             else
-
+            
               echo "changed_apps=${changed_apps} licences" >> $GITHUB_ENV
             fi
           fi
