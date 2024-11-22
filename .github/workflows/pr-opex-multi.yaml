@@ -12,6 +12,10 @@ on:
       - "apps/licences/openapi/bff-openapi.yaml"
       - "apps/licences/.opex/**"
 
+concurrency:
+  group: ipatente-opex-pr
+  cancel-in-progress: false
+
 env:
   ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
   ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
