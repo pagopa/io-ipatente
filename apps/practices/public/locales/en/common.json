@@ -1,0 +1,47 @@
+{
+  "app": {
+    "title": "My practices",
+    "description": "My practices"
+  },
+  "topBar": {
+    "product": {
+      "name": "The driver's portal"
+    },
+    "assistance": "Assistance"
+  },
+  "practices": {
+    "title": "My practices",
+    "defaultLabel": "Practice",
+    "empty": "Non sono presenti pratiche a te intestate"
+  },
+  "practiceDetails": {
+    "title": "Practice details",
+    "breadcrumbs": {
+      "vehicles": "My practices",
+      "vehicleDetail": "Practice detail"
+    },
+    "info": {
+      "title": "Dettagli pratica"
+    }
+  },
+  "practice": {},
+  "assistance": {
+    "title": "Assistenza",
+    "back": "Back",
+    "info": {
+      "title": "Assistenza sui servizi digitali del Portale dell'Automobilista",
+      "phone": "800 23 23 23",
+      "description": "Attivo dal lunedì al venerdì dalle 8:00 alle 20:00 il sabato dalle 8:00 alle 14:00"
+    }
+  },
+  "failure": {
+    "generic": {
+      "title": "Qualcosa è andato storto",
+      "description": "Al momento il servizio non è disponibile.",
+      "retry": "Riprova"
+    },
+    "expiredSession": {
+      "title": "La tua session è scaduta"
+    }
+  }
+}
