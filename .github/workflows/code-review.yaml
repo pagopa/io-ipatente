@@ -21,7 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        type: [apps, packages]
+        type: 
+          - apps
+          - packages
         include:
             type: apps
           - name: vehicles
@@ -34,7 +36,7 @@ jobs:
         uses: davelosert/vitest-coverage-report-action@9fd25c0d0394bfd0ffa632777316402c2e5fb81f # v2.0.4
         if: if: ${{ matrix.type == 'apps' && hashFiles('./' + matrix.type + '/' + matrix.name + '/coverage/frontend/*.json') != '' }}
         with:
-          name: 'Vehicles Frontend'
+          name: '${{ matrix.name }} Frontend'
           working-directory: './${{ matrix.type }}/'${{ matrix.name }}'
           vite-config-path: './vitest/vitest.config.react.mjs'
           json-summary-path: 'coverage/frontend/coverage-summary.json'
@@ -44,7 +46,7 @@ jobs:
         uses: davelosert/vitest-coverage-report-action@9fd25c0d0394bfd0ffa632777316402c2e5fb81f # v2.0.4
         if: ${{ matrix.type == 'apps' && hashFiles('./' + matrix.type + '/' + matrix.name + '/coverage/backend/*.json') != '' }}
         with:
-          name: 'Vehicles Backend'
+          name: '${{ matrix.name }} Backend'
           working-directory: './${{ matrix.type }}/'${{ matrix.name }}'
           vite-config-path: './vitest/vitest.config.node.mjs'
           json-summary-path: 'coverage/backend/coverage-summary.json'
@@ -54,5 +56,5 @@ jobs:
         uses: davelosert/vitest-coverage-report-action@9fd25c0d0394bfd0ffa632777316402c2e5fb81f # v2.0.4
         if: ${{ matrix.type == 'packages' && hashFiles('./' + matrix.type + '/' + matrix.name + '/coverage/*.json') != '' }}
         with:
-          name: 'Vehicles Backend'
+          name: '${{ matrix.name }} Package'
           working-directory: './${{ matrix.type }}/'${{ matrix.name }}'
