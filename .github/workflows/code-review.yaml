@@ -21,23 +21,22 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        type: 
-          - apps
-          - packages
         include:
-            type: apps
-          - name: vehicles
-          - name: licences
-            type: packages
-          - name: core
-          - name: ui
+          - type: apps
+            name: vehicles
+          - type: apps
+            name: licences
+          - type: packages
+            name: core
+          - type: packages
+            name: ui
     steps:
       - name: 'Report App Frontend Coverage'
         uses: davelosert/vitest-coverage-report-action@9fd25c0d0394bfd0ffa632777316402c2e5fb81f # v2.0.4
-        if: if: ${{ matrix.type == 'apps' && hashFiles('./' + matrix.type + '/' + matrix.name + '/coverage/frontend/*.json') != '' }}
+        if: ${{ matrix.type == 'apps' && hashFiles('./' + matrix.type + '/' + matrix.name + '/coverage/frontend/*.json') != '' }}
         with:
           name: '${{ matrix.name }} Frontend'
-          working-directory: './${{ matrix.type }}/'${{ matrix.name }}'
+          working-directory: './${{ matrix.type }}/${{ matrix.name }}'
           vite-config-path: './vitest/vitest.config.react.mjs'
           json-summary-path: 'coverage/frontend/coverage-summary.json'
           json-final-path: 'coverage/frontend/coverage-final.json'
@@ -47,7 +46,7 @@ jobs:
         if: ${{ matrix.type == 'apps' && hashFiles('./' + matrix.type + '/' + matrix.name + '/coverage/backend/*.json') != '' }}
         with:
           name: '${{ matrix.name }} Backend'
-          working-directory: './${{ matrix.type }}/'${{ matrix.name }}'
+          working-directory: './${{ matrix.type }}/${{ matrix.name }}'
           vite-config-path: './vitest/vitest.config.node.mjs'
           json-summary-path: 'coverage/backend/coverage-summary.json'
           json-final-path: 'coverage/backend/coverage-final.json'
@@ -57,4 +56,4 @@ jobs:
         if: ${{ matrix.type == 'packages' && hashFiles('./' + matrix.type + '/' + matrix.name + '/coverage/*.json') != '' }}
         with:
           name: '${{ matrix.name }} Package'
-          working-directory: './${{ matrix.type }}/'${{ matrix.name }}'
+          working-directory: './${{ matrix.type }}/${{ matrix.name }}'
