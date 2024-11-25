@@ -5,7 +5,7 @@ export default defineConfig({
     coverage: {
       exclude: ["**/__tests__", "**/index.ts"],
       include: ["lib/**/*.ts"],
-      reporter: ["text", "html"],
+      reporter: ["text", "html", "json-summary", "json"],
     },
     globals: true,
     typecheck: {

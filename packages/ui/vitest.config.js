@@ -5,13 +5,13 @@ import { defineConfig } from "vite";
 export default defineConfig({
   plugins: [react()],
   test: {
+    coverage: {
+      exclude: ["**/__tests__"],
+      include: ["lib/**/*.{ts,tsx}"],
+      reporter: ["text", "html", "json-summary", "json"],
+    },
     environment: "jsdom",
     globals: true,
     setupFiles: "./vitest.setup.js",
-    coverage: {
-      include: ["lib/**/*.{ts,tsx}"],
-      exclude: ["**/__tests__"],
-      reporter: ["text", "html"],
-    },
   },
 });

@@ -22,7 +22,7 @@ export default defineConfig({
       ],
       ignoreEmptyLines: true,
       include: ["src/**/*.{tsx,ts}"],
-      reporter: ["text", "html"],
+      reporter: ["text", "html", "json-summary", "json"],
       reportsDirectory: `${configDefaults.coverage.reportsDirectory}/frontend`,
     },
     css: true,
