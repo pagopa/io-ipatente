@@ -5,4 +5,4 @@
 "@io-ipatente/core": patch
 ---
 
-Show licence points in the licenses page
+Show badge licence points in the licenses page
