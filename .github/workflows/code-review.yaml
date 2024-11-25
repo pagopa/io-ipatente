@@ -14,11 +14,12 @@ jobs:
     uses: pagopa/dx/.github/workflows/js_code_review.yaml@acbe3f70840ac84fe36e15a115a61fcf4aa6ada1
     name: Code Review
     secrets: inherit
+
   coverage:
     name: Coverage Report
     needs: [js_code_review]
+    runs-on: ubuntu-latest
     steps:
-
       - name: 'Report Vehicles Frontend Coverage'
         uses: davelosert/vitest-coverage-report-action@9fd25c0d0394bfd0ffa632777316402c2e5fb81f # v2.0.4
         if: ${{ hashFiles('./apps/vehicles/coverage/frontend/*.json') != '' }}
