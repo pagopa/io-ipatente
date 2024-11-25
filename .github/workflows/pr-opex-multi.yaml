@@ -85,10 +85,10 @@ jobs:
       contents: read
     env:
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-    continue-on-error: true
     strategy:
       matrix:
         app: ${{ fromJson(needs.check-changes.outputs.changed_apps) }}
+      fail-fast: false
     steps:
       - uses: actions/checkout@3b9b8c884f6b4bb4d5be2779c26374abadae0871 # v4.2.2
         name: Checkout
