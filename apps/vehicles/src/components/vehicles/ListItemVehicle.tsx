@@ -1,5 +1,6 @@
 import { Veicolo } from "@/generated/bff-openapi";
 import { vehicleByType } from "@/utils/strings";
+import { isDueDateValid } from "@io-ipatente/core";
 import { BadgeProps, ListItemAction } from "@io-ipatente/ui";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
@@ -33,10 +34,7 @@ export const ListItemVehicle = ({ data, onClick }: ListItemVehicleProps) => {
       };
     }
 
-    if (
-      new Date(coperturaRCA.dataScadenzaCopertura).setHours(0, 0, 0, 0) >=
-      new Date().setHours(0, 0, 0, 0)
-    ) {
+    if (isDueDateValid(coperturaRCA.dataScadenzaCopertura)) {
       return {
         color: "success",
         icon: "tickCircleBold",

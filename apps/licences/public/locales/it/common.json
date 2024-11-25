@@ -16,7 +16,8 @@
     "driverLicense": "Patente di guida",
     "cqcLicense": "CQC {{cqcType}}",
     "valid": "Valida",
-    "expired": "Scaduta"
+    "expired": "Scaduta",
+    "points": "{{value}} di {{total}}"
   },
   "licenceDetails": {
     "title": "Dettaglio Patente",

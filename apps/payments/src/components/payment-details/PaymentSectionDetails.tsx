@@ -12,7 +12,6 @@ export interface PaymentSectionDetailsProps {
   data: Pagamento;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const PaymentSectionDetails = ({ data }: PaymentSectionDetailsProps) => {
   const { t } = useTranslation();
 

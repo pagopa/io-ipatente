@@ -16,7 +16,8 @@
     "driverLicense": "Driver license",
     "cqcLicense": "CQC {{cqcType}}",
     "valid": "Valid",
-    "expired": "Expired"
+    "expired": "Expired",
+    "points": "{{value}} of {{total}}"
   },
   "licenceDetails": {
     "title": "Licence details",

@@ -40,7 +40,9 @@ export const LicenceMovementDetail = ({ data }: LicenceSectionDetailsProps) => {
       {
         isVisible: !!dataEmissioneVerbale,
         label: t("licenceDetails.history.detail.releaseDate"),
-        value: new Date(dataEmissioneVerbale || "").toLocaleDateString(),
+        value: dataEmissioneVerbale
+          ? new Date(dataEmissioneVerbale).toLocaleDateString()
+          : null,
       },
       {
         isVisible: !!descrizioneDenominazioneEnteAccertatore,
