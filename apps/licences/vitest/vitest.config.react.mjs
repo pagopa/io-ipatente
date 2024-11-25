@@ -23,6 +23,7 @@ export default defineConfig({
       ignoreEmptyLines: true,
       include: ["src/**/*.{tsx,ts}"],
       reporter: ["text", "html"],
+      reportsDirectory: `${configDefaults.coverage.reportsDirectory}/frontend`,
     },
     css: true,
     env: loadEnv("test", process.cwd(), ""),

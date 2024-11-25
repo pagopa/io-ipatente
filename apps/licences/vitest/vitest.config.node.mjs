@@ -18,6 +18,7 @@ export default defineConfig({
       ignoreEmptyLines: true,
       include: ["src/**/*.ts"],
       reporter: ["text", "html"],
+      reportsDirectory: `${configDefaults.coverage.reportsDirectory}/backend`,
     },
     env: loadEnv("test", process.cwd(), ""),
     exclude: [
