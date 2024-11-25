@@ -40,7 +40,7 @@ jobs:
           vite-config-path: './vitest/vitest.config.react.mjs'
           json-summary-path: 'coverage/frontend/coverage-summary.json'
           json-final-path: 'coverage/frontend/coverage-final.json'
-
+          
       - name: 'Report App Backend Coverage'
         uses: davelosert/vitest-coverage-report-action@9fd25c0d0394bfd0ffa632777316402c2e5fb81f # v2.0.4
         if: ${{ matrix.type == 'apps' && hashFiles('./' + matrix.type + '/' + matrix.name + '/coverage/backend/*.json') != '' }}
@@ -50,8 +50,8 @@ jobs:
           vite-config-path: './vitest/vitest.config.node.mjs'
           json-summary-path: 'coverage/backend/coverage-summary.json'
           json-final-path: 'coverage/backend/coverage-final.json'
-      
-        - name: 'Report Package Coverage'
+
+      - name: 'Report Package Coverage'
         uses: davelosert/vitest-coverage-report-action@9fd25c0d0394bfd0ffa632777316402c2e5fb81f # v2.0.4
         if: ${{ matrix.type == 'packages' && hashFiles('./' + matrix.type + '/' + matrix.name + '/coverage/*.json') != '' }}
         with:
