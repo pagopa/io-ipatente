@@ -36,33 +36,33 @@ module "payments" {
 
   tags = var.tags
 }
-## Apply after create the app service
-# module "payments_app_service_roles" {
-#   source       = "github.com/pagopa/dx//infra/modules/azure_role_assignments?ref=main"
-#   principal_id = module.payments.app_service.app_service.principal_id
 
-#   key_vault = [
-#     {
-#       name                = var.key_vault_name
-#       resource_group_name = var.resource_group_name
-#       roles = {
-#         secrets = "reader"
-#       }
-#     }
-#   ]
-# }
+module "payments_app_service_roles" {
+  source       = "github.com/pagopa/dx//infra/modules/azure_role_assignments?ref=main"
+  principal_id = module.payments.app_service.app_service.principal_id
 
-# module "payments_app_service_staging_roles" {
-#   source       = "github.com/pagopa/dx//infra/modules/azure_role_assignments?ref=main"
-#   principal_id = module.payments.app_service.app_service.slot.principal_id
+  key_vault = [
+    {
+      name                = var.key_vault_name
+      resource_group_name = var.resource_group_name
+      roles = {
+        secrets = "reader"
+      }
+    }
+  ]
+}
 
-#   key_vault = [
-#     {
-#       name                = var.key_vault_name
-#       resource_group_name = var.resource_group_name
-#       roles = {
-#         secrets = "reader"
-#       }
-#     }
-#   ]
-# }
+module "payments_app_service_staging_roles" {
+  source       = "github.com/pagopa/dx//infra/modules/azure_role_assignments?ref=main"
+  principal_id = module.payments.app_service.app_service.slot.principal_id
+
+  key_vault = [
+    {
+      name                = var.key_vault_name
+      resource_group_name = var.resource_group_name
+      roles = {
+        secrets = "reader"
+      }
+    }
+  ]
+}
