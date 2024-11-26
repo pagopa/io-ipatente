@@ -31,39 +31,39 @@ jobs:
           - type: packages
             name: ui
     steps:
-      - name: 'Report App Frontend Coverage'
+      - name: "Report App Frontend Coverage"
         uses: davelosert/vitest-coverage-report-action@9fd25c0d0394bfd0ffa632777316402c2e5fb81f # v2.0.4
         if: >
           ${{ 
             matrix.type == 'apps' && 
-            hashFiles(format('./{0}/{1}/coverage/frontend/*.json', matrix.type, matrix.name)) != '' 
+            hashFiles(`./${{ matrix.type }}/${{ matrix.name }}/coverage/frontend/*.json`) != '' 
           }}
         with:
-          name: '${{ matrix.name }} Frontend'
-          working-directory: './${{ matrix.type }}/${{ matrix.name }}'
-          vite-config-path: './vitest/vitest.config.react.mjs'
-          json-summary-path: 'coverage/frontend/coverage-summary.json'
-          json-final-path: 'coverage/frontend/coverage-final.json'
-      - name: 'Report App Backend Coverage'
+          name: "${{ matrix.name }} Frontend"
+          working-directory: "./${{ matrix.type }}/${{ matrix.name }}"
+          vite-config-path: "vitest/vitest.config.react.mjs"
+          json-summary-path: "coverage/frontend/coverage-summary.json"
+          json-final-path: "coverage/frontend/coverage-final.json"
+      - name: "Report App Backend Coverage"
         uses: davelosert/vitest-coverage-report-action@9fd25c0d0394bfd0ffa632777316402c2e5fb81f # v2.0.4
         if: >
           ${{ 
             matrix.type == 'apps' && 
-            hashFiles(format('./{0}/{1}/coverage/backend/*.json', matrix.type, matrix.name)) != '' 
+            hashFiles(`./${{ matrix.type }}/${{ matrix.name }}/coverage/backend/*.json`) != '' 
           }}
         with:
-          name: '${{ matrix.name }} Backend'
-          working-directory: './${{ matrix.type }}/${{ matrix.name }}'
-          vite-config-path: './vitest/vitest.config.node.mjs'
-          json-summary-path: 'coverage/backend/coverage-summary.json'
-          json-final-path: 'coverage/backend/coverage-final.json'
-      - name: 'Report Package Coverage'
+          name: "${{ matrix.name }} Backend"
+          working-directory: "./${{ matrix.type }}/${{ matrix.name }}"
+          vite-config-path: "vitest/vitest.config.node.mjs"
+          json-summary-path: "coverage/backend/coverage-summary.json"
+          json-final-path: "coverage/backend/coverage-final.json"
+      - name: "Report Package Coverage"
         uses: davelosert/vitest-coverage-report-action@9fd25c0d0394bfd0ffa632777316402c2e5fb81f # v2.0.4
         if: >
           ${{ 
             matrix.type == 'packages' && 
-            hashFiles(format('./{0}/{1}/coverage/*.json', matrix.type, matrix.name)) != '' 
+            hashFiles(`./${{ matrix.type }}/${{ matrix.name }}/coverage/*.json`) != '' 
           }}
         with:
-          name: '${{ matrix.name }} Package'
-          working-directory: './${{ matrix.type }}/${{ matrix.name }}'
+          name: "${{ matrix.name }} Package"
+          working-directory: "./${{ matrix.type }}/${{ matrix.name }}"
