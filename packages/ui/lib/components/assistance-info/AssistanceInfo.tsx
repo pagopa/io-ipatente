@@ -1,43 +1,73 @@
-import { Stack, Typography } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  Divider,
+  Link,
+  ListItem,
+  ListItemText,
+  Stack,
+  Typography,
+} from "@mui/material";
+import { Fragment } from "react";
 
-export interface AssistanceInfoProps {
-  description: string;
-  phone: string;
+import { Icon, IconType } from "../icon";
+
+interface ContactItem {
+  description?: string;
+  href: string;
+  value: string;
+}
+
+interface AssistanceItem {
+  contacts: ContactItem[];
+  icon: IconType;
   title: string;
 }
 
-export const AssistanceInfo = ({
-  description,
-  phone,
-  title,
-}: AssistanceInfoProps) => (
-  <Stack
-    alignItems="center"
-    justifyContent="center"
-    rowGap={2}
-    textAlign="center"
-  >
-    <Stack
-      alignItems="center"
-      border={1}
-      borderColor="divider"
-      borderRadius={1}
-      justifyContent="center"
-      padding={2}
-      rowGap={1.25}
-      textAlign="center"
-    >
-      <Typography color="text.primary" variant="body1">
-        {title}
-      </Typography>
-      <Typography color="text.primary" variant="h3">
-        {phone}
-      </Typography>
-    </Stack>
-    <Stack alignItems="center" justifyContent="center">
-      <Typography color="text.primary" variant="body2">
-        {description}
-      </Typography>
-    </Stack>
+export interface AssistanceInfoProps {
+  items: AssistanceItem[];
+}
+
+export const AssistanceInfo = ({ items }: AssistanceInfoProps) => (
+  <Stack my={3} spacing={2}>
+    {items.map(({ contacts, icon, title }) => (
+      <Card key={title} sx={{ bgcolor: "background.paper" }} variant="outlined">
+        <CardHeader
+          avatar={<Icon color="inherit" fontSize="medium" name={icon} />}
+          sx={{ color: "text.secondary" }}
+          title={
+            <Typography color="inherit" fontSize={18} fontWeight={600}>
+              {title}
+            </Typography>
+          }
+        />
+        <CardContent sx={{ p: 0 }}>
+          {contacts.map(({ description, href, value }, index) => (
+            <Fragment key={value}>
+              <ListItem>
+                <ListItemText
+                  primary={
+                    <Link fontSize={20} fontWeight={600} href={href}>
+                      {value}
+                    </Link>
+                  }
+                  secondary={
+                    <Typography
+                      color="text.secondary"
+                      fontSize={14}
+                      fontWeight={400}
+                    >
+                      {description}
+                    </Typography>
+                  }
+                />
+              </ListItem>
+              {index < contacts.length - 1 ? <Divider sx={{ m: 2 }} /> : null}
+            </Fragment>
+          ))}
+        </CardContent>
+      </Card>
+    ))}
   </Stack>
 );

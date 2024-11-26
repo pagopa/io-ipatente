@@ -7,6 +7,7 @@ import IconArrowCircleLeftBold from "./svg/IconArrowCircleLeftBold";
 import IconArrowCircleRightBold from "./svg/IconArrowCircleRightBold";
 import IconBus from "./svg/IconBus";
 import IconBusStation from "./svg/IconBusStation";
+import IconCallBold from "./svg/IconCallBold";
 import IconCar1 from "./svg/IconCar1";
 import IconCar1Bold from "./svg/IconCar1Bold";
 import IconCar2 from "./svg/IconCar2";
@@ -29,6 +30,7 @@ import IconGasStation from "./svg/IconGasStation";
 import IconGasStationOff from "./svg/IconGasStationOff";
 import IconHambulance from "./svg/IconHambulance";
 import IconInfo from "./svg/IconInfo";
+import IconMailSendBold from "./svg/IconMailSendBold";
 import IconMetro from "./svg/IconMetro";
 import IconMoped from "./svg/IconMoped";
 import IconMotor from "./svg/IconMotor";
@@ -60,6 +62,7 @@ export const Icons = {
   arrowCircleRightBold: IconArrowCircleRightBold,
   bus: IconBus,
   busStation: IconBusStation,
+  callBold: IconCallBold,
   car1: IconCar1,
   car1Bold: IconCar1Bold,
   car2: IconCar2,
@@ -82,6 +85,7 @@ export const Icons = {
   gasStationOff: IconGasStationOff,
   hambulance: IconHambulance,
   info: IconInfo,
+  mailSendBold: IconMailSendBold,
   metro: IconMetro,
   moped: IconMoped,
   motor: IconMotor,
