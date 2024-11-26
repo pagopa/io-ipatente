@@ -20,6 +20,8 @@
 |------|--------|---------|
 | <a name="module_key_vault"></a> [key\_vault](#module\_key\_vault) | ../_modules/key_vault | n/a |
 | <a name="module_licences_app_service"></a> [licences\_app\_service](#module\_licences\_app\_service) | ../_modules/licences_app_service | n/a |
+| <a name="module_payments_app_service"></a> [payments\_app\_service](#module\_payments\_app\_service) | ../_modules/payments_app_service | n/a |
+| <a name="module_practices_app_service"></a> [practices\_app\_service](#module\_practices\_app\_service) | ../_modules/practices_app_service | n/a |
 | <a name="module_vehicles_app_service"></a> [vehicles\_app\_service](#module\_vehicles\_app\_service) | ../_modules/vehicles_app_service | n/a |
 
 ## Resources
