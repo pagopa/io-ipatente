@@ -56,8 +56,8 @@ Assistance.getLayout = ({ page, router, t }: GetLayoutProps) => (
       label: t("assistance.back"),
       onBackClick: () => router.back(),
     }}
-    title={t("assistance.title")}
     description={t("assistance.description")}
+    title={t("assistance.title")}
   >
     {page}
   </AppLayout>
