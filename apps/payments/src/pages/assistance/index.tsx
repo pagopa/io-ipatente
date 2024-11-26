@@ -16,6 +16,7 @@ export default function Assistance() {
       {
         contacts: [
           {
+            description: t("assistance.contacts.1.description"),
             href: `mailto:${t("assistance.contacts.1.value")}`,
             icon: "mailSendBold",
             title: t("assistance.contacts.1.title"),
