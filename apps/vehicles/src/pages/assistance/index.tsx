@@ -16,28 +16,30 @@ export default function Assistance() {
       {
         contacts: [
           {
-            href: `mailto:${t("assistance.email.contact1.value")}`,
-            value: t("assistance.email.contact1.value"),
+            href: `mailto:${t("assistance.contacts.1.value")}`,
+            icon: "mailSendBold",
+            title: t("assistance.contacts.1.title"),
+            value: t("assistance.contacts.1.value"),
           },
         ],
-        icon: "mailSendBold",
-        title: t("assistance.email.title"),
       },
       {
         contacts: [
           {
-            description: t("assistance.phone.contact1.description"),
-            href: `tel:${t("assistance.phone.contact1.value")}`,
-            value: t("assistance.phone.contact1.value"),
+            description: t("assistance.contacts.2.description"),
+            href: `tel:${t("assistance.contacts.2.value")}`,
+            icon: "callBold",
+            title: t("assistance.contacts.2.title"),
+            value: t("assistance.contacts.2.value"),
           },
           {
-            description: t("assistance.phone.contact2.description"),
-            href: `tel:${t("assistance.phone.contact2.value")}`,
-            value: t("assistance.phone.contact2.value"),
+            description: t("assistance.contacts.3.description"),
+            href: `tel:${t("assistance.contacts.3.value")}`,
+            icon: "callBold",
+            title: t("assistance.contacts.3.title"),
+            value: t("assistance.contacts.3.value"),
           },
         ],
-        icon: "callBold",
-        title: t("assistance.phone.title"),
       },
     ],
     [t],

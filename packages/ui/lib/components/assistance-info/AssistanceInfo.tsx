@@ -1,10 +1,10 @@
 import {
   Card,
   CardContent,
-  CardHeader,
   Divider,
   Link,
   ListItem,
+  ListItemIcon,
   ListItemText,
   Stack,
   Typography,
@@ -16,13 +16,13 @@ import { Icon, IconType } from "../icon";
 interface ContactItem {
   description?: string;
   href: string;
+  icon: IconType;
+  title: string;
   value: string;
 }
 
 interface AssistanceItem {
   contacts: ContactItem[];
-  icon: IconType;
-  title: string;
 }
 
 export interface AssistanceInfoProps {
@@ -31,20 +31,21 @@ export interface AssistanceInfoProps {
 
 export const AssistanceInfo = ({ items }: AssistanceInfoProps) => (
   <Stack my={3} spacing={2}>
-    {items.map(({ contacts, icon, title }) => (
-      <Card key={title} sx={{ bgcolor: "background.paper" }} variant="outlined">
-        <CardHeader
-          avatar={<Icon color="inherit" fontSize="medium" name={icon} />}
-          sx={{ color: "text.secondary" }}
-          title={
-            <Typography color="inherit" fontSize={18} fontWeight={600}>
-              {title}
-            </Typography>
-          }
-        />
+    {items.map(({ contacts }, index) => (
+      <Card
+        key={`assistance-${index}`}
+        sx={{ bgcolor: "background.paper" }}
+        variant="outlined"
+      >
         <CardContent sx={{ p: 0 }}>
-          {contacts.map(({ description, href, value }, index) => (
+          {contacts.map(({ description, href, icon, title, value }, index) => (
             <Fragment key={value}>
+              <ListItem>
+                <ListItemIcon>
+                  <Icon color="inherit" fontSize="medium" name={icon} />
+                </ListItemIcon>
+                <ListItemText primary={title} />
+              </ListItem>
               <ListItem>
                 <ListItemText
                   primary={
@@ -63,7 +64,7 @@ export const AssistanceInfo = ({ items }: AssistanceInfoProps) => (
                   }
                 />
               </ListItem>
-              {index < contacts.length - 1 ? <Divider sx={{ m: 2 }} /> : null}
+              {index < contacts.length - 1 ? <Divider sx={{ mx: 2 }} /> : null}
             </Fragment>
           ))}
         </CardContent>

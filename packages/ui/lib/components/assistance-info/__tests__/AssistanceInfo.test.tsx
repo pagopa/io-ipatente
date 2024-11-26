@@ -9,11 +9,11 @@ const defaultProps: AssistanceInfoProps = {
       contacts: [
         {
           href: "mailto:info@email.com",
+          icon: "mailSendBold",
+          title: "Email",
           value: "info@email.com",
         },
       ],
-      icon: "mailSendBold",
-      title: "Email",
     },
     {
       contacts: [
@@ -21,17 +21,19 @@ const defaultProps: AssistanceInfoProps = {
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
           href: "tel:800101010",
+          icon: "callBold",
+          title: "Phone 1",
           value: "800 10 10 10",
         },
         {
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
           href: "tel:800232323",
+          icon: "callBold",
+          title: "Phone 2",
           value: "800 23 23 23",
         },
       ],
-      icon: "callBold",
-      title: "Phone",
     },
   ],
 };

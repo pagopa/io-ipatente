@@ -28,26 +28,20 @@
     "title": "Assistenza",
     "description": "Se hai bisogno di supporto, contatta il servizio di assistenza del Portale dell’Automobilista.",
     "back": "Indietro",
-    "info": {
-      "title": "Assistenza sui servizi digitali del Portale dell'Automobilista",
-      "phone": "800 23 23 23",
-      "description": "Attivo dal lunedì al venerdì dalle 8:00 alle 20:00 il sabato dalle 8:00 alle 14:00"
-    },
-    "email": {
-      "title": "Contatto Email",
-      "contact1": {
+    "contacts": {
+      "1": {
+        "title": "Email",
         "value": "uco.dgmot@mit.gov.it"
-      }
-    },
-    "phone": {
-      "title": "Contatto Telefonico",
-      "contact1": {
-        "value": "800 23 23 23",
-        "description": "Il Call Center è attivo dal lunedì al venerdì, dalle 8:00 alle 21:00 ed il sabato, dalle 8:00 alle 14:00."
       },
-      "contact2": {
+      "2": {
+        "title": "Telefono fisso",
+        "value": "800 23 23 23",
+        "description": "Attivo dal lunedì al venerdì, dalle 8:00 alle 21:00 ed il sabato dalle 8:00 alle 14:00."
+      },
+      "3": {
+        "title": "Telefono cellulare",
         "value": "06 45775962",
-        "description": "A pagamento in base alla tariffa applicata dai diversi gestori."
+        "description": "Chiamata a pagamento in base alla tariffa applicata dai diversi gestori."
       }
     }
   },

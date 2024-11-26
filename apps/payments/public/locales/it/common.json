@@ -84,9 +84,9 @@
     "title": "Assistenza",
     "description": "Se hai bisogno di supporto, contatta il servizio di assistenza del Portale dell’Automobilista.",
     "back": "Indietro",
-    "email": {
-      "title": "Email",
-      "contact1": {
+    "contacts": {
+      "1": {
+        "title": "Email",
         "value": "assistenza@mot-centroservizi-pagopa.it",
         "description": "Nel messaggio indica se la richiesta di assistenza riguarda Revisioni, Documento Unico di circolazione, Patenti o altre pratiche."
       }

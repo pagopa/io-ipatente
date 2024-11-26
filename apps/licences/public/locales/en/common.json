@@ -56,9 +56,9 @@
     "title": "Assistenza",
     "description": "Se hai bisogno di supporto, contatta il servizio di assistenza del Portale dell’Automobilista.",
     "back": "Back",
-    "phone": {
-      "title": "Telefono",
-      "contact1": {
+    "contacts": {
+      "1": {
+        "title": "Telefono",
         "value": "06 45775962",
         "description": "Servizio automatico disponibile h24 7 giorni su 7."
       }

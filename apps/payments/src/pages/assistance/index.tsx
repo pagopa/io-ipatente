@@ -16,12 +16,12 @@ export default function Assistance() {
       {
         contacts: [
           {
-            href: `mailto:${t("assistance.email.contact1.value")}`,
-            value: t("assistance.email.contact1.value"),
+            href: `mailto:${t("assistance.contacts.1.value")}`,
+            icon: "mailSendBold",
+            title: t("assistance.contacts.1.title"),
+            value: t("assistance.contacts.1.value"),
           },
         ],
-        icon: "mailSendBold",
-        title: t("assistance.email.title"),
       },
     ],
     [t],
