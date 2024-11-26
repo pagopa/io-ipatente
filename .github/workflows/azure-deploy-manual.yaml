@@ -17,6 +17,10 @@ env:
   VEHICLES_HEALTHCHECK_PATH: "api/info"
   AZURE_LICENCES_NAME: io-p-itn-ipatente-licences-app-01
   LICENCES_HEALTHCHECK_PATH: "api/info"
+  AZURE_PAYMENTS_NAME: io-p-itn-ipatente-payments-app-01
+  PAYMENTS_HEALTHCHECK_PATH: "api/info"
+  AZURE_PRACTICES_NAME: io-p-itn-ipatente-practices-app-01
+  PRACTICES_HEALTHCHECK_PATH: "api/info"
 
 jobs:
   deployments:
@@ -62,7 +66,7 @@ jobs:
 
       # Deploy Licences App Service
       - name: Deploy Licences to staging
-        if: contains(github.event.release.assets[0].name, 'licences')
+        if: contains(github.event.inputs.package_url, 'licences')
         uses: azure/webapps-deploy@145a0687697df1d8a28909569f6e5d86213041f9 #v3.0.0
         with:
           app-name: ${{ env.AZURE_LICENCES_NAME }}
@@ -71,13 +75,57 @@ jobs:
           clean: true
 
       - name: "Licences Healthcheck"
-        if: contains(github.event.release.assets[0].name, 'licences')
+        if: contains(github.event.inputs.package_url, 'licences')
         id: healthcheck_licences
         run: |
           sleep 30
           curl --retry 5 --retry-max-time 120 --retry-all-errors --fail-with-body 'https://${{ env.AZURE_LICENCES_NAME }}-staging.azurewebsites.net/${{ env.LICENCES_HEALTHCHECK_PATH }}'
 
       - name: "Swap Licences staging to production"
-        if: contains(github.event.release.assets[0].name, 'licences')
+        if: contains(github.event.inputs.package_url, 'licences')
         id: swap_to_production_licences
         run: az webapp deployment slot swap -g ${{ env.RESOURCE_GROUP_NAME }} -n ${{ env.AZURE_LICENCES_NAME }} --slot staging --target-slot production
+
+      # Deploy Payments App Service
+      - name: Deploy Payments to staging
+        if: contains(github.event.inputs.package_url, 'payments')
+        uses: azure/webapps-deploy@145a0687697df1d8a28909569f6e5d86213041f9 #v3.0.0
+        with:
+          app-name: ${{ env.AZURE_PAYMENTS_NAME }}
+          package: artifact.zip
+          slot-name: staging
+          clean: true
+
+      - name: "Payments Healthcheck"
+        if: contains(github.event.inputs.package_url, 'payments')
+        id: healthcheck_payments
+        run: |
+          sleep 30
+          curl --retry 5 --retry-max-time 120 --retry-all-errors --fail-with-body 'https://${{ env.AZURE_PAYMENTS_NAME }}-staging.azurewebsites.net/${{ env.PAYMENTS_HEALTHCHECK_PATH }}'
+
+      - name: "Swap Payments staging to production"
+        if: contains(github.event.inputs.package_url, 'payments')
+        id: swap_to_production_payments
+        run: az webapp deployment slot swap -g ${{ env.RESOURCE_GROUP_NAME }} -n ${{ env.AZURE_PAYMENTS_NAME }} --slot staging --target-slot production
+
+      # Deploy Practices App Service
+      - name: Deploy Practices to staging
+        if: contains(github.event.inputs.package_url, 'practices')
+        uses: azure/webapps-deploy@145a0687697df1d8a28909569f6e5d86213041f9 #v3.0.0
+        with:
+          app-name: ${{ env.AZURE_PAYMENTS_NAME }}
+          package: artifact.zip
+          slot-name: staging
+          clean: true
+
+      - name: "Practices Healthcheck"
+        if: contains(github.event.inputs.package_url, 'practices')
+        id: healthcheck_practices
+        run: |
+          sleep 30
+          curl --retry 5 --retry-max-time 120 --retry-all-errors --fail-with-body 'https://${{ env.AZURE_PRACTICES_NAME }}-staging.azurewebsites.net/${{ env.PRACTICES_HEALTHCHECK_PATH }}'
+
+      - name: "Swap Practices staging to production"
+        if: contains(github.event.inputs.package_url, 'practices')
+        id: swap_to_production_practices
+        run: az webapp deployment slot swap -g ${{ env.RESOURCE_GROUP_NAME }} -n ${{ env.AZURE_PRACTICES_NAME }} --slot staging --target-slot production
