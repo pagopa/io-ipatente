@@ -1,22 +1,35 @@
 import AppLayout from "@/components/layouts/AppLayout";
-import { AssistanceInfo } from "@io-ipatente/ui";
+import { AssistanceInfo, AssistanceInfoProps } from "@io-ipatente/ui";
 import Stack from "@mui/material/Stack";
 import { GetServerSideProps } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useMemo } from "react";
 
 import { GetLayoutProps } from "../_app";
 
 export default function Assistance() {
   const { t } = useTranslation();
 
+  const itemsPropsArray = useMemo<AssistanceInfoProps["items"]>(
+    () => [
+      {
+        contacts: [
+          {
+            href: `mailto:${t("assistance.email.contact1.value")}`,
+            value: t("assistance.email.contact1.value"),
+          },
+        ],
+        icon: "mailSendBold",
+        title: t("assistance.email.title"),
+      },
+    ],
+    [t],
+  );
+
   return (
     <Stack>
-      <AssistanceInfo
-        description={t("assistance.info.description")}
-        phone={t("assistance.info.phone")}
-        title={t("assistance.info.title")}
-      />
+      <AssistanceInfo items={itemsPropsArray} />
     </Stack>
   );
 }
@@ -27,6 +40,7 @@ Assistance.getLayout = ({ page, router, t }: GetLayoutProps) => (
       label: t("assistance.back"),
       onBackClick: () => router.back(),
     }}
+    description={t("assistance.description")}
     title={t("assistance.title")}
   >
     {page}

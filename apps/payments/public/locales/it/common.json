@@ -80,14 +80,16 @@
       }
     }
   },
-  "payment": {},
   "assistance": {
     "title": "Assistenza",
+    "description": "Se hai bisogno di supporto, contatta il servizio di assistenza del Portale dell’Automobilista.",
     "back": "Indietro",
-    "info": {
-      "title": "Assistenza sui servizi digitali del Portale dell'Automobilista",
-      "phone": "800 23 23 23",
-      "description": "Attivo dal lunedì al venerdì dalle 8:00 alle 20:00 il sabato dalle 8:00 alle 14:00"
+    "email": {
+      "title": "Email",
+      "contact1": {
+        "value": "assistenza@mot-centroservizi-pagopa.it",
+        "description": "Nel messaggio indica se la richiesta di assistenza riguarda Revisioni, Documento Unico di circolazione, Patenti o altre pratiche."
+      }
     }
   },
   "failure": {
