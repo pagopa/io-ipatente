@@ -1,22 +1,51 @@
 import AppLayout from "@/components/layouts/AppLayout";
-import { AssistanceInfo } from "@io-ipatente/ui";
+import { AssistanceInfo, AssistanceInfoProps } from "@io-ipatente/ui";
 import Stack from "@mui/material/Stack";
 import { GetServerSideProps } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useMemo } from "react";
 
 import { GetLayoutProps } from "../_app";
 
 export default function Assistance() {
   const { t } = useTranslation();
 
+  const itemsPropsArray = useMemo<AssistanceInfoProps["items"]>(
+    () => [
+      {
+        contacts: [
+          {
+            href: `mailto:${t("assistance.email.contact1.value")}`,
+            value: t("assistance.email.contact1.value"),
+          },
+        ],
+        icon: "mailSendBold",
+        title: t("assistance.email.title"),
+      },
+      {
+        contacts: [
+          {
+            description: t("assistance.phone.contact1.description"),
+            href: `tel:${t("assistance.phone.contact1.value")}`,
+            value: t("assistance.phone.contact1.value"),
+          },
+          {
+            description: t("assistance.phone.contact2.description"),
+            href: `tel:${t("assistance.phone.contact2.value")}`,
+            value: t("assistance.phone.contact2.value"),
+          },
+        ],
+        icon: "callBold",
+        title: t("assistance.phone.title"),
+      },
+    ],
+    [t],
+  );
+
   return (
     <Stack>
-      <AssistanceInfo
-        description={t("assistance.info.description")}
-        phone={t("assistance.info.phone")}
-        title={t("assistance.info.title")}
-      />
+      <AssistanceInfo items={itemsPropsArray} />
     </Stack>
   );
 }
@@ -28,6 +57,7 @@ Assistance.getLayout = ({ page, router, t }: GetLayoutProps) => (
       onBackClick: () => router.back(),
     }}
     title={t("assistance.title")}
+    description={t("assistance.description")}
   >
     {page}
   </AppLayout>
