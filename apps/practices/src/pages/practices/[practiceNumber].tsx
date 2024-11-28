@@ -1,9 +1,13 @@
 import AppLayout from "@/components/layouts/AppLayout";
-import { PracticeSectionDetails } from "@/components/practice-details/PracticeSectionDetails";
+import {
+  PracticeSectionDetails,
+  PracticeTypeDetails,
+} from "@/components/practice-details/PracticeSectionDetails";
 import { GenericError } from "@/components/shared/GenericError";
 import { Pratica } from "@/generated/bff-openapi";
 import { usePractices } from "@/hooks/usePractices";
 import { CardInfo, SectionTitle } from "@io-ipatente/ui";
+import { Typography } from "@mui/material";
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 import { GetServerSideProps } from "next";
@@ -47,13 +51,12 @@ export default function PracticeDetails() {
     return <GenericError error={error} onRetry={refetch} />;
   }
 
-  // const { icon } = todo
-
   return (
     <>
-      <SectionTitle icon="error" label={`${data.numeroPratica}`} />
+      <Typography variant="h5">{`${data.tipoPratica.descrizione}`}</Typography>
       <Stack my={3} spacing={2}>
         <PracticeSectionDetails data={data} />
+        <PracticeTypeDetails tipoPratica={data.tipoPratica} />
       </Stack>
     </>
   );

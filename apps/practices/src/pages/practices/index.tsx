@@ -49,7 +49,7 @@ export default function Practices() {
   if (data.length === 0) {
     return (
       <Stack marginTop={3}>
-        <EmptyState icon="error" title={t("practices.empty")} />
+        <EmptyState icon="folderCrossBold" title={t("practices.empty")} />
       </Stack>
     );
   }

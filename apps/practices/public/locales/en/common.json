@@ -1,28 +1,44 @@
 {
   "app": {
-    "title": "My practices",
-    "description": "My practices"
+    "title": "Le mie pratiche",
+    "description": "Le mie pratiche"
   },
   "topBar": {
     "product": {
-      "name": "The driver's portal"
+      "name": "Il portale dell'automobilista"
     },
-    "assistance": "Assistance"
+    "assistance": "Assistenza"
   },
   "practices": {
-    "title": "My practices",
-    "defaultLabel": "Practice",
+    "title": "Le mie pratiche",
+    "defaultLabel": "Pratica",
     "empty": "Non sono presenti pratiche a te intestate"
   },
   "practiceDetails": {
-    "title": "Practice details",
+    "title": "Dettaglio Pratica",
+    "practiceNumber": "Pratica n.",
     "breadcrumbs": {
-      "vehicles": "My practices",
-      "vehicleDetail": "Practice detail"
+      "practices": "Le mie pratiche",
+      "practiceDetail": "Dettaglio pratica"
     },
     "info": {
-      "title": "Dettagli pratica"
-    }
+      "title": "Dettagli pratica",
+      "practiceNumber": "Numero pratica",
+      "practiceStatus": "Stato",
+      "practiceStartDate": "Data apertura",
+      "practiceType": "Tipo pratica",
+      "practiceDescription": "Descrizione",
+      "practiceStatuses": {
+        "end": "Conclusa",
+        "todo": "In Corso",
+        "cancel": "Cancellata"
+      }
+    },
+    "type": {
+      "title": "Tipo pratica",
+      "code": "Codice",
+      "description": "Descrizione"
+    } 
   },
   "assistance": {
     "title": "Assistenza",

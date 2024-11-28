@@ -16,13 +16,29 @@
   },
   "practiceDetails": {
     "title": "Dettaglio Pratica",
+    "practiceNumber": "Pratica n.",
     "breadcrumbs": {
       "practices": "Le mie pratiche",
       "practiceDetail": "Dettaglio pratica"
     },
     "info": {
-      "title": "Dettagli pratica"
-    }
+      "title": "Dettagli pratica",
+      "practiceNumber": "Numero pratica",
+      "practiceStatus": "Stato",
+      "practiceStartDate": "Data apertura",
+      "practiceType": "Tipo pratica",
+      "practiceDescription": "Descrizione",
+      "practiceStatuses": {
+        "end": "Conclusa",
+        "todo": "In Corso",
+        "cancel": "Cancellata"
+      }
+    },
+    "type": {
+      "title": "Tipo pratica",
+      "code": "Codice",
+      "description": "Descrizione"
+    } 
   },
   "assistance": {
     "title": "Assistenza",

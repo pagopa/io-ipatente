@@ -1,6 +1,8 @@
 import { Pratica } from "@/generated/bff-openapi";
-import { ListItemAction } from "@io-ipatente/ui";
-// import { useTranslation } from "next-i18next";
+import { BADGES_CONFIG_BY_PRACTICE_CODE } from "@/utils/consts";
+import { BadgeProps, ListItemAction } from "@io-ipatente/ui";
+import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 export interface ListItemPracticeProps {
   data: Pratica;
@@ -8,19 +10,29 @@ export interface ListItemPracticeProps {
 }
 
 export const ListItemPractice = ({ data, onClick }: ListItemPracticeProps) => {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
 
-  const { numeroPratica } = data;
+  const { numeroPratica, statoPratica, tipoPratica } = data;
 
-  // const { icon, label } = todo
+  const badges = useMemo<BadgeProps[]>(
+    () =>
+      !statoPratica
+        ? []
+        : [
+            {
+              ...BADGES_CONFIG_BY_PRACTICE_CODE[statoPratica],
+              label: t(`practiceDetails.info.practiceStatuses.${statoPratica}`),
+            },
+          ],
+    [statoPratica, t],
+  );
 
   return (
     <ListItemAction
-      badges={[]}
-      icon="error"
-      label={`Pratica n.${numeroPratica}`}
+      badges={badges}
+      label={`${t("practiceDetails.practiceNumber")} ${numeroPratica}`}
       onClick={() => onClick(`${numeroPratica}`)}
-      value={`${numeroPratica}`}
+      value={tipoPratica.descrizione}
     />
   );
 };
