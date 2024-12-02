@@ -3961,6 +3961,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/file-saver@npm:^2.0.7":
+  version: 2.0.7
+  resolution: "@types/file-saver@npm:2.0.7"
+  checksum: 10c0/c6b88a1aea8eec58469da2a90828fef6e9d5d590c7094fb959783d7c32878af80d39439734f3d41b78355dadb507f606e3d04a29a160c85411c65251e58df847
+  languageName: node
+  linkType: hard
+
 "@types/find-cache-dir@npm:^3.2.1":
   version: 3.2.1
   resolution: "@types/find-cache-dir@npm:3.2.1"
@@ -7242,6 +7249,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"file-saver@npm:^2.0.5":
+  version: 2.0.5
+  resolution: "file-saver@npm:2.0.5"
+  checksum: 10c0/0a361f683786c34b2574aea53744cb70d0a6feb0fa5e3af00f2fcb6c9d40d3049cc1470e38c6c75df24219f247f6fb3076f86943958f580e62ee2ffe897af8b1
+  languageName: node
+  linkType: hard
+
 "filesize@npm:^10.0.12":
   version: 10.1.6
   resolution: "filesize@npm:10.1.6"
@@ -8157,6 +8171,7 @@ __metadata:
     "@testing-library/dom": "npm:^10.4.0"
     "@testing-library/jest-dom": "npm:^6.5.0"
     "@testing-library/react": "npm:^16.0.1"
+    "@types/file-saver": "npm:^2.0.7"
     "@types/jsonwebtoken": "npm:^9.0.6"
     "@types/node": "npm:^20"
     "@types/react": "npm:^18"
@@ -8168,6 +8183,7 @@ __metadata:
     axios: "npm:^1.7.7"
     eslint: "npm:^8"
     eslint-config-next: "npm:14.2.5"
+    file-saver: "npm:^2.0.5"
     i18next: "npm:^23.15.1"
     jsdom: "npm:^25.0.0"
     jsonwebtoken: "npm:^9.0.2"

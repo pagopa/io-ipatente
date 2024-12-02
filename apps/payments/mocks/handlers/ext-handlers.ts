@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker/locale/it";
 import { getConfiguration } from "@io-ipatente/core";
 import { HttpResponse, http } from "msw";
 
-import { getMockPayments } from "../data/backend-data";
+import { getMockPaymentReceipt, getMockPayments } from "../data/backend-data";
 
 faker.seed();
 
@@ -35,7 +35,24 @@ export const buildHandlers = () => {
       }
       return resultArray[3];
     }),
+    http.get(`${baseURL}/inte/pagamenti/ricevuta/:idRichiestaPagamento`, () => {
+      const resultArray = [
+        HttpResponse.json(getRicevutaPagamento200Response(), { status: 200 }),
+        HttpResponse.json({ description: `Bad request` }, { status: 400 }),
+        HttpResponse.json({ description: `Unauthorized` }, { status: 401 }),
+        HttpResponse.json({ description: `Forbidden` }, { status: 403 }),
+        HttpResponse.json({ description: `Not found` }, { status: 404 }),
+        HttpResponse.json(
+          {
+            description: `Internal server error`,
+          },
+          { status: 500 },
+        ),
+      ];
+      return resultArray[0];
+    }),
   ];
 };
 
 export const getPagamenti200Response = () => getMockPayments();
+export const getRicevutaPagamento200Response = () => getMockPaymentReceipt();

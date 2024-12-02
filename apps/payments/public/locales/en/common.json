@@ -78,6 +78,9 @@
         "M": "Parzialmente rimborsata",
         "G": "Disaggregata"
       }
+    },
+    "receipt": {
+      "save": "Save the receipt"
     }
   },
   "assistance": {
