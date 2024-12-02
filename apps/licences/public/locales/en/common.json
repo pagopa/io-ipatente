@@ -16,7 +16,8 @@
     "driverLicense": "Driver license",
     "cqcLicense": "CQC {{cqcType}}",
     "valid": "Valid",
-    "expired": "Expired"
+    "expired": "Expired",
+    "points": "{{value}} of {{total}}"
   },
   "licenceDetails": {
     "title": "Licence details",
@@ -51,15 +52,16 @@
       }
     }
   },
-  "licence": {},
-  "welcome": "Welcome",
   "assistance": {
     "title": "Assistenza",
+    "description": "Se hai bisogno di supporto, contatta il servizio di assistenza del Portale dell’Automobilista.",
     "back": "Back",
-    "info": {
-      "title": "Assistenza sui servizi digitali del Portale dell'Automobilista",
-      "phone": "800 23 23 23",
-      "description": "Attivo dal lunedì al venerdì dalle 8:00 alle 20:00 il sabato dalle 8:00 alle 14:00"
+    "contacts": {
+      "1": {
+        "title": "Telefono",
+        "value": "06 45775962",
+        "description": "Servizio automatico disponibile h24 7 giorni su 7."
+      }
     }
   },
   "failure": {

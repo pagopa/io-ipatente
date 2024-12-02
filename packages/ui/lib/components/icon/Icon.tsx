@@ -7,6 +7,7 @@ import IconArrowCircleLeftBold from "./svg/IconArrowCircleLeftBold";
 import IconArrowCircleRightBold from "./svg/IconArrowCircleRightBold";
 import IconBus from "./svg/IconBus";
 import IconBusStation from "./svg/IconBusStation";
+import IconCallBold from "./svg/IconCallBold";
 import IconCar1 from "./svg/IconCar1";
 import IconCar1Bold from "./svg/IconCar1Bold";
 import IconCar2 from "./svg/IconCar2";
@@ -29,12 +30,14 @@ import IconGasStation from "./svg/IconGasStation";
 import IconGasStationOff from "./svg/IconGasStationOff";
 import IconHambulance from "./svg/IconHambulance";
 import IconInfo from "./svg/IconInfo";
+import IconMailSendBold from "./svg/IconMailSendBold";
 import IconMetro from "./svg/IconMetro";
 import IconMoped from "./svg/IconMoped";
 import IconMotor from "./svg/IconMotor";
 import IconMotorbike1 from "./svg/IconMotorbike1";
 import IconMotorbike2 from "./svg/IconMotorbike2";
 import IconParking from "./svg/IconParking";
+import IconRefresh2 from "./svg/IconRefresh2";
 import IconRoad from "./svg/IconRoad";
 import IconSailboat from "./svg/IconSailboat";
 import IconScooter from "./svg/IconScooter";
@@ -45,6 +48,7 @@ import IconSuccess from "./svg/IconSuccess";
 import IconTickCircleBold from "./svg/IconTickCircleBold";
 import IconTruck from "./svg/IconTruck";
 import IconTruckFast from "./svg/IconTruckFast";
+import IconWallet from "./svg/IconWallet";
 import IconWarning from "./svg/IconWarning";
 import IconWarning2Bold from "./svg/IconWarning2Bold";
 import IconWarningBold from "./svg/IconWarningBold";
@@ -58,6 +62,7 @@ export const Icons = {
   arrowCircleRightBold: IconArrowCircleRightBold,
   bus: IconBus,
   busStation: IconBusStation,
+  callBold: IconCallBold,
   car1: IconCar1,
   car1Bold: IconCar1Bold,
   car2: IconCar2,
@@ -80,12 +85,14 @@ export const Icons = {
   gasStationOff: IconGasStationOff,
   hambulance: IconHambulance,
   info: IconInfo,
+  mailSendBold: IconMailSendBold,
   metro: IconMetro,
   moped: IconMoped,
   motor: IconMotor,
   motorbike1: IconMotorbike1,
   motorbike2: IconMotorbike2,
   parking: IconParking,
+  refresh2: IconRefresh2,
   road: IconRoad,
   sailboat: IconSailboat,
   scooter: IconScooter,
@@ -96,6 +103,7 @@ export const Icons = {
   tickCircleBold: IconTickCircleBold,
   truck: IconTruck,
   truckFast: IconTruckFast,
+  wallet: IconWallet,
   warning: IconWarning,
   warning2Bold: IconWarning2Bold,
   warningBold: IconWarningBold,

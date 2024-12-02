@@ -1,0 +1,111 @@
+openapi: 3.0.0
+info:
+  title: Pratiche API
+  description: Specifica delle API del backend esterno di DG MOT per la funzionalità **Le mie pratiche**.
+  version: 1.0.0
+servers:
+  - url: https://gw-coll.servizidt.it/rest/in/MCTC/LeMiePratiche_AppIO/v1
+
+paths:
+  /inte/pratiche:
+    get:
+      tags:
+        - pratiche
+      summary: Recupero di tutte le pratiche inerenti un cf
+      operationId: getPratiche
+      parameters:
+        - name: codiceFiscale
+          in: header
+          required: true
+          description: Codice Fiscale dell'utente
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Pratica"
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+        404:
+          description: Not Found
+        500:
+          description: Internal Server Error
+  /pratiche/{numeroPratica}:
+    get:
+      tags:
+        - pratiche
+      summary: Recupero di una pratica inerente un cf ed un numero pratica
+      operationId: getPratica
+      parameters:
+        - name: codiceFiscale
+          in: header
+          required: true
+          description: Codice Fiscale dell'utente
+          schema:
+            type: string
+        - name: numeroPratica
+          in: path
+          required: true
+          description: Numero della pratica
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Pratica"
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+        404:
+          description: Not Found
+        500:
+          description: Internal Server Error
+components:
+  schemas:
+    Pratica:
+      description: Pratica per la quale viene richiesto un pagamento in forma telematica
+      type: "object"
+      required:
+        - numeroPratica
+        - dataApertura
+        - statoPratica
+        - tipoPratica
+      properties:
+        numeroPratica:
+          description: Codice univoco che identifica la pratica
+          type: integer
+          format: int64
+        dataApertura:
+          description: Data in cui il pagamento e' stato inserito
+          type: string
+        statoPratica:
+          description: Stato della pratica
+          type: string
+        tipoPratica:
+          $ref: "#/components/schemas/TipoPratica"
+    TipoPratica:
+      description: Tipologia di una pratica
+      type: "object"
+      required:
+        - codice
+        - descrizione
+      properties:
+        codice:
+          description: Codice identificativo della tipologia di una pratica
+          type: string
+          example: AX
+        descrizione:
+          description: Descrizione della tipologia di una pratica
+          type: string
+          example: COLLAUDI - AGGIORNAMENTI VARI A SEGUITO DI COLLAUDO CON EMISSIONE DUPLICATO (art. 78 CDS)

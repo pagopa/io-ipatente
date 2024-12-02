@@ -1,0 +1,108 @@
+name: Release Opex Dashboard openapi
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/release-opex-multi.yaml"
+      - "apps/vehicles/openapi/bff-openapi.yaml"
+      - "apps/vehicles/.opex/**"
+      - "apps/licences/openapi/bff-openapi.yaml"
+      - "apps/licences/.opex/**"
+
+concurrency:
+  group: ipatente-opex
+  cancel-in-progress: false
+
+env:
+  ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+  ARM_USE_OIDC: true
+  DOCKER_IMAGE_TAG: sha256:04d8ead53c772d23b094c2a395292dc159e6f2905e1b13b5f828f31eac6eb27f
+  TEMPLATE_DIR: azure-dashboard
+
+jobs:
+  check-changes:
+    runs-on: ubuntu-22.04
+    name: Check Changes
+    outputs:
+      changed_apps: ${{ steps.set-output.outputs.changed_apps }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Get changed files
+        id: get_changed_files
+        run: |
+          echo "changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | xargs)" >> $GITHUB_OUTPUT
+
+      - name: Initialize changed_apps
+        run: echo "changed_apps=" >> $GITHUB_ENV
+
+      - name: Check changes for Licences Application
+        id: check_licences
+        run: |
+          if echo "${{ steps.get_changed_files.outputs.changed_files }}" | grep -qE 'apps/licences/openapi/bff-openapi.yaml|\apps/licences/.opex/|\.github/workflows/release-opex-multi.yaml'; then
+            if [ -z "${changed_apps}" ]; then
+              echo "changed_apps=licences" >> $GITHUB_ENV
+            else
+              echo "changed_apps=${changed_apps} licences" >> $GITHUB_ENV
+            fi
+          fi
+
+      - name: Check changes for Vehicles Application
+        id: check_vehicles
+        run: |
+          if echo "${{ steps.get_changed_files.outputs.changed_files }}" | grep -qE 'apps/vehicles/openapi/bff-openapi.yaml|\apps/vehicles/.opex/|\.github/workflows/release-opex-multi.yaml'; then
+            if [ -z "${changed_apps}" ]; then
+              echo "changed_apps=vehicles" >> $GITHUB_ENV
+            else
+              echo "changed_apps=${changed_apps} vehicles" >> $GITHUB_ENV
+            fi
+          fi
+
+      - name: Set output
+        id: set-output
+        run: |
+          changed_apps=$(echo "${changed_apps}" | sed 's/ $//' | tr ' ' '\n' | sort | uniq | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          echo "changed_apps=${changed_apps}" >> $GITHUB_OUTPUT
+          echo "Changed apps: ${changed_apps}"
+
+  tf_apply:
+    needs: check-changes
+    runs-on: ubuntu-22.04
+    name: Terraform Apply
+    environment: opex-prod-cd
+    permissions:
+      id-token: write
+      contents: read
+    env:
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+    strategy:
+      matrix:
+        app: ${{ fromJson(needs.check-changes.outputs.changed_apps) }}
+      fail-fast: false
+    steps:
+      - name: Checkout
+        # from https://github.com/actions/checkout/commits/main
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      # mitigation: opex-dashboard-azure-action currently does not support .opex
+      # directory parameter
+      - run: |
+          cp -r apps/${{ matrix.app }}/.opex ./
+        name: Update Path
+        shell: bash
+
+      # from https://github.com/pagopa/opex-dashboard-azure-action/
+      - uses: pagopa/opex-dashboard-azure-action@3ad80a5e4a2d5a8f342615637072f21b687320ce # action v1.2.1
+        with:
+          environment: prod
+          api-name: ${{ matrix.app }}
+          config: .opex/${{ matrix.app }}/env/prod/config.yaml
+          client-id: ${{ env.ARM_CLIENT_ID }}
+          tenant-id: ${{ env.ARM_TENANT_ID }}
+          subscription-id: ${{ env.ARM_SUBSCRIPTION_ID }}
+          docker-version: ${{ env.DOCKER_IMAGE_TAG }}

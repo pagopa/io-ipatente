@@ -15,23 +15,81 @@
     "empty": "Non sono presenti pagamenti"
   },
   "paymentDetails": {
-    "title": "Dettaglio Pagamento",
+    "title": "Dettagli pagamento",
+    "cartID": "ID Carrello",
     "breadcrumbs": {
       "payments": "I miei pagamenti",
       "paymentDetail": "Dettaglio pagamento"
     },
     "info": {
-      "title": "Dettagli pagamento"
+      "title": "Dettagli pagamento",
+      "description": "Descrizione",
+      "status": "Stato pratica",
+      "cartID": "Identificativo carrello",
+      "requestID": "Identificativo richiesta",
+      "tariff": "Tariffario",
+      "payer": "Pagatore",
+      "fiscalCode": "Codice fiscale",
+      "cause": "Causale",
+      "requestDate": "Data richiesta",
+      "practicesNumber": "Numero pratiche",
+      "cumulative": "Cumulativo",
+      "urgency": "Urgenza",
+      "exemption": "Esenzione",
+      "combine": "Abbinata",
+      "yes": "SI",
+      "no": "NO",
+      "iuv": {
+        "title": "Lista degli IUV della richiesta",
+        "code": "Codice IUV",
+        "status": "Stato IUV",
+        "checkingAccount": "Conto corrente",
+        "amount": "Importo",
+        "expiration": "Scadenza",
+        "collectionType": "Tipo di incasso",
+        "empty": "Non sono presenti richieste.",
+        "statuses": {
+          "M": "Da rimborsare",
+          "C": "Creazione in corso",
+          "E": "Invio in errore",
+          "D": "Da pagare",
+          "A": "Annullato",
+          "P": "Pagata",
+          "B": "Bruciata",
+          "R": "Revitalizzato",
+          "S": "Scaduto",
+          "N": "Pagamento in corso",
+          "T": "Rimborsato"
+        }
+      },
+      "statoPratica": {
+        "C": "Creazione in corso",
+        "D": "Da pagare",
+        "P": "Pagata",
+        "B": "Bruciata",
+        "L": "Cancellata",
+        "Z": "Parzialmente cancellata",
+        "A": "Parzialmente annullata",
+        "N": "Da integrare",
+        "E": "Da integrare in errore",
+        "X": "Elaborata con errore",
+        "I": "Pagamento in corso",
+        "R": "Rimborsata",
+        "M": "Parzialmente rimborsata",
+        "G": "Disaggregata"
+      }
     }
   },
-  "payment": {},
   "assistance": {
     "title": "Assistenza",
+    "description": "Se hai bisogno di supporto, contatta il servizio di assistenza del Portale dell’Automobilista.",
     "back": "Indietro",
-    "info": {
-      "title": "Assistenza sui servizi digitali del Portale dell'Automobilista",
-      "phone": "800 23 23 23",
-      "description": "Attivo dal lunedì al venerdì dalle 8:00 alle 20:00 il sabato dalle 8:00 alle 14:00"
+    "contacts": {
+      "1": {
+        "title": "Email",
+        "value": "assistenza@mot-centroservizi-pagopa.it",
+        "description": "Nel messaggio indica se la richiesta di assistenza riguarda Revisioni, Documento Unico di circolazione, Patenti o altre pratiche."
+      }
     }
   },
   "failure": {

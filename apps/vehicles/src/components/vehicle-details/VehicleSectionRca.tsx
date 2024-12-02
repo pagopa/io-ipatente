@@ -1,4 +1,5 @@
 import { CoperturaRCA } from "@/generated/bff-openapi";
+import { isDueDateValid } from "@io-ipatente/core";
 import { CardInfo, CardInfoItem, CardInfoProps, Icon } from "@io-ipatente/ui";
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
@@ -26,10 +27,7 @@ export const VehicleSectionRca = ({ rca }: VehicleSectionRcaProps) => {
       );
     }
 
-    if (
-      new Date(rca.dataScadenzaCopertura).setHours(0, 0, 0, 0) >=
-      new Date().setHours(0, 0, 0, 0)
-    ) {
+    if (isDueDateValid(rca.dataScadenzaCopertura)) {
       return (
         <Chip
           color="success"
