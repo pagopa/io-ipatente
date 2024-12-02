@@ -14,16 +14,13 @@ export const ListItemPractice = ({ data, onClick }: ListItemPracticeProps) => {
   const { numeroPratica, statoPratica, tipoPratica } = data;
 
   const badges = useMemo<BadgeProps[]>(
-    () =>
-      !statoPratica
-        ? []
-        : [
-            {
-              color: "info",
-              label: statoPratica,
-              size: "small",
-            },
-          ],
+    () => [
+      {
+        color: "info",
+        label: statoPratica,
+        size: "small",
+      },
+    ],
     [statoPratica],
   );
 
