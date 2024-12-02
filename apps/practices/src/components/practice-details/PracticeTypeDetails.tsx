@@ -6,13 +6,13 @@ interface MetadataListItem {
   items: ({ isVisible: boolean } & CardInfoItem)[];
 }
 
-export interface PracticeSectionTypeDetailsProps {
+interface PracticeTypeDetailsProps {
   tipoPratica: Pratica["tipoPratica"];
 }
 
 export const PracticeTypeDetails = ({
   tipoPratica,
-}: PracticeSectionTypeDetailsProps) => {
+}: PracticeTypeDetailsProps) => {
   const { t } = useTranslation();
 
   const { codice, descrizione } = tipoPratica;
