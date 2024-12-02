@@ -33,12 +33,7 @@ export const PracticeSectionDetails = ({
         isVisible: !!statoPratica,
         label: t("practiceDetails.info.practiceStatus"),
         value: statoPratica && (
-          <Chip
-            color="default"
-            icon={<Icon fontSize="small" name="info" />}
-            key={statoPratica}
-            label={statoPratica}
-          />
+          <Chip color="info" key={statoPratica} label={statoPratica} />
         ),
       },
       {

@@ -19,8 +19,7 @@ export const ListItemPractice = ({ data, onClick }: ListItemPracticeProps) => {
         ? []
         : [
             {
-              color: "default",
-              icon: "info",
+              color: "info",
               label: statoPratica,
               size: "small",
             },
