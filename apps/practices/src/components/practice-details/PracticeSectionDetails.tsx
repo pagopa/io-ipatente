@@ -1,5 +1,4 @@
 import { Pratica } from "@/generated/bff-openapi";
-import { BADGES_CONFIG_BY_PRACTICE_CODE } from "@/utils/consts";
 import { CardInfo, CardInfoItem, Icon } from "@io-ipatente/ui";
 import { Chip } from "@mui/material";
 import { useTranslation } from "next-i18next";
@@ -35,22 +34,19 @@ export const PracticeSectionDetails = ({
         label: t("practiceDetails.info.practiceStatus"),
         value: statoPratica && (
           <Chip
-            color={BADGES_CONFIG_BY_PRACTICE_CODE[statoPratica].color}
-            icon={
-              <Icon
-                fontSize="small"
-                name={BADGES_CONFIG_BY_PRACTICE_CODE[statoPratica].icon}
-              />
-            }
+            color="default"
+            icon={<Icon fontSize="small" name="info" />}
             key={statoPratica}
-            label={t(`practiceDetails.info.practiceStatuses.${statoPratica}`)}
+            label={statoPratica}
           />
         ),
       },
       {
         isVisible: !!dataApertura,
         label: t("practiceDetails.info.practiceStartDate"),
-        value: dataApertura,
+        value: dataApertura
+          ? new Date(dataApertura).toLocaleDateString()
+          : null,
       },
       {
         isVisible: !!tipoPratica.codice,

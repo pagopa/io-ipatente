@@ -1,5 +1,4 @@
 import { Pratica } from "@/generated/bff-openapi";
-import { BADGES_CONFIG_BY_PRACTICE_CODE } from "@/utils/consts";
 import { BadgeProps, ListItemAction } from "@io-ipatente/ui";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
@@ -20,11 +19,13 @@ export const ListItemPractice = ({ data, onClick }: ListItemPracticeProps) => {
         ? []
         : [
             {
-              ...BADGES_CONFIG_BY_PRACTICE_CODE[statoPratica],
-              label: t(`practiceDetails.info.practiceStatuses.${statoPratica}`),
+              color: "default",
+              icon: "info",
+              label: statoPratica,
+              size: "small",
             },
           ],
-    [statoPratica, t],
+    [statoPratica],
   );
 
   return (
