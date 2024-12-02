@@ -13,9 +13,14 @@ import {
 
 import { Icon, IconType } from "../icon";
 
+type BaseBadgeProps = Pick<ChipProps, "color" | "label" | "size">;
+
 export type BadgeProps = {
   icon?: IconType;
-} & Pick<ChipProps, "color" | "label" | "size">;
+} & BaseBadgeProps;
+
+export type FullBadgeProps = Omit<BadgeProps, "icon"> &
+  Required<Pick<BadgeProps, "icon">>;
 
 interface ListItemActionBaseProps {
   badges?: BadgeProps[];

@@ -1,5 +1,5 @@
 import { Pratica } from "@/generated/bff-openapi";
-import { CardInfo, CardInfoItem, Icon } from "@io-ipatente/ui";
+import { CardInfo, CardInfoItem } from "@io-ipatente/ui";
 import { Chip } from "@mui/material";
 import { useTranslation } from "next-i18next";
 
@@ -9,10 +9,6 @@ interface MetadataListItem {
 
 export interface PracticeSectionDetailsProps {
   data: Pratica;
-}
-
-export interface PracticeSectionTypeDetailsProps {
-  tipoPratica: Pratica["tipoPratica"];
 }
 
 export const PracticeSectionDetails = ({
@@ -64,40 +60,6 @@ export const PracticeSectionDetails = ({
     <CardInfo
       items={filteredMetadataListItems}
       title={t("practiceDetails.info.title")}
-    />
-  );
-};
-
-export const PracticeTypeDetails = ({
-  tipoPratica,
-}: PracticeSectionTypeDetailsProps) => {
-  const { t } = useTranslation();
-
-  const { codice, descrizione } = tipoPratica;
-
-  const metadataListItems: MetadataListItem = {
-    items: [
-      {
-        isVisible: !!codice,
-        label: t("practiceDetails.type.code"),
-        value: codice,
-      },
-      {
-        isVisible: !!descrizione,
-        label: t("practiceDetails.type.description"),
-        value: descrizione,
-      },
-    ],
-  };
-
-  const filteredMetadataListItems = metadataListItems.items.filter(
-    (item) => item.isVisible !== false,
-  );
-  return (
-    <CardInfo
-      icon={<Icon fontSize="medium" name="documentText" />}
-      items={filteredMetadataListItems}
-      title={t("practiceDetails.type.title")}
     />
   );
 };

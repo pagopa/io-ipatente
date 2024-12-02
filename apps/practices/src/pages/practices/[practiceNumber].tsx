@@ -1,8 +1,6 @@
 import AppLayout from "@/components/layouts/AppLayout";
-import {
-  PracticeSectionDetails,
-  PracticeTypeDetails,
-} from "@/components/practice-details/PracticeSectionDetails";
+import { PracticeSectionDetails } from "@/components/practice-details/PracticeSectionDetails";
+import { PracticeTypeDetails } from "@/components/practice-details/PracticeTypeDetails";
 import { GenericError } from "@/components/shared/GenericError";
 import { Pratica } from "@/generated/bff-openapi";
 import { usePractices } from "@/hooks/usePractices";

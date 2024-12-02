@@ -16,7 +16,7 @@
   },
   "practiceDetails": {
     "title": "Dettaglio Pratica",
-    "practiceNumber": "Pratica n.",
+    "practiceNumber": "Pratica n. {{practiceNumber}}",
     "breadcrumbs": {
       "practices": "Le mie pratiche",
       "practiceDetail": "Dettaglio pratica"

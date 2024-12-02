@@ -27,7 +27,9 @@ export const ListItemPractice = ({ data, onClick }: ListItemPracticeProps) => {
   return (
     <ListItemAction
       badges={badges}
-      label={`${t("practiceDetails.practiceNumber")} ${numeroPratica}`}
+      label={t("practiceDetails.practiceNumber", {
+        practiceNumber: numeroPratica,
+      })}
       onClick={() => onClick(`${numeroPratica}`)}
       value={tipoPratica.descrizione}
     />
