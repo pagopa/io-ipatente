@@ -34,7 +34,6 @@ describe("withJWTAuthHandler", () => {
 
     await withJWTAuthHandler(mockHandler)(mockNextAuthRequest, mockContext);
 
-    // Verifica che handleUnauthorizedErrorResponse venga chiamato
     expect(handleUnauthorizedErrorResponse).toHaveBeenCalledWith(
       "No Authentication provided",
     );
