@@ -15,12 +15,21 @@ import { NextResponse } from "next/server";
  */
 export const GET = auth(
   withJWTAuthAndVoucherHandler(
-    async (_request: Request, { additionalDataJWS, voucher }) => {
+    async (_request: Request, { additionalDataJWS, params, voucher }) => {
       try {
+        if (
+          !params?.paymentRequestId ||
+          typeof params.paymentRequestId !== "string"
+        ) {
+          return handleBadRequestErrorResponse(
+            "Missing paymentRequestId param",
+          );
+        }
+
         const res = await retrievePaymentReceipt(
           additionalDataJWS,
           voucher.access_token,
-          "", // TODO -> add real token
+          params.paymentRequestId,
         );
 
         const payments = EsitoStampaTelematica.safeParse(res);

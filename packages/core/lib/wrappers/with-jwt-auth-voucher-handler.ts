@@ -12,6 +12,7 @@ export const withJWTAuthAndVoucherHandler = (
     request: Request,
     context: {
       additionalDataJWS: string;
+      params: Record<string, string | string[]> | undefined;
       user: User;
       voucher: Voucher;
     },
