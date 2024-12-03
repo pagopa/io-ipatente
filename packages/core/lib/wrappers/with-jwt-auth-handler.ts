@@ -10,7 +10,7 @@ export const withJWTAuthHandler =
     handler: (
       request: Request,
       context: {
-        params: Record<string, string | string[]> | undefined;
+        params?: Record<string, string | string[]>;
         user: User;
       },
     ) => Promise<NextResponse> | Promise<Response>,

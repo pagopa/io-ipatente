@@ -22,18 +22,23 @@ const {
   INTEROP_GRANT_TYPE,
 } = getConfiguration();
 
+interface Context {
+  params: Record<string, string | string[]>;
+}
+
 export const withVoucherHandler =
   (
     handler: (
       request: Request,
       context: {
         additionalDataJWS: string;
+        params?: Record<string, string | string[]>;
         voucher: Voucher;
       },
     ) => Promise<NextResponse> | Promise<Response>,
     fiscalCode: string,
   ) =>
-  async (request: Request) => {
+  async (request: Request, ctx?: Context) => {
     try {
       const clientAssertionResult = generateClientAssertion({
         additionalData: {
@@ -73,6 +78,7 @@ export const withVoucherHandler =
 
       return handler(request, {
         additionalDataJWS: clientAssertionResult.additionalDataJWS,
+        params: ctx?.params,
         voucher,
       });
     } catch (error) {
