@@ -5,7 +5,6 @@ import { GenericError } from "@/components/shared/GenericError";
 import { Pratica } from "@/generated/bff-openapi";
 import { usePractices } from "@/hooks/usePractices";
 import { CardInfo, SectionTitle } from "@io-ipatente/ui";
-import { Typography } from "@mui/material";
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 import { GetServerSideProps } from "next";
@@ -51,7 +50,7 @@ export default function PracticeDetails() {
 
   return (
     <>
-      <Typography variant="h5">{`${data.tipoPratica.descrizione}`}</Typography>
+      <SectionTitle label={data.tipoPratica.descrizione} />
       <Stack my={3} spacing={2}>
         <PracticeSectionDetails data={data} />
         <PracticeTypeDetails tipoPratica={data.tipoPratica} />

@@ -5,7 +5,7 @@ import { memo } from "react";
 import { Icon, IconType } from "../icon";
 
 export interface SectionTitleBaseProps {
-  icon: IconType;
+  icon?: IconType;
   label: string;
 }
 
@@ -34,16 +34,18 @@ export const SectionTitle = memo((props: SectionTitleProps) => {
 
   return (
     <Stack alignItems="center" direction="row" gap={1}>
-      <Avatar
-        sx={{
-          background: BG_LINEAR_GRADIENT,
-          color: "text.primary",
-          padding: 3.5,
-        }}
-        variant="rounded"
-      >
-        <Icon fontSize="medium-small" name={icon} />
-      </Avatar>
+      {icon && (
+        <Avatar
+          sx={{
+            background: BG_LINEAR_GRADIENT,
+            color: "text.primary",
+            padding: 3.5,
+          }}
+          variant="rounded"
+        >
+          <Icon fontSize="medium-small" name={icon} />
+        </Avatar>
+      )}
       <Typography variant="h5">{label}</Typography>
     </Stack>
   );
