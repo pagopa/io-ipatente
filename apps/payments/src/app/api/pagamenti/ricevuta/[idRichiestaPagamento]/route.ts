@@ -18,18 +18,18 @@ export const GET = auth(
     async (_request: Request, { additionalDataJWS, params, voucher }) => {
       try {
         if (
-          !params?.paymentRequestId ||
-          typeof params.paymentRequestId !== "string"
+          !params?.idRichiestaPagamento ||
+          typeof params.idRichiestaPagamento !== "string"
         ) {
           return handleBadRequestErrorResponse(
-            "Missing paymentRequestId param",
+            "Missing idRichiestaPagamento param",
           );
         }
 
         const res = await retrievePaymentReceipt(
           additionalDataJWS,
           voucher.access_token,
-          params.paymentRequestId,
+          params.idRichiestaPagamento,
         );
 
         const payments = EsitoStampaTelematica.safeParse(res);

@@ -2,7 +2,7 @@ import AppLayout from "@/components/layouts/AppLayout";
 import IUVListDetails from "@/components/payment-details/IUVListDetails";
 import { PaymentSectionDetails } from "@/components/payment-details/PaymentSectionDetails";
 import { GenericError } from "@/components/shared/GenericError";
-import { EsitoStampaTelematica, Pagamento } from "@/generated/bff-openapi";
+import { Pagamento } from "@/generated/bff-openapi";
 import { usePaymentReceipt } from "@/hooks/usePaymentReceipt";
 import { usePayments } from "@/hooks/usePayments";
 import { CardInfo, Icon, SectionTitle } from "@io-ipatente/ui";
