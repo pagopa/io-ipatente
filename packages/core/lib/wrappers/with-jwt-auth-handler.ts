@@ -23,7 +23,7 @@ export const withJWTAuthHandler =
     }
 
     return handler(request, {
-      params: ctx.params,
+      ...ctx,
       user: auth.user,
     });
   };

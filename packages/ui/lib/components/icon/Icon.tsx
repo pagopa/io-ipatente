@@ -1,6 +1,5 @@
 import { SvgIconProps } from "@mui/material/SvgIcon";
 
-import Download from "./svg/Download";
 import IconAirplane from "./svg/IconAirplane";
 import IconAlarm from "./svg/IconAlarm";
 import IconAnchor from "./svg/IconAnchor";
@@ -20,6 +19,7 @@ import IconCloseCircle from "./svg/IconCloseCircle";
 import IconComponent from "./svg/IconComponent";
 import IconDetail from "./svg/IconDetail";
 import IconDocumentText from "./svg/IconDocumentText";
+import IconDownload from "./svg/IconDownload";
 import IconDriveLicense from "./svg/IconDriveLicense";
 import IconDriving from "./svg/IconDriving";
 import IconEletricMoped from "./svg/IconEletricMoped";
@@ -76,7 +76,7 @@ export const Icons = {
   component: IconComponent,
   detail: IconDetail,
   documentText: IconDocumentText,
-  download: Download,
+  download: IconDownload,
   driveLicense: IconDriveLicense,
   driving: IconDriving,
   eletricMoped: IconEletricMoped,
