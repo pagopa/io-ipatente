@@ -1,5 +1,5 @@
 import AppLayout from "@/components/layouts/AppLayout";
-import IUVListDetails from "@/components/payment-details/IUVListDetails";
+import { IUVListDetails } from "@/components/payment-details/IUVListDetails";
 import { PaymentSectionDetails } from "@/components/payment-details/PaymentSectionDetails";
 import { GenericError } from "@/components/shared/GenericError";
 import { Pagamento } from "@/generated/bff-openapi";
@@ -79,10 +79,7 @@ export default function PaymentDetails() {
           <Button
             endIcon={<Icon name="download" />}
             onClick={downloadFile}
-            sx={{
-              fontSize: 14,
-              fontWeight: 600,
-            }}
+            size="small"
             variant="contained"
           >
             {t("paymentDetails.receipt.save")}
