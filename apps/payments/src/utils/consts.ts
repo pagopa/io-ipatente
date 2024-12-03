@@ -2,9 +2,9 @@ import {
   StatoIuvEnum,
   StatoRichiestaPagamentoEnum,
 } from "@/generated/bff-openapi";
-import { BadgeProps } from "@io-ipatente/ui";
+import { FullBadgeProps } from "@io-ipatente/ui";
 
-export const BADGES_BY_IUV_STATUS: Record<StatoIuvEnum, BadgeProps> = {
+export const BADGES_BY_IUV_STATUS: Record<StatoIuvEnum, FullBadgeProps> = {
   A: {
     color: "default",
     icon: "forbidden",
@@ -64,7 +64,7 @@ export const BADGES_BY_IUV_STATUS: Record<StatoIuvEnum, BadgeProps> = {
 
 export const BADGES_CONFIG_BY_CODE: Record<
   StatoRichiestaPagamentoEnum,
-  Omit<BadgeProps, "label">
+  FullBadgeProps
 > = {
   A: {
     color: "default",

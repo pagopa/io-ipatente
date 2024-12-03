@@ -13,9 +13,14 @@ import {
 
 import { Icon, IconType } from "../icon";
 
+type BaseBadgeProps = Pick<ChipProps, "color" | "label" | "size">;
+
 export type BadgeProps = {
-  icon: IconType;
-} & Pick<ChipProps, "color" | "label" | "size">;
+  icon?: IconType;
+} & BaseBadgeProps;
+
+export type FullBadgeProps = Omit<BadgeProps, "icon"> &
+  Required<Pick<BadgeProps, "icon">>;
 
 interface ListItemActionBaseProps {
   badges?: BadgeProps[];
@@ -69,7 +74,7 @@ export const ListItemAction = (props: ListItemActionProps) => {
               {badges.map(({ icon, ...rest }, index) => (
                 <Chip
                   {...rest}
-                  icon={<Icon fontSize="small" name={icon} />}
+                  icon={icon && <Icon fontSize="small" name={icon} />}
                   key={`chip-${index}`}
                 />
               ))}
