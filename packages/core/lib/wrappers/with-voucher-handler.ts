@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { User } from "next-auth";
 
 import { getConfiguration } from "../config";
 import { generateClientAssertion } from "../interop/client-assertion";
@@ -23,7 +24,8 @@ const {
 } = getConfiguration();
 
 interface Context {
-  params: Record<string, string | string[]>;
+  params?: Record<string, string | string[]>;
+  user: User;
 }
 
 export const withVoucherHandler =
@@ -78,7 +80,7 @@ export const withVoucherHandler =
 
       return handler(request, {
         additionalDataJWS: clientAssertionResult.additionalDataJWS,
-        params: ctx?.params,
+        ...(ctx || {}),
         voucher,
       });
     } catch (error) {

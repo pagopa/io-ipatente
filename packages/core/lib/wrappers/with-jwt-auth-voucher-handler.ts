@@ -26,5 +26,5 @@ export const withJWTAuthAndVoucherHandler = (
           ...voucherContext,
         }),
       jwtContext.user.fiscalCode,
-    )(request),
+    )(request, jwtContext),
   );

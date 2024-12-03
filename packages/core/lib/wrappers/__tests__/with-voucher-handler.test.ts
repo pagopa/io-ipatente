@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { User } from "next-auth";
 import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { generateClientAssertion } from "../../interop/client-assertion";
@@ -12,6 +13,16 @@ import {
   handleUnauthorizedErrorResponse,
 } from "../../utils/errors";
 import { withVoucherHandler } from "../with-voucher-handler";
+
+const mockUser: User = {
+  familyName: "aFamilyName",
+  fiscalCode: "aFiscalCode",
+  givenName: "aGivenName",
+};
+
+const mockContext = {
+  user: mockUser,
+};
 
 vi.mock(import("../../config"), async (importOriginal) => {
   const mod = await importOriginal();
@@ -91,7 +102,7 @@ describe("withVoucherHandler", () => {
 
     const request = {} as NextRequest;
 
-    await withVoucherHandler(handlerMock, mockFiscalCode)(request);
+    await withVoucherHandler(handlerMock, mockFiscalCode)(request, mockContext);
 
     expect(generateClientAssertion).toHaveBeenCalledOnce();
     expect(requestVoucher).toHaveBeenCalledWith({
@@ -114,7 +125,7 @@ describe("withVoucherHandler", () => {
 
     const request = {} as NextRequest;
 
-    await withVoucherHandler(handlerMock, mockFiscalCode)(request);
+    await withVoucherHandler(handlerMock, mockFiscalCode)(request, mockContext);
 
     expect(handleUnauthorizedErrorResponse).toHaveBeenCalledWith(
       "No client assertion provided",
@@ -131,7 +142,7 @@ describe("withVoucherHandler", () => {
 
     const request = {} as NextRequest;
 
-    await withVoucherHandler(handlerMock, mockFiscalCode)(request);
+    await withVoucherHandler(handlerMock, mockFiscalCode)(request, mockContext);
 
     expect(handleUnauthorizedErrorResponse).toHaveBeenCalledWith(
       "No voucher provided",
@@ -146,7 +157,7 @@ describe("withVoucherHandler", () => {
 
     const request = {} as NextRequest;
 
-    await withVoucherHandler(handlerMock, mockFiscalCode)(request);
+    await withVoucherHandler(handlerMock, mockFiscalCode)(request, mockContext);
 
     expect(handleInternalErrorResponse).toHaveBeenCalledWith(
       "VoucherRequestError",

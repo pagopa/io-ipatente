@@ -74,7 +74,10 @@ export default function PaymentDetails() {
 
   return (
     <>
-      <Stack my={3} spacing={2}>
+      <Stack spacing={2}>
+        {data.descrizioneTipoPratica && (
+          <SectionTitle label={data.descrizioneTipoPratica} />
+        )}
         <Box width="max-content">
           <Button
             endIcon={<Icon name="download" />}
