@@ -116,6 +116,7 @@ describe("withVoucherHandler", () => {
     });
     expect(handlerMock).toHaveBeenCalledWith(request, {
       additionalDataJWS: mockAdditionalDataJWS,
+      user: mockUser,
       voucher: mockVoucher,
     });
   });
