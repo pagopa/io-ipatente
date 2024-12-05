@@ -1,5 +1,12 @@
 # @io-ipatente/core
 
+## 0.4.8
+
+### Patch Changes
+
+- c7257ed: Move auth callback route to @io-ipatente/core
+- 12298f7: Show badge licence points in the licenses page
+
 ## 0.4.7
 
 ### Patch Changes

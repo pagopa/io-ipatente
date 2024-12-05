@@ -1,5 +1,17 @@
 # @io-ipatente/ui
 
+## 0.7.0
+
+### Minor Changes
+
+- ef2b5bf: practices list and detail
+- a0ddaea: Added ConsentView component
+
+### Patch Changes
+
+- 943b6e3: Summary and detail page for payments merged
+- cdce8d0: Refinement of Assistance page
+
 ## 0.6.1
 
 ### Patch Changes
