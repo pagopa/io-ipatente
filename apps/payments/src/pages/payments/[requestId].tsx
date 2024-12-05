@@ -75,9 +75,9 @@ export default function PaymentDetails() {
   return (
     <>
       <Stack spacing={2}>
-        {data.descrizioneTipoPratica && (
-          <SectionTitle label={data.descrizioneTipoPratica} />
-        )}
+        <SectionTitle
+          label={data.descrizioneTipoPratica || data.idCarrello.toString()}
+        />
         <Box width="max-content">
           <Button
             endIcon={<Icon name="download" />}

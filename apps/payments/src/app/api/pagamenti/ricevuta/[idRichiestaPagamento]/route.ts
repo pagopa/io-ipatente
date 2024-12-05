@@ -15,7 +15,7 @@ import { NextResponse } from "next/server";
  */
 export const GET = auth(
   withJWTAuthAndVoucherHandler(
-    async (_request: Request, { additionalDataJWS, params, voucher }) => {
+    async (_request: Request, { additionalDataJWS, params, user, voucher }) => {
       try {
         if (
           !params?.idRichiestaPagamento ||
@@ -30,6 +30,7 @@ export const GET = auth(
           additionalDataJWS,
           voucher.access_token,
           params.idRichiestaPagamento,
+          user.fiscalCode,
         );
 
         const payments = EsitoStampaTelematica.safeParse(res);

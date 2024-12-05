@@ -27,12 +27,14 @@ export const retrievePaymentReceipt = async (
   additionalDataJWS: string,
   token: string,
   paymentRequestId: string,
+  fiscalCode: string,
 ) => {
   try {
     return await getExternalApiClient().stampaRicevutaTelematica({
       headers: {
         "Agid-JWT-TrackingEvidence": additionalDataJWS,
         Authorization: `Bearer ${token}`,
+        codiceFiscale: fiscalCode,
       },
       params: {
         idRichiestaPagamento: paymentRequestId,
