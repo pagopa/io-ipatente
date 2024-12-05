@@ -1,5 +1,23 @@
 # vehicles
 
+## 0.8.8
+
+### Patch Changes
+
+- b542630: handle nullable fields returned by e-services
+- cdce8d0: Refinement of Assistance page
+- ef2b5bf: practices list and detail
+- c7257ed: Move auth callback route to @io-ipatente/core
+- 12298f7: Show badge licence points in the licenses page
+- Updated dependencies [943b6e3]
+- Updated dependencies [cdce8d0]
+- Updated dependencies [ef2b5bf]
+- Updated dependencies [a0ddaea]
+- Updated dependencies [c7257ed]
+- Updated dependencies [12298f7]
+  - @io-ipatente/ui@0.7.0
+  - @io-ipatente/core@0.4.8
+
 ## 0.8.7
 
 ### Patch Changes
