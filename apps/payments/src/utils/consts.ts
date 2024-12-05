@@ -137,3 +137,6 @@ export const BADGES_CONFIG_BY_CODE: Record<
     size: "small",
   },
 };
+
+export const PRINT_RECIPT_STATUSES_LIST: readonly StatoRichiestaPagamentoEnum[] =
+  [StatoRichiestaPagamentoEnum.Enum.P];

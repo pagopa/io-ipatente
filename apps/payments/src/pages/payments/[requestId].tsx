@@ -5,6 +5,7 @@ import { GenericError } from "@/components/shared/GenericError";
 import { Pagamento } from "@/generated/bff-openapi";
 import { usePaymentReceipt } from "@/hooks/usePaymentReceipt";
 import { usePayments } from "@/hooks/usePayments";
+import { PRINT_RECIPT_STATUSES_LIST } from "@/utils/consts";
 import { CardInfo, Icon, SectionTitle } from "@io-ipatente/ui";
 import { Box, Button } from "@mui/material";
 import Skeleton from "@mui/material/Skeleton";
@@ -14,7 +15,7 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 
 import { GetLayoutProps } from "../_app";
 
@@ -33,6 +34,14 @@ export default function PaymentDetails() {
     usePayments(selectPaymentByRequestId);
 
   const { refetch: refetchReceipt } = usePaymentReceipt(requestId as string);
+
+  const enableDownload = useMemo(
+    () =>
+      !!data &&
+      !!data?.statoPratica.codice &&
+      PRINT_RECIPT_STATUSES_LIST.includes(data.statoPratica.codice),
+    [data],
+  );
 
   const downloadFile = useCallback(async () => {
     const { data: receipt, isError } = await refetchReceipt();
@@ -78,16 +87,18 @@ export default function PaymentDetails() {
         <SectionTitle
           label={data.descrizioneTipoPratica || data.idCarrello.toString()}
         />
-        <Box width="max-content">
-          <Button
-            endIcon={<Icon name="download" />}
-            onClick={downloadFile}
-            size="small"
-            variant="contained"
-          >
-            {t("paymentDetails.receipt.save")}
-          </Button>
-        </Box>
+        {enableDownload && (
+          <Box width="max-content">
+            <Button
+              endIcon={<Icon name="download" />}
+              onClick={downloadFile}
+              size="small"
+              variant="contained"
+            >
+              {t("paymentDetails.receipt.save")}
+            </Button>
+          </Box>
+        )}
 
         <PaymentSectionDetails data={data} />
         <IUVListDetails iuvList={data.listaIuv} />
