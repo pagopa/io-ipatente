@@ -20,11 +20,6 @@ export const VehicleSectionDetails = ({ data }: VehicleSectionDetailsProps) => {
 
   const { datiVeicolo, targaVeicolo, tipoVeicolo } = data;
 
-  const { icon, label } = vehicleByType[tipoVeicolo] ?? {
-    icon: "car1Bold",
-    label: "vehicles.defaultLabel",
-  };
-
   const metadataListItems: MetadataListItem = {
     items: [
       {
@@ -35,7 +30,7 @@ export const VehicleSectionDetails = ({ data }: VehicleSectionDetailsProps) => {
       {
         isVisible: !!tipoVeicolo,
         label: t("vehicleDetails.info.type"),
-        value: t(label),
+        value: t(vehicleByType[tipoVeicolo].label),
       },
       {
         isVisible: !!datiVeicolo?.tipoUsoVeicolo,
@@ -100,7 +95,7 @@ export const VehicleSectionDetails = ({ data }: VehicleSectionDetailsProps) => {
 
   return (
     <CardInfo
-      icon={<Icon fontSize="medium" name={icon} />}
+      icon={<Icon fontSize="medium" name="detail" />}
       items={filteredMetadataListItems}
       title={t("vehicleDetails.info.title")}
     />
