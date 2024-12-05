@@ -9,6 +9,13 @@ paths:
   /inte/patenti:
     get:
       summary: Ottiene i dati dei punti patente per un utente
+      parameters:
+        - name: codiceFiscale
+          in: header
+          required: true
+          description: Codice Fiscale dell'utente
+          schema:
+            type: string
       operationId: getPuntiPatente
       responses:
         200:

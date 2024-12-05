@@ -10,6 +10,13 @@ paths:
   /inte/veicoli:
     get:
       summary: Recupero di tutti i dati inerenti veicoli area privata
+      parameters:
+        - name: codiceFiscale
+          in: header
+          required: true
+          description: Codice Fiscale dell'utente
+          schema:
+            type: string
       operationId: getInfoVeicoli
       responses:
         200:
