@@ -19,13 +19,13 @@ exports[`Test Table Components > Should match the snapshot with default props 1`
               class="MuiTableRow-root MuiTableRow-head css-1q1u3t4-MuiTableRow-root"
             >
               <th
-                class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1flh0t9-MuiTableCell-root"
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-10gqwvz-MuiTableCell-root"
                 scope="col"
               >
                 test_1
               </th>
               <th
-                class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-13iu7n7-MuiTableCell-root"
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-19knwxz-MuiTableCell-root"
                 scope="col"
               >
                 test_2
@@ -39,7 +39,7 @@ exports[`Test Table Components > Should match the snapshot with default props 1`
               class="MuiTableRow-root css-kjco9e-MuiTableRow-root"
             >
               <th
-                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-3jgu42-MuiTableCell-root"
                 scope="row"
               >
                 <p
@@ -49,7 +49,7 @@ exports[`Test Table Components > Should match the snapshot with default props 1`
                 </p>
               </th>
               <th
-                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-3jgu42-MuiTableCell-root"
                 scope="row"
               >
                 <p
@@ -63,7 +63,7 @@ exports[`Test Table Components > Should match the snapshot with default props 1`
               class="MuiTableRow-root css-kjco9e-MuiTableRow-root"
             >
               <th
-                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-3jgu42-MuiTableCell-root"
                 scope="row"
               >
                 <p
@@ -73,7 +73,7 @@ exports[`Test Table Components > Should match the snapshot with default props 1`
                 </p>
               </th>
               <th
-                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-3jgu42-MuiTableCell-root"
                 scope="row"
               >
                 <p
@@ -103,13 +103,13 @@ exports[`Test Table Components > Should match the snapshot with default props 1`
             class="MuiTableRow-root MuiTableRow-head css-1q1u3t4-MuiTableRow-root"
           >
             <th
-              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1flh0t9-MuiTableCell-root"
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-10gqwvz-MuiTableCell-root"
               scope="col"
             >
               test_1
             </th>
             <th
-              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-13iu7n7-MuiTableCell-root"
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-19knwxz-MuiTableCell-root"
               scope="col"
             >
               test_2
@@ -123,7 +123,7 @@ exports[`Test Table Components > Should match the snapshot with default props 1`
             class="MuiTableRow-root css-kjco9e-MuiTableRow-root"
           >
             <th
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-3jgu42-MuiTableCell-root"
               scope="row"
             >
               <p
@@ -133,7 +133,7 @@ exports[`Test Table Components > Should match the snapshot with default props 1`
               </p>
             </th>
             <th
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-3jgu42-MuiTableCell-root"
               scope="row"
             >
               <p
@@ -147,7 +147,7 @@ exports[`Test Table Components > Should match the snapshot with default props 1`
             class="MuiTableRow-root css-kjco9e-MuiTableRow-root"
           >
             <th
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-3jgu42-MuiTableCell-root"
               scope="row"
             >
               <p
@@ -157,7 +157,7 @@ exports[`Test Table Components > Should match the snapshot with default props 1`
               </p>
             </th>
             <th
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ex1afd-MuiTableCell-root"
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-3jgu42-MuiTableCell-root"
               scope="row"
             >
               <p
