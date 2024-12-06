@@ -61,40 +61,45 @@ export default function LicenceDetails() {
     () => [
       {
         key: "dataAttribuzionePunteggio",
-        render: (_, item) => (
-          <>
-            <Typography
-              color="text.secondary"
-              fontWeight="regular"
-              textAlign="initial"
-              variant="body1"
-            >
-              {new Date(item.dataAttribuzionePunteggio).toLocaleDateString()}
-            </Typography>
-            {item.codiceVerbale ? (
-              <Link
-                color="text.primary"
-                component="button"
-                onClick={() => onDetailClicked?.(item)}
-                sx={{
-                  textAlign: "left",
-                  textDecoration: "underline",
-                }}
-              >
-                {item.descrizioneEventoPunteggio}
-              </Link>
-            ) : (
+        render: (_, item) => {
+          const description = item.descrizioneEventoPunteggio?.toLowerCase();
+          return (
+            <>
               <Typography
                 color="text.secondary"
-                fontWeight="medium"
+                fontWeight="regular"
                 textAlign="initial"
                 variant="body1"
               >
-                {item.descrizioneEventoPunteggio}
+                {new Date(item.dataAttribuzionePunteggio).toLocaleDateString()}
               </Typography>
-            )}
-          </>
-        ),
+              {description === "verbale" ? (
+                <Link
+                  color="text.primary"
+                  component="button"
+                  onClick={() => onDetailClicked?.(item)}
+                  sx={{
+                    textAlign: "left",
+                    textDecoration: "underline",
+                    textTransform: "capitalize",
+                  }}
+                >
+                  {description}
+                </Link>
+              ) : (
+                <Typography
+                  color="text.secondary"
+                  fontWeight="medium"
+                  textAlign="initial"
+                  textTransform="capitalize"
+                  variant="body1"
+                >
+                  {description}
+                </Typography>
+              )}
+            </>
+          );
+        },
         title: t("licenceDetails.history.columns.detail"),
         widthFactor: 0.8,
       },
