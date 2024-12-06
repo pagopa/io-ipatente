@@ -138,17 +138,14 @@ export default function LicenceDetails() {
   }
 
   return (
-    <>
-      <SectionTitle icon="driveLicense" label={data.numeroPatente} />
-      <Stack my={3} spacing={2}>
-        <LicenceSectionDetails data={data} />
-        <CardInfo
-          bottomContent={<Table columns={columns} rows={rows} />}
-          icon={<Icon fontSize="medium" name="documentText" />}
-          title={t("licenceDetails.history.title")}
-        />
-      </Stack>
-    </>
+    <Stack spacing={2}>
+      <LicenceSectionDetails data={data} />
+      <CardInfo
+        bottomContent={<Table columns={columns} rows={rows} />}
+        icon={<Icon fontSize="medium" name="documentText" />}
+        title={t("licenceDetails.history.title")}
+      />
+    </Stack>
   );
 }
 
