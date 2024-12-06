@@ -24,7 +24,7 @@ export const ListItemLicence = ({
     const isValid = dataScadenza ? isDueDateValid(dataScadenza) : false;
 
     const badgeLicenceStatus: BadgeProps = {
-      color: isValid ? "success" : "warning",
+      color: isValid ? "success" : "error",
       icon: isValid ? "tickCircleBold" : "warning2Bold",
       label: isValid ? t("licences.valid") : t("licences.expired"),
       size: "small",
