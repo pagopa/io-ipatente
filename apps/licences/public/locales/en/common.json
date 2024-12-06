@@ -11,6 +11,7 @@
   },
   "licences": {
     "title": "My licences",
+    "description": "Here you can check your points balance and other information about your driving licenses.",
     "defaultLabel": "Licence",
     "empty": "There are no licenses associated with you",
     "driverLicense": "Driver license",

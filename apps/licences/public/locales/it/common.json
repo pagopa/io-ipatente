@@ -11,6 +11,7 @@
   },
   "licences": {
     "title": "Le mie patenti",
+    "description": "Qui puoi consultare il tuo saldo punti e altre informazioni sulle tue patenti di guida.",
     "defaultLabel": "Patente",
     "empty": "Non risultano patenti a te associate",
     "driverLicense": "Patente di guida",
