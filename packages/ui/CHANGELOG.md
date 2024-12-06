@@ -1,5 +1,11 @@
 # @io-ipatente/ui
 
+## 0.8.0
+
+### Minor Changes
+
+- 7e84a75: add download file endpoint
+
 ## 0.7.0
 
 ### Minor Changes

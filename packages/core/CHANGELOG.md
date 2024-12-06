@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.5.0
+
+### Minor Changes
+
+- 7e84a75: add download file endpoint
+
 ## 0.4.8
 
 ### Patch Changes

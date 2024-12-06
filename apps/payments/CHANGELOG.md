@@ -1,5 +1,24 @@
 # io-ipatente-payments
 
+## 0.3.1
+
+### Patch Changes
+
+- 35dd9d5: Mock Prod config
+
+## 0.3.0
+
+### Minor Changes
+
+- 7e84a75: add download file endpoint
+
+### Patch Changes
+
+- 0dc4ec2: Disable MSW to test memory consumption
+- Updated dependencies [7e84a75]
+  - @io-ipatente/core@0.5.0
+  - @io-ipatente/ui@0.8.0
+
 ## 0.2.0
 
 ### Minor Changes
