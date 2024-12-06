@@ -1,5 +1,14 @@
 # io-ipatente-licences
 
+## 0.2.7
+
+### Patch Changes
+
+- 0e002bf: update openapis with codiceFiscale required in header
+- Updated dependencies [7e84a75]
+  - @io-ipatente/core@0.5.0
+  - @io-ipatente/ui@0.8.0
+
 ## 0.2.6
 
 ### Patch Changes
