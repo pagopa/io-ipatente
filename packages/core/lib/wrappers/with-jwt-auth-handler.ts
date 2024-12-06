@@ -9,10 +9,13 @@ export const withJWTAuthHandler =
   (
     handler: (
       request: Request,
-      context: { user: User },
+      context: {
+        params?: Record<string, string | string[]>;
+        user: User;
+      },
     ) => Promise<NextResponse> | Promise<Response>,
   ): AuthParams[0] =>
-  (request) => {
+  (request, ctx) => {
     const { auth } = request;
 
     if (!auth) {
@@ -20,6 +23,7 @@ export const withJWTAuthHandler =
     }
 
     return handler(request, {
+      ...ctx,
       user: auth.user,
     });
   };

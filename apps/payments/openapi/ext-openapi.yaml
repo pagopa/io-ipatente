@@ -10,6 +10,13 @@ paths:
   /inte/pagamenti:
     get:
       summary: Recupero di tutti i dati i pagamenti inerenti un cf
+      parameters:
+        - name: codiceFiscale
+          in: header
+          required: true
+          description: Codice Fiscale dell'utente
+          schema:
+            type: string
       operationId: getPagamenti
       responses:
         200:
@@ -37,6 +44,12 @@ paths:
         - name: idRichiestaPagamento
           in: path
           required: true
+          schema:
+            type: string
+        - name: codiceFiscale
+          in: header
+          required: true
+          description: Codice Fiscale dell'utente
           schema:
             type: string
       responses:

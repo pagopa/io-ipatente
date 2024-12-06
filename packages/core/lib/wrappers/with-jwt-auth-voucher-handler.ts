@@ -12,6 +12,7 @@ export const withJWTAuthAndVoucherHandler = (
     request: Request,
     context: {
       additionalDataJWS: string;
+      params?: Record<string, string | string[]>;
       user: User;
       voucher: Voucher;
     },
@@ -25,5 +26,5 @@ export const withJWTAuthAndVoucherHandler = (
           ...voucherContext,
         }),
       jwtContext.user.fiscalCode,
-    )(request),
+    )(request, jwtContext),
   );

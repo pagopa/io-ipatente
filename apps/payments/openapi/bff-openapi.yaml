@@ -29,7 +29,7 @@ paths:
         500:
           description: Internal server error
 
-  /inte/pagamenti/ricevuta/{idRichiestaPagamento}:
+  /pagamenti/ricevuta/{idRichiestaPagamento}:
     get:
       summary: Stampa di una ricevuta telematica
       operationId: stampaRicevutaTelematica

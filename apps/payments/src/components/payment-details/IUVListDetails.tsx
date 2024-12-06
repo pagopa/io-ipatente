@@ -12,7 +12,9 @@ export interface PaymentSectionIUVListProps {
   iuvList?: Pagamento["listaIuv"];
 }
 
-const IUVListDetails = ({ iuvList = [] }: PaymentSectionIUVListProps) => {
+export const IUVListDetails = ({
+  iuvList = [],
+}: PaymentSectionIUVListProps) => {
   const { t } = useTranslation();
 
   if (iuvList.length === 0) {
@@ -158,5 +160,3 @@ const IUVListDetails = ({ iuvList = [] }: PaymentSectionIUVListProps) => {
     </CardCarousel>
   );
 };
-
-export default IUVListDetails;
