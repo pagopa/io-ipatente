@@ -3,7 +3,6 @@ import { extraMassByCode, noviceByCode, vehicleByType } from "@/utils/strings";
 import { CardInfo, CardInfoItem, Icon, useDialog } from "@io-ipatente/ui";
 import { Stack, Typography } from "@mui/material";
 import { useTranslation } from "next-i18next";
-import { ReactNode } from "react";
 
 interface MetadataListItem {
   items: ({ isVisible: boolean } & CardInfoItem)[];
@@ -82,16 +81,17 @@ export const VehicleSectionDetails = ({ data }: VehicleSectionDetailsProps) => {
     (item) => item.isVisible !== false,
   );
 
-  const renderExtraMassBody = (code?: ExtraMassaEnum, description?: string) => (
-    <Stack spacing={3}>
-      <Stack alignItems="center">
-        {EXTRA_MASS_ICON_MAP[code ?? ExtraMassaEnum.Enum.EXTRAM_MSG_005]}
+  const renderExtraMassBody = (code?: ExtraMassaEnum, description?: string) =>
+    !code ? (
+      <></>
+    ) : (
+      <Stack spacing={3}>
+        <Stack alignItems="center">{getExtraMassIcon(code)}</Stack>
+        <Typography textAlign="center" variant="body1">
+          {description}
+        </Typography>
       </Stack>
-      <Typography textAlign="center" variant="body1">
-        {description}
-      </Typography>
-    </Stack>
-  );
+    );
 
   return (
     <CardInfo
@@ -102,19 +102,18 @@ export const VehicleSectionDetails = ({ data }: VehicleSectionDetailsProps) => {
   );
 };
 
-const EXTRA_MASS_ICON_MAP: Record<ExtraMassaEnum, ReactNode> = {
-  [ExtraMassaEnum.Enum.EXTRAM_MSG_001]: (
-    <Icon fontSize="large" name="success" />
-  ),
-  [ExtraMassaEnum.Enum.EXTRAM_MSG_002]: (
-    <Icon fontSize="large" name="warning" />
-  ),
-  [ExtraMassaEnum.Enum.EXTRAM_MSG_003]: (
-    <Icon fontSize="large" name="warning" />
-  ),
-  [ExtraMassaEnum.Enum.EXTRAM_MSG_004]: (
-    <Icon fontSize="large" name="warning" />
-  ),
-  [ExtraMassaEnum.Enum.EXTRAM_MSG_005]: <Icon fontSize="large" name="error" />,
-  [ExtraMassaEnum.Enum.EXTRAM_MSG_006]: <Icon fontSize="large" name="error" />,
+const getExtraMassIcon = (massCode: ExtraMassaEnum) => {
+  switch (massCode) {
+    case ExtraMassaEnum.Enum.EXTRAM_MSG_001:
+      return <Icon color="success" fontSize="large" name="success" />;
+
+    case ExtraMassaEnum.Enum.EXTRAM_MSG_002:
+    case ExtraMassaEnum.Enum.EXTRAM_MSG_003:
+    case ExtraMassaEnum.Enum.EXTRAM_MSG_004:
+      return <Icon color="warning" fontSize="large" name="warning" />;
+
+    case ExtraMassaEnum.Enum.EXTRAM_MSG_005:
+    case ExtraMassaEnum.Enum.EXTRAM_MSG_006:
+      return <Icon color="error" fontSize="large" name="error" />;
+  }
 };

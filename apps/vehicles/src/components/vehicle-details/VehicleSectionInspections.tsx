@@ -83,7 +83,7 @@ export const VehicleSectionInspections = ({
                 size="small"
               />
             </ListItem>
-            {kmTotali && (
+            {
               <ListItem>
                 <Typography
                   display="inline"
@@ -94,10 +94,10 @@ export const VehicleSectionInspections = ({
                   {t("vehicleDetails.inspections.kilometersDetected")}
                 </Typography>
                 <Typography display="inline" fontWeight={600} variant="body2">
-                  {kmTotali}
+                  {kmTotali ?? "-"}
                 </Typography>
               </ListItem>
-            )}
+            }
           </List>
         </CardCarousel.Item>
       ))}
