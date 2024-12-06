@@ -99,6 +99,9 @@ export default function LicenceDetails() {
         widthFactor: 0.8,
       },
       {
+        columnStyle: {
+          textAlign: "right",
+        },
         key: "dataAttribuzionePunteggio",
         render: (_, item) => (
           <Stack alignItems="end" width="100%">
@@ -109,7 +112,6 @@ export default function LicenceDetails() {
             />
           </Stack>
         ),
-
         title: t("licenceDetails.history.columns.variation"),
       },
     ],
