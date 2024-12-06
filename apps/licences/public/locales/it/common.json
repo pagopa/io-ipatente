@@ -21,10 +21,10 @@
     "points": "{{value}} di {{total}}"
   },
   "licenceDetails": {
-    "title": "Dettaglio Patente",
+    "title": "Dettaglio e storico punti",
     "breadcrumbs": {
       "licences": "Le mie patenti",
-      "licenceDetail": "Dettaglio patente"
+      "licenceDetail": "Dettaglio e storico punti"
     },
     "info": {
       "title": "Dettaglio patente",

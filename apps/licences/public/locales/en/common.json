@@ -21,10 +21,10 @@
     "points": "{{value}} of {{total}}"
   },
   "licenceDetails": {
-    "title": "Licence details",
+    "title": "Points detail and history",
     "breadcrumbs": {
       "licences": "My licences",
-      "licenceDetail": "Licence detail"
+      "licenceDetail": "Points detail and history"
     },
     "info": {
       "title": "Licence detail",
