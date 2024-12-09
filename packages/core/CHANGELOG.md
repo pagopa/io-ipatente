@@ -1,5 +1,12 @@
 # @io-ipatente/core
 
+## 0.5.1
+
+### Patch Changes
+
+- 35c809a: Middleware refinement
+- fa6b274: Set NextAuth maxAge
+
 ## 0.5.0
 
 ### Minor Changes
