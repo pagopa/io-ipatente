@@ -30,6 +30,8 @@ declare module "@auth/core/jwt" {
   }
 }
 
+const maxAgeSeconds = 2 * 60 * 60; // 2 hours
+
 export const authConfig: NextAuthConfig = {
   callbacks: {
     jwt: ({ profile, token }) => {
@@ -53,6 +55,9 @@ export const authConfig: NextAuthConfig = {
       return session;
     },
   },
+  jwt: {
+    maxAge: maxAgeSeconds,
+  },
   pages: {
     signIn: SIGNIN_URL,
   },
@@ -73,4 +78,7 @@ export const authConfig: NextAuthConfig = {
       type: "oidc",
     },
   ],
+  session: {
+    maxAge: maxAgeSeconds,
+  },
 };
