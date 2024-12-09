@@ -2,6 +2,8 @@ import type { NextRequest } from "next/server";
 
 import { NextResponse } from "next/server";
 
+import { FIMS_CALLBACK_URL } from "../utils";
+
 const PREFIX_COOKIE = "authjs.";
 
 const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
@@ -13,7 +15,7 @@ const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
     }
   });
 
-  req.nextUrl.pathname = "/api/auth/callback/fims";
+  req.nextUrl.pathname = FIMS_CALLBACK_URL;
 
   req.nextUrl.searchParams.forEach((_, key) => {
     if (key.startsWith(PREFIX_COOKIE)) {
