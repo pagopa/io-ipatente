@@ -77,10 +77,16 @@ export const ListItemVehicle = ({ data, onClick }: ListItemVehicleProps) => {
           size: "small",
         };
       case "REV_MSG_003":
-      default:
         return {
           color: "error",
           icon: "warning2Bold",
+          label: t("vehicles.inspection"),
+          size: "small",
+        };
+      default:
+        return {
+          color: "default",
+          icon: "forbidden",
           label: t("vehicles.inspection"),
           size: "small",
         };

@@ -1,5 +1,11 @@
 # io-ipatente-practices
 
+## 0.1.2
+
+### Patch Changes
+
+- 35dd9d5: Mock Prod config
+
 ## 0.1.1
 
 ### Patch Changes

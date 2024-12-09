@@ -58,7 +58,6 @@ components:
           items:
             $ref: "#/components/schemas/Revisione"
         coperturaRCA:
-          nullable: true
           $ref: "#/components/schemas/CoperturaRCA"
     DatiVeicolo:
       type: "object"
@@ -191,6 +190,7 @@ components:
           $ref: "#/components/schemas/EsitoRevisioneEnum"
     CoperturaRCA:
       type: object
+      nullable: true
       description: ultima assicurazione valida in corso, null se non presente
       required:
         - compagniaAssicuratrice

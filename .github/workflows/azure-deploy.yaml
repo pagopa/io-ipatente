@@ -19,7 +19,6 @@ env:
   AZURE_PRACTICES_NAME: io-p-itn-ipatente-practices-app-01
   PRACTICES_HEALTHCHECK_PATH: "api/info"
 
-
 jobs:
   deployments:
     name: App Deployments
@@ -111,7 +110,7 @@ jobs:
         if: contains(github.event.release.assets[0].name, 'practices')
         uses: azure/webapps-deploy@145a0687697df1d8a28909569f6e5d86213041f9 #v3.0.0
         with:
-          app-name: ${{ env.AZURE_PAYMENTS_NAME }}
+          app-name: ${{ env.AZURE_PRACTICES_NAME }}
           package: artifact.zip
           slot-name: staging
           clean: true

@@ -1,6 +1,7 @@
 import type { DefaultSession, NextAuthConfig } from "next-auth";
 
 import { getConfiguration } from "../config";
+import { SIGNIN_URL } from "../utils";
 
 declare module "next-auth" {
   interface User {
@@ -29,6 +30,8 @@ declare module "@auth/core/jwt" {
   }
 }
 
+const maxAgeSeconds = 2 * 60 * 60; // 2 hours
+
 export const authConfig: NextAuthConfig = {
   callbacks: {
     jwt: ({ profile, token }) => {
@@ -52,8 +55,11 @@ export const authConfig: NextAuthConfig = {
       return session;
     },
   },
+  jwt: {
+    maxAge: maxAgeSeconds,
+  },
   pages: {
-    signIn: "/api/auth/signin",
+    signIn: SIGNIN_URL,
   },
   providers: [
     {
@@ -72,4 +78,7 @@ export const authConfig: NextAuthConfig = {
       type: "oidc",
     },
   ],
+  session: {
+    maxAge: maxAgeSeconds,
+  },
 };

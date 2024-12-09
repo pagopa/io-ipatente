@@ -1,5 +1,11 @@
 # io-ipatente-payments
 
+## 0.3.1
+
+### Patch Changes
+
+- 35dd9d5: Mock Prod config
+
 ## 0.3.0
 
 ### Minor Changes
