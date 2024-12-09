@@ -1,5 +1,11 @@
 # @io-ipatente/ui
 
+## 0.8.1
+
+### Patch Changes
+
+- 1727b82: Some style fixes for vehicles app
+
 ## 0.8.0
 
 ### Minor Changes
