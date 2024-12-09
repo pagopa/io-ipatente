@@ -1,4 +1,8 @@
-//HTTP STATUSES
+export const SIGNIN_URL = "/api/auth/signin";
+export const FIMS_CALLBACK_URL = "/api/auth/callback/fims";
+export const FIMS_CALLBACK_COOKIES_URL = "/api/auth/callback/fims/cookies";
+
+// HTTP STATUSES
 export const HTTP_STATUS_OK = 200;
 export const HTTP_STATUS_BAD_REQUEST = 400;
 export const HTTP_STATUS_UNAUTHORIZED = 401;

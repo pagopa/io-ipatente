@@ -1,10 +1,12 @@
 import { auth } from "@/auth";
-import { handleAuthRequest } from "@io-ipatente/core";
+import { middleware } from "@io-ipatente/core";
 
-export default auth(handleAuthRequest);
+export default auth(middleware);
 
 export const config = {
   matcher: [
+    "/",
+    "/api/auth/callback/fims",
     /*
      * Match all request paths except for the ones starting with:
      * - api (API routes)
@@ -12,8 +14,6 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      */
-    "/",
     "/((?!api|_next/static|_next/image|mockServiceWorker.js|favicon.ico).*)",
-    "/api/auth/callback/fims",
   ],
 };

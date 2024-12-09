@@ -1,6 +1,7 @@
 import type { DefaultSession, NextAuthConfig } from "next-auth";
 
 import { getConfiguration } from "../config";
+import { SIGNIN_URL } from "../utils";
 
 declare module "next-auth" {
   interface User {
@@ -53,7 +54,7 @@ export const authConfig: NextAuthConfig = {
     },
   },
   pages: {
-    signIn: "/api/auth/signin",
+    signIn: SIGNIN_URL,
   },
   providers: [
     {
