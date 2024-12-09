@@ -6,10 +6,11 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { ReactElement } from "react";
+import { CSSProperties, ReactElement } from "react";
 
 type WidthFactor = 0.1 | 0.2 | 0.3 | 0.4 | 0.5 | 0.6 | 0.7 | 0.8 | 0.9;
 export interface Column<T> {
+  columnStyle?: CSSProperties;
   key: keyof T;
   render?: (key: Column<T>["key"], item: T) => ReactElement;
   title: string;
@@ -40,14 +41,17 @@ const TableHeader = <T,>({ columns }: TableHeaderProps<T>) => {
   return (
     <TableHead>
       <TableRow>
-        {columns.map(({ key, title }, index) => (
+        {columns.map(({ columnStyle = {}, key, title }, index) => (
           <TableCell
             key={`${key.toString()}-${index}`}
             sx={{
               backgroundColor: "text.primary",
               border: "1px solid #BFDFFF",
               color: "background.default",
+              paddingX: 1.5,
+              paddingY: 2,
               width: `${columnsWidths[index] * 100}%`,
+              ...columnStyle,
             }}
           >
             {title}
@@ -73,6 +77,9 @@ const TableContent = <T,>({ columns, rows }: TableProps<T>) => (
             component="th"
             key={`${key.toString()}-${index}-${cellIndex}`}
             scope="row"
+            sx={{
+              padding: 1.5,
+            }}
           >
             {render ? (
               render(key, row)
