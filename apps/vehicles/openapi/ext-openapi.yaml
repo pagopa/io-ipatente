@@ -58,6 +58,7 @@ components:
           items:
             $ref: "#/components/schemas/Revisione"
         coperturaRCA:
+          nullable: true
           $ref: "#/components/schemas/CoperturaRCA"
     DatiVeicolo:
       type: "object"
@@ -114,6 +115,7 @@ components:
             - USO SPEC AUTOSCUOLA RIMORCHIO ABB ESCL VEIC USO SPEC AUTOSC
             - AUTOVEICOLO PER USO SPECIALE DELLA POLIZIA LOCALE
         tipoDestinazioneUsoVeicolo:
+          nullable: true
           type: "string"
           description: |
             - DI TERZI DA NOLEGGIO CON CONDUC.
@@ -144,6 +146,7 @@ components:
         codice:
           $ref: "#/components/schemas/ExtraMassaEnum"
     Neopatentati:
+      nullable: true
       type: object
       properties:
         descrizione:
@@ -157,6 +160,7 @@ components:
         codice:
           $ref: "#/components/schemas/NeopatentatiEnum"
     Revisione:
+      nullable: true
       type: "object"
       required:
         - dataRevisione
@@ -228,6 +232,7 @@ components:
         - "EE" (Escursionisti Esteri - Targhe Diplomatiche)
       enum: [C, A, M, R, N, P, U, X, Y, S, T, V, E, F, G, H, CD, CC, EE]
     ExtraMassaEnum:
+      nullable: true
       type: string
       enum:
         [
@@ -246,6 +251,7 @@ components:
       description: Codici neopatentato
       example: "NEOP_MSG_001"
     ClasseAmbientaleEnum:
+      nullable: true
       type: string
       description: |
         ### Messaggi restituiti:
