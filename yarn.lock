@@ -1602,6 +1602,7 @@ __metadata:
     "@types/react-dom": "npm:^18"
     "@types/uuid": "npm:^10.0.0"
     "@vitest/coverage-v8": "npm:^2.1.3"
+    "@xmldom/xmldom": "npm:^0.8.8"
     axios: "npm:^1.7.7"
     eslint: "npm:^9.13.0"
     jsonwebtoken: "npm:^9.0.2"
@@ -4847,6 +4848,13 @@ __metadata:
   version: 3.5.12
   resolution: "@vue/shared@npm:3.5.12"
   checksum: 10c0/48f94406c42921901b21a57a7ebb401bbceb497152baf0554e5d5a11cbaa79958f966042e9d95614c0b02e8681b7e1b6c010fcb8b28c6bda1b090f2ddd7540d8
+  languageName: node
+  linkType: hard
+
+"@xmldom/xmldom@npm:^0.8.8":
+  version: 0.8.10
+  resolution: "@xmldom/xmldom@npm:0.8.10"
+  checksum: 10c0/c7647c442502720182b0d65b17d45d2d95317c1c8c497626fe524bda79b4fb768a9aa4fae2da919f308e7abcff7d67c058b102a9d641097e9a57f0b80187851f
   languageName: node
   linkType: hard
 
