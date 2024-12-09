@@ -23,8 +23,8 @@ export const AssertionRef = z.union([
 export type AssertionRef = z.infer<typeof AssertionRef>;
 
 export enum AssertionTypeEnum {
-  "SAML" = "SAML",
   "OIDC" = "OIDC",
+  "SAML" = "SAML",
 }
 
 export const AssertionType = z.enum(["SAML", "OIDC"]);

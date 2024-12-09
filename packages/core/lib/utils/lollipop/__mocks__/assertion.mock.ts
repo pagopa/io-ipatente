@@ -140,5 +140,5 @@ export const aSAMLResponse = `<?xml version="1.0" encoding="UTF-8" standalone="n
     </saml2:Assertion>
 </saml2p:Response>`;
 
-
-export const anAssertionRefSHA256 = "sha256-a7qE0Y0DyqeOFFREIQSLKfu5WlbckdxVXKFasfcI-Dg";
+export const anAssertionRefSHA256 =
+  "sha256-a7qE0Y0DyqeOFFREIQSLKfu5WlbckdxVXKFasfcI-Dg";

@@ -109,7 +109,7 @@ export const getAttributeFromSamlResponse =
 
 export const getIssueInstantInSecondsFromSamlResponse = (
   assertionDoc: Document,
-): number | null => {
+): null | number => {
   const issueInstantString = getAttributeFromSamlResponse(
     "Assertion",
     "IssueInstant",

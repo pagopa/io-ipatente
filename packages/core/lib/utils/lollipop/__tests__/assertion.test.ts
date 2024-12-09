@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+
 import { aSAMLResponse } from "../__mocks__/assertion.mock";
 import {
   assertionFromXMLString,
