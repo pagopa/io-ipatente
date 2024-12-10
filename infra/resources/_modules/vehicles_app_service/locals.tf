@@ -10,26 +10,26 @@ locals {
       AUTH_TRUST_HOST = true
       AUTH_URL        = "https://vehicles.ipatente.io.pagopa.it/"
 
-      OIDC_ISSUER_URL          = "https://vehicles.ipatente.io.pagopa.it/api/auth/mocks/oidc"
+      OIDC_ISSUER_URL          = "https://oauth.io.pagopa.it"
       OIDC_CLIENT_ID           = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-CLIENT-ID-VEHICLES)"
       OIDC_CLIENT_SECRET       = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-CLIENT-SECRET-VEHICLES)"
       OIDC_CLIENT_REDIRECT_URI = "https://vehicles.ipatente.io.pagopa.it/api/auth/callback/fims"
 
       OIDC_MOCK_JWT_PRIVATE_KEY = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-JWT-PRIVATE-KEY)"
       OIDC_MOCK_JWT_PUBLIC_KEY  = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-JWT-PUBLIC-KEY)"
-      OIDC_MOCK_FORCED_ENABLE   = true
+      OIDC_MOCK_FORCED_ENABLE   = false
 
-      NEXT_PUBLIC_IS_MSW_ENABLED  = true
-      NEXT_PUBLIC_BFF_API_MOCKING = true
+      NEXT_PUBLIC_IS_MSW_ENABLED  = false
+      NEXT_PUBLIC_BFF_API_MOCKING = false
 
       NEXT_PUBLIC_BFF_API_BASE_URL  = "https://vehicles.ipatente.io.pagopa.it"
       NEXT_PUBLIC_BFF_API_BASE_PATH = "/api"
 
-      EXT_API_MOCKING   = true
-      EXT_API_BASE_URL  = "http://example.com"
-      EXT_API_BASE_PATH = "/api"
+      EXT_API_MOCKING   = false
+      EXT_API_BASE_URL  = "https://gw.servizidt.it/rest/in/MCTC/IMieiVeicoli_AppIO"
+      EXT_API_BASE_PATH = "/v2"
 
-      INTEROP_AUTH_SERVER_ENDPOINT_URL = "https://auth.uat.interop.pagopa.it/token.oauth2"
+      INTEROP_AUTH_SERVER_ENDPOINT_URL = "https://auth.interop.pagopa.it/token.oauth2"
       INTEROP_CLIENT_ID                = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=INTEROP-CLIENT-ID-VEHICLES)"
       INTEROP_CLIENT_ASSERTION_TYPE    = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
       INTEROP_GRANT_TYPE               = "client_credentials"
@@ -37,7 +37,7 @@ locals {
       INTEROP_CLIENT_ASSERTION_KID        = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=INTEROP-CLIENT-ASSERTION-KID-VEHICLES)"
       INTEROP_CLIENT_ASSERTION_ISS        = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=INTEROP-CLIENT-ASSERTION-ISS-VEHICLES)"
       INTEROP_CLIENT_ASSERTION_SUB        = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=INTEROP-CLIENT-ASSERTION-SUB-VEHICLES)"
-      INTEROP_CLIENT_ASSERTION_AUD        = "auth.uat.interop.pagopa.it / client-assertion"
+      INTEROP_CLIENT_ASSERTION_AUD        = "auth.interop.pagopa.it/client-assertion"
       INTEROP_CLIENT_ASSERTION_PURPOSE_ID = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=INTEROP-CLIENT-ASSERTION-PURPOSE-ID-VEHICLES)"
       INTEROP_CLIENT_ASSERTION_PK         = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=INTEROP-CLIENT-ASSERTION-PK-VEHICLES)"
 
