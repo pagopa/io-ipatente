@@ -32,11 +32,6 @@
         "todo": "In Corso",
         "cancel": "Cancellata"
       }
-    },
-    "type": {
-      "title": "Tipo pratica",
-      "code": "Codice",
-      "description": "Descrizione"
     }
   },
   "assistance": {
