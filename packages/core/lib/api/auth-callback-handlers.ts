@@ -17,6 +17,7 @@ const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
       cookiesToBeDeleted.push(key);
       const cookieKey = key.split(PREFIX_COOKIE)[1];
       cookies[PREFIX_COOKIE.concat(cookieKey)] = value;
+
     }
   });
 
@@ -32,6 +33,7 @@ const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
   );
 
   req.nextUrl.pathname = FIMS_CALLBACK_URL;
+
 
   for (const cookie of cookiesToBeDeleted) {
     console.log("DELETING: ", cookie);
