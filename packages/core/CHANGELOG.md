@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.5.5
+
+### Patch Changes
+
+- f041e5e: Replace Origin
+
 ## 0.5.4
 
 ### Patch Changes

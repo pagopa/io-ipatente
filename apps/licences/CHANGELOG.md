@@ -1,5 +1,15 @@
 # io-ipatente-licences
 
+## 0.2.12
+
+### Patch Changes
+
+- 58e8532: small design fixes
+- Updated dependencies [f041e5e]
+- Updated dependencies [58e8532]
+  - @io-ipatente/core@0.5.5
+  - @io-ipatente/ui@0.8.2
+
 ## 0.2.11
 
 ### Patch Changes
