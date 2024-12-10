@@ -40,7 +40,7 @@
       "title": "Storico punti",
       "columns": {
         "detail": "Dettaglio",
-        "variation": "Variazione Punti"
+        "variation": "Variazione"
       },
       "detail": {
         "title": "{{description}} {{date}}",
