@@ -56,10 +56,5 @@ export const PracticeSectionDetails = ({
     (item) => item.isVisible !== false,
   );
 
-  return (
-    <CardInfo
-      items={filteredMetadataListItems}
-      title={t("practiceDetails.info.title")}
-    />
-  );
+  return <CardInfo items={filteredMetadataListItems} />;
 };
