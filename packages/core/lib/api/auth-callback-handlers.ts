@@ -17,6 +17,12 @@ const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
 
   // eslint-disable-next-line no-console
   console.log("PRE-REDIRECT: ", req);
+  // eslint-disable-next-line no-console
+  console.log("PRE-REDIRECT-NEXT-URL: ", req.nextUrl);
+  // eslint-disable-next-line no-console
+  console.log("PRE-REDIRECT-NEXT-URL-ORIGIN: ", req.nextUrl.origin);
+  // eslint-disable-next-line no-console
+  console.log("PRE-REDIRECT-AUTH-URL: ", process.env.AUTH_URL);
 
   req.nextUrl.pathname = FIMS_CALLBACK_URL;
 
@@ -26,7 +32,8 @@ const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
     }
   });
 
-  const response = NextResponse.redirect(req.nextUrl);
+  const redirectCallbackUrl = new URL(FIMS_CALLBACK_URL, req.nextUrl.origin);
+  const response = NextResponse.redirect(redirectCallbackUrl);
 
   Object.entries(cookies).forEach(([key, value]) => {
     response.cookies.set(key, value);
