@@ -2,6 +2,7 @@ import type { NextRequest } from "next/server";
 
 import { NextResponse } from "next/server";
 
+import { getConfiguration } from "../config";
 import { FIMS_CALLBACK_URL } from "../utils";
 
 const PREFIX_COOKIE = "authjs.";
@@ -37,9 +38,10 @@ const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
     }
   });
 
-  const redirectCallbackUrl = new URL(
-    FIMS_CALLBACK_URL,
-    process.env.NEXT_PUBLIC_BFF_API_BASE_URL,
+  const redirectCallbackUrl = req.nextUrl.clone();
+  redirectCallbackUrl.href.replace(
+    redirectCallbackUrl.origin,
+    getConfiguration().BFF_API_BASE_URL,
   );
   const response = NextResponse.redirect(redirectCallbackUrl);
 
