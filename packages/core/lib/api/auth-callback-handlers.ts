@@ -39,10 +39,11 @@ const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
   });
 
   const redirectCallbackUrl = req.nextUrl.clone();
-  redirectCallbackUrl.href.replace(
-    redirectCallbackUrl.origin,
-    getConfiguration().BFF_API_BASE_URL,
+  redirectCallbackUrl.host = getConfiguration().BFF_API_BASE_URL.replace(
+    "https://",
+    "",
   );
+  redirectCallbackUrl.port = "";
   const response = NextResponse.redirect(redirectCallbackUrl);
 
   Object.entries(cookies).forEach(([key, value]) => {
