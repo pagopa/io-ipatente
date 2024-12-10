@@ -73,7 +73,7 @@ export default function LicenceDetails() {
               >
                 {new Date(item.dataAttribuzionePunteggio).toLocaleDateString()}
               </Typography>
-              {description === "verbale" ? (
+              {item.codiceVerbale ? (
                 <Link
                   color="text.primary"
                   component="button"
