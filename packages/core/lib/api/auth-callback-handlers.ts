@@ -32,7 +32,7 @@ const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
     }
   });
 
-  const redirectCallbackUrl = new URL(FIMS_CALLBACK_URL, req.nextUrl.origin);
+  const redirectCallbackUrl = new URL(FIMS_CALLBACK_URL, process.env.AUTH_URL);
   const response = NextResponse.redirect(redirectCallbackUrl);
 
   Object.entries(cookies).forEach(([key, value]) => {
