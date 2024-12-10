@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.5.7
+
+### Patch Changes
+
+- 855dd29: Fix cookie selection
+
 ## 0.5.6
 
 ### Patch Changes
