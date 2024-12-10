@@ -1,5 +1,37 @@
 # io-ipatente-practices
 
+## 0.1.6
+
+### Patch Changes
+
+- Updated dependencies [f0db89c]
+  - @io-ipatente/core@0.5.4
+
+## 0.1.5
+
+### Patch Changes
+
+- Updated dependencies [634dc6a]
+  - @io-ipatente/core@0.5.3
+
+## 0.1.4
+
+### Patch Changes
+
+- Updated dependencies [0371c68]
+  - @io-ipatente/core@0.5.2
+
+## 0.1.3
+
+### Patch Changes
+
+- 35c809a: Middleware refinement
+- Updated dependencies [35c809a]
+- Updated dependencies [fa6b274]
+- Updated dependencies [1727b82]
+  - @io-ipatente/core@0.5.1
+  - @io-ipatente/ui@0.8.1
+
 ## 0.1.2
 
 ### Patch Changes

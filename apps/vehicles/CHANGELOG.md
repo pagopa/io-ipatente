@@ -1,5 +1,40 @@
 # vehicles
 
+## 0.8.13
+
+### Patch Changes
+
+- Updated dependencies [f0db89c]
+  - @io-ipatente/core@0.5.4
+
+## 0.8.12
+
+### Patch Changes
+
+- Updated dependencies [634dc6a]
+  - @io-ipatente/core@0.5.3
+
+## 0.8.11
+
+### Patch Changes
+
+- Updated dependencies [0371c68]
+  - @io-ipatente/core@0.5.2
+
+## 0.8.10
+
+### Patch Changes
+
+- 35c809a: Middleware refinement
+- 1727b82: Some style fixes for vehicles app
+- 4b707b5: Production Configuration for Vehicles
+- 0719a88: Updated external openapi nullable fields
+- Updated dependencies [35c809a]
+- Updated dependencies [fa6b274]
+- Updated dependencies [1727b82]
+  - @io-ipatente/core@0.5.1
+  - @io-ipatente/ui@0.8.1
+
 ## 0.8.9
 
 ### Patch Changes

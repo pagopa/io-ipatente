@@ -1,5 +1,30 @@
 # @io-ipatente/core
 
+## 0.5.4
+
+### Patch Changes
+
+- f0db89c: Force set callback host redirect
+
+## 0.5.3
+
+### Patch Changes
+
+- 634dc6a: Set Origin on redirect callback url
+
+## 0.5.2
+
+### Patch Changes
+
+- 0371c68: Added some auth logs
+
+## 0.5.1
+
+### Patch Changes
+
+- 35c809a: Middleware refinement
+- fa6b274: Set NextAuth maxAge
+
 ## 0.5.0
 
 ### Minor Changes
