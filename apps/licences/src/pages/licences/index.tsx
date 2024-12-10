@@ -77,7 +77,12 @@ export default function Licences() {
 }
 
 Licences.getLayout = ({ page, t }: GetLayoutProps) => (
-  <AppLayout title={t("licences.title")}>{page}</AppLayout>
+  <AppLayout
+    description={t("licences.description")}
+    title={t("licences.title")}
+  >
+    {page}
+  </AppLayout>
 );
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
