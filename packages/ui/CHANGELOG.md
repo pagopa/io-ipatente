@@ -1,5 +1,11 @@
 # @io-ipatente/ui
 
+## 0.8.2
+
+### Patch Changes
+
+- 58e8532: small design fixes
+
 ## 0.8.1
 
 ### Patch Changes
