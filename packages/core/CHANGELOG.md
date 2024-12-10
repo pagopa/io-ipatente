@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.5.8
+
+### Patch Changes
+
+- f64dafe: Cookie Set without prefix
+
 ## 0.5.7
 
 ### Patch Changes
