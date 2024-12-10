@@ -65,7 +65,6 @@ export const authConfig: NextAuthConfig = {
     {
       authorization: {
         params: {
-          redirect_uri: getConfiguration().OIDC_CLIENT_REDIRECT_URI,
           scope: "openid profile lollipop",
         },
       },
