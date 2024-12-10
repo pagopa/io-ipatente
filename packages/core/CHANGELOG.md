@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.5.2
+
+### Patch Changes
+
+- 0371c68: Added some auth logs
+
 ## 0.5.1
 
 ### Patch Changes
