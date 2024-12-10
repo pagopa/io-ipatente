@@ -1,5 +1,16 @@
 # io-ipatente-payments
 
+## 0.3.2
+
+### Patch Changes
+
+- 35c809a: Middleware refinement
+- Updated dependencies [35c809a]
+- Updated dependencies [fa6b274]
+- Updated dependencies [1727b82]
+  - @io-ipatente/core@0.5.1
+  - @io-ipatente/ui@0.8.1
+
 ## 0.3.1
 
 ### Patch Changes
