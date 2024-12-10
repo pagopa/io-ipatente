@@ -1,3 +1,6 @@
 import { signIn } from "@/auth";
 
-export const GET = async () => signIn("fims");
+export const GET = async () =>
+  signIn("fims", {
+    redirectTo: "/",
+  });
