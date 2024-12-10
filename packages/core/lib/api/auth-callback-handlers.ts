@@ -1,30 +1,32 @@
+/* eslint-disable no-console */
 import type { NextRequest } from "next/server";
 
 import { NextResponse } from "next/server";
 
-import { getConfiguration } from "../config";
 import { FIMS_CALLBACK_URL } from "../utils";
 
 const PREFIX_COOKIE = "authjs.";
 
 const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
   const cookies: Record<string, string> = {};
+  const cookiesToBeDeleted: string[] = [];
 
   req.nextUrl.searchParams.forEach((value, key) => {
     if (key.includes(PREFIX_COOKIE)) {
-      cookies[key] = value;
+      console.log("FOUND: ", key);
+      cookiesToBeDeleted.push(key);
+      const cookieKey = key.split(PREFIX_COOKIE)[1];
+      cookies[PREFIX_COOKIE.concat(cookieKey)] = value;
+
     }
   });
 
-  // eslint-disable-next-line no-console
+  console.log("COOKIES SELECTED: ", cookies);
+
   console.log("PRE-REDIRECT: ", req);
-  // eslint-disable-next-line no-console
   console.log("PRE-REDIRECT-NEXT-URL: ", req.nextUrl);
-  // eslint-disable-next-line no-console
   console.log("PRE-REDIRECT-NEXT-URL-ORIGIN: ", req.nextUrl.origin);
-  // eslint-disable-next-line no-console
   console.log("PRE-REDIRECT-AUTH-URL: ", process.env.AUTH_URL);
-  // eslint-disable-next-line no-console
   console.log(
     "PRE-REDIRECT-NEXT_PUBLIC_BFF_API_BASE_URL: ",
     process.env.NEXT_PUBLIC_BFF_API_BASE_URL,
@@ -32,17 +34,14 @@ const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
 
   req.nextUrl.pathname = FIMS_CALLBACK_URL;
 
-  req.nextUrl.searchParams.forEach((_, key) => {
-    if (key.includes(PREFIX_COOKIE)) {
-      req.nextUrl.searchParams.delete(key);
-    }
-  });
+
+  for (const cookie of cookiesToBeDeleted) {
+    console.log("DELETING: ", cookie);
+    req.nextUrl.searchParams.delete(cookie);
+  }
 
   const redirectCallbackUrl = req.nextUrl.clone();
-  redirectCallbackUrl.host = getConfiguration().BFF_API_BASE_URL.replace(
-    "https://",
-    "",
-  );
+  redirectCallbackUrl.host = "vehicles.ipatente.io.pagopa.it";
   redirectCallbackUrl.port = "";
   const response = NextResponse.redirect(redirectCallbackUrl);
 
@@ -50,7 +49,6 @@ const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
     response.cookies.set(key, value);
   });
 
-  // eslint-disable-next-line no-console
   console.log("POST-REDIRECT: ", response);
 
   return response;
