@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.5.3
+
+### Patch Changes
+
+- 634dc6a: Set Origin on redirect callback url
+
 ## 0.5.2
 
 ### Patch Changes
