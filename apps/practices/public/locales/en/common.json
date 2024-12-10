@@ -12,7 +12,7 @@
   "practices": {
     "title": "Le mie pratiche",
     "defaultLabel": "Pratica",
-    "empty": "Non sono presenti pratiche a te intestate"
+    "empty": "Non sono presenti pratiche"
   },
   "practiceDetails": {
     "title": "Dettaglio Pratica",
