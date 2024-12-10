@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.5.4
+
+### Patch Changes
+
+- f0db89c: Force set callback host redirect
+
 ## 0.5.3
 
 ### Patch Changes

@@ -3,7 +3,7 @@
   "author": {
     "name": "PagoPA"
   },
-  "version": "0.8.12",
+  "version": "0.8.13",
   "private": true,
   "scripts": {
     "format": "prettier --write .",
