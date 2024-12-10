@@ -1,5 +1,12 @@
 # io-ipatente-payments
 
+## 0.3.7
+
+### Patch Changes
+
+- Updated dependencies [0906d71]
+  - @io-ipatente/core@0.5.6
+
 ## 0.3.6
 
 ### Patch Changes

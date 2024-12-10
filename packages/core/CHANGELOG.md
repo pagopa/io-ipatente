@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.5.6
+
+### Patch Changes
+
+- 0906d71: Auth Callback Redirect Updates
+
 ## 0.5.5
 
 ### Patch Changes
