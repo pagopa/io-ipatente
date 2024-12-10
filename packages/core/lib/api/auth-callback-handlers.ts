@@ -11,7 +11,7 @@ const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
   const cookies: Record<string, string> = {};
 
   req.nextUrl.searchParams.forEach((value, key) => {
-    if (key.startsWith(PREFIX_COOKIE)) {
+    if (key.includes(PREFIX_COOKIE)) {
       cookies[key] = value;
     }
   });
@@ -33,7 +33,7 @@ const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
   req.nextUrl.pathname = FIMS_CALLBACK_URL;
 
   req.nextUrl.searchParams.forEach((_, key) => {
-    if (key.startsWith(PREFIX_COOKIE)) {
+    if (key.includes(PREFIX_COOKIE)) {
       req.nextUrl.searchParams.delete(key);
     }
   });
