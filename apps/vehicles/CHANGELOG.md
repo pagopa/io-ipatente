@@ -1,5 +1,12 @@
 # vehicles
 
+## 0.8.11
+
+### Patch Changes
+
+- Updated dependencies [0371c68]
+  - @io-ipatente/core@0.5.2
+
 ## 0.8.10
 
 ### Patch Changes
