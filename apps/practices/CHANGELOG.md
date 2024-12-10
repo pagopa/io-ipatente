@@ -1,5 +1,12 @@
 # io-ipatente-practices
 
+## 0.1.6
+
+### Patch Changes
+
+- Updated dependencies [f0db89c]
+  - @io-ipatente/core@0.5.4
+
 ## 0.1.5
 
 ### Patch Changes
