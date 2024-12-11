@@ -41,6 +41,7 @@ const handleRequest: AuthRouteHandler = (request) => {
   // redirect it to the cookie callback URL by adding the cookies as query parameters.
   // The constructed URL will be opened in the in-app browser.
   if (request.nextUrl.pathname === FIMS_CALLBACK_URL) {
+    // TODO: settare url che punti ad AppGataway
     const redirectUrl = request.nextUrl;
     redirectUrl.pathname = FIMS_CALLBACK_COOKIES_URL;
     request.cookies
