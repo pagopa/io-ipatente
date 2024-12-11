@@ -3,6 +3,8 @@ import type { NextRequest } from "next/server";
 
 import { NextResponse } from "next/server";
 
+import { FIMS_CALLBACK_URL } from "../utils";
+
 const PREFIX_COOKIE = "authjs.";
 
 const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
@@ -25,6 +27,8 @@ const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
     console.log("DELETING: ", cookie);
     req.nextUrl.searchParams.delete(cookie);
   }
+
+  req.nextUrl.pathname = FIMS_CALLBACK_URL;
 
   // Calc callbackURL
   const callBackProtocol =
