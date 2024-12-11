@@ -41,8 +41,7 @@ const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
   const response = NextResponse.redirect(href.replace(origin, envOrigin), req);
 
   Object.entries(cookies).forEach(([key, value]) => {
-    const keyPurified = PREFIX_COOKIE.concat(key.split(PREFIX_COOKIE)[1]);
-    response.cookies.set(keyPurified, value, {
+    response.cookies.set(key, value, {
       domain: callBackHost,
       httpOnly: true,
       path: "/",
