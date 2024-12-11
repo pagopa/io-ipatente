@@ -1,5 +1,29 @@
 # @io-ipatente/core
 
+## 0.5.8
+
+### Patch Changes
+
+- f64dafe: Cookie Set without prefix
+
+## 0.5.7
+
+### Patch Changes
+
+- 855dd29: Fix cookie selection
+
+## 0.5.6
+
+### Patch Changes
+
+- 0906d71: Auth Callback Redirect Updates
+
+## 0.5.5
+
+### Patch Changes
+
+- f041e5e: Replace Origin
+
 ## 0.5.4
 
 ### Patch Changes
