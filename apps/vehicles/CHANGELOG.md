@@ -1,5 +1,11 @@
 # vehicles
 
+## 0.8.20
+
+### Patch Changes
+
+- 00ce334: Revert AppGateway Configuration for Vehicles App
+
 ## 0.8.19
 
 ### Patch Changes
