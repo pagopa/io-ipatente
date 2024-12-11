@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.5.14
+
+### Patch Changes
+
+- 538bb64: Set cookie test
+
 ## 0.5.13
 
 ### Patch Changes
