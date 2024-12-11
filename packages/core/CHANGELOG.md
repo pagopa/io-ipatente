@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.5.10
+
+### Patch Changes
+
+- 7462e0d: Bypass AppGateway on Vehicles
+
 ## 0.5.9
 
 ### Patch Changes
