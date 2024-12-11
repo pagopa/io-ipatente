@@ -33,8 +33,7 @@ const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
   // Calc callbackURL
   const callBackProtocol =
     req.headers.get("x-forwarded-proto") ?? req.nextUrl.protocol;
-  const callBackHost =
-    req.headers.get("x-forwarded-host") ?? req.headers.get("host");
+  const callBackHost = req.headers.get("x-forwarded-host") ?? req.nextUrl.host;
 
   const envOrigin = `${callBackProtocol}://${callBackHost}`;
   const { href, origin } = req.nextUrl;
@@ -42,7 +41,14 @@ const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
   const response = NextResponse.redirect(href.replace(origin, envOrigin), req);
 
   Object.entries(cookies).forEach(([key, value]) => {
-    response.cookies.set(key, value);
+    const keyPurified = PREFIX_COOKIE.concat(key.split(PREFIX_COOKIE)[1]);
+    response.cookies.set(keyPurified, value, {
+      domain: callBackHost,
+      httpOnly: true,
+      path: "/",
+      sameSite: "lax",
+      secure: true,
+    });
   });
 
   console.log("POST-REDIRECT: ", response);
