@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.5.12
+
+### Patch Changes
+
+- 95bff35: Fix Callback URL
+
 ## 0.5.11
 
 ### Patch Changes
