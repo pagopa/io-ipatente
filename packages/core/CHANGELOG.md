@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.5.13
+
+### Patch Changes
+
+- e532ce2: Set Cookie Secure
+
 ## 0.5.12
 
 ### Patch Changes
