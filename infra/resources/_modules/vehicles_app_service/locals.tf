@@ -8,12 +8,12 @@ locals {
 
       AUTH_SECRET     = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=AUTH-SECRET-VEHICLES)"
       AUTH_TRUST_HOST = true
-      AUTH_URL        = "https://io-p-itn-ipatente-vehicles-app-01.azurewebsites.net/"
+      AUTH_URL        = "https://vehicles.ipatente.io.pagopa.it/"
 
       OIDC_ISSUER_URL          = "https://oauth.io.pagopa.it"
       OIDC_CLIENT_ID           = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-CLIENT-ID-VEHICLES)"
       OIDC_CLIENT_SECRET       = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-CLIENT-SECRET-VEHICLES)"
-      OIDC_CLIENT_REDIRECT_URI = "https://io-p-itn-ipatente-vehicles-app-01.azurewebsites.net/api/auth/callback/fims"
+      OIDC_CLIENT_REDIRECT_URI = "https://vehicles.ipatente.io.pagopa.it/api/auth/callback/fims"
 
       OIDC_MOCK_JWT_PRIVATE_KEY = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-JWT-PRIVATE-KEY)"
       OIDC_MOCK_JWT_PUBLIC_KEY  = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-JWT-PUBLIC-KEY)"
@@ -22,7 +22,7 @@ locals {
       NEXT_PUBLIC_IS_MSW_ENABLED  = false
       NEXT_PUBLIC_BFF_API_MOCKING = false
 
-      NEXT_PUBLIC_BFF_API_BASE_URL  = "https://io-p-itn-ipatente-vehicles-app-01.azurewebsites.net"
+      NEXT_PUBLIC_BFF_API_BASE_URL  = "https://vehicles.ipatente.io.pagopa.it"
       NEXT_PUBLIC_BFF_API_BASE_PATH = "/api"
 
       EXT_API_MOCKING   = false
