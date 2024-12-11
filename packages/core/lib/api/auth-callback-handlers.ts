@@ -3,7 +3,6 @@ import type { NextRequest } from "next/server";
 
 import { NextResponse } from "next/server";
 
-import { getConfiguration } from "../config";
 import { FIMS_CALLBACK_URL } from "../utils";
 
 const PREFIX_COOKIE = "authjs.";
@@ -14,21 +13,15 @@ const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
 
   req.nextUrl.searchParams.forEach((value, key) => {
     if (key.includes(PREFIX_COOKIE)) {
-      console.log("FOUND: ", key);
+      console.log("FOUND COOKIE: ", key);
       cookiesToBeDeleted.push(key);
       cookies[key] = value;
     }
   });
 
-  console.log("COOKIES SELECTED: ", cookies);
   console.log("PRE-REDIRECT: ", req);
   console.log("PRE-REDIRECT-NEXT-URL: ", req.nextUrl);
   console.log("PRE-REDIRECT-NEXT-URL-ORIGIN: ", req.nextUrl.origin);
-  console.log("PRE-REDIRECT-AUTH-URL: ", process.env.AUTH_URL);
-  console.log(
-    "PRE-REDIRECT-NEXT_PUBLIC_BFF_API_BASE_URL: ",
-    getConfiguration().BFF_API_BASE_URL,
-  );
 
   req.nextUrl.pathname = FIMS_CALLBACK_URL;
 
@@ -37,24 +30,10 @@ const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
     req.nextUrl.searchParams.delete(cookie);
   }
 
-  const applicationDomain = getConfiguration().BFF_API_BASE_URL.replace(
-    "https://",
-    "",
-  );
-
-  const redirectCallbackUrl = req.nextUrl.clone();
-  redirectCallbackUrl.host = applicationDomain;
-  redirectCallbackUrl.port = "";
-
-  console.log("POST-CALLBACKURL-CALC: ", redirectCallbackUrl);
-  console.log("POST-CALLBACKURL-CALC-ORIGIN: ", redirectCallbackUrl.origin);
-
-  const response = NextResponse.redirect(redirectCallbackUrl);
+  const response = NextResponse.redirect(req.nextUrl);
 
   Object.entries(cookies).forEach(([key, value]) => {
-    response.cookies.set(key, value, {
-      domain: applicationDomain,
-    });
+    response.cookies.set(key, value);
   });
 
   console.log("POST-REDIRECT: ", response);
