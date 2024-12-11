@@ -55,6 +55,7 @@ export const authConfig: NextAuthConfig = {
       return session;
     },
   },
+  debug: true,
   jwt: {
     maxAge: maxAgeSeconds,
   },
