@@ -1,5 +1,12 @@
 # io-ipatente-licences
 
+## 0.2.16
+
+### Patch Changes
+
+- Updated dependencies [80afcfc]
+  - @io-ipatente/core@0.5.9
+
 ## 0.2.15
 
 ### Patch Changes
