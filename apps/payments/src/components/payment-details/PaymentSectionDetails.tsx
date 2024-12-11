@@ -63,14 +63,14 @@ export const PaymentSectionDetails = ({ data }: PaymentSectionDetailsProps) => {
         value: `${idCarrello}`,
       },
       {
-        isVisible: !!tariffario,
+        isVisible: !!idRichiesta,
         label: t("paymentDetails.info.requestID"),
-        value: `${tariffario}`,
+        value: `${idRichiesta}`,
       },
       {
-        isVisible: !!idRichiesta,
+        isVisible: !!tariffario,
         label: t("paymentDetails.info.tariff"),
-        value: `${idRichiesta}`,
+        value: `${tariffario}`,
       },
       {
         isVisible: !!`${nomePagatore}${cognomePagatore}`,

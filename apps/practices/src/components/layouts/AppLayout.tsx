@@ -25,7 +25,7 @@ const AppLayout = ({
 }: AppLayoutProps) => {
   const { t } = useTranslation();
   const router = useRouter();
-  const containerRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLElement | null>(null);
 
   return (
     <Box
@@ -33,7 +33,12 @@ const AppLayout = ({
       flexDirection="column"
       height="100vh"
       overflow="scroll"
-      ref={containerRef}
+      ref={(node: HTMLElement | null) => {
+        if (node) {
+          node.scrollTop = 0;
+          containerRef.current = node;
+        }
+      }}
     >
       <TopBar
         assistance={{
