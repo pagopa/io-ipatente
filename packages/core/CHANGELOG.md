@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.5.11
+
+### Patch Changes
+
+- 5a5d1b3: Build callbackUrl from proxy headers
+
 ## 0.5.10
 
 ### Patch Changes

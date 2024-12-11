@@ -3,8 +3,6 @@ import type { NextRequest } from "next/server";
 
 import { NextResponse } from "next/server";
 
-import { FIMS_CALLBACK_URL } from "../utils";
-
 const PREFIX_COOKIE = "authjs.";
 
 const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
