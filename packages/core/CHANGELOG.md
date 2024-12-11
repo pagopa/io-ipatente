@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.5.9
+
+### Patch Changes
+
+- 80afcfc: Set cookie domain in auth callback
+
 ## 0.5.8
 
 ### Patch Changes
