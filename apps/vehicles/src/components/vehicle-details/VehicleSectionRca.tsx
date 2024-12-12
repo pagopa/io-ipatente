@@ -52,6 +52,7 @@ export const VehicleSectionRca = ({ rca }: VehicleSectionRcaProps) => {
     if (!rca) {
       return undefined;
     }
+
     return [
       {
         label: t("vehicleDetails.rca.insuranceGroup"),
