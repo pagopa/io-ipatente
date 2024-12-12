@@ -40,7 +40,7 @@
       "title": "Points History",
       "columns": {
         "detail": "Detail",
-        "variation": "Points Variation"
+        "variation": "Variation"
       },
       "detail": {
         "title": "{{description}} {{date}}",
@@ -55,6 +55,7 @@
   },
   "assistance": {
     "title": "Assistenza",
+    "subTitle": "Le mie patenti",
     "description": "Se hai bisogno di supporto, contatta il servizio di assistenza del Portale dell’Automobilista.",
     "back": "Back",
     "contacts": {
