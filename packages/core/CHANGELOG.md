@@ -1,5 +1,47 @@
 # @io-ipatente/core
 
+## 0.5.15
+
+### Patch Changes
+
+- b256e78: CleanUp no longer needed logs on auth callback
+
+## 0.5.14
+
+### Patch Changes
+
+- 538bb64: Set cookie test
+
+## 0.5.13
+
+### Patch Changes
+
+- e532ce2: Set Cookie Secure
+
+## 0.5.12
+
+### Patch Changes
+
+- 95bff35: Fix Callback URL
+
+## 0.5.11
+
+### Patch Changes
+
+- 5a5d1b3: Build callbackUrl from proxy headers
+
+## 0.5.10
+
+### Patch Changes
+
+- 7462e0d: Bypass AppGateway on Vehicles
+
+## 0.5.9
+
+### Patch Changes
+
+- 80afcfc: Set cookie domain in auth callback
+
 ## 0.5.8
 
 ### Patch Changes

@@ -1,5 +1,60 @@
 # vehicles
 
+## 0.8.25
+
+### Patch Changes
+
+- Updated dependencies [b256e78]
+  - @io-ipatente/core@0.5.15
+
+## 0.8.24
+
+### Patch Changes
+
+- Updated dependencies [538bb64]
+  - @io-ipatente/core@0.5.14
+
+## 0.8.23
+
+### Patch Changes
+
+- Updated dependencies [e532ce2]
+  - @io-ipatente/core@0.5.13
+
+## 0.8.22
+
+### Patch Changes
+
+- Updated dependencies [95bff35]
+  - @io-ipatente/core@0.5.12
+
+## 0.8.21
+
+### Patch Changes
+
+- Updated dependencies [5a5d1b3]
+  - @io-ipatente/core@0.5.11
+
+## 0.8.20
+
+### Patch Changes
+
+- 00ce334: Revert AppGateway Configuration for Vehicles App
+
+## 0.8.19
+
+### Patch Changes
+
+- Updated dependencies [7462e0d]
+  - @io-ipatente/core@0.5.10
+
+## 0.8.18
+
+### Patch Changes
+
+- Updated dependencies [80afcfc]
+  - @io-ipatente/core@0.5.9
+
 ## 0.8.17
 
 ### Patch Changes

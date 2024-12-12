@@ -32,6 +32,7 @@ locals {
       INTEROP_AUTH_SERVER_ENDPOINT_URL = "https://auth.interop.pagopa.it/token.oauth2"
       INTEROP_CLIENT_ID                = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=INTEROP-CLIENT-ID-LICENCES)"
       INTEROP_CLIENT_ASSERTION_TYPE    = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
+      INTEROP_ESERVICE_AUDIENCE        = "https://gw.servizidt.it/rest/in/MCTC/LeMiePatenti_AppIO/v2"
       INTEROP_GRANT_TYPE               = "client_credentials"
 
       INTEROP_CLIENT_ASSERTION_KID        = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=INTEROP-CLIENT-ASSERTION-KID-LICENCES)"

@@ -1,5 +1,54 @@
 # io-ipatente-licences
 
+## 0.2.22
+
+### Patch Changes
+
+- Updated dependencies [b256e78]
+  - @io-ipatente/core@0.5.15
+
+## 0.2.21
+
+### Patch Changes
+
+- Updated dependencies [538bb64]
+  - @io-ipatente/core@0.5.14
+
+## 0.2.20
+
+### Patch Changes
+
+- Updated dependencies [e532ce2]
+  - @io-ipatente/core@0.5.13
+
+## 0.2.19
+
+### Patch Changes
+
+- Updated dependencies [95bff35]
+  - @io-ipatente/core@0.5.12
+
+## 0.2.18
+
+### Patch Changes
+
+- Updated dependencies [5a5d1b3]
+  - @io-ipatente/core@0.5.11
+
+## 0.2.17
+
+### Patch Changes
+
+- Updated dependencies [7462e0d]
+  - @io-ipatente/core@0.5.10
+
+## 0.2.16
+
+### Patch Changes
+
+- Updated dependencies [80afcfc]
+  - @io-ipatente/core@0.5.9
+
 ## 0.2.15
 
 ### Patch Changes

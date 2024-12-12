@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import type { NextRequest } from "next/server";
 
 import { NextResponse } from "next/server";
@@ -13,41 +12,36 @@ const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
 
   req.nextUrl.searchParams.forEach((value, key) => {
     if (key.includes(PREFIX_COOKIE)) {
-      console.log("FOUND: ", key);
       cookiesToBeDeleted.push(key);
-      const cookieKey = key.split(PREFIX_COOKIE)[1];
-      cookies[PREFIX_COOKIE.concat(cookieKey)] = value;
+      cookies[key] = value;
     }
   });
 
-  console.log("COOKIES SELECTED: ", cookies);
-
-  console.log("PRE-REDIRECT: ", req);
-  console.log("PRE-REDIRECT-NEXT-URL: ", req.nextUrl);
-  console.log("PRE-REDIRECT-NEXT-URL-ORIGIN: ", req.nextUrl.origin);
-  console.log("PRE-REDIRECT-AUTH-URL: ", process.env.AUTH_URL);
-  console.log(
-    "PRE-REDIRECT-NEXT_PUBLIC_BFF_API_BASE_URL: ",
-    process.env.NEXT_PUBLIC_BFF_API_BASE_URL,
-  );
-
-  req.nextUrl.pathname = FIMS_CALLBACK_URL;
-
   for (const cookie of cookiesToBeDeleted) {
-    console.log("DELETING: ", cookie);
     req.nextUrl.searchParams.delete(cookie);
   }
 
-  const redirectCallbackUrl = req.nextUrl.clone();
-  redirectCallbackUrl.host = "vehicles.ipatente.io.pagopa.it";
-  redirectCallbackUrl.port = "";
-  const response = NextResponse.redirect(redirectCallbackUrl);
+  req.nextUrl.pathname = FIMS_CALLBACK_URL;
+
+  // Calc callbackURL
+  const callBackProtocol =
+    req.headers.get("x-forwarded-proto") ?? req.nextUrl.protocol;
+  const callBackHost = req.headers.get("x-forwarded-host") ?? req.nextUrl.host;
+
+  const envOrigin = `${callBackProtocol}://${callBackHost}`;
+  const { href, origin } = req.nextUrl;
+
+  const response = NextResponse.redirect(href.replace(origin, envOrigin), req);
 
   Object.entries(cookies).forEach(([key, value]) => {
-    response.cookies.set(key, value);
+    response.cookies.set(key, value, {
+      domain: callBackHost,
+      httpOnly: true,
+      path: "/",
+      sameSite: "lax",
+      secure: true,
+    });
   });
-
-  console.log("POST-REDIRECT: ", response);
 
   return response;
 };
