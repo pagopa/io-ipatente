@@ -60,7 +60,7 @@ export const VehicleSectionRca = ({ rca }: VehicleSectionRcaProps) => {
       {
         footerText: t("vehicleDetails.rca.info"),
         label: t("vehicleDetails.rca.dueDate"),
-        value: rca.dataScadenzaCopertura,
+        value: new Date(rca.dataScadenzaCopertura).toLocaleDateString(),
       },
     ];
   }, [rca, t]);

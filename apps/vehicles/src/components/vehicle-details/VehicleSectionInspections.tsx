@@ -59,7 +59,7 @@ export const VehicleSectionInspections = ({
                 {t("vehicleDetails.inspections.date")}
               </Typography>
               <Typography display="inline" fontWeight={600} variant="body2">
-                {dataRevisione}
+                {new Date(dataRevisione).toLocaleDateString()}
               </Typography>
             </ListItem>
             <ListItem>
