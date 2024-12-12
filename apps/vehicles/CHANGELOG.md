@@ -1,5 +1,14 @@
 # vehicles
 
+## 0.8.26
+
+### Patch Changes
+
+- 6f1238b: small design updates
+- 051fc4b: Minor fixes
+- Updated dependencies [051fc4b]
+  - @io-ipatente/core@0.5.16
+
 ## 0.8.25
 
 ### Patch Changes
