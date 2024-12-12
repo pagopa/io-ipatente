@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.5.15
+
+### Patch Changes
+
+- b256e78: CleanUp no longer needed logs on auth callback
+
 ## 0.5.14
 
 ### Patch Changes
