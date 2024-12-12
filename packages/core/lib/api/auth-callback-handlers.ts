@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import type { NextRequest } from "next/server";
 
 import { NextResponse } from "next/server";
@@ -13,18 +12,12 @@ const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
 
   req.nextUrl.searchParams.forEach((value, key) => {
     if (key.includes(PREFIX_COOKIE)) {
-      console.log("FOUND COOKIE: ", key);
       cookiesToBeDeleted.push(key);
       cookies[key] = value;
     }
   });
 
-  console.log("PRE-REDIRECT: ", req);
-  console.log("PRE-REDIRECT-NEXT-URL: ", req.nextUrl);
-  console.log("PRE-REDIRECT-NEXT-URL-ORIGIN: ", req.nextUrl.origin);
-
   for (const cookie of cookiesToBeDeleted) {
-    console.log("DELETING: ", cookie);
     req.nextUrl.searchParams.delete(cookie);
   }
 
@@ -49,9 +42,6 @@ const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
       secure: true,
     });
   });
-
-  console.log("POST-REDIRECT: ", response);
-  console.log("POST-REDIRECT-COOKIES: ", response.cookies);
 
   return response;
 };
