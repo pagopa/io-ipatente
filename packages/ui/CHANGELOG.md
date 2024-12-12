@@ -1,5 +1,35 @@
 # @io-ipatente/ui
 
+## 0.8.2
+
+### Patch Changes
+
+- 58e8532: small design fixes
+
+## 0.8.1
+
+### Patch Changes
+
+- 1727b82: Some style fixes for vehicles app
+
+## 0.8.0
+
+### Minor Changes
+
+- 7e84a75: add download file endpoint
+
+## 0.7.0
+
+### Minor Changes
+
+- ef2b5bf: practices list and detail
+- a0ddaea: Added ConsentView component
+
+### Patch Changes
+
+- 943b6e3: Summary and detail page for payments merged
+- cdce8d0: Refinement of Assistance page
+
 ## 0.6.1
 
 ### Patch Changes

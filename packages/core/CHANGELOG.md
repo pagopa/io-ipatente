@@ -1,5 +1,109 @@
 # @io-ipatente/core
 
+## 0.5.15
+
+### Patch Changes
+
+- b256e78: CleanUp no longer needed logs on auth callback
+
+## 0.5.14
+
+### Patch Changes
+
+- 538bb64: Set cookie test
+
+## 0.5.13
+
+### Patch Changes
+
+- e532ce2: Set Cookie Secure
+
+## 0.5.12
+
+### Patch Changes
+
+- 95bff35: Fix Callback URL
+
+## 0.5.11
+
+### Patch Changes
+
+- 5a5d1b3: Build callbackUrl from proxy headers
+
+## 0.5.10
+
+### Patch Changes
+
+- 7462e0d: Bypass AppGateway on Vehicles
+
+## 0.5.9
+
+### Patch Changes
+
+- 80afcfc: Set cookie domain in auth callback
+
+## 0.5.8
+
+### Patch Changes
+
+- f64dafe: Cookie Set without prefix
+
+## 0.5.7
+
+### Patch Changes
+
+- 855dd29: Fix cookie selection
+
+## 0.5.6
+
+### Patch Changes
+
+- 0906d71: Auth Callback Redirect Updates
+
+## 0.5.5
+
+### Patch Changes
+
+- f041e5e: Replace Origin
+
+## 0.5.4
+
+### Patch Changes
+
+- f0db89c: Force set callback host redirect
+
+## 0.5.3
+
+### Patch Changes
+
+- 634dc6a: Set Origin on redirect callback url
+
+## 0.5.2
+
+### Patch Changes
+
+- 0371c68: Added some auth logs
+
+## 0.5.1
+
+### Patch Changes
+
+- 35c809a: Middleware refinement
+- fa6b274: Set NextAuth maxAge
+
+## 0.5.0
+
+### Minor Changes
+
+- 7e84a75: add download file endpoint
+
+## 0.4.8
+
+### Patch Changes
+
+- c7257ed: Move auth callback route to @io-ipatente/core
+- 12298f7: Show badge licence points in the licenses page
+
 ## 0.4.7
 
 ### Patch Changes

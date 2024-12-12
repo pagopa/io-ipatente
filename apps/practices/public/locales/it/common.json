@@ -12,20 +12,31 @@
   "practices": {
     "title": "Le mie pratiche",
     "defaultLabel": "Pratica",
-    "empty": "Non sono presenti pratiche a te intestate"
+    "empty": "Non sono presenti pratiche"
   },
   "practiceDetails": {
     "title": "Dettaglio Pratica",
+    "practiceNumber": "Pratica n. {{practiceNumber}}",
     "breadcrumbs": {
       "practices": "Le mie pratiche",
       "practiceDetail": "Dettaglio pratica"
     },
     "info": {
-      "title": "Dettagli pratica"
+      "practiceNumber": "Numero pratica",
+      "practiceStatus": "Stato",
+      "practiceStartDate": "Data apertura",
+      "practiceType": "Tipo pratica",
+      "practiceDescription": "Descrizione",
+      "practiceStatuses": {
+        "end": "Conclusa",
+        "todo": "In Corso",
+        "cancel": "Cancellata"
+      }
     }
   },
   "assistance": {
     "title": "Assistenza",
+    "subTitle": "Altri servizi",
     "description": "Se hai bisogno di supporto, contatta il servizio di assistenza del Portale dell’Automobilista.",
     "back": "Indietro",
     "contacts": {

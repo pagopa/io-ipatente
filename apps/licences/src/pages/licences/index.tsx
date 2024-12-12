@@ -19,7 +19,8 @@ export default function Licences() {
     useLicences();
 
   const handleOnClick = useCallback(
-    (licenseNumber: string) => router.push(`/licences/${licenseNumber}`),
+    (licenseNumber: string) =>
+      router.push(`/licences/${licenseNumber}`, undefined, { shallow: true }),
     [router],
   );
 
@@ -77,7 +78,12 @@ export default function Licences() {
 }
 
 Licences.getLayout = ({ page, t }: GetLayoutProps) => (
-  <AppLayout title={t("licences.title")}>{page}</AppLayout>
+  <AppLayout
+    description={t("licences.description")}
+    title={t("licences.title")}
+  >
+    {page}
+  </AppLayout>
 );
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({

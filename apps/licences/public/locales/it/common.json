@@ -11,6 +11,7 @@
   },
   "licences": {
     "title": "Le mie patenti",
+    "description": "Qui puoi consultare il tuo saldo punti e altre informazioni sulle tue patenti di guida.",
     "defaultLabel": "Patente",
     "empty": "Non risultano patenti a te associate",
     "driverLicense": "Patente di guida",
@@ -20,10 +21,10 @@
     "points": "{{value}} di {{total}}"
   },
   "licenceDetails": {
-    "title": "Dettaglio Patente",
+    "title": "Dettaglio e storico punti",
     "breadcrumbs": {
       "licences": "Le mie patenti",
-      "licenceDetail": "Dettaglio patente"
+      "licenceDetail": "Dettaglio e storico punti"
     },
     "info": {
       "title": "Dettaglio patente",
@@ -39,7 +40,7 @@
       "title": "Storico punti",
       "columns": {
         "detail": "Dettaglio",
-        "variation": "Variazione Punti"
+        "variation": "Variazione"
       },
       "detail": {
         "title": "{{description}} {{date}}",
@@ -54,6 +55,7 @@
   },
   "assistance": {
     "title": "Assistenza",
+    "subTitle": "Le mie patenti",
     "description": "Se hai bisogno di supporto, contatta il servizio di assistenza del Portale dell’Automobilista.",
     "back": "Indietro",
     "contacts": {

@@ -47,11 +47,9 @@ export default function PracticeDetails() {
     return <GenericError error={error} onRetry={refetch} />;
   }
 
-  // const { icon } = todo
-
   return (
     <>
-      <SectionTitle icon="error" label={`${data.numeroPratica}`} />
+      <SectionTitle label={data.tipoPratica.descrizione} />
       <Stack my={3} spacing={2}>
         <PracticeSectionDetails data={data} />
       </Stack>

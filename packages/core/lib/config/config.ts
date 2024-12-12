@@ -4,6 +4,8 @@ export interface Configuration {
   BFF_API_BASE_URL: string;
   BFF_API_MOCKING: boolean;
 
+  DEV_MODE: boolean;
+
   // External DG MOT backend
   EXT_API_BASE_PATH: string;
   EXT_API_BASE_URL: string;
@@ -49,6 +51,8 @@ export const getConfiguration = (): Configuration => ({
   BFF_API_BASE_PATH: process.env.NEXT_PUBLIC_BFF_API_BASE_PATH as string,
   BFF_API_BASE_URL: process.env.NEXT_PUBLIC_BFF_API_BASE_URL as string,
   BFF_API_MOCKING: process.env.NEXT_PUBLIC_BFF_API_MOCKING === "true",
+
+  DEV_MODE: process.env.DEV_MODE === "true",
 
   EXT_API_BASE_PATH: process.env.EXT_API_BASE_PATH as string,
   EXT_API_BASE_URL: process.env.EXT_API_BASE_URL as string,

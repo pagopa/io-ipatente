@@ -10,6 +10,13 @@ paths:
   /inte/veicoli:
     get:
       summary: Recupero di tutti i dati inerenti veicoli area privata
+      parameters:
+        - name: codiceFiscale
+          in: header
+          required: true
+          description: Codice Fiscale dell'utente
+          schema:
+            type: string
       operationId: getInfoVeicoli
       responses:
         200:
@@ -108,6 +115,7 @@ components:
             - USO SPEC AUTOSCUOLA RIMORCHIO ABB ESCL VEIC USO SPEC AUTOSC
             - AUTOVEICOLO PER USO SPECIALE DELLA POLIZIA LOCALE
         tipoDestinazioneUsoVeicolo:
+          nullable: true
           type: "string"
           description: |
             - DI TERZI DA NOLEGGIO CON CONDUC.
@@ -138,6 +146,7 @@ components:
         codice:
           $ref: "#/components/schemas/ExtraMassaEnum"
     Neopatentati:
+      nullable: true
       type: object
       properties:
         descrizione:
@@ -151,6 +160,7 @@ components:
         codice:
           $ref: "#/components/schemas/NeopatentatiEnum"
     Revisione:
+      nullable: true
       type: "object"
       required:
         - dataRevisione
@@ -184,6 +194,7 @@ components:
           $ref: "#/components/schemas/EsitoRevisioneEnum"
     CoperturaRCA:
       type: object
+      nullable: true
       description: ultima assicurazione valida in corso, null se non presente
       required:
         - compagniaAssicuratrice
@@ -221,6 +232,7 @@ components:
         - "EE" (Escursionisti Esteri - Targhe Diplomatiche)
       enum: [C, A, M, R, N, P, U, X, Y, S, T, V, E, F, G, H, CD, CC, EE]
     ExtraMassaEnum:
+      nullable: true
       type: string
       enum:
         [
@@ -239,6 +251,7 @@ components:
       description: Codici neopatentato
       example: "NEOP_MSG_001"
     ClasseAmbientaleEnum:
+      nullable: true
       type: string
       description: |
         ### Messaggi restituiti:

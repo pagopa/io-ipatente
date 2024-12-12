@@ -11,6 +11,7 @@
   },
   "licences": {
     "title": "My licences",
+    "description": "Here you can check your points balance and other information about your driving licenses.",
     "defaultLabel": "Licence",
     "empty": "There are no licenses associated with you",
     "driverLicense": "Driver license",
@@ -20,10 +21,10 @@
     "points": "{{value}} of {{total}}"
   },
   "licenceDetails": {
-    "title": "Licence details",
+    "title": "Points detail and history",
     "breadcrumbs": {
       "licences": "My licences",
-      "licenceDetail": "Licence detail"
+      "licenceDetail": "Points detail and history"
     },
     "info": {
       "title": "Licence detail",
@@ -39,7 +40,7 @@
       "title": "Points History",
       "columns": {
         "detail": "Detail",
-        "variation": "Points Variation"
+        "variation": "Variation"
       },
       "detail": {
         "title": "{{description}} {{date}}",
@@ -54,6 +55,7 @@
   },
   "assistance": {
     "title": "Assistenza",
+    "subTitle": "Le mie patenti",
     "description": "Se hai bisogno di supporto, contatta il servizio di assistenza del Portale dell’Automobilista.",
     "back": "Back",
     "contacts": {

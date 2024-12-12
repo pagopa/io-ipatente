@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { User } from "next-auth";
 
 import { getConfiguration } from "../config";
 import { generateClientAssertion } from "../interop/client-assertion";
@@ -22,18 +23,24 @@ const {
   INTEROP_GRANT_TYPE,
 } = getConfiguration();
 
+interface Context {
+  params?: Record<string, string | string[]>;
+  user: User;
+}
+
 export const withVoucherHandler =
   (
     handler: (
       request: Request,
       context: {
         additionalDataJWS: string;
+        params?: Record<string, string | string[]>;
         voucher: Voucher;
       },
     ) => Promise<NextResponse> | Promise<Response>,
     fiscalCode: string,
   ) =>
-  async (request: Request) => {
+  async (request: Request, ctx?: Context) => {
     try {
       const clientAssertionResult = generateClientAssertion({
         additionalData: {
@@ -73,6 +80,7 @@ export const withVoucherHandler =
 
       return handler(request, {
         additionalDataJWS: clientAssertionResult.additionalDataJWS,
+        ...(ctx || {}),
         voucher,
       });
     } catch (error) {

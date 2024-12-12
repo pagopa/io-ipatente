@@ -28,13 +28,7 @@ const AppLayout = ({
   const containerRef = useRef<HTMLElement>(null);
 
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      height="100vh"
-      overflow="scroll"
-      ref={containerRef}
-    >
+    <Box display="flex" flexDirection="column" height="100vh">
       <TopBar
         assistance={{
           label: t("topBar.assistance"),

@@ -78,10 +78,14 @@
         "M": "Parzialmente rimborsata",
         "G": "Disaggregata"
       }
+    },
+    "receipt": {
+      "save": "Save the receipt"
     }
   },
   "assistance": {
     "title": "Assistenza",
+    "subTitle": "I miei pagamenti",
     "description": "Se hai bisogno di supporto, contatta il servizio di assistenza del Portale dell’Automobilista.",
     "back": "Indietro",
     "contacts": {

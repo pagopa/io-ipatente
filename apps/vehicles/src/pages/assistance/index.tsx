@@ -1,6 +1,9 @@
 import AppLayout from "@/components/layouts/AppLayout";
-import { AssistanceInfo, AssistanceInfoProps } from "@io-ipatente/ui";
-import Stack from "@mui/material/Stack";
+import {
+  AssistanceInfo,
+  AssistanceInfoProps,
+  SectionTitle,
+} from "@io-ipatente/ui";
 import { GetServerSideProps } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -46,9 +49,10 @@ export default function Assistance() {
   );
 
   return (
-    <Stack>
+    <>
+      <SectionTitle label={t("assistance.subTitle")} />
       <AssistanceInfo items={itemsPropsArray} />
-    </Stack>
+    </>
   );
 }
 

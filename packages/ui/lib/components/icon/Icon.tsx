@@ -19,12 +19,14 @@ import IconCloseCircle from "./svg/IconCloseCircle";
 import IconComponent from "./svg/IconComponent";
 import IconDetail from "./svg/IconDetail";
 import IconDocumentText from "./svg/IconDocumentText";
+import IconDownload from "./svg/IconDownload";
 import IconDriveLicense from "./svg/IconDriveLicense";
 import IconDriving from "./svg/IconDriving";
 import IconEletricMoped from "./svg/IconEletricMoped";
 import IconError from "./svg/IconError";
 import IconExpandUp from "./svg/IconExpandUp";
 import IconFerryBoat from "./svg/IconFerryBoat";
+import IconFolderCrossBold from "./svg/IconFolderCrossBold";
 import IconForbidden from "./svg/IconForbidden";
 import IconGasStation from "./svg/IconGasStation";
 import IconGasStationOff from "./svg/IconGasStationOff";
@@ -74,12 +76,14 @@ export const Icons = {
   component: IconComponent,
   detail: IconDetail,
   documentText: IconDocumentText,
+  download: IconDownload,
   driveLicense: IconDriveLicense,
   driving: IconDriving,
   eletricMoped: IconEletricMoped,
   error: IconError,
   expandUp: IconExpandUp,
   ferryBoat: IconFerryBoat,
+  folderCrossBold: IconFolderCrossBold,
   forbidden: IconForbidden,
   gasStation: IconGasStation,
   gasStationOff: IconGasStationOff,

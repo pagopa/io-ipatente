@@ -40,50 +40,16 @@ export const VehicleSectionInspections = ({
       icon="documentText"
       title={t("vehicleDetails.inspections.title")}
     >
-      {inspections.map(({ dataRevisione, esitoRevisione, kmTotali }, index) => (
-        <CardCarousel.Item key={`slide-${dataRevisione}-${index}`}>
-          <List
-            sx={{
-              bgcolor: "background.paper",
-              height: "100%",
-              width: "100%",
-            }}
-          >
-            <ListItem>
-              <Typography
-                display="inline"
-                fontWeight={400}
-                mr={1}
-                variant="body2"
-              >
-                {t("vehicleDetails.inspections.date")}
-              </Typography>
-              <Typography display="inline" fontWeight={600} variant="body2">
-                {dataRevisione}
-              </Typography>
-            </ListItem>
-            <ListItem>
-              <Typography
-                display="inline"
-                fontWeight={400}
-                mr={1}
-                variant="body2"
-              >
-                {t("vehicleDetails.inspections.result")}
-              </Typography>
-              <Chip
-                color={inspectionResultByCode[esitoRevisione.codice].color}
-                icon={
-                  <Icon
-                    fontSize="small"
-                    name={inspectionResultByCode[esitoRevisione.codice].icon}
-                  />
-                }
-                label={t(inspectionResultByCode[esitoRevisione.codice].label)}
-                size="small"
-              />
-            </ListItem>
-            {kmTotali && (
+      {inspections.map(
+        ({ dataRevisione, esitoRevisione, kmPercorsi, kmTotali }, index) => (
+          <CardCarousel.Item key={`slide-${dataRevisione}-${index}`}>
+            <List
+              sx={{
+                bgcolor: "background.paper",
+                height: "100%",
+                width: "100%",
+              }}
+            >
               <ListItem>
                 <Typography
                   display="inline"
@@ -91,16 +57,52 @@ export const VehicleSectionInspections = ({
                   mr={1}
                   variant="body2"
                 >
-                  {t("vehicleDetails.inspections.kilometersDetected")}
+                  {t("vehicleDetails.inspections.date")}
                 </Typography>
                 <Typography display="inline" fontWeight={600} variant="body2">
-                  {kmTotali}
+                  {new Date(dataRevisione).toLocaleDateString()}
                 </Typography>
               </ListItem>
-            )}
-          </List>
-        </CardCarousel.Item>
-      ))}
+              <ListItem>
+                <Typography
+                  display="inline"
+                  fontWeight={400}
+                  mr={1}
+                  variant="body2"
+                >
+                  {t("vehicleDetails.inspections.result")}
+                </Typography>
+                <Chip
+                  color={inspectionResultByCode[esitoRevisione.codice].color}
+                  icon={
+                    <Icon
+                      fontSize="small"
+                      name={inspectionResultByCode[esitoRevisione.codice].icon}
+                    />
+                  }
+                  label={t(inspectionResultByCode[esitoRevisione.codice].label)}
+                  size="small"
+                />
+              </ListItem>
+              {
+                <ListItem>
+                  <Typography
+                    display="inline"
+                    fontWeight={400}
+                    mr={1}
+                    variant="body2"
+                  >
+                    {t("vehicleDetails.inspections.kilometersDetected")}
+                  </Typography>
+                  <Typography display="inline" fontWeight={600} variant="body2">
+                    {kmTotali ?? kmPercorsi ?? "-"}
+                  </Typography>
+                </ListItem>
+              }
+            </List>
+          </CardCarousel.Item>
+        ),
+      )}
     </CardCarousel>
   );
 };
