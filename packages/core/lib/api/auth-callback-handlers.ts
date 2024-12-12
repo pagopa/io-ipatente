@@ -2,6 +2,7 @@ import type { NextRequest } from "next/server";
 
 import { NextResponse } from "next/server";
 
+import { getConfiguration } from "../config";
 import { FIMS_CALLBACK_URL } from "../utils";
 
 const PREFIX_COOKIE = "authjs.";
@@ -35,11 +36,11 @@ const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
 
   Object.entries(cookies).forEach(([key, value]) => {
     response.cookies.set(key, value, {
-      domain: callBackHost,
+      domain: getConfiguration().IS_PRODUCTION ? callBackHost : "localhost",
       httpOnly: true,
       path: "/",
       sameSite: "lax",
-      secure: true,
+      secure: callBackProtocol === "https",
     });
   });
 

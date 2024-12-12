@@ -2,7 +2,7 @@ import { client } from "@/common/client";
 import { Patenti } from "@/generated/bff-openapi";
 import { useQuery } from "@tanstack/react-query";
 
-const fetchLicences = async () => {
+const fetchLicences = async (): Promise<Patenti> => {
   const response = await client.getPuntiPatente();
   return response;
 };

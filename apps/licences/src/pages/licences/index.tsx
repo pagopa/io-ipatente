@@ -19,7 +19,8 @@ export default function Licences() {
     useLicences();
 
   const handleOnClick = useCallback(
-    (licenseNumber: string) => router.push(`/licences/${licenseNumber}`),
+    (licenseNumber: string) =>
+      router.push(`/licences/${licenseNumber}`, undefined, { shallow: true }),
     [router],
   );
 
