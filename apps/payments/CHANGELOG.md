@@ -1,5 +1,13 @@
 # io-ipatente-payments
 
+## 0.3.17
+
+### Patch Changes
+
+- 6f1238b: small design updates
+- Updated dependencies [051fc4b]
+  - @io-ipatente/core@0.5.16
+
 ## 0.3.16
 
 ### Patch Changes

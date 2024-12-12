@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.5.16
+
+### Patch Changes
+
+- 051fc4b: Minor fixes
+
 ## 0.5.15
 
 ### Patch Changes

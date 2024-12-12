@@ -1,5 +1,14 @@
 # io-ipatente-licences
 
+## 0.2.23
+
+### Patch Changes
+
+- 6f1238b: small design updates
+- 051fc4b: Minor fixes
+- Updated dependencies [051fc4b]
+  - @io-ipatente/core@0.5.16
+
 ## 0.2.22
 
 ### Patch Changes
