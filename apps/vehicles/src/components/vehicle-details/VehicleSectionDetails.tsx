@@ -110,10 +110,10 @@ const getExtraMassIcon = (massCode: ExtraMassaEnum) => {
     case ExtraMassaEnum.Enum.EXTRAM_MSG_002:
     case ExtraMassaEnum.Enum.EXTRAM_MSG_003:
     case ExtraMassaEnum.Enum.EXTRAM_MSG_004:
+    case ExtraMassaEnum.Enum.EXTRAM_MSG_006:
       return <Icon color="warning" fontSize="large" name="warning" />;
 
     case ExtraMassaEnum.Enum.EXTRAM_MSG_005:
-    case ExtraMassaEnum.Enum.EXTRAM_MSG_006:
       return <Icon color="error" fontSize="large" name="error" />;
   }
 };
