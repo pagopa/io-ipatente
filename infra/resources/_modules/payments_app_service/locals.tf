@@ -8,12 +8,12 @@ locals {
 
       AUTH_SECRET     = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=AUTH-SECRET-PAYMENTS)"
       AUTH_TRUST_HOST = true
-      AUTH_URL        = "https://io-p-itn-ipatente-payments-app-01.azurewebsites.net/"
+      AUTH_URL        = "https://payments.ipatente.io.pagopa.it/"
 
-      OIDC_ISSUER_URL          = "https://io-p-itn-ipatente-payments-app-01.azurewebsites.net/api/auth/mocks/oidc"
+      OIDC_ISSUER_URL          = "https://payments.ipatente.io.pagopa.it/api/auth/mocks/oidc"
       OIDC_CLIENT_ID           = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-CLIENT-ID-PAYMENTS)"
       OIDC_CLIENT_SECRET       = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-CLIENT-SECRET-PAYMENTS)"
-      OIDC_CLIENT_REDIRECT_URI = "https://io-p-itn-ipatente-payments-app-01.azurewebsites.net/api/auth/callback/fims"
+      OIDC_CLIENT_REDIRECT_URI = "https://payments.ipatente.io.pagopa.it/api/auth/callback/fims"
 
       OIDC_MOCK_JWT_PRIVATE_KEY = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-JWT-PRIVATE-KEY)"
       OIDC_MOCK_JWT_PUBLIC_KEY  = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=OIDC-JWT-PUBLIC-KEY)"
@@ -22,7 +22,7 @@ locals {
       NEXT_PUBLIC_IS_MSW_ENABLED  = true
       NEXT_PUBLIC_BFF_API_MOCKING = true
 
-      NEXT_PUBLIC_BFF_API_BASE_URL  = "https://io-p-itn-ipatente-payments-app-01.azurewebsites.net"
+      NEXT_PUBLIC_BFF_API_BASE_URL  = "https://payments.ipatente.io.pagopa.it"
       NEXT_PUBLIC_BFF_API_BASE_PATH = "/api"
 
       EXT_API_MOCKING   = true
@@ -51,6 +51,10 @@ locals {
 
       # Logs
       AI_SDK_CONNECTION_STRING = var.ai_connection_string
+
+      # Internal API for test
+      INTERNAL_ROUTES_ENABLED   = false
+      INTERNAL_ROUTES_TEST_USER = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=INTERNAL-ROUTES-TEST-USER-PAYMENTS)"
     }
 
     prod_app_setting = {
