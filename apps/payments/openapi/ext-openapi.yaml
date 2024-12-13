@@ -113,7 +113,6 @@ components:
         - idRichiesta
         - idCarrello
         - numeroPratiche
-        - tariffario
         - flagEsenzione
         - flagCumulativo
         - flagUrgenza
@@ -135,6 +134,7 @@ components:
           type: integer
           format: int64
         tariffario:
+          nullable: true
           description: |
             ### Descrizione breve del tipo tariffa
             - NAZIONALE
@@ -156,23 +156,29 @@ components:
           description: Specifica se contiene il protocollo della pratica MCTC per abbinamento manuale
           type: boolean
         nomePagatore:
+          nullable: true
           description: Nome del richiedente del pagamento spontaneo
           type: string
         cognomePagatore:
+          nullable: true
           description: Cognome del richiedente del pagamento spontaneo
           type: string
         codiceFiscalePagatore:
+          nullable: true
           description: Codice fiscale della persona fisica che richiede il pagamento
           type: string
         statoPratica:
           $ref: "#/components/schemas/StatoRichiestaPagamento"
         codiceTipoPratica:
+          nullable: true
           description: Codice del tipo di pratica
           type: string
         descrizioneTipoPratica:
+          nullable: true
           description: Descrizione del tipo di pratica
           type: string
         causale:
+          nullable: true
           description: Descrizione della causale del pagamento
           type: string
         dataInserimentoRichiesta:
@@ -189,20 +195,24 @@ components:
         - importo
       properties:
         codiceIuv:
+          nullable: true
           description: Identificativo univoco di versamento
           type: string
         statoIuv:
           $ref: "#/components/schemas/StatoIuv"
         contoCorrente:
+          nullable: true
           description: Codice di conto corrente postale su cui viene effettuato il versamento
           type: string
         tipoIncasso:
+          nullable: true
           description: Descrizione del conto corrente postale su cui viene effettuato il versamento
           type: string
         importo:
           description: Importo comunicato all'intermediario tecnologico dopo aver confermato la richiesta di pagamento
           type: number
         dataScadenzaIuv:
+          nullable: true
           description: Data entro la quale l'identificativo univoco di versamento deve essere pagato
           type: string
     StatoRichiestaPagamento:
