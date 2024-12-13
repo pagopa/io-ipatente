@@ -1,5 +1,11 @@
 # io-ipatente-practices
 
+## 0.1.19
+
+### Patch Changes
+
+- 65bfaee: Production URL for Practices and Pyments
+
 ## 0.1.18
 
 ### Patch Changes
