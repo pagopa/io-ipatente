@@ -1,5 +1,12 @@
 # io-ipatente-payments
 
+## 0.3.18
+
+### Patch Changes
+
+- 65bfaee: Production URL for Practices and Pyments
+- 1e532bf: Added nullable fields on openapi specs
+
 ## 0.3.17
 
 ### Patch Changes
