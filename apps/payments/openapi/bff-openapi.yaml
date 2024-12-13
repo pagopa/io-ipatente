@@ -100,7 +100,6 @@ components:
         - idRichiesta
         - idCarrello
         - numeroPratiche
-        - tariffario
         - flagEsenzione
         - flagCumulativo
         - flagUrgenza
