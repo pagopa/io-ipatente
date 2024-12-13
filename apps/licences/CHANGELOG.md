@@ -1,5 +1,13 @@
 # io-ipatente-licences
 
+## 0.2.24
+
+### Patch Changes
+
+- 134c474: small layout fixes
+- Updated dependencies [134c474]
+  - @io-ipatente/ui@0.8.3
+
 ## 0.2.23
 
 ### Patch Changes

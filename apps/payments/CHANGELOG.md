@@ -1,5 +1,12 @@
 # io-ipatente-payments
 
+## 0.3.19
+
+### Patch Changes
+
+- Updated dependencies [134c474]
+  - @io-ipatente/ui@0.8.3
+
 ## 0.3.18
 
 ### Patch Changes
