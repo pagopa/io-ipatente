@@ -1,5 +1,11 @@
 # @io-ipatente/ui
 
+## 0.9.0
+
+### Minor Changes
+
+- f319d92: Add consent screen
+
 ## 0.8.3
 
 ### Patch Changes

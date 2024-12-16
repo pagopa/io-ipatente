@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.6.0
+
+### Minor Changes
+
+- f319d92: Add consent screen
+
 ## 0.5.16
 
 ### Patch Changes
