@@ -129,7 +129,7 @@
       "title": "Dati necessari",
       "fiscalCode": "Codice fiscale"
     },
-    "moreInfo": "Per maggiori informazioni, leggi l'<a style='color: #0073E6; font-weight: 600' href='https://sample-url' target='_blank'>Informativa sulla Privacy</a>",
+    "moreInfo": "Per maggiori informazioni, leggi l'<a style='color: #0073E6; font-weight: 600' href=href='{{privacyUrl}}' target='_blank'>Informativa sulla Privacy</a>",
     "primaryAction": "Continua",
     "secondaryAction": "Annulla"
   }

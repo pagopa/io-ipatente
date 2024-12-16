@@ -1,4 +1,5 @@
 import { CANCEL_CALLBACK_URL } from "@/utils/constants";
+import { getConfiguration } from "@io-ipatente/core";
 import { ConsentView } from "@io-ipatente/ui";
 import Box from "@mui/material/Box";
 import { GetServerSideProps } from "next";
@@ -24,7 +25,9 @@ export default function Consent() {
     <Box display="flex" flexDirection="column" height="100vh" padding={3}>
       <ConsentView
         description={t("consent.description")}
-        moreInfo={t("consent.moreInfo")}
+        moreInfo={t("consent.moreInfo", {
+          privacyUrl: getConfiguration().FIMS_PRIVACY_URL,
+        })}
         primaryActionProps={{
           onClick: onConfirm,
           value: t("consent.primaryAction"),

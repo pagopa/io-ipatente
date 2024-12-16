@@ -25,6 +25,8 @@ locals {
       NEXT_PUBLIC_BFF_API_BASE_URL  = "https://practices.ipatente.io.pagopa.it"
       NEXT_PUBLIC_BFF_API_BASE_PATH = "/api"
 
+      NEXT_PUBLIC_FIMS_PRIVACY_URL = ""
+
       EXT_API_MOCKING   = false
       EXT_API_BASE_URL  = "https://gw.servizidt.it/rest/in/MCTC/LeMiePratiche_AppIO"
       EXT_API_BASE_PATH = "/v1"

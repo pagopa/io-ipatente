@@ -16,6 +16,9 @@ export interface Configuration {
   FETCH_KEEPALIVE_MAX_SOCKETS: number | undefined;
   FETCH_KEEPALIVE_TIMEOUT: number | undefined;
 
+  // FIMS Privacy Policy URL
+  FIMS_PRIVACY_URL: string;
+
   // INTERNAL TEST API
   INTERNAL_ROUTES_ENABLED: boolean;
   INTERNAL_ROUTES_TEST_USER: string[];
@@ -75,6 +78,8 @@ export const getConfiguration = (): Configuration => ({
     process.env.FETCH_KEEPALIVE_TIMEOUT === undefined
       ? undefined
       : parseInt(process.env.FETCH_KEEPALIVE_TIMEOUT, 10),
+
+  FIMS_PRIVACY_URL: process.env.NEXT_PUBLIC_FIMS_PRIVACY_URL as string,
 
   INTERNAL_ROUTES_ENABLED: process.env.INTERNAL_ROUTES_ENABLED === "true",
   INTERNAL_ROUTES_TEST_USER: process.env.INTERNAL_ROUTES_TEST_USER
