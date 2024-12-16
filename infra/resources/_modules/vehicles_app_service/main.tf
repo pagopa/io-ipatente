@@ -18,9 +18,6 @@ module "vehicles" {
   health_check_path   = "/api/info"
   node_version        = 20
 
-  application_insights_connection_string   = var.ai_connection_string
-  application_insights_sampling_percentage = 30
-
   subnet_cidr                          = var.vehicles_snet_cidr
   subnet_pep_id                        = var.peps_snet_id
   private_dns_zone_resource_group_name = var.private_dns_zone_resource_group_name
