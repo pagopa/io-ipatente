@@ -51,7 +51,7 @@
   },
   "vehicle": {
     "type": {
-      "A": "Automobile",
+      "A": "Autoveicolo",
       "C": "Ciclomotore",
       "M": "Motoveicolo",
       "R": "Rimorchio",
@@ -78,7 +78,7 @@
     "EXTRAM_MSG_003": "Non calcolabile",
     "EXTRAM_MSG_004": "Non disponibile",
     "EXTRAM_MSG_005": "Errore imprevisto",
-    "EXTRAM_MSG_006": "Errore imprevisto"
+    "EXTRAM_MSG_006": "Non disponibile"
   },
   "inspection": {
     "REV_MSG_001": "Regolare",

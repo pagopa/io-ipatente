@@ -78,7 +78,8 @@ export default function LicenceDetails() {
                   component="button"
                   onClick={() => onDetailClicked?.(item)}
                   sx={{
-                    fontWeight: "bold",
+                    fontSize: "18px",
+                    fontWeight: 600,
                     textAlign: "left",
                     textDecoration: "underline",
                     textTransform: "capitalize",
