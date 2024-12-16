@@ -21,34 +21,6 @@ const nextConfig = {
         basePath: false,
         permanent: false,
       },
-      // if the cookie `io-ipatente-consent` is present,
-      // this redirect will NOT be applied
-      {
-        source: "/:path((?!consent$|api|favicon.ico).*)",
-        missing: [
-          {
-            type: "cookie",
-            key: "io-ipatente-consent",
-          },
-        ],
-        basePath: false,
-        permanent: false,
-        destination: "/consent",
-      },
-      // if the header `io-ipatente-consent` is present,
-      // this redirect will be applied
-      {
-        source: "/consent",
-        has: [
-          {
-            type: "cookie",
-            key: "io-ipatente-consent",
-          },
-        ],
-        basePath: false,
-        permanent: false,
-        destination: "/vehicles",
-      },
     ];
   },
   // https://github.com/mswjs/msw/issues/1801

@@ -34,6 +34,10 @@ const handleAuthCallback = async (req: NextRequest): Promise<NextResponse> => {
 
   const response = NextResponse.redirect(href.replace(origin, envOrigin), req);
 
+  // Forces deletion of the io-ipatente-consent cookie
+  // because it is not deleted when the in-app browser is closed
+  response.cookies.delete("io-ipatente-consent");
+
   Object.entries(cookies).forEach(([key, value]) => {
     response.cookies.set(key, value, {
       domain: getConfiguration().IS_PRODUCTION ? callBackHost : "localhost",

@@ -12,12 +12,12 @@ export default function Consent() {
   const router = useRouter();
 
   const onConfirm = useCallback(() => {
-    document.cookie = "io-ipatente-consent=true; path=/";
-    router.push("/vehicles");
+    document.cookie = "io-ipatente-consent=true; expires=0; path=/";
+    router.replace("/vehicles");
   }, [router]);
 
   const onCancel = useCallback(() => {
-    window.location.pathname = CANCEL_CALLBACK_URL;
+    window.location.href = CANCEL_CALLBACK_URL;
   }, []);
 
   return (

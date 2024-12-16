@@ -1,3 +1,5 @@
+export const CONSENT_URL = "/consent";
+
 export const SIGNIN_URL = "/api/auth/signin";
 export const FIMS_CALLBACK_URL = "/api/auth/callback/fims";
 export const FIMS_CALLBACK_COOKIES_URL = "/api/auth/callback/fims/cookies";
