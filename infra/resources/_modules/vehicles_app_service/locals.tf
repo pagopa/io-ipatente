@@ -52,9 +52,6 @@ locals {
       FETCH_KEEPALIVE_FREE_SOCKET_TIMEOUT = "30000"
       FETCH_KEEPALIVE_TIMEOUT             = "60000"
 
-      # Logs
-      AI_SDK_CONNECTION_STRING = var.ai_connection_string
-
       # Internal API for test
       INTERNAL_ROUTES_ENABLED   = false
       INTERNAL_ROUTES_TEST_USER = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=INTERNAL-ROUTES-TEST-USER-VEHICLES)"
