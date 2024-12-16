@@ -1,5 +1,11 @@
 # vehicles
 
+## 0.9.1
+
+### Patch Changes
+
+- 09876dc: Disable AI otel on Vehicles
+
 ## 0.9.0
 
 ### Minor Changes
