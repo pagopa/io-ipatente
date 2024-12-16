@@ -1,5 +1,11 @@
 # io-ipatente-practices
 
+## 0.2.1
+
+### Patch Changes
+
+- af332d7: fix redirects
+
 ## 0.2.0
 
 ### Minor Changes

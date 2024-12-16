@@ -1,5 +1,11 @@
 # io-ipatente-payments
 
+## 0.4.1
+
+### Patch Changes
+
+- af332d7: fix redirects
+
 ## 0.4.0
 
 ### Minor Changes
