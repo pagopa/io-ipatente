@@ -3,6 +3,7 @@ import { NextRequest, NextResponse, userAgent } from "next/server";
 import { getConfiguration } from "../config";
 import { AuthRouteHandler } from "../types";
 import {
+  CONSENT_URL,
   FIMS_CALLBACK_COOKIES_URL,
   FIMS_CALLBACK_URL,
   SIGNIN_URL,
@@ -31,9 +32,22 @@ const withDevMode =
 
 const handleRequest: AuthRouteHandler = (request) => {
   // Checks if the request is coming from in-app browser
-  // - If the user is authenticated, continue the process.
-  // - If the user is not authenticated, return undefined (no action needed here).
   if (isBrowserContext(request)) {
+    // if the URL is targeting the consent page, continue the process
+    if (request.nextUrl.pathname === CONSENT_URL) {
+      return NextResponse.next();
+    }
+
+    // If the cookie `io-ipatente-consent` is NOT present,
+    // this redirect will be applied
+    if (!request.cookies.has("io-ipatente-consent")) {
+      return NextResponse.redirect(
+        new URL(CONSENT_URL, request.nextUrl.origin),
+      );
+    }
+
+    // If the user is authenticated, continue the process
+    // otherwise return undefined (no action needed here).
     return request.auth ? NextResponse.next() : undefined;
   }
 

@@ -7,17 +7,19 @@ const mockConsentClick = vi.fn();
 const mockDissentClick = vi.fn();
 
 const defaultProps: ConsentViewProps = {
-  actionLabels: {
-    consent: "consent-label",
-    dissent: "dissent-label",
-  },
   description: "description",
   moreInfo: "more-info-text",
-  onConsentClick: mockConsentClick,
-  onDissentClick: mockDissentClick,
+  primaryActionProps: {
+    onClick: mockConsentClick,
+    value: "consent-label",
+  },
   requiredData: {
     data: ["required-data-1", "required-data-2", "required-data-3"],
     title: "required-data-title",
+  },
+  secondaryActionProps: {
+    onClick: mockDissentClick,
+    value: "dissent-label",
   },
   title: "title",
 };
