@@ -14,7 +14,7 @@ export default function Consent() {
 
   const onConfirm = useCallback(() => {
     document.cookie = "io-ipatente-consent=true; expires=0; path=/";
-    router.replace("/vehicles");
+    router.replace("/practices");
   }, [router]);
 
   const onCancel = useCallback(() => {
