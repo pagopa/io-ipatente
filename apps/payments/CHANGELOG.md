@@ -1,5 +1,11 @@
 # io-ipatente-payments
 
+## 0.4.2
+
+### Patch Changes
+
+- a4b80c8: Change package pipeline
+
 ## 0.4.1
 
 ### Patch Changes

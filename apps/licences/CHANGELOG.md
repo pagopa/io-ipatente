@@ -1,5 +1,11 @@
 # io-ipatente-licences
 
+## 0.3.1
+
+### Patch Changes
+
+- a4b80c8: Change package pipeline
+
 ## 0.3.0
 
 ### Minor Changes

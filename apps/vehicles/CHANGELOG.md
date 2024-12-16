@@ -1,5 +1,11 @@
 # vehicles
 
+## 0.9.2
+
+### Patch Changes
+
+- a4b80c8: Change package pipeline
+
 ## 0.9.1
 
 ### Patch Changes
