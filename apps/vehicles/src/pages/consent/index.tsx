@@ -1,3 +1,4 @@
+import { CANCEL_CALLBACK_URL } from "@/utils/constants";
 import { ConsentView } from "@io-ipatente/ui";
 import Box from "@mui/material/Box";
 import { GetServerSideProps } from "next";
@@ -16,7 +17,7 @@ export default function Consent() {
   }, [router]);
 
   const onCancel = useCallback(() => {
-    window.location.pathname = "iossoapi://cancel";
+    window.location.pathname = CANCEL_CALLBACK_URL;
   }, []);
 
   return (

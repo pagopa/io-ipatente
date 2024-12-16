@@ -1,5 +1,9 @@
 import { ExtraMassaEnum, Veicolo } from "@/generated/bff-openapi";
-import { extraMassByCode, noviceByCode, vehicleByType } from "@/utils/strings";
+import {
+  extraMassByCode,
+  noviceByCode,
+  vehicleByType,
+} from "@/utils/constants";
 import { CardInfo, CardInfoItem, Icon, useDialog } from "@io-ipatente/ui";
 import { Stack, Typography } from "@mui/material";
 import { useTranslation } from "next-i18next";

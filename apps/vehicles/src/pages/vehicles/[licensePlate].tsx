@@ -5,7 +5,7 @@ import { VehicleSectionInspections } from "@/components/vehicle-details/VehicleS
 import { VehicleSectionRca } from "@/components/vehicle-details/VehicleSectionRca";
 import { Veicolo } from "@/generated/bff-openapi";
 import { useVehicles } from "@/hooks/useVehicles";
-import { vehicleByType } from "@/utils/strings";
+import { vehicleByType } from "@/utils/constants";
 import { CardInfo, SectionTitle } from "@io-ipatente/ui";
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
