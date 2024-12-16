@@ -1,5 +1,18 @@
 # io-ipatente-licences
 
+## 0.3.0
+
+### Minor Changes
+
+- f319d92: Add consent screen
+
+### Patch Changes
+
+- a8c7730: Minor fixes
+- Updated dependencies [f319d92]
+  - @io-ipatente/core@0.6.0
+  - @io-ipatente/ui@0.9.0
+
 ## 0.2.24
 
 ### Patch Changes

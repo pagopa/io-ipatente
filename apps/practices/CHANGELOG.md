@@ -1,5 +1,17 @@
 # io-ipatente-practices
 
+## 0.2.0
+
+### Minor Changes
+
+- f319d92: Add consent screen
+
+### Patch Changes
+
+- Updated dependencies [f319d92]
+  - @io-ipatente/core@0.6.0
+  - @io-ipatente/ui@0.9.0
+
 ## 0.1.20
 
 ### Patch Changes
