@@ -1,5 +1,11 @@
 # io-ipatente-practices
 
+## 0.2.5
+
+### Patch Changes
+
+- 810c46d: Update Otel, using HttpInstrumentation instead of Unidici
+
 ## 0.2.4
 
 ### Patch Changes
