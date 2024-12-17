@@ -29,6 +29,7 @@ const nextConfig = {
   // `msw/browser` is a client-only module that exports methods not available on the `server`.
   webpack: (config, { isServer }) => {
     if (isServer) {
+      config.devtool = "source-map";
       config.resolve.alias = {
         ...config.resolve.alias,
         "msw/browser": false,
