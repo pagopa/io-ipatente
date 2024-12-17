@@ -25,6 +25,7 @@
     "generate:api-models": "tsx ./generate.ts"
   },
   "dependencies": {
+    "@azure-rest/batch": "^1.0.0-beta.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@io-ipatente/core": "workspace:*",
