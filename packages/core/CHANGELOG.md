@@ -1,5 +1,12 @@
 # @io-ipatente/core
 
+## 0.6.1
+
+### Patch Changes
+
+- 0f765b0: Fix middleware
+- aec656e: Update Next to v14.2.20
+
 ## 0.6.0
 
 ### Minor Changes
