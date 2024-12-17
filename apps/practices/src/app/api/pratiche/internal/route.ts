@@ -11,6 +11,8 @@ import { AxiosError } from "axios";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+export const dynamic = "force-dynamic";
+
 /**
  * @description Retrieve user practices
  */
