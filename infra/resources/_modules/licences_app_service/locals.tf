@@ -25,7 +25,7 @@ locals {
       NEXT_PUBLIC_BFF_API_BASE_URL  = "https://licences.ipatente.io.pagopa.it"
       NEXT_PUBLIC_BFF_API_BASE_PATH = "/api"
 
-      NEXT_PUBLIC_FIMS_PRIVACY_URL = ""
+      NEXT_PUBLIC_FIMS_PRIVACY_URL = "https://io.italia.it/app-content/tos_privacy.html"
 
       EXT_API_MOCKING   = false
       EXT_API_BASE_URL  = "https://gw.servizidt.it/rest/in/MCTC/LeMiePatenti_AppIO"
