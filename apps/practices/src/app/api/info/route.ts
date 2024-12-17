@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 
 import packageJson from "../../../../package.json";
 
+export const dynamic = "force-dynamic";
+
 /**
  * `api/info` route handler
  * @returns project _name_ and _version_
