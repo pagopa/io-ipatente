@@ -1,5 +1,11 @@
 # io-ipatente-payments
 
+## 0.4.6
+
+### Patch Changes
+
+- f9f1b67: Copy review
+
 ## 0.4.5
 
 ### Patch Changes
