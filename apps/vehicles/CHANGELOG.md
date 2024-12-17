@@ -1,5 +1,12 @@
 # vehicles
 
+## 0.9.6
+
+### Patch Changes
+
+- 7a4e2c1: Added @azure-rest/batch 1.0.0-beta.2
+- f9f1b67: Copy review
+
 ## 0.9.5
 
 ### Patch Changes

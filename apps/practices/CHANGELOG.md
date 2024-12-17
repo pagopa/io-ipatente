@@ -1,5 +1,11 @@
 # io-ipatente-practices
 
+## 0.2.6
+
+### Patch Changes
+
+- f9f1b67: Copy review
+
 ## 0.2.5
 
 ### Patch Changes
