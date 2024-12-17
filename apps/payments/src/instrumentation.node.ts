@@ -1,6 +1,6 @@
 import { metrics, trace } from "@opentelemetry/api";
 import { registerInstrumentations } from "@opentelemetry/instrumentation";
-import { HttpInstrumentation } from "@opentelemetry/instrumentation-http";
+import { UndiciInstrumentation } from "@opentelemetry/instrumentation-undici";
 import * as ai from "applicationinsights";
 import { IJsonConfig } from "applicationinsights/out/src/shim/types";
 
@@ -30,34 +30,30 @@ const applicationInsightConfigurationContent = () => {
 };
 
 if (process.env["AI_SDK_CONNECTION_STRING"]) {
-  try {
-    // setup sampling percentage from environment, see
-    // https://github.com/microsoft/ApplicationInsights-node.js?tab=readme-ov-file#configuration
-    // for other options. environment variable is in JSON format and takes
-    // precedence over applicationinsights.json
-    process.env["APPLICATIONINSIGHTS_CONFIGURATION_CONTENT"] =
-      applicationInsightConfigurationContent();
+  // setup sampling percentage from environment, see
+  // https://github.com/microsoft/ApplicationInsights-node.js?tab=readme-ov-file#configuration
+  // for other options. environment variable is in JSON format and takes
+  // precedence over applicationinsights.json
+  process.env["APPLICATIONINSIGHTS_CONFIGURATION_CONTENT"] =
+    applicationInsightConfigurationContent();
 
-    // setup cloudRoleName
-    process.env.OTEL_SERVICE_NAME = getDefaultAppNameForEnv();
+  // setup cloudRoleName
+  process.env.OTEL_SERVICE_NAME = getDefaultAppNameForEnv();
 
-    // instrument native node fetch
-    ai.setup(process.env["AI_SDK_CONNECTION_STRING"])
-      .setAutoCollectConsole(true, true)
-      .setDistributedTracingMode(ai.DistributedTracingModes.AI_AND_W3C)
-      .start();
+  // instrument native node fetch
+  registerInstrumentations({
+    instrumentations: [new UndiciInstrumentation()],
+    meterProvider: metrics.getMeterProvider(),
+    tracerProvider: trace.getTracerProvider(),
+  });
 
-    // instrument native node fetch
-    registerInstrumentations({
-      instrumentations: [new HttpInstrumentation()],
-      meterProvider: metrics.getMeterProvider(),
-      tracerProvider: trace.getTracerProvider(),
-    });
+  // instrument native node fetch
+  ai.setup(process.env["AI_SDK_CONNECTION_STRING"])
+    .setAutoCollectConsole(true, true)
+    .setDistributedTracingMode(ai.DistributedTracingModes.AI_AND_W3C)
+    .start();
 
-    console.info("ApplicationInsight using opetelemetry loaded");
-  } catch (error) {
-    console.error("Error while initializing Application Insights:", error);
-  }
+  console.info("ApplicationInsight using opetelemetry loaded");
 } else {
   console.error("ApplicationInsight is not configured");
 }
