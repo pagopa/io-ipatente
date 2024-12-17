@@ -1,5 +1,11 @@
 # io-ipatente-payments
 
+## 0.4.7
+
+### Patch Changes
+
+- d3c57a2: Update Unidici Instrumentation OTEL 0.3.0 -> 0.7.1
+
 ## 0.4.6
 
 ### Patch Changes

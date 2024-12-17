@@ -1,5 +1,11 @@
 # vehicles
 
+## 0.9.7
+
+### Patch Changes
+
+- d3c57a2: Update Unidici Instrumentation OTEL 0.3.0 -> 0.7.1
+
 ## 0.9.6
 
 ### Patch Changes
