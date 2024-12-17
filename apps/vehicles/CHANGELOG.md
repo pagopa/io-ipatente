@@ -1,5 +1,11 @@
 # vehicles
 
+## 0.9.5
+
+### Patch Changes
+
+- 810c46d: Update Otel, using HttpInstrumentation instead of Unidici
+
 ## 0.9.4
 
 ### Patch Changes
