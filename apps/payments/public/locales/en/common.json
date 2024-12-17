@@ -108,7 +108,7 @@
   },
   "consent": {
     "title": "Consenti l'utilizzo dei tuoi dati",
-    "description": "Per proseguire autorizza PagoPA S.p.A. a utilizzare i tuoi dati forniti da Ministero delle infrastrutture e dei trasporti, così da mostrarti il servizio <strong>Le mie patenti</strong>.",
+    "description": "Per proseguire autorizza PagoPA S.p.A. a utilizzare i tuoi dati forniti da Ministero delle infrastrutture e dei trasporti, così da mostrarti il servizio <strong>I miei pagamenti</strong>.",
     "requiredData": {
       "title": "Dati necessari",
       "fiscalCode": "Codice fiscale"
