@@ -1,5 +1,14 @@
 # io-ipatente-payments
 
+## 0.4.4
+
+### Patch Changes
+
+- aec656e: Update Next to v14.2.20
+- Updated dependencies [0f765b0]
+- Updated dependencies [aec656e]
+  - @io-ipatente/core@0.6.1
+
 ## 0.4.3
 
 ### Patch Changes

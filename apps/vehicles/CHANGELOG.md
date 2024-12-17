@@ -1,5 +1,14 @@
 # vehicles
 
+## 0.9.4
+
+### Patch Changes
+
+- aec656e: Update Next to v14.2.20
+- Updated dependencies [0f765b0]
+- Updated dependencies [aec656e]
+  - @io-ipatente/core@0.6.1
+
 ## 0.9.3
 
 ### Patch Changes
