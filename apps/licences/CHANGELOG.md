@@ -1,5 +1,11 @@
 # io-ipatente-licences
 
+## 0.3.2
+
+### Patch Changes
+
+- 9defb7c: Disable cache on GET route handlers by setting dynamic=force-dynamic
+
 ## 0.3.1
 
 ### Patch Changes
