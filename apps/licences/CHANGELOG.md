@@ -1,5 +1,11 @@
 # io-ipatente-licences
 
+## 0.3.5
+
+### Patch Changes
+
+- d3c57a2: Update Unidici Instrumentation OTEL 0.3.0 -> 0.7.1
+
 ## 0.3.4
 
 ### Patch Changes
