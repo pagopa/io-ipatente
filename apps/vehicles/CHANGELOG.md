@@ -1,5 +1,11 @@
 # vehicles
 
+## 0.9.10
+
+### Patch Changes
+
+- b4274ef: disable source map in prod
+
 ## 0.9.9
 
 ### Patch Changes
