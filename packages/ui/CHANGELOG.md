@@ -1,5 +1,11 @@
 # @io-ipatente/ui
 
+## 0.9.1
+
+### Patch Changes
+
+- 63919f2: Updated logo in TopBar component
+
 ## 0.9.0
 
 ### Minor Changes
