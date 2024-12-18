@@ -1,5 +1,14 @@
 # io-ipatente-licences
 
+## 0.3.7
+
+### Patch Changes
+
+- 63919f2: Updated logo in TopBar component
+- 8446e70: Added NEXT_PUBLIC_FIMS_PRIVACY_URL value for all apps
+- Updated dependencies [63919f2]
+  - @io-ipatente/ui@0.9.1
+
 ## 0.3.6
 
 ### Patch Changes
