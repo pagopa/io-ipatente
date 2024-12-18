@@ -1,5 +1,11 @@
 # io-ipatente-payments
 
+## 0.4.10
+
+### Patch Changes
+
+- b4274ef: disable source map in prod
+
 ## 0.4.9
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # io-ipatente-licences
 
+## 0.3.8
+
+### Patch Changes
+
+- b4274ef: disable source map in prod
+
 ## 0.3.7
 
 ### Patch Changes
