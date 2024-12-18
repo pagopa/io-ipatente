@@ -4,9 +4,6 @@
     "description": "My vehicles"
   },
   "topBar": {
-    "product": {
-      "name": "The driver's portal"
-    },
     "assistance": "Assistance"
   },
   "vehicles": {

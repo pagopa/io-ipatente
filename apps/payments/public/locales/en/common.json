@@ -4,9 +4,6 @@
     "description": "I miei pagamenti"
   },
   "topBar": {
-    "product": {
-      "name": "Il portale dell'automobilista"
-    },
     "assistance": "Assistenza"
   },
   "payments": {
