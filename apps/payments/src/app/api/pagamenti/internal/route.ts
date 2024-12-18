@@ -29,7 +29,6 @@ export const GET = auth(
         const payments = z.array(Pagamento).safeParse(res);
 
         if (payments.success) {
-          console.log("test-log, to check ai otel working");
           return NextResponse.json(payments.data);
         }
 

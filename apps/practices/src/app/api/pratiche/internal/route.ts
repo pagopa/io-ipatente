@@ -29,7 +29,6 @@ export const GET = auth(
         const practices = z.array(Pratica).safeParse(res);
 
         if (practices.success) {
-          console.log("test-log  internal, to check ai otel working");
           return NextResponse.json(practices.data);
         }
 
