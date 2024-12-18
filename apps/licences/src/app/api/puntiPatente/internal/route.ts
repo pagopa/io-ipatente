@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
-import { Veicolo } from "@/generated/bff-openapi";
-import { retrieveVehicles } from "@/lib/bff/business";
+import { Patenti } from "@/generated/bff-openapi";
+import { retrieveLicences } from "@/lib/bff/business";
 import {
   handleBadRequestErrorResponse,
   handleInternalErrorResponse,
@@ -9,27 +9,26 @@ import {
 import { ZodiosError } from "@zodios/core";
 import { AxiosError } from "axios";
 import { NextResponse } from "next/server";
-import { z } from "zod";
 
 export const dynamic = "force-dynamic";
 
 /**
- * @description Retrieve user vehicles
+ * @description Retrieve user licences
  */
 export const GET = auth(
   withTestUserAndVoucherInternalHandler(
     async (_request: Request, { additionalDataJWS, testUser, voucher }) => {
       try {
-        const res = await retrieveVehicles(
+        const res = await retrieveLicences(
           additionalDataJWS,
           voucher.access_token,
           testUser,
         );
 
-        const vehicles = z.array(Veicolo).safeParse(res);
+        const licences = Patenti.safeParse(res);
 
-        if (vehicles.success) {
-          return NextResponse.json(vehicles.data);
+        if (licences.success) {
+          return NextResponse.json(licences.data);
         }
 
         if (res instanceof AxiosError) {
@@ -44,16 +43,17 @@ export const GET = auth(
         }
 
         return handleInternalErrorResponse(
-          "VehiclesInternalRetrieveError",
+          "InternalLicencesRetrieveError",
           res,
         );
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.error(
-          `An Error has occurred while retrieving user vehicles, caused by: `,
+          `An Error has occurred while retrieving user licences [Internal] , caused by: `,
           error,
         );
         return handleInternalErrorResponse(
-          "VehiclesInternalRetrieveError",
+          "InternalLicencesRetrieveError",
           error,
         );
       }
