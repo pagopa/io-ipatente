@@ -11,26 +11,13 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  args: {
-    product: {
-      logo: "ipatente",
-      name: "Il portale dell'automobilista",
-      url: "",
-    },
-  },
-};
+export const Default: Story = {};
 
 export const WithAssistance: Story = {
   args: {
     assistance: {
       label: "Example",
       onClick: () => null,
-    },
-    product: {
-      logo: "ipatente",
-      name: "Il portale dell'automobilista",
-      url: "",
     },
   },
 };

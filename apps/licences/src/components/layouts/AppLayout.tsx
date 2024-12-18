@@ -34,11 +34,6 @@ const AppLayout = ({
           label: t("topBar.assistance"),
           onClick: () => router.push("/assistance"),
         }}
-        product={{
-          logo: "ipatente",
-          name: t("topBar.product.name"),
-          url: "",
-        }}
       />
       <PageHeader {...rest} />
       <Box sx={{ p: 2 }}>{children}</Box>
