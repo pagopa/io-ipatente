@@ -1,5 +1,11 @@
 # io-ipatente-licences
 
+## 0.3.6
+
+### Patch Changes
+
+- d042619: Pin ApplicationInsight version 3.1.0
+
 ## 0.3.5
 
 ### Patch Changes

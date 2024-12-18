@@ -1,5 +1,11 @@
 # io-ipatente-payments
 
+## 0.4.8
+
+### Patch Changes
+
+- d042619: Pin ApplicationInsight version 3.1.0
+
 ## 0.4.7
 
 ### Patch Changes

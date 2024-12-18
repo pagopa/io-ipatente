@@ -4,9 +4,6 @@
     "description": "My licences"
   },
   "topBar": {
-    "product": {
-      "name": "The driver's portal"
-    },
     "assistance": "Assistance"
   },
   "licences": {
