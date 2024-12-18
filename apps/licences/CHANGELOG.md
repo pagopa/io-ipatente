@@ -1,5 +1,11 @@
 # io-ipatente-licences
 
+## 0.3.9
+
+### Patch Changes
+
+- c6120b5: internal route for licences
+
 ## 0.3.8
 
 ### Patch Changes
