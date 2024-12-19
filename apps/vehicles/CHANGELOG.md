@@ -1,5 +1,11 @@
 # vehicles
 
+## 1.0.0
+
+### Major Changes
+
+- c3ef69b: First major release
+
 ## 0.9.10
 
 ### Patch Changes

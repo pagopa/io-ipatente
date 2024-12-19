@@ -1,5 +1,11 @@
 # io-ipatente-licences
 
+## 1.0.0
+
+### Major Changes
+
+- c3ef69b: First major release
+
 ## 0.3.9
 
 ### Patch Changes
