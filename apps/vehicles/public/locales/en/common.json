@@ -35,8 +35,7 @@
       "expired": "Scaduta",
       "empty": "Non sono disponibili dati per questo veicolo.",
       "insuranceGroup": "Gruppo assicurativo",
-      "dueDate": "Data fine copertura",
-      "info": "La data di fine assicurazione è comprensiva del <strong>periodo di comporto</strong>"
+      "dueDate": "Data fine copertura"
     },
     "inspections": {
       "title": "Storico revisioni",
