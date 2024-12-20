@@ -1,0 +1,20 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!src/**/__tests__/**",
+        "!.eslintrc.json",
+        "!.gitignore",
+        "!CHANGELOG.md",
+        "!README.md"
+      ],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
+    "typecheck": {
+      "inputs": ["src/**/*.ts", "src/**/*.tsx", "tsconfig.json"],
+      "dependsOn": ["build"]
+    }
+  }
+}
