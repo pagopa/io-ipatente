@@ -1,7 +1,7 @@
 import { Pagamento } from "@/generated/bff-openapi";
 import { BADGES_CONFIG_BY_CODE } from "@/utils/consts";
 import { CardInfo, CardInfoItem, Icon } from "@io-ipatente/ui";
-import { Chip } from "@mui/material";
+import Chip from "@mui/material/Chip";
 import { useTranslation } from "next-i18next";
 
 interface MetadataListItem {
@@ -90,7 +90,7 @@ export const PaymentSectionDetails = ({ data }: PaymentSectionDetailsProps) => {
       {
         isVisible: !!dataInserimentoRichiesta,
         label: t("paymentDetails.info.requestDate"),
-        value: dataInserimentoRichiesta,
+        value: new Date(dataInserimentoRichiesta).toLocaleDateString(),
       },
       {
         isVisible: !!numeroPratiche,

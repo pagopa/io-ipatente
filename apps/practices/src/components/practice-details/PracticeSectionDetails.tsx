@@ -1,6 +1,6 @@
 import { Pratica } from "@/generated/bff-openapi";
 import { CardInfo, CardInfoItem } from "@io-ipatente/ui";
-import { Chip } from "@mui/material";
+import Chip from "@mui/material/Chip";
 import { useTranslation } from "next-i18next";
 
 interface MetadataListItem {
@@ -28,16 +28,12 @@ export const PracticeSectionDetails = ({
       {
         isVisible: !!statoPratica,
         label: t("practiceDetails.info.practiceStatus"),
-        value: statoPratica && (
-          <Chip color="info" key={statoPratica} label={statoPratica} />
-        ),
+        value: <Chip color="info" key={statoPratica} label={statoPratica} />,
       },
       {
         isVisible: !!dataApertura,
         label: t("practiceDetails.info.practiceStartDate"),
-        value: dataApertura
-          ? new Date(dataApertura).toLocaleDateString()
-          : null,
+        value: new Date(dataApertura).toLocaleDateString(),
       },
       {
         isVisible: !!tipoPratica.codice,

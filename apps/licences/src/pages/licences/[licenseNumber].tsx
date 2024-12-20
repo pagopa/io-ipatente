@@ -15,9 +15,9 @@ import {
 import { Chip, Link, Skeleton, Stack, Typography } from "@mui/material";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useCallback, useMemo } from "react";
-import { useTranslation } from "react-i18next";
 
 import { GetLayoutProps } from "../_app";
 
