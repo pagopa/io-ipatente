@@ -1,5 +1,11 @@
 # io-ipatente-payments
 
+## 1.0.1
+
+### Patch Changes
+
+- 503d5ce: fix scroll to top button
+
 ## 1.0.0
 
 ### Major Changes
