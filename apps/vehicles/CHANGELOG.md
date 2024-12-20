@@ -1,5 +1,11 @@
 # vehicles
 
+## 1.0.1
+
+### Patch Changes
+
+- 19f7a4c: Removed rca expiration info
+
 ## 1.0.0
 
 ### Major Changes
