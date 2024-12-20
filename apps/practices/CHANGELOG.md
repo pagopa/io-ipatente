@@ -1,5 +1,11 @@
 # io-ipatente-practices
 
+## 1.0.2
+
+### Patch Changes
+
+- 2b0a944: fix date format
+
 ## 1.0.1
 
 ### Patch Changes
