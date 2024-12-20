@@ -59,7 +59,6 @@ export const VehicleSectionRca = ({ rca }: VehicleSectionRcaProps) => {
         value: rca.compagniaAssicuratrice,
       },
       {
-        footerText: t("vehicleDetails.rca.info"),
         label: t("vehicleDetails.rca.dueDate"),
         value: new Date(rca.dataScadenzaCopertura).toLocaleDateString(),
       },
