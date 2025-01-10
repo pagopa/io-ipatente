@@ -11,6 +11,8 @@ import { AxiosError } from "axios";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+export const dynamic = "force-dynamic";
+
 /**
  * @description Retrieve user payments
  */
@@ -27,7 +29,6 @@ export const GET = auth(
         const payments = z.array(Pagamento).safeParse(res);
 
         if (payments.success) {
-          console.log("test-log, to check ai otel working");
           return NextResponse.json(payments.data);
         }
 

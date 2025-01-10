@@ -2,17 +2,17 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~>4.10"
+      version = "~>4"
     }
 
     azuread = {
       source  = "hashicorp/azuread"
-      version = "~>2.0"
+      version = "~>2"
     }
 
     github = {
       source  = "integrations/github"
-      version = "~>6.0"
+      version = "~>6"
     }
   }
 
@@ -108,10 +108,11 @@ module "repo" {
   }
 
   repository = {
-    name            = local.repository.name
-    description     = local.repository.description
-    topics          = local.repository.topics
-    reviewers_teams = local.repository.reviewers_teams
+    name               = local.repository.name
+    description        = local.repository.description
+    topics             = local.repository.topics
+    reviewers_teams    = local.repository.reviewers_teams
+    app_cd_policy_tags = local.repository.app_cd_policy_tags
   }
 
   github_private_runner = {

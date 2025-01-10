@@ -6,16 +6,16 @@
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_azuread"></a> [azuread](#requirement\_azuread) | ~>2.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~>4.10 |
-| <a name="requirement_github"></a> [github](#requirement\_github) | ~>6.0 |
+| <a name="requirement_azuread"></a> [azuread](#requirement\_azuread) | ~>2 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~>4 |
+| <a name="requirement_github"></a> [github](#requirement\_github) | ~>6 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_azuread"></a> [azuread](#provider\_azuread) | 2.53.1 |
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 4.11.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 4.14.0 |
 
 ## Modules
 

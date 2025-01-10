@@ -25,6 +25,8 @@ locals {
       NEXT_PUBLIC_BFF_API_BASE_URL  = "https://licences.ipatente.io.pagopa.it"
       NEXT_PUBLIC_BFF_API_BASE_PATH = "/api"
 
+      NEXT_PUBLIC_FIMS_PRIVACY_URL = "https://io.italia.it/app-content/tos_privacy.html"
+
       EXT_API_MOCKING   = false
       EXT_API_BASE_URL  = "https://gw.servizidt.it/rest/in/MCTC/LeMiePatenti_AppIO"
       EXT_API_BASE_PATH = "/v2"
@@ -52,6 +54,10 @@ locals {
 
       # Logs
       AI_SDK_CONNECTION_STRING = var.ai_connection_string
+
+      # Interanl API for test
+      INTERNAL_ROUTES_ENABLED   = false
+      INTERNAL_ROUTES_TEST_USER = "@Microsoft.KeyVault(VaultName=${var.key_vault_name};SecretName=INTERNAL-ROUTES-TEST-USER-LICENCES)"
     }
 
     prod_app_setting = {

@@ -1,7 +1,7 @@
 import { Pratica } from "@/generated/bff-openapi";
 import { BadgeProps, ListItemAction } from "@io-ipatente/ui";
+import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
-import { useTranslation } from "react-i18next";
 
 export interface ListItemPracticeProps {
   data: Pratica;

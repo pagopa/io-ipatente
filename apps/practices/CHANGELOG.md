@@ -1,5 +1,122 @@
 # io-ipatente-practices
 
+## 1.0.2
+
+### Patch Changes
+
+- 2b0a944: fix date format
+
+## 1.0.1
+
+### Patch Changes
+
+- 503d5ce: fix scroll to top button
+
+## 1.0.0
+
+### Major Changes
+
+- c3ef69b: First major release
+
+## 0.2.10
+
+### Patch Changes
+
+- b4274ef: disable source map in prod
+
+## 0.2.9
+
+### Patch Changes
+
+- 63919f2: Updated logo in TopBar component
+- 8446e70: Added NEXT_PUBLIC_FIMS_PRIVACY_URL value for all apps
+- Updated dependencies [63919f2]
+  - @io-ipatente/ui@0.9.1
+
+## 0.2.8
+
+### Patch Changes
+
+- d042619: Pin ApplicationInsight version 3.1.0
+
+## 0.2.7
+
+### Patch Changes
+
+- d3c57a2: Update Unidici Instrumentation OTEL 0.3.0 -> 0.7.1
+
+## 0.2.6
+
+### Patch Changes
+
+- f9f1b67: Copy review
+
+## 0.2.5
+
+### Patch Changes
+
+- 810c46d: Update Otel, using HttpInstrumentation instead of Unidici
+
+## 0.2.4
+
+### Patch Changes
+
+- aec656e: Update Next to v14.2.20
+- Updated dependencies [0f765b0]
+- Updated dependencies [aec656e]
+  - @io-ipatente/core@0.6.1
+
+## 0.2.3
+
+### Patch Changes
+
+- 9defb7c: Disable cache on GET route handlers by setting dynamic=force-dynamic
+
+## 0.2.2
+
+### Patch Changes
+
+- a4b80c8: Change package pipeline
+
+## 0.2.1
+
+### Patch Changes
+
+- af332d7: fix redirects
+
+## 0.2.0
+
+### Minor Changes
+
+- f319d92: Add consent screen
+
+### Patch Changes
+
+- Updated dependencies [f319d92]
+  - @io-ipatente/core@0.6.0
+  - @io-ipatente/ui@0.9.0
+
+## 0.1.20
+
+### Patch Changes
+
+- Updated dependencies [134c474]
+  - @io-ipatente/ui@0.8.3
+
+## 0.1.19
+
+### Patch Changes
+
+- 65bfaee: Production URL for Practices and Pyments
+
+## 0.1.18
+
+### Patch Changes
+
+- 6f1238b: small design updates
+- Updated dependencies [051fc4b]
+  - @io-ipatente/core@0.5.16
+
 ## 0.1.17
 
 ### Patch Changes

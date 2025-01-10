@@ -1,5 +1,5 @@
 import { Veicolo } from "@/generated/bff-openapi";
-import { vehicleByType } from "@/utils/strings";
+import { vehicleByType } from "@/utils/constants";
 import { isDueDateValid } from "@io-ipatente/core";
 import { BadgeProps, ListItemAction } from "@io-ipatente/ui";
 import { useTranslation } from "next-i18next";

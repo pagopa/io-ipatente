@@ -4,9 +4,6 @@
     "description": "My vehicles"
   },
   "topBar": {
-    "product": {
-      "name": "The driver's portal"
-    },
     "assistance": "Assistance"
   },
   "vehicles": {
@@ -38,8 +35,7 @@
       "expired": "Scaduta",
       "empty": "Non sono disponibili dati per questo veicolo.",
       "insuranceGroup": "Gruppo assicurativo",
-      "dueDate": "Data fine copertura",
-      "info": "La data di fine assicurazione è comprensiva del <strong>periodo di comporto</strong>"
+      "dueDate": "Data fine copertura"
     },
     "inspections": {
       "title": "Storico revisioni",
@@ -51,7 +47,7 @@
   },
   "vehicle": {
     "type": {
-      "A": "Automobile",
+      "A": "Autoveicolo",
       "C": "Ciclomotore",
       "M": "Motoveicolo",
       "R": "Rimorchio",
@@ -78,7 +74,7 @@
     "EXTRAM_MSG_003": "Non calcolabile",
     "EXTRAM_MSG_004": "Non disponibile",
     "EXTRAM_MSG_005": "Errore imprevisto",
-    "EXTRAM_MSG_006": "Errore imprevisto"
+    "EXTRAM_MSG_006": "Non disponibile"
   },
   "inspection": {
     "REV_MSG_001": "Regolare",
@@ -121,5 +117,16 @@
     "expiredSession": {
       "title": "La tua session è scaduta"
     }
+  },
+  "consent": {
+    "title": "Consenti l'utilizzo dei tuoi dati",
+    "description": "Per proseguire autorizza PagoPA S.p.A. a utilizzare i tuoi dati forniti da Ministero delle infrastrutture e dei trasporti, così da mostrarti il servizio <strong>I miei veicoli</strong>.",
+    "requiredData": {
+      "title": "Dati necessari",
+      "fiscalCode": "Codice fiscale"
+    },
+    "moreInfo": "Per maggiori informazioni, leggi l'<a style='color: #0073E6; font-weight: 600' href=href='{{privacyUrl}}' target='_blank'>Informativa sulla Privacy</a>",
+    "primaryAction": "Continua",
+    "secondaryAction": "Annulla"
   }
 }

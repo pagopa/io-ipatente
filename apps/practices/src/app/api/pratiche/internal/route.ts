@@ -11,6 +11,8 @@ import { AxiosError } from "axios";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+export const dynamic = "force-dynamic";
+
 /**
  * @description Retrieve user practices
  */
@@ -27,7 +29,6 @@ export const GET = auth(
         const practices = z.array(Pratica).safeParse(res);
 
         if (practices.success) {
-          console.log("test-log  internal, to check ai otel working");
           return NextResponse.json(practices.data);
         }
 

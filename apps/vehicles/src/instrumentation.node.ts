@@ -40,17 +40,18 @@ if (process.env["AI_SDK_CONNECTION_STRING"]) {
   // setup cloudRoleName
   process.env.OTEL_SERVICE_NAME = getDefaultAppNameForEnv();
 
-  ai.setup(process.env["AI_SDK_CONNECTION_STRING"])
-    .setAutoCollectConsole(true, true)
-    .setDistributedTracingMode(ai.DistributedTracingModes.AI_AND_W3C)
-    .start();
-
   // instrument native node fetch
   registerInstrumentations({
     instrumentations: [new UndiciInstrumentation()],
     meterProvider: metrics.getMeterProvider(),
     tracerProvider: trace.getTracerProvider(),
   });
+
+  // instrument native node fetch
+  ai.setup(process.env["AI_SDK_CONNECTION_STRING"])
+    .setAutoCollectConsole(true, true)
+    .setDistributedTracingMode(ai.DistributedTracingModes.AI_AND_W3C)
+    .start();
 
   console.info("ApplicationInsight using opetelemetry loaded");
 } else {

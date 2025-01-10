@@ -1,22 +1,13 @@
 import { Check } from "@mui/icons-material";
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Button, ButtonProps, Stack, Typography } from "@mui/material";
 
 export interface ConsentViewProps {
-  /** Labels for bottm action buttons */
-  actionLabels: {
-    /** Label for consent action */
-    consent: string;
-    /** Label for decline consent action */
-    dissent: string;
-  };
   /** Consent View main description */
   description: string;
   /** More information text */
   moreInfo: string;
-  /** Event triggered when user click on consent action */
-  onConsentClick: () => void;
-  /** Event triggered when user click on dissent action */
-  onDissentClick: () => void;
+  /** Props for primary action button */
+  primaryActionProps: Pick<ButtonProps, "onClick" | "value">;
   /** Consent data section */
   requiredData: {
     /** List of user data for which consent is required */
@@ -24,34 +15,32 @@ export interface ConsentViewProps {
     /** Consent section title */
     title: string;
   };
+  /** Props for secondary action button */
+  secondaryActionProps: Pick<ButtonProps, "onClick" | "value">;
   /** Consent View main title */
   title: string;
 }
 
 /** Operation result screen component */
 export const ConsentView = ({
-  actionLabels,
   description,
   moreInfo,
-  onConsentClick,
-  onDissentClick,
+  primaryActionProps,
   requiredData,
+  secondaryActionProps,
   title,
 }: ConsentViewProps) => (
   <Box display="flex" flex={1} flexDirection="column">
     {/* Scrollable content */}
     <Box flex={1} overflow="auto">
       <Stack paddingY={1} spacing={1}>
-        <Typography fontWeight={700} variant="h5">
+        <Typography fontWeight={700} variant="h4">
           {title}
         </Typography>
-        <Typography variant="body2">
-          <span
-            dangerouslySetInnerHTML={{
-              __html: description,
-            }}
-          />
-        </Typography>
+        <Typography
+          dangerouslySetInnerHTML={{ __html: description }}
+          variant="body2"
+        />
         <Stack paddingBottom={2} paddingTop={3} spacing={1}>
           <Typography variant="overline">{requiredData.title}</Typography>
           {requiredData.data.map((value, index) => (
@@ -70,13 +59,14 @@ export const ConsentView = ({
             </Stack>
           ))}
         </Stack>
-        <Typography color="text.secondary" fontSize="14px" fontWeight={400}>
-          <span
-            dangerouslySetInnerHTML={{
-              __html: moreInfo,
-            }}
-          />
-        </Typography>
+        <Typography
+          color="text.secondary"
+          dangerouslySetInnerHTML={{
+            __html: moreInfo,
+          }}
+          fontSize="14px"
+          fontWeight={400}
+        />
       </Stack>
     </Box>
     {/* Sticky bottom actions */}
@@ -88,11 +78,11 @@ export const ConsentView = ({
       textAlign="center"
     >
       <Stack alignItems="stretch" bottom={0} direction="column" spacing={1}>
-        <Button onClick={onConsentClick} variant="contained">
-          {actionLabels.consent}
+        <Button onClick={primaryActionProps.onClick} variant="contained">
+          {primaryActionProps.value}
         </Button>
-        <Button onClick={onDissentClick} variant="text">
-          {actionLabels.dissent}
+        <Button onClick={secondaryActionProps.onClick} variant="text">
+          {secondaryActionProps.value}
         </Button>
       </Stack>
     </Box>

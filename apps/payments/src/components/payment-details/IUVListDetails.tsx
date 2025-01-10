@@ -1,12 +1,11 @@
 import { Pagamento } from "@/generated/bff-openapi";
 import { BADGES_BY_IUV_STATUS } from "@/utils/consts";
 import { CardCarousel, CardInfo, Icon } from "@io-ipatente/ui";
-import { Chip } from "@mui/material";
+import Chip from "@mui/material/Chip";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Typography from "@mui/material/Typography";
-import React from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 export interface PaymentSectionIUVListProps {
   iuvList?: Pagamento["listaIuv"];
@@ -137,7 +136,9 @@ export const IUVListDetails = ({
                   {t("paymentDetails.info.iuv.expiration")}
                 </Typography>
                 <Typography display="inline" fontWeight={600} variant="body2">
-                  {dataScadenzaIuv}
+                  {dataScadenzaIuv
+                    ? new Date(dataScadenzaIuv).toLocaleDateString()
+                    : null}
                 </Typography>
               </ListItem>
               <ListItem>

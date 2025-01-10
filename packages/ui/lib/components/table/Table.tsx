@@ -46,7 +46,6 @@ const TableHeader = <T,>({ columns }: TableHeaderProps<T>) => {
             key={`${key.toString()}-${index}`}
             sx={{
               backgroundColor: "text.primary",
-              border: "1px solid #BFDFFF",
               color: "background.default",
               paddingX: 1.5,
               paddingY: 2,

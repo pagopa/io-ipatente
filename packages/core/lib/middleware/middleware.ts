@@ -3,6 +3,7 @@ import { NextRequest, NextResponse, userAgent } from "next/server";
 import { getConfiguration } from "../config";
 import { AuthRouteHandler } from "../types";
 import {
+  CONSENT_URL,
   FIMS_CALLBACK_COOKIES_URL,
   FIMS_CALLBACK_URL,
   SIGNIN_URL,
@@ -30,31 +31,43 @@ const withDevMode =
   };
 
 const handleRequest: AuthRouteHandler = (request) => {
-  // Checks if the request is coming from in-app browser
-  // - If the user is authenticated, continue the process.
-  // - If the user is not authenticated, return undefined (no action needed here).
-  if (isBrowserContext(request)) {
-    return request.auth ? NextResponse.next() : undefined;
+  // Check if the request is coming from the native flow
+  if (!isBrowserContext(request)) {
+    // If the request is from the native flow and targets the FIMS callback URL,
+    // redirect it to the cookie callback URL by adding the cookies as query parameters
+    if (request.nextUrl.pathname === FIMS_CALLBACK_URL) {
+      const redirectUrl = request.nextUrl;
+      redirectUrl.pathname = FIMS_CALLBACK_COOKIES_URL;
+      request.cookies
+        .getAll()
+        .forEach((cookie) =>
+          redirectUrl.searchParams.set(cookie.name, cookie.value),
+        );
+      return NextResponse.redirect(redirectUrl);
+    }
+
+    // If the request comes from the native flow and the user is not authenticated,
+    // redirect them to the sign-in page
+    const signinUrl = new URL(SIGNIN_URL, request.nextUrl.origin);
+    return NextResponse.rewrite(signinUrl);
   }
 
-  // If the request comes from the native flow and is targeting the FIMS callback URL,
-  // redirect it to the cookie callback URL by adding the cookies as query parameters.
-  // The constructed URL will be opened in the in-app browser.
+  // If the URL is targeting the FIMS callback URL, continue the process
   if (request.nextUrl.pathname === FIMS_CALLBACK_URL) {
-    const redirectUrl = request.nextUrl;
-    redirectUrl.pathname = FIMS_CALLBACK_COOKIES_URL;
-    request.cookies
-      .getAll()
-      .forEach((cookie) =>
-        redirectUrl.searchParams.set(cookie.name, cookie.value),
-      );
-    return NextResponse.redirect(redirectUrl);
+    return NextResponse.next();
   }
 
-  // If the request comes from the native flow and the user is not authenticated,
-  // redirect them to the sign-in page.
-  const signinUrl = new URL(SIGNIN_URL, request.nextUrl.origin);
-  return NextResponse.rewrite(signinUrl);
+  // If the URL is targeting the consent page, continue the process
+  if (request.nextUrl.pathname === CONSENT_URL) {
+    return NextResponse.next();
+  }
+
+  // If the cookie `io-ipatente-consent` is NOT present, redirect to the consent page
+  if (!request.cookies.has("io-ipatente-consent")) {
+    return NextResponse.redirect(new URL(CONSENT_URL, request.nextUrl.origin));
+  }
+
+  return NextResponse.next();
 };
 
 export const middleware: AuthRouteHandler = withDevMode(handleRequest);

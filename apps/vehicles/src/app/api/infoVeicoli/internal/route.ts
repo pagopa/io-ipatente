@@ -11,6 +11,8 @@ import { AxiosError } from "axios";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+export const dynamic = "force-dynamic";
+
 /**
  * @description Retrieve user vehicles
  */
@@ -27,7 +29,6 @@ export const GET = auth(
         const vehicles = z.array(Veicolo).safeParse(res);
 
         if (vehicles.success) {
-          console.log("test-log  internal, to check ai otel working");
           return NextResponse.json(vehicles.data);
         }
 

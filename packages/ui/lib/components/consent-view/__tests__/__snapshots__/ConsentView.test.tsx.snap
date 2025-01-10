@@ -14,17 +14,15 @@ exports[`Test ConsentView Component > Should match the snapshot with all props 1
           <div
             class="MuiStack-root css-h4grc4-MuiStack-root"
           >
-            <h5
-              class="MuiTypography-root MuiTypography-h5 css-bezmlo-MuiTypography-root"
+            <h4
+              class="MuiTypography-root MuiTypography-h4 css-1313egv-MuiTypography-root"
             >
               title
-            </h5>
+            </h4>
             <p
               class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
             >
-              <span>
-                description
-              </span>
+              description
             </p>
             <div
               class="MuiStack-root css-1etjgou-MuiStack-root"
@@ -98,9 +96,7 @@ exports[`Test ConsentView Component > Should match the snapshot with all props 1
             <p
               class="MuiTypography-root MuiTypography-body1 css-dkseb6-MuiTypography-root"
             >
-              <span>
-                more-info-text
-              </span>
+              more-info-text
             </p>
           </div>
         </div>
@@ -145,17 +141,15 @@ exports[`Test ConsentView Component > Should match the snapshot with all props 1
         <div
           class="MuiStack-root css-h4grc4-MuiStack-root"
         >
-          <h5
-            class="MuiTypography-root MuiTypography-h5 css-bezmlo-MuiTypography-root"
+          <h4
+            class="MuiTypography-root MuiTypography-h4 css-1313egv-MuiTypography-root"
           >
             title
-          </h5>
+          </h4>
           <p
             class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
           >
-            <span>
-              description
-            </span>
+            description
           </p>
           <div
             class="MuiStack-root css-1etjgou-MuiStack-root"
@@ -229,9 +223,7 @@ exports[`Test ConsentView Component > Should match the snapshot with all props 1
           <p
             class="MuiTypography-root MuiTypography-body1 css-dkseb6-MuiTypography-root"
           >
-            <span>
-              more-info-text
-            </span>
+            more-info-text
           </p>
         </div>
       </div>

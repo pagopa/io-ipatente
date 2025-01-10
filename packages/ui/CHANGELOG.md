@@ -1,5 +1,23 @@
 # @io-ipatente/ui
 
+## 0.9.1
+
+### Patch Changes
+
+- 63919f2: Updated logo in TopBar component
+
+## 0.9.0
+
+### Minor Changes
+
+- f319d92: Add consent screen
+
+## 0.8.3
+
+### Patch Changes
+
+- 134c474: small layout fixes
+
 ## 0.8.2
 
 ### Patch Changes

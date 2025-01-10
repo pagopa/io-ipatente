@@ -28,16 +28,16 @@ const AppLayout = ({
   const containerRef = useRef<HTMLElement>(null);
 
   return (
-    <Box display="flex" flexDirection="column" height="100vh">
+    <Box
+      display="flex"
+      flexDirection="column"
+      height="100vh"
+      ref={containerRef}
+    >
       <TopBar
         assistance={{
           label: t("topBar.assistance"),
           onClick: () => router.push("/assistance"),
-        }}
-        product={{
-          logo: "ipatente",
-          name: t("topBar.product.name"),
-          url: "",
         }}
       />
       <PageHeader {...rest} />

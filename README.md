@@ -4,7 +4,6 @@
 
 The project `io-ipatente` aims to provide, through [App IO](https://io.italia.it), some of the services currently provided by the **iPatente** mobile application _(managed by Motorizzazione Civile on behalf of the Ministry of Infrastructure and Transport)._
 
-### 🚧 Work in Progress 🚧
 This repository contains the code of the iPatente services that will be exposed as web applications through the App IO *services*.
 
 1. `apps/licences` : web application for "Le mie patenti" service.

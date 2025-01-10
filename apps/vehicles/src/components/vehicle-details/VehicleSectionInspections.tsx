@@ -1,5 +1,5 @@
 import { Revisione } from "@/generated/bff-openapi";
-import { inspectionResultByCode } from "@/utils/strings";
+import { inspectionResultByCode } from "@/utils/constants";
 import { CardCarousel, CardInfo, Icon } from "@io-ipatente/ui";
 import Chip from "@mui/material/Chip";
 import List from "@mui/material/List";
