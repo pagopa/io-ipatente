@@ -14,7 +14,7 @@ No providers.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_licences"></a> [licences](#module\_licences) | github.com/pagopa/dx//infra/modules/azure_app_service | main |
-| <a name="module_licences_app_service_autoscaler"></a> [licences\_app\_service\_autoscaler](#module\_licences\_app\_service\_autoscaler) | github.com/pagopa/dx//infra/modules/azure_app_service_plan_autoscaler | main |
+| <a name="module_licences_app_service_autoscaler"></a> [licences\_app\_service\_autoscaler](#module\_licences\_app\_service\_autoscaler) | pagopa/dx-azure-app-service-plan-autoscaler/azurerm | ~> 0 |
 | <a name="module_licences_app_service_roles"></a> [licences\_app\_service\_roles](#module\_licences\_app\_service\_roles) | github.com/pagopa/dx//infra/modules/azure_role_assignments | main |
 | <a name="module_licences_app_service_staging_roles"></a> [licences\_app\_service\_staging\_roles](#module\_licences\_app\_service\_staging\_roles) | github.com/pagopa/dx//infra/modules/azure_role_assignments | main |
 
