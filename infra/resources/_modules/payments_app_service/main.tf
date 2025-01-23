@@ -38,9 +38,10 @@ module "payments" {
 }
 
 module "payments_app_service_roles" {
-  source       = "github.com/pagopa/dx//infra/modules/azure_role_assignments?ref=main"
-  principal_id = module.payments.app_service.app_service.principal_id
+  source  = "pagopa/dx-azure-role-assignments/azurerm"
+  version = "~> 0"
 
+  principal_id = module.payments.app_service.app_service.principal_id
   key_vault = [
     {
       name                = var.key_vault_name
@@ -53,9 +54,10 @@ module "payments_app_service_roles" {
 }
 
 module "payments_app_service_staging_roles" {
-  source       = "github.com/pagopa/dx//infra/modules/azure_role_assignments?ref=main"
-  principal_id = module.payments.app_service.app_service.slot.principal_id
+  source  = "pagopa/dx-azure-role-assignments/azurerm"
+  version = "~> 0"
 
+  principal_id = module.payments.app_service.app_service.slot.principal_id
   key_vault = [
     {
       name                = var.key_vault_name
@@ -66,35 +68,3 @@ module "payments_app_service_staging_roles" {
     }
   ]
 }
-
-# module "payments_app_service_roles" {
-#   source  = "pagopa/dx-azure-role-assignments/azurerm"
-#   version = "~> 0"
-
-#   principal_id = module.payments.app_service.app_service.principal_id
-#   key_vault = [
-#     {
-#       name                = var.key_vault_name
-#       resource_group_name = var.resource_group_name
-#       roles = {
-#         secrets = "reader"
-#       }
-#     }
-#   ]
-# }
-
-# module "payments_app_service_staging_roles" {
-#   source  = "pagopa/dx-azure-role-assignments/azurerm"
-#   version = "~> 0"
-
-#   principal_id = module.payments.app_service.app_service.slot.principal_id
-#   key_vault = [
-#     {
-#       name                = var.key_vault_name
-#       resource_group_name = var.resource_group_name
-#       roles = {
-#         secrets = "reader"
-#       }
-#     }
-#   ]
-# }
