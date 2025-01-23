@@ -83,6 +83,7 @@ import {
   to = module.repo.github_branch_protection.main
 }
 
+# Do we need to change this module too ?
 module "repo" {
   source = "github.com/pagopa/dx//infra/modules/azure_monorepo_single_env_starter_pack?ref=DEVEX-179-produrre-un-modulo-terraform-per-migliorare-la-gestione-dei-permessi-rbac-sui-resource-group"
 

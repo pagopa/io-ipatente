@@ -2,6 +2,7 @@
 #  App Service  #
 #################
 
+# Do we need to change this module too ?
 module "licences" {
   source = "github.com/pagopa/dx//infra/modules/azure_app_service?ref=main"
 
