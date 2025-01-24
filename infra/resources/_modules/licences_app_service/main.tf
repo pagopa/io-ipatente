@@ -2,7 +2,6 @@
 #  App Service  #
 #################
 
-# Do we need to change this module too ?
 module "licences" {
   source  = "pagopa/dx-azure-app-service/azurerm"
   version = "~> 0"
