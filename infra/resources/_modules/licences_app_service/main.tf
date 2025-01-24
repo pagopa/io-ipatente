@@ -4,7 +4,8 @@
 
 # Do we need to change this module too ?
 module "licences" {
-  source = "github.com/pagopa/dx//infra/modules/azure_app_service?ref=main"
+  source  = "pagopa/dx-azure-app-service/azurerm"
+  version = "~> 0"
 
   environment = {
     prefix          = var.prefix
