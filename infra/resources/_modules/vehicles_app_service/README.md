@@ -13,10 +13,10 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_vehicles"></a> [vehicles](#module\_vehicles) | github.com/pagopa/dx//infra/modules/azure_app_service | main |
-| <a name="module_vehicles_app_service_autoscaler"></a> [vehicles\_app\_service\_autoscaler](#module\_vehicles\_app\_service\_autoscaler) | github.com/pagopa/dx//infra/modules/azure_app_service_plan_autoscaler | main |
-| <a name="module_vehicles_app_service_roles"></a> [vehicles\_app\_service\_roles](#module\_vehicles\_app\_service\_roles) | github.com/pagopa/dx//infra/modules/azure_role_assignments | main |
-| <a name="module_vehicles_app_service_staging_roles"></a> [vehicles\_app\_service\_staging\_roles](#module\_vehicles\_app\_service\_staging\_roles) | github.com/pagopa/dx//infra/modules/azure_role_assignments | main |
+| <a name="module_vehicles"></a> [vehicles](#module\_vehicles) | pagopa/dx-azure-app-service/azurerm | ~> 0 |
+| <a name="module_vehicles_app_service_autoscaler"></a> [vehicles\_app\_service\_autoscaler](#module\_vehicles\_app\_service\_autoscaler) | pagopa/dx-azure-app-service-plan-autoscaler/azurerm | ~> 0 |
+| <a name="module_vehicles_app_service_roles"></a> [vehicles\_app\_service\_roles](#module\_vehicles\_app\_service\_roles) | pagopa/dx-azure-role-assignments/azurerm | ~> 0 |
+| <a name="module_vehicles_app_service_staging_roles"></a> [vehicles\_app\_service\_staging\_roles](#module\_vehicles\_app\_service\_staging\_roles) | pagopa/dx-azure-role-assignments/azurerm | ~> 0 |
 
 ## Resources
 

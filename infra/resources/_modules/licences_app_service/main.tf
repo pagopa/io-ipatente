@@ -3,7 +3,8 @@
 #################
 
 module "licences" {
-  source = "github.com/pagopa/dx//infra/modules/azure_app_service?ref=main"
+  source  = "pagopa/dx-azure-app-service/azurerm"
+  version = "~> 0"
 
   environment = {
     prefix          = var.prefix
@@ -38,9 +39,10 @@ module "licences" {
 }
 
 module "licences_app_service_roles" {
-  source       = "github.com/pagopa/dx//infra/modules/azure_role_assignments?ref=main"
-  principal_id = module.licences.app_service.app_service.principal_id
+  source  = "pagopa/dx-azure-role-assignments/azurerm"
+  version = "~> 0"
 
+  principal_id = module.licences.app_service.app_service.principal_id
   key_vault = [
     {
       name                = var.key_vault_name
@@ -53,9 +55,10 @@ module "licences_app_service_roles" {
 }
 
 module "licences_app_service_staging_roles" {
-  source       = "github.com/pagopa/dx//infra/modules/azure_role_assignments?ref=main"
-  principal_id = module.licences.app_service.app_service.slot.principal_id
+  source  = "pagopa/dx-azure-role-assignments/azurerm"
+  version = "~> 0"
 
+  principal_id = module.licences.app_service.app_service.slot.principal_id
   key_vault = [
     {
       name                = var.key_vault_name

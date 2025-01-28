@@ -1,5 +1,6 @@
 module "vehicles_app_service_autoscaler" {
-  source = "github.com/pagopa/dx//infra/modules/azure_app_service_plan_autoscaler?ref=main"
+  source  = "pagopa/dx-azure-app-service-plan-autoscaler/azurerm"
+  version = "~> 0"
 
   resource_group_name = var.resource_group_name
 
