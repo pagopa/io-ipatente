@@ -83,7 +83,6 @@ import {
   to = module.repo.github_branch_protection.main
 }
 
-# Do we need to change this module too ?
 module "repo" {
   source = "pagopa/dx-azure-github-environment-bootstrap/azurerm"
   version = "~> 0"
