@@ -1,13 +1,17 @@
-import { FloatingButton } from "@io-ipatente/ui";
 import Fade from "@mui/material/Fade";
 import Stack from "@mui/material/Stack";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import { useCallback } from "react";
 
+import { FloatingButton } from "../floating-button";
+
 interface ScrollToTopButtonProps {
   container: HTMLElement | null;
 }
 
+/* duplicate in all apps
+ * can we move this in ui library! confirmed
+ */
 export const ScrollToTopButton = ({ container }: ScrollToTopButtonProps) => {
   const trigger = useScrollTrigger({
     disableHysteresis: true,
