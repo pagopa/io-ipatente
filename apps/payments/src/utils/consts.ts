@@ -4,8 +4,6 @@ import {
 } from "@/generated/bff-openapi";
 import { FullBadgeProps } from "@io-ipatente/ui";
 
-export const CANCEL_CALLBACK_URL = "iossoapi://cancel";
-
 export const BADGES_BY_IUV_STATUS: Record<StatoIuvEnum, FullBadgeProps> = {
   A: {
     color: "default",

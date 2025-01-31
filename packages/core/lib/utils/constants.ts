@@ -14,3 +14,6 @@ export const HTTP_STATUS_INTERNAL_SERVER_ERROR = 500;
 export const HTTP_TITLE_BAD_REQUEST = "Bad Request";
 export const HTTP_TITLE_UNAUTHORIZED = "Unauthorized";
 export const HTTP_TITLE_FORBIDDEN = "Forbidden";
+
+// CALLBACK URLs
+export const CANCEL_CALLBACK_URL = "iossoapi://cancel";

@@ -1,5 +1,4 @@
-import { CANCEL_CALLBACK_URL } from "@/utils/consts";
-import { getConfiguration } from "@io-ipatente/core";
+import { CANCEL_CALLBACK_URL, getConfiguration } from "@io-ipatente/core";
 import { ConsentView } from "@io-ipatente/ui";
 import Box from "@mui/material/Box";
 import { GetServerSideProps } from "next";
@@ -8,6 +7,10 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useCallback } from "react";
 
+/**
+ *  duplicate in all apps (we can pass a app_name prop and use for line 18 router.replace
+ *  this value its the only difference between all applications)
+ */
 export default function Consent() {
   const { t } = useTranslation();
   const router = useRouter();
