@@ -1,8 +1,8 @@
 {
-  "licences_app_service.licences.naming_convention": "cebed82c7742c150fbcb4c363670d8078bee27ebd7cb37a37c01cd3803670c64",
-  "payments_app_service.payments.naming_convention": "cebed82c7742c150fbcb4c363670d8078bee27ebd7cb37a37c01cd3803670c64",
-  "practices_app_service.practices.naming_convention": "cebed82c7742c150fbcb4c363670d8078bee27ebd7cb37a37c01cd3803670c64",
-  "vehicles_app_service.vehicles.naming_convention": "cebed82c7742c150fbcb4c363670d8078bee27ebd7cb37a37c01cd3803670c64",
+  "licences_app_service.licences.naming_convention": "5b1d21788783dcf33e17a9842f9f7c874c8c5f736c82e70979eb9c8785a74ce4",
+  "payments_app_service.payments.naming_convention": "5b1d21788783dcf33e17a9842f9f7c874c8c5f736c82e70979eb9c8785a74ce4",
+  "practices_app_service.practices.naming_convention": "5b1d21788783dcf33e17a9842f9f7c874c8c5f736c82e70979eb9c8785a74ce4",
+  "vehicles_app_service.vehicles.naming_convention": "5b1d21788783dcf33e17a9842f9f7c874c8c5f736c82e70979eb9c8785a74ce4",
   "licences_app_service.licences": "f9746f1db71538ed1051a8f8dfa44a15c9a0a991f0ec98a8b55b0bf750f53f4a",
   "licences_app_service.licences_app_service_autoscaler": "b1b16764fc57ccf0d91a2375a11719e3dac5fd2a7bf77e12cbc290866deac044",
   "licences_app_service.licences_app_service_roles": "70538ac55deebe95f1379ec5abe1f3dd207b468c18f69cdb1bc3e6a946e50b56",
