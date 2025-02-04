@@ -9,9 +9,6 @@ interface ScrollToTopButtonProps {
   container: HTMLElement | null;
 }
 
-/* duplicate in all apps
- * can we move this in ui library! confirmed
- */
 export const ScrollToTopButton = ({ container }: ScrollToTopButtonProps) => {
   const trigger = useScrollTrigger({
     disableHysteresis: true,

@@ -7,10 +7,6 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useCallback } from "react";
 
-/**
- *  duplicate in all apps (we can pass a app_name prop and use for line 18 router.replace
- *  this value its the only difference between all applications)
- */
 export default function Consent() {
   const { t } = useTranslation();
   const router = useRouter();
