@@ -84,7 +84,7 @@ import {
 }
 
 module "repo" {
-  source = "pagopa/dx-azure-github-environment-bootstrap/azurerm"
+  source  = "pagopa/dx-azure-github-environment-bootstrap/azurerm"
   version = "~> 0"
 
   environment = {
