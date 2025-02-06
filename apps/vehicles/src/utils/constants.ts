@@ -9,8 +9,6 @@ import {
 import { IconType } from "@io-ipatente/ui";
 import { ChipProps } from "@mui/material/Chip";
 
-export const CANCEL_CALLBACK_URL = "iossoapi://cancel";
-
 export const vehicleByType: {
   [K in TipoVeicoloEnum]: { icon: IconType; label: ParseKeys };
 } = {
