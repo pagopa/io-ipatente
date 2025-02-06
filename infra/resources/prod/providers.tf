@@ -4,6 +4,7 @@ terraform {
     storage_account_name = "iopitntfst001"
     container_name       = "terraform-state"
     key                  = "io-ipatente.resources.prod.tfstate"
+    use_azuread_auth     = true
   }
 
   required_providers {
