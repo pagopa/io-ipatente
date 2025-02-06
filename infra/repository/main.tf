@@ -21,12 +21,14 @@ terraform {
     storage_account_name = "iopitntfst001"
     container_name       = "terraform-state"
     key                  = "io-ipatente.identity.prod.tfstate"
+    use_azuread_auth     = true
   }
 }
 
 provider "azurerm" {
   features {
   }
+  storage_use_azuread = true
 }
 
 provider "github" {
@@ -66,21 +68,6 @@ data "azuread_group" "admins" {
 
 data "azuread_group" "developers" {
   display_name = local.adgroups.devs_name
-}
-
-import {
-  id = local.repository.name
-  to = module.repo.github_branch_default.main
-}
-
-import {
-  id = local.repository.name
-  to = module.repo.github_repository.this
-}
-
-import {
-  id = "${local.repository.name}:main"
-  to = module.repo.github_branch_protection.main
 }
 
 module "repo" {
