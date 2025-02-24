@@ -49,6 +49,15 @@ data "azurerm_api_management" "apim" {
   resource_group_name = local.apim.resource_group_name
 }
 
+data "azurerm_api_management" "apim_itn" {
+  name                = local.apim_itn.name
+  resource_group_name = local.apim_itn.resource_group_name
+}
+
+data "azurerm_resource_group" "dns_zones" {
+  name = local.dns_zones.resource_group_name
+}
+
 data "azurerm_virtual_network" "common" {
   name                = local.vnet.name
   resource_group_name = local.vnet.resource_group_name
@@ -72,7 +81,7 @@ data "azuread_group" "developers" {
 
 module "repo" {
   source  = "pagopa/dx-azure-github-environment-bootstrap/azurerm"
-  version = "~> 0"
+  version = "~> 1"
 
   environment = {
     prefix          = local.prefix
@@ -112,10 +121,10 @@ module "repo" {
     }
   }
 
-  apim_id                    = data.azurerm_api_management.apim.id
-  pep_vnet_id                = data.azurerm_virtual_network.common.id
-  dns_zone_resource_group_id = data.azurerm_resource_group.external.id
-  opex_resource_group_id     = data.azurerm_resource_group.dashboards.id
+  apim_id                            = data.azurerm_api_management.apim_itn.id
+  pep_vnet_id                        = data.azurerm_virtual_network.common.id
+  private_dns_zone_resource_group_id = data.azurerm_resource_group.dns_zones.id
+  opex_resource_group_id             = data.azurerm_resource_group.dashboards.id
 
   tags = local.tags
 }
