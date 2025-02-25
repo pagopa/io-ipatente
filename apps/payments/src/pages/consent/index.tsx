@@ -1,5 +1,4 @@
-import { CANCEL_CALLBACK_URL } from "@/utils/consts";
-import { getConfiguration } from "@io-ipatente/core";
+import { CANCEL_CALLBACK_URL, getConfiguration } from "@io-ipatente/core";
 import { ConsentView } from "@io-ipatente/ui";
 import Box from "@mui/material/Box";
 import { GetServerSideProps } from "next";
