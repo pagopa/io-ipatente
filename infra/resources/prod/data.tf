@@ -11,6 +11,13 @@ data "azurerm_api_management" "apim_v2" {
   resource_group_name = "${local.prefix}-${local.env_short}-rg-internal"
 }
 
+# APIM itn
+
+data "azurerm_api_management" "apim_itn" {
+  name                = "${local.prefix}-${local.env_short}-itn-apim-01"
+  resource_group_name = "${local.prefix}-${local.env_short}-itn-common-rg-01"
+}
+
 data "azurerm_virtual_network" "itn_common" {
   name                = "${local.project}-common-vnet-01"
   resource_group_name = "${local.project}-common-rg-01"

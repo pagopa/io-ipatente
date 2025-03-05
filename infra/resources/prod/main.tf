@@ -13,7 +13,7 @@ module "key_vault" {
   tenant_id                 = data.azurerm_client_config.current.tenant_id
   peps_snet_id              = data.azurerm_subnet.private_endpoints_subnet.id
   vault_private_dns_zone_id = data.azurerm_private_dns_zone.key_vault.id
-  apim_principal_id         = data.azurerm_api_management.apim_v2.identity[0].principal_id
+  apim_principal_id         = data.azurerm_api_management.apim_itn.identity[0].principal_id
 
   tags = local.tags
 }
