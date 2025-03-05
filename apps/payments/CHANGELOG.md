@@ -1,5 +1,14 @@
 # io-ipatente-payments
 
+## 1.0.3
+
+### Patch Changes
+
+- 914cd49: refactor duplication
+- Updated dependencies [914cd49]
+  - @io-ipatente/core@0.6.2
+  - @io-ipatente/ui@0.9.2
+
 ## 1.0.2
 
 ### Patch Changes
