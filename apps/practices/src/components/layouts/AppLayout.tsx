@@ -1,11 +1,13 @@
-import { PageHeader, PageHeaderProps } from "@io-ipatente/ui";
+import {
+  PageHeader,
+  PageHeaderProps,
+  ScrollToTopButton,
+} from "@io-ipatente/ui";
 import Box from "@mui/material/Box";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { ReactNode, useRef } from "react";
-
-import { ScrollToTopButton } from "../shared/ScrollToTopButton";
 
 // Dynamic import to avoid the warning relative to the classes mismatch between csr and ssr
 const TopBar = dynamic(
