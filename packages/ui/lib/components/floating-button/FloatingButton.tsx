@@ -2,28 +2,22 @@ import { Fab, FabProps, Typography } from "@mui/material";
 
 import { Icon, IconType } from "../icon";
 
-export interface FloatingButtonProps
-  extends Pick<FabProps, "color" | "disabled" | "size"> {
-  icon: IconType;
-  label?: string;
-  onClick: () => void;
-}
+export type FloatingButtonProps = { icon: IconType; label?: string } & Pick<
+  FabProps,
+  "color" | "disabled" | "onClick" | "size"
+>;
 
 export const FloatingButton = ({
-  color,
-  disabled = false,
   icon,
   label,
-  onClick,
   size = "small",
+  ...rest
 }: FloatingButtonProps) => (
   <Fab
-    color={color}
     data-testid={"floating-button-component"}
-    disabled={disabled}
-    onClick={onClick}
     size={size}
     variant={label ? "extended" : "circular"}
+    {...rest}
   >
     <Icon name={icon} />
     {label && (

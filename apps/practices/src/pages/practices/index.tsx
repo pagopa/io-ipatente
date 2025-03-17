@@ -24,7 +24,7 @@ export default function Practices() {
     refetch,
   } = usePractices();
 
-  const handleOnClick = useCallback(
+  const handleClick = useCallback(
     (practiceNumber: string) => router.push(`/practices/${practiceNumber}`),
     [router],
   );
@@ -64,7 +64,7 @@ export default function Practices() {
         <ListItemPractice
           data={item}
           key={`practice-${item.numeroPratica}`}
-          onClick={handleOnClick}
+          onClick={handleClick}
         />
       ))}
     </Stack>

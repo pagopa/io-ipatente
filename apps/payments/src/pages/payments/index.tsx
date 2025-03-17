@@ -24,7 +24,7 @@ export default function Payments() {
     refetch,
   } = usePayments();
 
-  const handleOnClick = useCallback(
+  const handleClick = useCallback(
     (requestId: string) => router.push(`/payments/${requestId}`),
     [router],
   );
@@ -64,7 +64,7 @@ export default function Payments() {
         <ListItemPayment
           data={item}
           key={`payment-${item.idRichiesta}`}
-          onClick={handleOnClick}
+          onClick={handleClick}
         />
       ))}
     </Stack>
