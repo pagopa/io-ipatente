@@ -13,10 +13,10 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_licences"></a> [licences](#module\_licences) | pagopa/dx-azure-app-service/azurerm | ~> 0 |
-| <a name="module_licences_app_service_autoscaler"></a> [licences\_app\_service\_autoscaler](#module\_licences\_app\_service\_autoscaler) | pagopa/dx-azure-app-service-plan-autoscaler/azurerm | ~> 0.0 |
-| <a name="module_licences_app_service_roles"></a> [licences\_app\_service\_roles](#module\_licences\_app\_service\_roles) | pagopa/dx-azure-role-assignments/azurerm | ~> 0 |
-| <a name="module_licences_app_service_staging_roles"></a> [licences\_app\_service\_staging\_roles](#module\_licences\_app\_service\_staging\_roles) | pagopa/dx-azure-role-assignments/azurerm | ~> 0 |
+| <a name="module_licences"></a> [licences](#module\_licences) | pagopa-dx/azure-app-service/azurerm | ~> 0.0 |
+| <a name="module_licences_app_service_autoscaler"></a> [licences\_app\_service\_autoscaler](#module\_licences\_app\_service\_autoscaler) | pagopa-dx/azure-app-service-plan-autoscaler/azurerm | ~> 0.0 |
+| <a name="module_licences_app_service_roles"></a> [licences\_app\_service\_roles](#module\_licences\_app\_service\_roles) | pagopa-dx/azure-role-assignments/azurerm | ~> 0.0 |
+| <a name="module_licences_app_service_staging_roles"></a> [licences\_app\_service\_staging\_roles](#module\_licences\_app\_service\_staging\_roles) | pagopa-dx/azure-role-assignments/azurerm | ~> 0.0 |
 
 ## Resources
 
