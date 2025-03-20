@@ -41,7 +41,7 @@ export default function LicenceDetails() {
 
   const rows = useMemo(() => data?.movPat || [], [data]);
 
-  const onDetailClicked = useCallback(
+  const handleClick = useCallback(
     (movDetail: MovPat) => {
       showDialog({
         body: <LicenceMovementDetail data={movDetail} />,
@@ -76,7 +76,7 @@ export default function LicenceDetails() {
                 <Link
                   color="text.primary"
                   component="button"
-                  onClick={() => onDetailClicked?.(item)}
+                  onClick={() => handleClick(item)}
                   sx={{
                     fontSize: "18px",
                     fontWeight: 600,
@@ -121,7 +121,7 @@ export default function LicenceDetails() {
         title: t("licenceDetails.history.columns.variation"),
       },
     ],
-    [onDetailClicked, t],
+    [handleClick, t],
   );
 
   if (isLoading || isRefetching) {

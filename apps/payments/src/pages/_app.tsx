@@ -20,7 +20,8 @@ export interface GetLayoutProps {
   router: Router;
   t: TFunction;
 }
-export type NextPageWithLayout<P = Record<never, never>, IP = P> = {
+
+export type NextPageWithLayout<P = Record<string, never>, IP = P> = {
   getLayout?: ({ page, router, t }: GetLayoutProps) => ReactNode;
 } & NextPage<P, IP>;
 
@@ -37,6 +38,7 @@ const App = ({ Component, pageProps, router }: AppPropsWithLayout) => {
         defaultOptions: {
           queries: {
             retry: FETCH_MAX_RETRIES,
+            staleTime: 3 * 60 * 1000, // 3 minutes
           },
         },
       }),

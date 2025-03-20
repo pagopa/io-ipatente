@@ -24,7 +24,7 @@ export default function Vehicles() {
     refetch,
   } = useVehicles();
 
-  const handleOnClick = useCallback(
+  const handleClick = useCallback(
     (licensePlate: string) => router.push(`/vehicles/${licensePlate}`),
     [router],
   );
@@ -64,7 +64,7 @@ export default function Vehicles() {
         <ListItemVehicle
           data={item}
           key={`vehicle-${item.targaVeicolo}`}
-          onClick={handleOnClick}
+          onClick={handleClick}
         />
       ))}
     </Stack>
