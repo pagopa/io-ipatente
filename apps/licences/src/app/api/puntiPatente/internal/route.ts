@@ -35,8 +35,9 @@ export const GET = auth(
 
         if (res instanceof AxiosError) {
           console.error(
-            `[AxiosError] internal retrieveLicences duration`,
-            endTime - startTime,
+            `LoadTest [AxiosError] internal retrieveLicences duration: ${
+              endTime - startTime
+            } Status: ${res.status} Cause: ${res.cause},`,
           );
           return NextResponse.json(
             { detail: res.message, status: res.status },
@@ -49,7 +50,7 @@ export const GET = auth(
         }
 
         console.error(
-          `[GenericError] internal retrieveLicences duration: ${
+          `LoadTest [GenericError] internal retrieveLicences duration: ${
             endTime - startTime
           }, Error: ${res}`,
         );
