@@ -1,5 +1,11 @@
 # @io-ipatente/ui
 
+## 0.9.2
+
+### Patch Changes
+
+- 914cd49: refactor duplication
+
 ## 0.9.1
 
 ### Patch Changes

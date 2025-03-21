@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.6.2
+
+### Patch Changes
+
+- 914cd49: refactor duplication
+
 ## 0.6.1
 
 ### Patch Changes
