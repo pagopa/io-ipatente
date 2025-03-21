@@ -49,8 +49,9 @@ export const GET = auth(
         }
 
         console.error(
-          `[GenericError] internal retrieveLicences duration`,
-          endTime - startTime,
+          `[GenericError] internal retrieveLicences duration: ${
+            endTime - startTime
+          }, Error: ${res}`,
         );
 
         return handleInternalErrorResponse(
