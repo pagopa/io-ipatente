@@ -5,7 +5,6 @@ export const retrieveLicences = async (
   token: string,
   fiscalCode: string,
 ) => {
-  const startTime = new Date().getTime();
   try {
     return await getExternalApiClient().getPuntiPatente({
       headers: {
@@ -15,12 +14,9 @@ export const retrieveLicences = async (
       },
     });
   } catch (error) {
-    const endTime = new Date().getTime();
     // eslint-disable-next-line no-console
     console.error(
-      `An Error has occurred while retrieving licences, caused by: ${error} , [catch] getPuntiPatente duration: ${
-        endTime - startTime
-      }`,
+      `An Error has occurred while retrieving licences, caused by: ${error}`,
     );
     return error;
   }
