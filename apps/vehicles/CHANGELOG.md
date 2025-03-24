@@ -1,5 +1,11 @@
 # vehicles
 
+## 1.0.4
+
+### Patch Changes
+
+- 7c891fe: bump next to 14.2.25
+
 ## 1.0.3
 
 ### Patch Changes
