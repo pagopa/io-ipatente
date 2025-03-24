@@ -16,8 +16,7 @@ export const retrieveLicences = async (
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(
-      `An Error has occurred while retrieving licences, caused by: `,
-      error,
+      `An Error has occurred while retrieving licences, caused by: ${error}`,
     );
     return error;
   }

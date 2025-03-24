@@ -18,12 +18,14 @@ export const dynamic = "force-dynamic";
 export const GET = auth(
   withTestUserAndVoucherInternalHandler(
     async (_request: Request, { additionalDataJWS, testUser, voucher }) => {
+      const startTime = new Date().getTime();
       try {
         const res = await retrieveLicences(
           additionalDataJWS,
           voucher.access_token,
           testUser,
         );
+        const endTime = new Date().getTime();
 
         const licences = Patenti.safeParse(res);
 
@@ -32,6 +34,11 @@ export const GET = auth(
         }
 
         if (res instanceof AxiosError) {
+          console.error(
+            `LoadTest [AxiosError] internal retrieveLicences duration: ${
+              endTime - startTime
+            } Status: ${res.status} Cause: ${res.cause},`,
+          );
           return NextResponse.json(
             { detail: res.message, status: res.status },
             { status: res.status },
@@ -41,6 +48,12 @@ export const GET = auth(
         if (res instanceof ZodiosError) {
           return handleBadRequestErrorResponse(res.message);
         }
+
+        console.error(
+          `LoadTest [GenericError] internal retrieveLicences duration: ${
+            endTime - startTime
+          }, Error: ${res}`,
+        );
 
         return handleInternalErrorResponse(
           "InternalLicencesRetrieveError",

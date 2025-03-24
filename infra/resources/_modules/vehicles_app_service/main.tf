@@ -3,8 +3,8 @@
 #################
 
 module "vehicles" {
-  source  = "pagopa/dx-azure-app-service/azurerm"
-  version = "~> 0"
+  source  = "pagopa-dx/azure-app-service/azurerm"
+  version = "~> 0.0"
 
   environment = {
     prefix          = var.prefix
@@ -39,8 +39,8 @@ module "vehicles" {
 }
 
 module "vehicles_app_service_roles" {
-  source  = "pagopa/dx-azure-role-assignments/azurerm"
-  version = "~> 0"
+  source  = "pagopa-dx/azure-role-assignments/azurerm"
+  version = "~> 0.0"
 
   principal_id = module.vehicles.app_service.app_service.principal_id
   key_vault = [
@@ -55,8 +55,8 @@ module "vehicles_app_service_roles" {
 }
 
 module "vehicles_app_service_staging_roles" {
-  source  = "pagopa/dx-azure-role-assignments/azurerm"
-  version = "~> 0"
+  source  = "pagopa-dx/azure-role-assignments/azurerm"
+  version = "~> 0.0"
 
   principal_id = module.vehicles.app_service.app_service.slot.principal_id
   key_vault = [

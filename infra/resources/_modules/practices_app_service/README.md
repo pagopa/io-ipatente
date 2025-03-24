@@ -13,10 +13,10 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_practices"></a> [practices](#module\_practices) | pagopa/dx-azure-app-service/azurerm | ~> 0 |
-| <a name="module_practices_app_service_autoscaler"></a> [practices\_app\_service\_autoscaler](#module\_practices\_app\_service\_autoscaler) | pagopa/dx-azure-app-service-plan-autoscaler/azurerm | ~> 0.0 |
-| <a name="module_practices_app_service_roles"></a> [practices\_app\_service\_roles](#module\_practices\_app\_service\_roles) | pagopa/dx-azure-role-assignments/azurerm | ~> 0 |
-| <a name="module_practices_app_service_staging_roles"></a> [practices\_app\_service\_staging\_roles](#module\_practices\_app\_service\_staging\_roles) | pagopa/dx-azure-role-assignments/azurerm | ~> 0 |
+| <a name="module_practices"></a> [practices](#module\_practices) | pagopa-dx/azure-app-service/azurerm | ~> 0.0 |
+| <a name="module_practices_app_service_autoscaler"></a> [practices\_app\_service\_autoscaler](#module\_practices\_app\_service\_autoscaler) | pagopa-dx/azure-app-service-plan-autoscaler/azurerm | ~> 0.0 |
+| <a name="module_practices_app_service_roles"></a> [practices\_app\_service\_roles](#module\_practices\_app\_service\_roles) | pagopa-dx/azure-role-assignments/azurerm | ~> 0.0 |
+| <a name="module_practices_app_service_staging_roles"></a> [practices\_app\_service\_staging\_roles](#module\_practices\_app\_service\_staging\_roles) | pagopa-dx/azure-role-assignments/azurerm | ~> 0.0 |
 
 ## Resources
 

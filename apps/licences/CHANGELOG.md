@@ -1,5 +1,21 @@
 # io-ipatente-licences
 
+## 1.0.4
+
+### Patch Changes
+
+- 3a20285: add internal get voucher route
+
+## 1.0.3
+
+### Patch Changes
+
+- 95cc1bb: add duration logs
+- 914cd49: refactor duplication
+- Updated dependencies [914cd49]
+  - @io-ipatente/core@0.6.2
+  - @io-ipatente/ui@0.9.2
+
 ## 1.0.2
 
 ### Patch Changes
