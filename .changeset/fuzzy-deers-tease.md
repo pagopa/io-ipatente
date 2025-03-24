@@ -1,6 +1,6 @@
 ---
 "io-ipatente-practices": patch
-"io-ipatente-licences": patch
+"io-ipatente-licences": minor
 "io-ipatente-payments": patch
 "io-ipatente-vehicles": patch
 "@io-ipatente/ui": patch
