@@ -1,5 +1,11 @@
 # io-ipatente-licences
 
+## 1.0.5
+
+### Patch Changes
+
+- 7c891fe: bump next to 14.2.25
+
 ## 1.0.4
 
 ### Patch Changes
