@@ -1,5 +1,11 @@
 # io-ipatente-licences
 
+## 1.0.4
+
+### Patch Changes
+
+- 3a20285: add internal get voucher route
+
 ## 1.0.3
 
 ### Patch Changes
