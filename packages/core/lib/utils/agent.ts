@@ -24,7 +24,6 @@ export const getKeepAliveAxiosConfig = (): {
         maxFreeSockets: FETCH_KEEPALIVE_MAX_FREE_SOCKETS,
         maxSockets: FETCH_KEEPALIVE_MAX_SOCKETS,
       }),
-      maxBodyLength: Infinity,
       maxContentLength: Infinity,
       timeout: FETCH_KEEPALIVE_TIMEOUT,
     },
