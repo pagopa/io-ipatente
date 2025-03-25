@@ -1,5 +1,14 @@
 # io-ipatente-practices
 
+## 1.0.5
+
+### Patch Changes
+
+- 838ac09: Add favicon
+- Updated dependencies [e516e10]
+- Updated dependencies [838ac09]
+  - @io-ipatente/core@0.6.3
+
 ## 1.0.4
 
 ### Patch Changes
