@@ -3,9 +3,9 @@ import { Head, Html, Main, NextScript } from "next/document";
 const Document = () => (
   <Html lang="it">
     <Head>
-      <link rel="icon" href="/favicon.ico" sizes="32x32" />
-      <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-      <link rel="apple-touch-icon" href="/apple-icon.png" />
+      <link href="/favicon.ico" rel="icon" sizes="32x32" />
+      <link href="/icon.svg" rel="icon" type="image/svg+xml" />
+      <link href="/apple-icon.png" rel="apple-touch-icon" />
     </Head>
     <body>
       <Main />
