@@ -1,5 +1,15 @@
 # io-ipatente-licences
 
+## 1.0.6
+
+### Patch Changes
+
+- 9fa7308: ad internal withou voucher puntiPatente
+- 838ac09: Add favicon
+- Updated dependencies [e516e10]
+- Updated dependencies [838ac09]
+  - @io-ipatente/core@0.6.3
+
 ## 1.0.5
 
 ### Patch Changes
