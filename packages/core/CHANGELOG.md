@@ -1,5 +1,12 @@
 # @io-ipatente/core
 
+## 0.6.3
+
+### Patch Changes
+
+- e516e10: update axios config
+- 838ac09: Add favicon
+
 ## 0.6.2
 
 ### Patch Changes

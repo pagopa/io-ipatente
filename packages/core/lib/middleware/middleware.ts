@@ -52,13 +52,11 @@ const handleRequest: AuthRouteHandler = (request) => {
     return NextResponse.rewrite(signinUrl);
   }
 
-  // If the URL is targeting the FIMS callback URL, continue the process
-  if (request.nextUrl.pathname === FIMS_CALLBACK_URL) {
-    return NextResponse.next();
-  }
-
-  // If the URL is targeting the consent page, continue the process
-  if (request.nextUrl.pathname === CONSENT_URL) {
+  // If the URL is targeting the callback URL or the consent page, continue the process
+  if (
+    request.nextUrl.pathname === CONSENT_URL ||
+    request.nextUrl.pathname === FIMS_CALLBACK_URL
+  ) {
     return NextResponse.next();
   }
 
