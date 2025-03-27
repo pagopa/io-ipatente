@@ -14,5 +14,4 @@ export const usePayments = <TData = Pagamento[]>(
     queryFn: () => fetchPayments(),
     queryKey: ["payments"],
     select,
-    staleTime: 3 * 60 * 1000, // 3 minutes
   });

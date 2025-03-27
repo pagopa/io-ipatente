@@ -137,7 +137,7 @@ const Items = ({ items }: CardInfoItemsProps) => (
             data-testid={`${DATA_TEST_ID_PREFIX}-item-${index}-footer-text`}
             marginTop={1.5}
             variant="caption"
-          ></Typography>
+          />
         )}
         {index < items.length - 1 ? <Divider /> : null}
       </React.Fragment>

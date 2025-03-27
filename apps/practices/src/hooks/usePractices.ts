@@ -14,5 +14,4 @@ export const usePractices = <TData = Pratica[]>(
     queryFn: () => fetchPractices(),
     queryKey: ["practices"],
     select,
-    staleTime: 3 * 60 * 1000, // 3 minutes
   });
