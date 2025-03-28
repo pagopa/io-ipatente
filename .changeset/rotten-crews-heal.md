@@ -1,5 +1,5 @@
 ---
-"io-ipatente-licences": minor
+"io-ipatente-licences": patch
 "@io-ipatente/core": patch
 ---
 
