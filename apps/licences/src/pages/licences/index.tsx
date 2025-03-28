@@ -1,10 +1,9 @@
 import AppLayout from "@/components/layouts/AppLayout";
 import { ListItemLicence } from "@/components/licences/ListItemLicence";
 import { GenericError } from "@/components/shared/GenericError";
-import { fetchLicences, useLicences } from "@/hooks/useLicences";
+import { useLicences } from "@/hooks/useLicences";
 import { EmptyState, ListItemAction } from "@io-ipatente/ui";
 import Stack from "@mui/material/Stack";
-import { QueryClient, dehydrate } from "@tanstack/react-query";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
@@ -87,40 +86,8 @@ Licences.getLayout = ({ page, t }: GetLayoutProps) => (
   </AppLayout>
 );
 
-export const getServerSideProps = (async ({ locale }) => {
-  const queryClient = new QueryClient();
-
-  try {
-    const { datiPatente = [], datiPatenteCqc = [] } =
-      await queryClient.fetchQuery({
-        queryFn: () => fetchLicences(),
-        queryKey: ["licences"],
-      });
-
-    const totalLicences = datiPatente.length + datiPatenteCqc.length;
-    // Redirect to the licence page if there is only one licence
-    if (totalLicences === 1) {
-      return {
-        redirect: {
-          destination: `/licences/${
-            datiPatente.length === 1
-              ? datiPatente[0].numeroPatente
-              : datiPatenteCqc[0].numeroPatente
-          }`,
-          permanent: false,
-        },
-      };
-    }
-
-    return {
-      props: {
-        ...(await serverSideTranslations(locale as string, ["common"])),
-        dehydratedState: dehydrate(queryClient),
-      },
-    };
-  } catch (error) {
-    return {
-      props: {},
-    };
-  }
-}) satisfies GetServerSideProps;
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale as string, ["common"])),
+  },
+});
