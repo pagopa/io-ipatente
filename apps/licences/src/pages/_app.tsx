@@ -3,11 +3,7 @@ import type { AppProps } from "next/app";
 import { DialogProvider, theme } from "@io-ipatente/ui";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
-import {
-  HydrationBoundary,
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { NextPage } from "next";
 import { Router } from "next/router";
@@ -57,11 +53,9 @@ const App = ({ Component, pageProps, router }: AppPropsWithLayout) => {
       <ThemeProvider theme={theme}>
         <DialogProvider>
           <QueryClientProvider client={queryClient}>
-            <HydrationBoundary state={pageProps.dehydratedState}>
-              {getLayout({ page: <Component {...pageProps} />, router, t })}
-              <CssBaseline />
-              <ReactQueryDevtools initialIsOpen={false} />
-            </HydrationBoundary>
+            {getLayout({ page: <Component {...pageProps} />, router, t })}
+            <CssBaseline />
+            <ReactQueryDevtools initialIsOpen={false} />
           </QueryClientProvider>
         </DialogProvider>
       </ThemeProvider>
