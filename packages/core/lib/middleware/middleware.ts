@@ -18,14 +18,13 @@ const withDevMode =
     const { DEV_MODE } = getConfiguration();
 
     if (DEV_MODE) {
-      // If the user is not authenticated, redirect them to the sign-in page
-      if (!request.auth) {
-        return NextResponse.rewrite(
-          new URL(SIGNIN_URL, request.nextUrl.origin),
-        );
+      // If the URL is targeting the callback URL or if the user
+      // is already authenticated, continue the process.
+      if (request.nextUrl.pathname === FIMS_CALLBACK_URL || request.auth) {
+        return NextResponse.next();
       }
-
-      return NextResponse.next();
+      // If the user is not authenticated, redirect them to the sign-in page.
+      return NextResponse.rewrite(new URL(SIGNIN_URL, request.nextUrl.origin));
     }
 
     return middleware(request, ctx);
