@@ -1,5 +1,12 @@
 # @io-ipatente/core
 
+## 0.6.4
+
+### Patch Changes
+
+- 79dde6c: patch middleware
+- 44f7fda: Revert: Redirect users to license details
+
 ## 0.6.3
 
 ### Patch Changes
