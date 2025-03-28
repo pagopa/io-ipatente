@@ -62,7 +62,10 @@ const handleRequest: AuthRouteHandler = (request) => {
 
   // If the cookie `io-ipatente-consent` is NOT present, redirect to the consent page
   if (!request.cookies.has("io-ipatente-consent")) {
-    return NextResponse.redirect(new URL(CONSENT_URL, request.nextUrl.origin));
+    const url = new URL(CONSENT_URL, request.nextUrl.origin);
+    // Add redirect URL to allow the consent page to redirect to the original URL after user consent
+    url.searchParams.set("redirect-url", request.url);
+    return NextResponse.redirect(url);
   }
 
   return NextResponse.next();

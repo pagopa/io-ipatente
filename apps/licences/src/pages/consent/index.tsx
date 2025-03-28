@@ -11,9 +11,11 @@ export default function Consent() {
   const { t } = useTranslation();
   const router = useRouter();
 
+  const redirectUrl = router.query["redirect-url"] as string;
+
   const onConfirm = useCallback(() => {
     document.cookie = "io-ipatente-consent=true; expires=0; path=/";
-    router.replace("/licences");
+    router.replace(redirectUrl ?? "/licences");
   }, [router]);
 
   const onCancel = useCallback(() => {
