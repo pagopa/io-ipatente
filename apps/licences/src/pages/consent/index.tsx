@@ -20,7 +20,7 @@ export default function Consent() {
     document.cookie = "io-ipatente-consent=true; expires=0; path=/";
     const url = isValidRedirectPath(redirectPath) ? redirectPath : "/licences";
     router.replace(url);
-  }, [router]);
+  }, [redirectPath, router]);
 
   const onCancel = useCallback(() => {
     window.location.href = CANCEL_CALLBACK_URL;
