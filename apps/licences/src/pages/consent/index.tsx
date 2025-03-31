@@ -7,15 +7,19 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useCallback } from "react";
 
+const isValidRedirectPath = (path: string) =>
+  path.startsWith("/") && !path.includes("://");
+
 export default function Consent() {
   const { t } = useTranslation();
   const router = useRouter();
 
-  const redirectUrl = router.query["redirect-url"] as string;
+  const redirectPath = router.query.redirectPath as string;
 
   const onConfirm = useCallback(() => {
     document.cookie = "io-ipatente-consent=true; expires=0; path=/";
-    router.replace(redirectUrl ?? "/licences");
+    const url = isValidRedirectPath(redirectPath) ? redirectPath : "/licences";
+    router.replace(url);
   }, [router]);
 
   const onCancel = useCallback(() => {

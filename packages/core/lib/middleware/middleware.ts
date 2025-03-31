@@ -31,10 +31,10 @@ const withDevMode =
   };
 
 const handleRequest: AuthRouteHandler = (request) => {
-  // Check if the request is coming from the native flow
+  // Check if the request is coming from a native (non-browser) context
   if (!isBrowserContext(request)) {
-    // If the request is from the native flow and targets the FIMS callback URL,
-    // redirect it to the cookie callback URL by adding the cookies as query parameters
+    // If the request comes from a native context and targets the FIMS callback URL,
+    // redirect it to the cookie callback URL, appending cookies as query parameters.
     if (request.nextUrl.pathname === FIMS_CALLBACK_URL) {
       const redirectUrl = request.nextUrl;
       redirectUrl.pathname = FIMS_CALLBACK_COOKIES_URL;
@@ -46,13 +46,13 @@ const handleRequest: AuthRouteHandler = (request) => {
       return NextResponse.redirect(redirectUrl);
     }
 
-    // If the request comes from the native flow and the user is not authenticated,
-    // redirect them to the sign-in page
+    // If the request comes from a native context and the user is not authenticated,
+    // redirect them to the sign-in page.
     const signinUrl = new URL(SIGNIN_URL, request.nextUrl.origin);
     return NextResponse.rewrite(signinUrl);
   }
 
-  // If the URL is targeting the callback URL or the consent page, continue the process
+  // Allow the request to proceed if it targets the consent page or the callback URL.
   if (
     request.nextUrl.pathname === CONSENT_URL ||
     request.nextUrl.pathname === FIMS_CALLBACK_URL
@@ -60,11 +60,15 @@ const handleRequest: AuthRouteHandler = (request) => {
     return NextResponse.next();
   }
 
-  // If the cookie `io-ipatente-consent` is NOT present, redirect to the consent page
+  // If the "io-ipatente-consent" cookie is missing, redirect the user to the consent page.
   if (!request.cookies.has("io-ipatente-consent")) {
     const url = new URL(CONSENT_URL, request.nextUrl.origin);
-    // Add redirect URL to allow the consent page to redirect to the original URL after user consent
-    url.searchParams.set("redirect-url", request.url);
+    // Append the original path as a query parameter so that, after giving consent,
+    // the user can be redirected back to their original destination.
+    url.searchParams.set(
+      "redirectPath",
+      request.nextUrl.pathname + request.nextUrl.search,
+    );
     return NextResponse.redirect(url);
   }
 
