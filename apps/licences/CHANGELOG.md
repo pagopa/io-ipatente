@@ -1,5 +1,24 @@
 # io-ipatente-licences
 
+## 1.1.0
+
+### Minor Changes
+
+- 1392343: Redirect users to license details if they have only one license
+- eaa0ae2: manage redirect URL after consent page
+
+### Patch Changes
+
+- 61e92bb: add logs for axios error
+- 44f7fda: Revert: Redirect users to license details
+- 1958b51: Bump vite from 5.4.10 to 5.4.15, bump vitest from 2.1.3 to 2.1.9, bump axios from 1.7.7 to 1.8.4
+- Updated dependencies [79dde6c]
+- Updated dependencies [1392343]
+- Updated dependencies [44f7fda]
+- Updated dependencies [eaa0ae2]
+  - @io-ipatente/core@0.7.0
+  - @io-ipatente/ui@0.9.3
+
 ## 1.0.6
 
 ### Patch Changes

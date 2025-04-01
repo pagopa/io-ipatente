@@ -1,5 +1,16 @@
 # @io-ipatente/core
 
+## 0.7.0
+
+### Minor Changes
+
+- eaa0ae2: manage redirect URL after consent page
+
+### Patch Changes
+
+- 79dde6c: patch middleware
+- 44f7fda: Revert: Redirect users to license details
+
 ## 0.6.3
 
 ### Patch Changes
