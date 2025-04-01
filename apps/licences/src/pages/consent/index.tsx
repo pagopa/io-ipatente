@@ -1,4 +1,8 @@
-import { CANCEL_CALLBACK_URL, getConfiguration } from "@io-ipatente/core";
+import {
+  CANCEL_CALLBACK_URL,
+  getConfiguration,
+  sanitizeRedirectPath,
+} from "@io-ipatente/core";
 import { ConsentView } from "@io-ipatente/ui";
 import Box from "@mui/material/Box";
 import { GetServerSideProps } from "next";
@@ -7,14 +11,19 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useCallback } from "react";
 
+const { APP_URL } = getConfiguration();
+
 export default function Consent() {
   const { t } = useTranslation();
   const router = useRouter();
 
+  const redirectPath = router.query.redirectPath as string;
+
   const onConfirm = useCallback(() => {
     document.cookie = "io-ipatente-consent=true; expires=0; path=/";
-    router.replace("/licences");
-  }, [router]);
+    const url = sanitizeRedirectPath(APP_URL, redirectPath) ?? "/licences";
+    router.replace(url);
+  }, [redirectPath, router]);
 
   const onCancel = useCallback(() => {
     window.location.href = CANCEL_CALLBACK_URL;
