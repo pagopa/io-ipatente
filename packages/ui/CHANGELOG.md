@@ -1,5 +1,11 @@
 # @io-ipatente/ui
 
+## 0.9.3
+
+### Patch Changes
+
+- 1392343: Redirect users to license details if they have only one license
+
 ## 0.9.2
 
 ### Patch Changes
