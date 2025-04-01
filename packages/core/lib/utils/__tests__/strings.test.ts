@@ -1,4 +1,5 @@
 import { describe, expect, test } from "vitest";
+
 import { sanitizeRedirectPath } from "../strings";
 
 describe("sanitizeRedirectPath", () => {
@@ -28,7 +29,7 @@ describe("sanitizeRedirectPath", () => {
   });
 
   test("Should return null for an invalid URL", () => {
-    const redirectPath = "javascript:alert('hacked!')";
+    const redirectPath = "AAAAA:alert('Hi!')";
     const result = sanitizeRedirectPath(origin, redirectPath);
 
     expect(result).toBeNull();
