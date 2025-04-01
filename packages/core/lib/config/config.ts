@@ -1,4 +1,6 @@
 export interface Configuration {
+  APP_URL: string;
+
   // Backend for Frontend
   BFF_API_BASE_PATH: string;
   BFF_API_BASE_URL: string;
@@ -56,6 +58,8 @@ export interface Configuration {
 }
 
 export const getConfiguration = (): Configuration => ({
+  APP_URL: process.env.NEXT_PUBLIC_APP_URL as string,
+
   BFF_API_BASE_PATH: process.env.NEXT_PUBLIC_BFF_API_BASE_PATH as string,
   BFF_API_BASE_URL: process.env.NEXT_PUBLIC_BFF_API_BASE_URL as string,
   BFF_API_MOCKING: process.env.NEXT_PUBLIC_BFF_API_MOCKING === "true",
