@@ -35,9 +35,11 @@ export const GET = auth(
 
         if (res instanceof AxiosError) {
           console.error(
-            `LoadTest [AxiosError] internal retrieveLicences duration: ${
-              endTime - startTime
-            } Status: ${res.status} Cause: ${res.cause},`,
+            `LoadTest [AxiosError] internal retrieveLicences: TestUser: ${testUser}  Status: ${
+              res.status
+            } , Code: ${res.code} , Message:${res.message} , Cause: ${
+              res.cause
+            } , Response :${JSON.stringify(res.response?.data)}`,
           );
           return NextResponse.json(
             { detail: res.message, status: res.status },

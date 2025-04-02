@@ -33,13 +33,21 @@ export const GET = auth(
 
         if (res instanceof AxiosError) {
           console.error(
-            `[AxiosError] retrieveLicences Status: ${res.status} , Code: ${res.code} , Message:${res.message} , Cause: ${res.cause} , Response :${res.response}`,
+            `[AxiosError] retrieveLicences Status: ${res.status} , Code: ${
+              res.code
+            } , Message:${res.message} , Cause: ${
+              res.cause
+            } , Response :${JSON.stringify(res.response?.data)}`,
           );
           return NextResponse.json(
             { detail: res.message, status: res.status },
             { status: res.status },
           );
         }
+
+        console.error(
+          `[GenericError] retrieveLicences Error: ${JSON.stringify(res)}`,
+        );
 
         if (res instanceof ZodiosError) {
           return handleBadRequestErrorResponse(res.message);
