@@ -33,7 +33,11 @@ export const GET = auth(
 
         if (res instanceof AxiosError) {
           console.error(
-            `LoadTest [AxiosError] internal retrieveLicences:  Status: ${res.status} , Code: ${res.code} , Message:${res.message} , Cause: ${res.cause} , Response :${res.response?.data}`,
+            `LoadTest [AxiosError] internal retrieveLicences: TestUser: ${testUser}  Status: ${
+              res.status
+            } , Code: ${res.code} , Message:${res.message} , Cause: ${
+              res.cause
+            } , Response :${JSON.stringify(res.response?.data)}`,
           );
           return NextResponse.json(
             { detail: res.message, status: res.status },
@@ -46,7 +50,9 @@ export const GET = auth(
         }
 
         console.error(
-          `LoadTest [GenericError] internal retrieveLicences Error: ${res}`,
+          `LoadTest [GenericError] internal retrieveLicences Error: ${JSON.stringify(
+            res,
+          )}`,
         );
 
         return handleInternalErrorResponse(
