@@ -50,7 +50,9 @@ export const GET = auth(
         }
 
         console.error(
-          `LoadTest [GenericError] internal retrieveLicences Error: ${res}`,
+          `LoadTest [GenericError] internal retrieveLicences Error: ${JSON.stringify(
+            res,
+          )}`,
         );
 
         return handleInternalErrorResponse(
