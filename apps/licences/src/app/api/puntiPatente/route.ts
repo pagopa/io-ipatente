@@ -41,6 +41,8 @@ export const GET = auth(
           );
         }
 
+        console.error(`[GenericError] retrieveLicences Error: ${res}`);
+
         if (res instanceof ZodiosError) {
           return handleBadRequestErrorResponse(res.message);
         }
