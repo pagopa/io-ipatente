@@ -1,5 +1,11 @@
 # io-ipatente-licences
 
+## 1.1.1
+
+### Patch Changes
+
+- 596b1dd: same log internal-prod
+
 ## 1.1.0
 
 ### Minor Changes
