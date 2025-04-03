@@ -1,5 +1,11 @@
 # vehicles
 
+## 1.0.8
+
+### Patch Changes
+
+- 3afafea: internal voucher
+
 ## 1.0.7
 
 ### Patch Changes
