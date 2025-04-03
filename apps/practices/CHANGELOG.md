@@ -1,5 +1,13 @@
 # io-ipatente-practices
 
+## 1.0.7
+
+### Patch Changes
+
+- b45e44c: Renovate Bump vitest from 2.1.3 to 2.1.9
+- 7bd7274: Renovate Bump axios from 1.7.7 to 1.8.2
+- 816aaa8: Renovate Bump vite from 5.4.10 to 5.4.16
+
 ## 1.0.6
 
 ### Patch Changes
