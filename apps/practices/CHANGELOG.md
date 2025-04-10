@@ -1,5 +1,11 @@
 # io-ipatente-practices
 
+## 1.0.8
+
+### Patch Changes
+
+- ee67202: update appinsight
+
 ## 1.0.7
 
 ### Patch Changes
