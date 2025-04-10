@@ -1,5 +1,11 @@
 # io-ipatente-licences
 
+## 1.1.3
+
+### Patch Changes
+
+- 895c722: Update applicationinsights to 3.6.0 for licences
+
 ## 1.1.2
 
 ### Patch Changes
