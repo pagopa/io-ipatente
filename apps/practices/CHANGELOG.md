@@ -1,5 +1,11 @@
 # io-ipatente-practices
 
+## 1.0.9
+
+### Patch Changes
+
+- a1b45a0: fix stack traces in logs
+
 ## 1.0.8
 
 ### Patch Changes
