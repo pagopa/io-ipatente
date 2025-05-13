@@ -16,8 +16,7 @@ export const retrievePractices = async (
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(
-      `An Error has occurred while retrieving practices, caused by: `,
-      error,
+      `An Error has occurred while retrieving practices, caused by: ${error}`,
     );
     return error;
   }

@@ -16,8 +16,7 @@ export const retrievePayments = async (
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(
-      `An Error has occurred while retrieving payments, caused by: `,
-      error,
+      `An Error has occurred while retrieving payments, caused by: ${error}`,
     );
     return error;
   }
@@ -43,8 +42,7 @@ export const retrievePaymentReceipt = async (
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(
-      `An Error has occurred while retrieving payment receipt, caused by: `,
-      error,
+      `An Error has occurred while retrieving payment receipt, caused by: ${error}`,
     );
     return error;
   }
