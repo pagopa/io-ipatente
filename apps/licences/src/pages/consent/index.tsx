@@ -22,6 +22,10 @@ export default function Consent() {
   const onConfirm = useCallback(() => {
     document.cookie = "io-ipatente-consent=true; expires=0; path=/";
     const url = sanitizeRedirectPath(APP_URL, redirectPath) ?? "/licences";
+
+    console.log("APP_URL: " + APP_URL);
+    console.log("redirectPath: " + redirectPath);
+    console.log("url: " + url);
     router.replace(url);
   }, [redirectPath, router]);
 
