@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.7.2
+
+### Patch Changes
+
+- cd0c22f: Added debug logs on signin and middleware
+
 ## 0.7.1
 
 ### Patch Changes
