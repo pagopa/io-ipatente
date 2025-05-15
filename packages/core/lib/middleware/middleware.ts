@@ -39,11 +39,12 @@ const handleRequest: AuthRouteHandler = (request) => {
     if (request.nextUrl.pathname === FIMS_CALLBACK_URL) {
       const redirectUrl = request.nextUrl;
       redirectUrl.pathname = FIMS_CALLBACK_COOKIES_URL;
-      request.cookies
-        .getAll()
-        .forEach((cookie) =>
-          redirectUrl.searchParams.set(cookie.name, cookie.value),
+      request.cookies.getAll().forEach((cookie) => {
+        console.log(
+          `[middleware] FIMS_CALLBACK_URL cookie ${cookie.name}, value: ${cookie.value}`,
         );
+        redirectUrl.searchParams.set(cookie.name, cookie.value);
+      });
       return NextResponse.redirect(redirectUrl);
     }
 
