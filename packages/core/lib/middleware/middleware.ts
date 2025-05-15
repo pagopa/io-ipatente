@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { NextRequest, NextResponse, userAgent } from "next/server";
 
 import { getConfiguration } from "../config";
@@ -52,6 +53,10 @@ const handleRequest: AuthRouteHandler = (request) => {
     return NextResponse.rewrite(signinUrl);
   }
 
+  console.log(
+    "[middleware] request.nextUrl.pathname: " + request.nextUrl.pathname,
+  );
+
   // Allow the request to proceed if it targets the consent page or the callback URL.
   if (
     request.nextUrl.pathname === CONSENT_URL ||
@@ -62,13 +67,27 @@ const handleRequest: AuthRouteHandler = (request) => {
 
   // If the "io-ipatente-consent" cookie is missing, redirect the user to the consent page.
   if (!request.cookies.has("io-ipatente-consent")) {
+    console.log(
+      "[middleware] No io-ipatente-consent, redirect to consent page",
+    );
     const url = new URL(CONSENT_URL, request.nextUrl.origin);
     // Append the original path as a query parameter so that, after giving consent,
     // the user can be redirected back to their original destination.
+    console.log(
+      "[middleware] request.nextUrl.pathname: " + request.nextUrl.pathname,
+    );
+    console.log(
+      "[middleware] request.nextUrl.search: " + request.nextUrl.search,
+    );
+    console.log(
+      "[middleware] request.nextUrl.searchParams: " +
+        request.nextUrl.searchParams,
+    );
     url.searchParams.set(
       "redirectPath",
       request.nextUrl.pathname + request.nextUrl.search,
     );
+    console.log("[middleware] consent url: " + url);
     return NextResponse.redirect(url);
   }
 
