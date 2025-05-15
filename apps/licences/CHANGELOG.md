@@ -1,5 +1,13 @@
 # io-ipatente-licences
 
+## 1.1.4
+
+### Patch Changes
+
+- 6b61165: Added debug logs for auth and consent page
+- Updated dependencies [6b61165]
+  - @io-ipatente/core@0.7.1
+
 ## 1.1.3
 
 ### Patch Changes

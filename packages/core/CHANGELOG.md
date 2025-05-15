@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.7.1
+
+### Patch Changes
+
+- 6b61165: Added debug logs for auth and consent page
+
 ## 0.7.0
 
 ### Minor Changes
