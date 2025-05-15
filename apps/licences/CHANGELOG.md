@@ -1,5 +1,13 @@
 # io-ipatente-licences
 
+## 1.1.5
+
+### Patch Changes
+
+- cd0c22f: Added debug logs on signin and middleware
+- Updated dependencies [cd0c22f]
+  - @io-ipatente/core@0.7.2
+
 ## 1.1.4
 
 ### Patch Changes
