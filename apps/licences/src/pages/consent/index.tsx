@@ -6,6 +6,7 @@ import {
 import { ConsentView } from "@io-ipatente/ui";
 import Box from "@mui/material/Box";
 import { GetServerSideProps } from "next";
+import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -16,6 +17,8 @@ const { APP_URL } = getConfiguration();
 export default function Consent() {
   const { t } = useTranslation();
   const router = useRouter();
+  const searchParams = useSearchParams();
+
   const [redirectPath, setRedirectPath] = useState<string>();
 
   const onConfirm = useCallback(() => {
@@ -36,15 +39,18 @@ export default function Consent() {
 
   useEffect(() => {
     if (router.isReady) {
-      const param = router.query.redirectPath as string;
-      console.log("[consent] router.query.redirectPath: " + param);
-      setRedirectPath(param);
+      console.log(
+        ("[consent] router.query.redirectPath:" +
+          router.query.redirectPath) as string,
+      );
+      setRedirectPath(router.query.redirectPath as string);
     }
-  }, [router.isReady, router.query.redirectPath]);
-
-  useEffect(() => {
-    console.log("[consent] window.location.href: " + window.location.href);
-  }, []);
+    if (searchParams)
+      console.log(
+        "[consent] searchParams redirectPath: " +
+          searchParams.get("redirectPath"),
+      );
+  }, [router.isReady, router.query.redirectPath, searchParams]);
 
   return (
     <Box display="flex" flexDirection="column" height="100vh" padding={3}>
