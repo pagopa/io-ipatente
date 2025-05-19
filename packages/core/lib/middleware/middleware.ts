@@ -39,12 +39,11 @@ const handleRequest: AuthRouteHandler = (request) => {
     if (request.nextUrl.pathname === FIMS_CALLBACK_URL) {
       const redirectUrl = request.nextUrl;
       redirectUrl.pathname = FIMS_CALLBACK_COOKIES_URL;
-      request.cookies.getAll().forEach((cookie) => {
-        console.log(
-          `[middleware] FIMS_CALLBACK_URL cookie ${cookie.name}, value: ${cookie.value}`,
+      request.cookies
+        .getAll()
+        .forEach((cookie) =>
+          redirectUrl.searchParams.set(cookie.name, cookie.value),
         );
-        redirectUrl.searchParams.set(cookie.name, cookie.value);
-      });
       return NextResponse.redirect(redirectUrl);
     }
 
@@ -53,10 +52,6 @@ const handleRequest: AuthRouteHandler = (request) => {
     const signinUrl = new URL(SIGNIN_URL, request.nextUrl.origin);
     return NextResponse.rewrite(signinUrl);
   }
-
-  console.log(
-    "[middleware] request.nextUrl.pathname: " + request.nextUrl.pathname,
-  );
 
   // Allow the request to proceed if it targets the consent page or the callback URL.
   if (
@@ -68,22 +63,9 @@ const handleRequest: AuthRouteHandler = (request) => {
 
   // If the "io-ipatente-consent" cookie is missing, redirect the user to the consent page.
   if (!request.cookies.has("io-ipatente-consent")) {
-    console.log(
-      "[middleware] No io-ipatente-consent, redirect to consent page",
-    );
     const url = new URL(CONSENT_URL, request.nextUrl.origin);
     // Append the original path as a query parameter so that, after giving consent,
     // the user can be redirected back to their original destination.
-    console.log(
-      "[middleware] request.nextUrl.pathname: " + request.nextUrl.pathname,
-    );
-    console.log(
-      "[middleware] request.nextUrl.search: " + request.nextUrl.search,
-    );
-    console.log(
-      "[middleware] request.nextUrl.searchParams: " +
-        request.nextUrl.searchParams,
-    );
     url.searchParams.set(
       "redirectPath",
       request.nextUrl.pathname + request.nextUrl.search,
