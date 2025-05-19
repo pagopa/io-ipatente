@@ -1,5 +1,13 @@
 # io-ipatente-licences
 
+## 1.1.7
+
+### Patch Changes
+
+- 1b05897: Updated redirectPath definition on middleware and usage on consent page
+- Updated dependencies [1b05897]
+  - @io-ipatente/core@0.7.4
+
 ## 1.1.6
 
 ### Patch Changes

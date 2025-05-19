@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.7.4
+
+### Patch Changes
+
+- 1b05897: Updated redirectPath definition on middleware and usage on consent page
+
 ## 0.7.3
 
 ### Patch Changes
