@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.7.3
+
+### Patch Changes
+
+- 008a178: Updated consent page redirect, cleanup logs
+
 ## 0.7.2
 
 ### Patch Changes
