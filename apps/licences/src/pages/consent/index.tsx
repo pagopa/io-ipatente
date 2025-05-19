@@ -9,28 +9,41 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const { APP_URL } = getConfiguration();
 
 export default function Consent() {
   const { t } = useTranslation();
   const router = useRouter();
-
-  const redirectPath = router.query.redirectPath as string;
+  const [redirectPath, setRedirectPath] = useState<string>();
 
   const onConfirm = useCallback(() => {
     document.cookie = "io-ipatente-consent=true; expires=0; path=/";
-    const url = sanitizeRedirectPath(APP_URL, redirectPath) ?? "/licences";
+    const url =
+      sanitizeRedirectPath(APP_URL, redirectPath ?? "") ?? "/licences";
 
-    console.log("APP_URL: " + APP_URL);
-    console.log("redirectPath: " + redirectPath);
-    console.log("url: " + url);
+    console.log(
+      `[consent] sanitizeRedirectPath: ${APP_URL}, ${redirectPath} => ${url}`,
+    );
+
     router.replace(url);
   }, [redirectPath, router]);
 
   const onCancel = useCallback(() => {
     window.location.href = CANCEL_CALLBACK_URL;
+  }, []);
+
+  useEffect(() => {
+    if (router.isReady) {
+      const param = router.query.redirectPath as string;
+      console.log("[consent] router.query.redirectPath: " + param);
+      setRedirectPath(param);
+    }
+  }, [router.isReady, router.query.redirectPath]);
+
+  useEffect(() => {
+    console.log("[consent] window.location.href: " + window.location.href);
   }, []);
 
   return (
