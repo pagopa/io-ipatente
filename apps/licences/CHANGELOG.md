@@ -1,5 +1,13 @@
 # io-ipatente-licences
 
+## 1.1.6
+
+### Patch Changes
+
+- 008a178: Updated consent page redirect, cleanup logs
+- Updated dependencies [008a178]
+  - @io-ipatente/core@0.7.3
+
 ## 1.1.5
 
 ### Patch Changes
