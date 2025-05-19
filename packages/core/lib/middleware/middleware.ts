@@ -63,14 +63,16 @@ const handleRequest: AuthRouteHandler = (request) => {
 
   // If the "io-ipatente-consent" cookie is missing, redirect the user to the consent page.
   if (!request.cookies.has("io-ipatente-consent")) {
-    const url = new URL(CONSENT_URL, request.nextUrl.origin);
     // Append the original path as a query parameter so that, after giving consent,
     // the user can be redirected back to their original destination.
-    url.searchParams.set(
-      "redirectPath",
-      request.nextUrl.pathname + request.nextUrl.search,
-    );
-    console.log("[middleware] consent url: " + url);
+    const url =
+      request.nextUrl.origin +
+      CONSENT_URL +
+      "?redirectPath=" +
+      request.nextUrl.pathname;
+
+    console.log("[middleware] consent string url: " + url);
+
     return NextResponse.redirect(url);
   }
 
