@@ -6,7 +6,6 @@ import {
 import { ConsentView } from "@io-ipatente/ui";
 import Box from "@mui/material/Box";
 import { GetServerSideProps } from "next";
-import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -17,14 +16,13 @@ const { APP_URL } = getConfiguration();
 export default function Consent() {
   const { t } = useTranslation();
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   const [redirectPath, setRedirectPath] = useState<string>();
 
   const onConfirm = useCallback(() => {
     document.cookie = "io-ipatente-consent=true; expires=0; path=/";
     const url =
-      sanitizeRedirectPath(APP_URL, redirectPath ?? "") ?? "/licences";
+      sanitizeRedirectPath(APP_URL, redirectPath ?? "/licences") ?? "/licences";
 
     console.log(
       `[consent] sanitizeRedirectPath: ${APP_URL}, ${redirectPath} => ${url}`,
@@ -38,19 +36,16 @@ export default function Consent() {
   }, []);
 
   useEffect(() => {
-    if (router.isReady) {
-      console.log(
-        ("[consent] router.query.redirectPath:" +
-          router.query.redirectPath) as string,
-      );
-      setRedirectPath(router.query.redirectPath as string);
+    try {
+      const cookieString = document.cookie;
+      const match = cookieString.match(/(?:^|; )redirectPath=([^;]+)/);
+      const value = match ? decodeURIComponent(match[1]) : undefined;
+      console.log("[consent] redirectPath cookie value: " + value);
+      setRedirectPath(value);
+    } catch (error) {
+      console.log(error);
     }
-    if (searchParams)
-      console.log(
-        "[consent] searchParams redirectPath: " +
-          searchParams.get("redirectPath"),
-      );
-  }, [router.isReady, router.query.redirectPath, searchParams]);
+  }, []);
 
   return (
     <Box display="flex" flexDirection="column" height="100vh" padding={3}>
