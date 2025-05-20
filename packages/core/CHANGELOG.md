@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.7.5
+
+### Patch Changes
+
+- bbc64d4: Added redirectPath cookie on consent page redirection
+
 ## 0.7.4
 
 ### Patch Changes
