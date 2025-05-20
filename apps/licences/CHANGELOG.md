@@ -1,5 +1,13 @@
 # io-ipatente-licences
 
+## 1.1.8
+
+### Patch Changes
+
+- bbc64d4: Added redirectPath cookie on consent page redirection
+- Updated dependencies [bbc64d4]
+  - @io-ipatente/core@0.7.5
+
 ## 1.1.7
 
 ### Patch Changes
