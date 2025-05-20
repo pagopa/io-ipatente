@@ -63,17 +63,27 @@ const handleRequest: AuthRouteHandler = (request) => {
 
   // If the "io-ipatente-consent" cookie is missing, redirect the user to the consent page.
   if (!request.cookies.has("io-ipatente-consent")) {
-    // Append the original path as a query parameter so that, after giving consent,
-    // the user can be redirected back to their original destination.
-    const url =
-      request.nextUrl.origin +
-      CONSENT_URL +
-      "?redirectPath=" +
-      request.nextUrl.pathname;
+    const url = new URL(CONSENT_URL, request.nextUrl.origin);
 
-    console.log("[middleware] consent string url: " + url);
+    const callBackProtocol =
+      request.headers.get("x-forwarded-proto") ?? request.nextUrl.protocol;
+    const callBackHost =
+      request.headers.get("x-forwarded-host") ?? request.nextUrl.host;
 
-    return NextResponse.redirect(url);
+    const response = NextResponse.redirect(url);
+
+    // Set the original path as cookie so that, after giving consent,
+    // the user can be redirected back to original destination.
+    response.cookies.set("redirectPath", request.nextUrl.pathname, {
+      domain: getConfiguration().IS_PRODUCTION ? callBackHost : "localhost",
+      httpOnly: false, // Must be false to access client side
+      maxAge: 60 * 5, // 5 minutes
+      path: "/",
+      sameSite: "lax",
+      secure: callBackProtocol === "https",
+    });
+
+    return response;
   }
 
   return NextResponse.next();
