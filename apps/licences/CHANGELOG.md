@@ -1,5 +1,11 @@
 # io-ipatente-licences
 
+## 1.1.9
+
+### Patch Changes
+
+- ac5623a: Removed licence status badge on ListItemLicence
+
 ## 1.1.8
 
 ### Patch Changes
