@@ -35,7 +35,7 @@ export const ScrollToTopButton = ({ selector }: ScrollToTopButtonProps) => {
       <Box
         onClick={handleClick}
         role="presentation"
-        sx={{ bottom: 16, position: "fixed", right: 16 }}
+        sx={{ bottom: 16, position: "fixed", right: 16, zIndex: 1 }}
       >
         <FloatingButton color="secondary" icon="expandUp" />
       </Box>
