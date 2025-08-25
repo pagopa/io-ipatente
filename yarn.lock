@@ -241,7 +241,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@azure/monitor-opentelemetry@npm:^1.11.1":
+"@azure/monitor-opentelemetry@npm:1.12.0":
   version: 1.12.0
   resolution: "@azure/monitor-opentelemetry@npm:1.12.0"
   dependencies:
@@ -275,6 +275,43 @@ __metadata:
     "@opentelemetry/winston-transport": "npm:^0.11.0"
     tslib: "npm:^2.8.1"
   checksum: 10c0/c8e6fcaf4e4f2369331de4d7ae424ed48ebacbd75feeaeddbb03f3db4f6f8edc3694f645e2b8486049d26f4f12035a86d3fb0cd39780c0962a7c18d6b287affe
+  languageName: node
+  linkType: hard
+
+"@azure/monitor-opentelemetry@patch:@azure/monitor-opentelemetry@npm%3A1.12.0#~/.yarn/patches/@azure-monitor-opentelemetry-npm-1.12.0-619cbc26e6.patch":
+  version: 1.12.0
+  resolution: "@azure/monitor-opentelemetry@patch:@azure/monitor-opentelemetry@npm%3A1.12.0#~/.yarn/patches/@azure-monitor-opentelemetry-npm-1.12.0-619cbc26e6.patch::version=1.12.0&hash=931f12"
+  dependencies:
+    "@azure/core-auth": "npm:^1.9.0"
+    "@azure/core-client": "npm:^1.9.2"
+    "@azure/core-rest-pipeline": "npm:^1.18.2"
+    "@azure/logger": "npm:^1.1.4"
+    "@azure/monitor-opentelemetry-exporter": "npm:1.0.0-beta.33"
+    "@azure/opentelemetry-instrumentation-azure-sdk": "npm:^1.0.0-beta.7"
+    "@microsoft/applicationinsights-web-snippet": "npm:^1.2.1"
+    "@opentelemetry/api": "npm:^1.9.0"
+    "@opentelemetry/api-logs": "npm:^0.200.0"
+    "@opentelemetry/core": "npm:^2.0.0"
+    "@opentelemetry/instrumentation": "npm:^0.200.0"
+    "@opentelemetry/instrumentation-bunyan": "npm:^0.46.0"
+    "@opentelemetry/instrumentation-http": "npm:^0.200.0"
+    "@opentelemetry/instrumentation-mongodb": "npm:^0.53.0"
+    "@opentelemetry/instrumentation-mysql": "npm:^0.46.0"
+    "@opentelemetry/instrumentation-pg": "npm:^0.52.0"
+    "@opentelemetry/instrumentation-redis": "npm:^0.47.0"
+    "@opentelemetry/instrumentation-redis-4": "npm:^0.47.0"
+    "@opentelemetry/instrumentation-winston": "npm:^0.45.0"
+    "@opentelemetry/resource-detector-azure": "npm:^0.7.0"
+    "@opentelemetry/resources": "npm:^2.0.0"
+    "@opentelemetry/sdk-logs": "npm:^0.200.0"
+    "@opentelemetry/sdk-metrics": "npm:^2.0.0"
+    "@opentelemetry/sdk-node": "npm:^0.200.0"
+    "@opentelemetry/sdk-trace-base": "npm:^2.0.0"
+    "@opentelemetry/sdk-trace-node": "npm:^2.0.0"
+    "@opentelemetry/semantic-conventions": "npm:^1.32.0"
+    "@opentelemetry/winston-transport": "npm:^0.11.0"
+    tslib: "npm:^2.8.1"
+  checksum: 10c0/01c70cb495d52c08f5f9f89b8697c9cfddd18981711f6aa755b19f885368aeae2417f71ebb236ecaa8a4e92af5ecd6ba0658a312d4503646f60218b6a231f1c0
   languageName: node
   linkType: hard
 
