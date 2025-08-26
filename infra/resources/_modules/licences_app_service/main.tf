@@ -27,6 +27,8 @@ module "licences" {
     resource_group_name = var.virtual_network.resource_group_name
   }
 
+  application_insights_connection_string = var.ai_connection_string
+
   app_settings = merge(local.licences.base_app_settings, local.licences.prod_app_setting)
 
   slot_app_settings = merge(local.licences.base_app_settings, local.licences.staging_app_setting)

@@ -1,0 +1,24 @@
+diff --git a/dist/commonjs/types.js b/dist/commonjs/types.js
+index 72b89fbbc04fed43e85cd158b57f0be536a7439d..65403d317812b28d5d115dfd031f1b170fa8f985 100644
+--- a/dist/commonjs/types.js
++++ b/dist/commonjs/types.js
+@@ -21,6 +21,7 @@ exports.AZURE_MONITOR_STATSBEAT_FEATURES = "AZURE_MONITOR_STATSBEAT_FEATURES";
+ exports.AZURE_MONITOR_PREFIX = "AZURE_MONITOR_PREFIX";
+ exports.AZURE_MONITOR_AUTO_ATTACH = "AZURE_MONITOR_AUTO_ATTACH";
+ exports.APPLICATION_INSIGHTS_SHIM_VERSION = "APPLICATION_INSIGHTS_SHIM_VERSION";
++exports.APPLICATIONINSIGHTS_STATSBEAT_ENABLED_PREVIEW = "False";
+ var AttachTypePrefix;
+ (function (AttachTypePrefix) {
+     AttachTypePrefix["INTEGRATED_AUTO"] = "i";
+diff --git a/dist/esm/types.js b/dist/esm/types.js
+index 8e9575d8cceef94b312a5bb7a8fef837ec0965d0..363dd2b6e69c67a88423f5a0c36d50364c2d3ef7 100644
+--- a/dist/esm/types.js
++++ b/dist/esm/types.js
+@@ -18,6 +18,7 @@ export const AZURE_MONITOR_STATSBEAT_FEATURES = "AZURE_MONITOR_STATSBEAT_FEATURE
+ export const AZURE_MONITOR_PREFIX = "AZURE_MONITOR_PREFIX";
+ export const AZURE_MONITOR_AUTO_ATTACH = "AZURE_MONITOR_AUTO_ATTACH";
+ export const APPLICATION_INSIGHTS_SHIM_VERSION = "APPLICATION_INSIGHTS_SHIM_VERSION";
++export const APPLICATIONINSIGHTS_STATSBEAT_ENABLED_PREVIEW = "False";
+ export var AttachTypePrefix;
+ (function (AttachTypePrefix) {
+     AttachTypePrefix["INTEGRATED_AUTO"] = "i";
