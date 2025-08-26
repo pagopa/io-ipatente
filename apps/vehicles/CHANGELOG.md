@@ -1,5 +1,13 @@
 # vehicles
 
+## 1.0.15
+
+### Patch Changes
+
+- 2045137: Added @pagopa/azure-tracing for nextjs app tracing on azure
+- Updated dependencies [09c5d05]
+  - @io-ipatente/ui@0.9.4
+
 ## 1.0.14
 
 ### Patch Changes
