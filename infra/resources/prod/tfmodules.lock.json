@@ -1,22 +1,98 @@
 {
-  "licences_app_service.licences.naming_convention": "5b1d21788783dcf33e17a9842f9f7c874c8c5f736c82e70979eb9c8785a74ce4",
-  "payments_app_service.payments.naming_convention": "5b1d21788783dcf33e17a9842f9f7c874c8c5f736c82e70979eb9c8785a74ce4",
-  "practices_app_service.practices.naming_convention": "5b1d21788783dcf33e17a9842f9f7c874c8c5f736c82e70979eb9c8785a74ce4",
-  "vehicles_app_service.vehicles.naming_convention": "5b1d21788783dcf33e17a9842f9f7c874c8c5f736c82e70979eb9c8785a74ce4",
-  "licences_app_service.licences": "d0d562ff768bfee8c22840875072f94144f80531a0c13986170272443fa7744f",
-  "licences_app_service.licences_app_service_autoscaler": "b1b16764fc57ccf0d91a2375a11719e3dac5fd2a7bf77e12cbc290866deac044",
-  "licences_app_service.licences_app_service_roles": "52ca57b72bdf639846a472014cb2113d519bdc00dc4a642e925b97ad6b99d25c",
-  "licences_app_service.licences_app_service_staging_roles": "52ca57b72bdf639846a472014cb2113d519bdc00dc4a642e925b97ad6b99d25c",
-  "payments_app_service.payments_app_service_autoscaler": "b1b16764fc57ccf0d91a2375a11719e3dac5fd2a7bf77e12cbc290866deac044",
-  "payments_app_service.payments_app_service_roles": "52ca57b72bdf639846a472014cb2113d519bdc00dc4a642e925b97ad6b99d25c",
-  "payments_app_service.payments_app_service_staging_roles": "52ca57b72bdf639846a472014cb2113d519bdc00dc4a642e925b97ad6b99d25c",
-  "practices_app_service.practices_app_service_autoscaler": "b1b16764fc57ccf0d91a2375a11719e3dac5fd2a7bf77e12cbc290866deac044",
-  "practices_app_service.practices_app_service_roles": "52ca57b72bdf639846a472014cb2113d519bdc00dc4a642e925b97ad6b99d25c",
-  "practices_app_service.practices_app_service_staging_roles": "52ca57b72bdf639846a472014cb2113d519bdc00dc4a642e925b97ad6b99d25c",
-  "vehicles_app_service.vehicles_app_service_autoscaler": "b1b16764fc57ccf0d91a2375a11719e3dac5fd2a7bf77e12cbc290866deac044",
-  "vehicles_app_service.vehicles_app_service_roles": "52ca57b72bdf639846a472014cb2113d519bdc00dc4a642e925b97ad6b99d25c",
-  "vehicles_app_service.vehicles_app_service_staging_roles": "52ca57b72bdf639846a472014cb2113d519bdc00dc4a642e925b97ad6b99d25c",
-  "payments_app_service.payments": "d0d562ff768bfee8c22840875072f94144f80531a0c13986170272443fa7744f",
-  "practices_app_service.practices": "d0d562ff768bfee8c22840875072f94144f80531a0c13986170272443fa7744f",
-  "vehicles_app_service.vehicles": "d0d562ff768bfee8c22840875072f94144f80531a0c13986170272443fa7744f"
+  "licences_app_service.licences": {
+    "hash": "cdd72986f914c691abfbd82fef35e18bdecc31e6a7eafbb072af0bf23e4f2b61",
+    "version": "0.2.1",
+    "name": "azure_app_service",
+    "source": "https://registry.terraform.io/modules/pagopa-dx/azure-app-service/azurerm/0.2.1"
+  },
+  "licences_app_service.licences_app_service_autoscaler": {
+    "hash": "b1b16764fc57ccf0d91a2375a11719e3dac5fd2a7bf77e12cbc290866deac044",
+    "version": "0.0.2",
+    "name": "azure_app_service_plan_autoscaler",
+    "source": "https://registry.terraform.io/modules/pagopa-dx/azure-app-service-plan-autoscaler/azurerm/0.0.2"
+  },
+  "licences_app_service.licences_app_service_roles": {
+    "hash": "52ca57b72bdf639846a472014cb2113d519bdc00dc4a642e925b97ad6b99d25c",
+    "version": "0.1.3",
+    "name": "azure_role_assignments",
+    "source": "https://registry.terraform.io/modules/pagopa-dx/azure-role-assignments/azurerm/0.1.3"
+  },
+  "licences_app_service.licences_app_service_staging_roles": {
+    "hash": "52ca57b72bdf639846a472014cb2113d519bdc00dc4a642e925b97ad6b99d25c",
+    "version": "0.1.3",
+    "name": "azure_role_assignments",
+    "source": "https://registry.terraform.io/modules/pagopa-dx/azure-role-assignments/azurerm/0.1.3"
+  },
+  "payments_app_service.payments_app_service_autoscaler": {
+    "hash": "b1b16764fc57ccf0d91a2375a11719e3dac5fd2a7bf77e12cbc290866deac044",
+    "version": "0.0.2",
+    "name": "azure_app_service_plan_autoscaler",
+    "source": "https://registry.terraform.io/modules/pagopa-dx/azure-app-service-plan-autoscaler/azurerm/0.0.2"
+  },
+  "payments_app_service.payments_app_service_roles": {
+    "hash": "52ca57b72bdf639846a472014cb2113d519bdc00dc4a642e925b97ad6b99d25c",
+    "version": "0.1.3",
+    "name": "azure_role_assignments",
+    "source": "https://registry.terraform.io/modules/pagopa-dx/azure-role-assignments/azurerm/0.1.3"
+  },
+  "payments_app_service.payments_app_service_staging_roles": {
+    "hash": "52ca57b72bdf639846a472014cb2113d519bdc00dc4a642e925b97ad6b99d25c",
+    "version": "0.1.3",
+    "name": "azure_role_assignments",
+    "source": "https://registry.terraform.io/modules/pagopa-dx/azure-role-assignments/azurerm/0.1.3"
+  },
+  "practices_app_service.practices_app_service_autoscaler": {
+    "hash": "b1b16764fc57ccf0d91a2375a11719e3dac5fd2a7bf77e12cbc290866deac044",
+    "version": "0.0.2",
+    "name": "azure_app_service_plan_autoscaler",
+    "source": "https://registry.terraform.io/modules/pagopa-dx/azure-app-service-plan-autoscaler/azurerm/0.0.2"
+  },
+  "practices_app_service.practices_app_service_roles": {
+    "hash": "52ca57b72bdf639846a472014cb2113d519bdc00dc4a642e925b97ad6b99d25c",
+    "version": "0.1.3",
+    "name": "azure_role_assignments",
+    "source": "https://registry.terraform.io/modules/pagopa-dx/azure-role-assignments/azurerm/0.1.3"
+  },
+  "practices_app_service.practices_app_service_staging_roles": {
+    "hash": "52ca57b72bdf639846a472014cb2113d519bdc00dc4a642e925b97ad6b99d25c",
+    "version": "0.1.3",
+    "name": "azure_role_assignments",
+    "source": "https://registry.terraform.io/modules/pagopa-dx/azure-role-assignments/azurerm/0.1.3"
+  },
+  "vehicles_app_service.vehicles_app_service_autoscaler": {
+    "hash": "b1b16764fc57ccf0d91a2375a11719e3dac5fd2a7bf77e12cbc290866deac044",
+    "version": "0.0.2",
+    "name": "azure_app_service_plan_autoscaler",
+    "source": "https://registry.terraform.io/modules/pagopa-dx/azure-app-service-plan-autoscaler/azurerm/0.0.2"
+  },
+  "vehicles_app_service.vehicles_app_service_roles": {
+    "hash": "52ca57b72bdf639846a472014cb2113d519bdc00dc4a642e925b97ad6b99d25c",
+    "version": "0.1.3",
+    "name": "azure_role_assignments",
+    "source": "https://registry.terraform.io/modules/pagopa-dx/azure-role-assignments/azurerm/0.1.3"
+  },
+  "vehicles_app_service.vehicles_app_service_staging_roles": {
+    "hash": "52ca57b72bdf639846a472014cb2113d519bdc00dc4a642e925b97ad6b99d25c",
+    "version": "0.1.3",
+    "name": "azure_role_assignments",
+    "source": "https://registry.terraform.io/modules/pagopa-dx/azure-role-assignments/azurerm/0.1.3"
+  },
+  "payments_app_service.payments": {
+    "hash": "cdd72986f914c691abfbd82fef35e18bdecc31e6a7eafbb072af0bf23e4f2b61",
+    "version": "0.2.1",
+    "name": "azure_app_service",
+    "source": "https://registry.terraform.io/modules/pagopa-dx/azure-app-service/azurerm/0.2.1"
+  },
+  "practices_app_service.practices": {
+    "hash": "cdd72986f914c691abfbd82fef35e18bdecc31e6a7eafbb072af0bf23e4f2b61",
+    "version": "0.2.1",
+    "name": "azure_app_service",
+    "source": "https://registry.terraform.io/modules/pagopa-dx/azure-app-service/azurerm/0.2.1"
+  },
+  "vehicles_app_service.vehicles": {
+    "hash": "cdd72986f914c691abfbd82fef35e18bdecc31e6a7eafbb072af0bf23e4f2b61",
+    "version": "0.2.1",
+    "name": "azure_app_service",
+    "source": "https://registry.terraform.io/modules/pagopa-dx/azure-app-service/azurerm/0.2.1"
+  }
 }

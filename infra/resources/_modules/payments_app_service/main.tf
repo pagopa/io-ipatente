@@ -27,6 +27,8 @@ module "payments" {
     resource_group_name = var.virtual_network.resource_group_name
   }
 
+  application_insights_connection_string = var.ai_connection_string
+
   app_settings = merge(local.payments.base_app_settings, local.payments.prod_app_setting)
 
   slot_app_settings = merge(local.payments.base_app_settings, local.payments.staging_app_setting)
