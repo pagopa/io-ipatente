@@ -20,8 +20,8 @@ locals {
   }
 
   apim = {
-    name                = "${local.prefix}-${local.env_short}-apim-v2-api"
-    resource_group_name = "${local.prefix}-${local.env_short}-rg-internal"
+    name                = "${local.prefix}-${local.env_short}-itn-apim-01"
+    resource_group_name = "${local.prefix}-${local.env_short}-itn-common-rg-01"
   }
 
   apim_itn = {
@@ -49,10 +49,6 @@ locals {
 
   repository = {
     name               = "io-ipatente"
-    description        = "iPatente services"
-    topics             = ["io", "ipatente"]
-    reviewers_teams    = ["io-platform-green-unit", "engineering-team-cloud-eng"]
-    app_cd_policy_tags = ["io-ipatente-licences@*", "io-ipatente-payments@*", "io-ipatente-practices@*", "io-ipatente-vehicles@*"]
   }
 
   tags = {
