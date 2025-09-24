@@ -48,7 +48,7 @@ locals {
   }
 
   repository = {
-    name               = "io-ipatente"
+    name = "io-ipatente"
   }
 
   tags = {
