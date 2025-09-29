@@ -131,7 +131,6 @@ export const generateClientAssertion = ({
       }),
     };
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error(
       `An Error has occurred while generating client assertion, caused by: `,
       error,
@@ -175,7 +174,6 @@ export const generateAdditionalDataJWS = ({
 
     return additionalDataJWS;
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error(
       `An Error has occurred while getting additional data JWS, caused by: `,
       error,
@@ -204,7 +202,6 @@ export const getAdditionalPayload = (additionalDataJWS: string) => {
 
     return result;
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error(
       `An Error has occurred while getting additional payload data, caused by: `,
       error,

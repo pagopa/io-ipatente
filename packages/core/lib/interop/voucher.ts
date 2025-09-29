@@ -41,7 +41,6 @@ export const requestVoucher = async (vr: VoucherRequest) => {
     );
     return data;
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error(
       `An Error has occurred while requesting voucher, caused by: `,
       error,
