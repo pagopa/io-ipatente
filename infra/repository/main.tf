@@ -11,5 +11,6 @@ module "github_repository" {
     reviewers_teams    = local.repository.reviewers_teams
     app_cd_policy_tags = local.repository.app_cd_policy_tags
     environments       = ["prod"]
+    jira_boards_ids    = local.repository.jira_boards_ids
   }
 }
