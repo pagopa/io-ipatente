@@ -1,3 +1,5 @@
+import { logger } from "@io-ipatente/logger";
+
 import { getExternalApiClient } from "./client";
 
 export const retrievePractices = async (
@@ -14,8 +16,7 @@ export const retrievePractices = async (
       },
     });
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error(
+    logger.error(
       `An Error has occurred while retrieving practices, caused by: ${error}`,
     );
     return error;
