@@ -1,3 +1,5 @@
+import { logger } from "@io-ipatente/logger";
+
 import { getExternalApiClient } from "./client";
 
 export const retrievePayments = async (
@@ -14,8 +16,7 @@ export const retrievePayments = async (
       },
     });
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error(
+    logger.error(
       `An Error has occurred while retrieving payments, caused by: ${error}`,
     );
     return error;
@@ -40,8 +41,7 @@ export const retrievePaymentReceipt = async (
       },
     });
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error(
+    logger.error(
       `An Error has occurred while retrieving payment receipt, caused by: ${error}`,
     );
     return error;

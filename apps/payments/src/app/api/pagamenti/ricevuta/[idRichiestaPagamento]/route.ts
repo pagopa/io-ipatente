@@ -6,6 +6,7 @@ import {
   handleInternalErrorResponse,
   withJWTAuthAndVoucherHandler,
 } from "@io-ipatente/core";
+import { logger } from "@io-ipatente/logger";
 import { ZodiosError } from "@zodios/core";
 import { AxiosError } from "axios";
 import { NextResponse } from "next/server";
@@ -14,7 +15,7 @@ import { NextResponse } from "next/server";
  * @description Retrieve the payment's receipt
  */
 export const GET = auth(
-  withJWTAuthAndVoucherHandler(
+  withJWTAuthAndVoucherHandler(logger)(
     async (_request: Request, { additionalDataJWS, params, user, voucher }) => {
       try {
         if (
@@ -52,10 +53,9 @@ export const GET = auth(
 
         return handleInternalErrorResponse("PaymentReceiptError", res);
       } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error(
+        logger.error(
           `An Error has occurred while retrieving a payment receipt, caused by: `,
-          error,
+          { error },
         );
         return handleInternalErrorResponse("PaymentReceiptError", error);
       }

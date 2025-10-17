@@ -41,7 +41,7 @@ vi.mock(import("@io-ipatente/core"), async (importOriginal) => {
     ...mod,
     handleBadRequestErrorResponse: vi.fn(),
     handleInternalErrorResponse: vi.fn(),
-    withJWTAuthAndVoucherHandler: (handler) => () =>
+    withJWTAuthAndVoucherHandler: (_) => (handler) => () =>
       handler(mockRequest, {
         additionalDataJWS: "anAdditional",
         params: {

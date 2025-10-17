@@ -6,6 +6,7 @@ import {
   handleInternalErrorResponse,
   withTestUserAndVoucherInternalHandler,
 } from "@io-ipatente/core";
+import { logger } from "@io-ipatente/logger";
 import { ZodiosError } from "@zodios/core";
 import { AxiosError } from "axios";
 import { NextResponse } from "next/server";
@@ -17,7 +18,7 @@ export const dynamic = "force-dynamic";
  * @description Retrieve user payments
  */
 export const GET = auth(
-  withTestUserAndVoucherInternalHandler(
+  withTestUserAndVoucherInternalHandler(logger)(
     async (_request: Request, { additionalDataJWS, testUser, voucher }) => {
       try {
         const res = await retrievePayments(
@@ -48,9 +49,9 @@ export const GET = auth(
           res,
         );
       } catch (error) {
-        console.error(
+        logger.error(
           `An Error has occurred while retrieving user payments, caused by: `,
-          error,
+          { error },
         );
         return handleInternalErrorResponse(
           "PaymentsInternalRetrieveError",
