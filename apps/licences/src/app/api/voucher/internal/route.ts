@@ -3,6 +3,7 @@ import {
   handleInternalErrorResponse,
   withTestUserAndVoucherInternalHandler,
 } from "@io-ipatente/core";
+import { logger } from "@io-ipatente/logger";
 import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
@@ -11,15 +12,14 @@ export const dynamic = "force-dynamic";
  * @description Retrieve user voucher
  */
 export const GET = auth(
-  withTestUserAndVoucherInternalHandler(
+  withTestUserAndVoucherInternalHandler(logger)(
     async (_request: Request, { additionalDataJWS, voucher }) => {
       try {
         return NextResponse.json({ additionalDataJWS, voucher });
       } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error(
+        logger.error(
           `An Error has occurred while retrieving voucher [Internal] , caused by: `,
-          error,
+          { error },
         );
         return handleInternalErrorResponse(
           "InternalVoucherRetrieveError",

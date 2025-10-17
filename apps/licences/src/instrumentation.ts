@@ -1,3 +1,5 @@
+import { logger } from "@io-ipatente/logger";
+
 export async function register() {
   if (
     process.env.NODE_ENV === "production" &&
@@ -10,10 +12,10 @@ export async function register() {
 
     initAzureMonitor();
 
-    console.log(
+    logger.info(
       "Azure Monitor OpenTelemetry has been initialized on the server.",
     );
   } else {
-    console.log("Tracking code skipped on client.");
+    logger.info("Tracking code skipped on client.");
   }
 }
