@@ -1,3 +1,5 @@
+import { logger } from "@io-ipatente/logger";
+
 import { getExternalApiClient } from "./client";
 
 export const retrieveVehicles = async (
@@ -14,8 +16,7 @@ export const retrieveVehicles = async (
       },
     });
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error(
+    logger.error(
       `An Error has occurred while retrieving vehicles, caused by: ${error}`,
     );
     return error;
