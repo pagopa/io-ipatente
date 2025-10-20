@@ -50,23 +50,17 @@ describe("Voucher", () => {
   });
 
   it("should handle errors and log them", async () => {
-    const loggerSpy = vi
-      .spyOn(mockLogger, "error")
-      .mockImplementation(() => {});
-
     vi.mocked(axios.post).mockRejectedValueOnce(new Error("Network error"));
 
     const result = await requestVoucher(mockLogger)(mockVoucherRequest);
 
     expect(result).toBeUndefined();
-    expect(loggerSpy).toHaveBeenCalledWith(
+    expect(mockLogger.error).toHaveBeenCalledWith(
       "An Error has occurred while requesting voucher, caused by: ",
       {
         error: expect.any(Error),
       },
     );
-
-    loggerSpy.mockRestore();
   });
 
   it("should send the correct URLSearchParams data", async () => {
