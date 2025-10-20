@@ -3,7 +3,7 @@ import pino, { LoggerOptions, Logger as PinoLogger } from "pino";
 
 // Configurazione base per Pino
 const baseConfig: LoggerOptions = {
-  level: process.env.NODE_ENV === "production" ? "info" : "debug",
+  level: process.env.LOG_LEVEL,
   // Enable standard serialization for Error objects
   serializers: {
     error: pino.stdSerializers.err,
