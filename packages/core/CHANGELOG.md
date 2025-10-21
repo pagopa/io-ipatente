@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.8.0
+
+### Minor Changes
+
+- 3405a65: Add new logger package with pino for serverside logging
+
 ## 0.7.5
 
 ### Patch Changes
