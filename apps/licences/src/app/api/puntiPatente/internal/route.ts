@@ -6,6 +6,7 @@ import {
   handleInternalErrorResponse,
   withTestUserAndVoucherInternalHandler,
 } from "@io-ipatente/core";
+import { logger } from "@io-ipatente/logger";
 import { ZodiosError } from "@zodios/core";
 import { AxiosError } from "axios";
 import { NextResponse } from "next/server";
@@ -16,10 +17,10 @@ export const dynamic = "force-dynamic";
  * @description Retrieve user licences
  */
 export const GET = auth(
-  withTestUserAndVoucherInternalHandler(
+  withTestUserAndVoucherInternalHandler(logger)(
     async (_request: Request, { additionalDataJWS, testUser, voucher }) => {
       try {
-        const res = await retrieveLicences(
+        const res = await retrieveLicences(logger)(
           additionalDataJWS,
           voucher.access_token,
           testUser,
@@ -32,7 +33,7 @@ export const GET = auth(
         }
 
         if (res instanceof AxiosError) {
-          console.error(
+          logger.error(
             `LoadTest [AxiosError] internal retrieveLicences: TestUser: ${testUser}  Status: ${
               res.status
             } , Code: ${res.code} , Message:${res.message} , Cause: ${
@@ -49,7 +50,7 @@ export const GET = auth(
           return handleBadRequestErrorResponse(res.message);
         }
 
-        console.error(
+        logger.error(
           `LoadTest [GenericError] internal retrieveLicences Error: ${JSON.stringify(
             res,
           )}`,
@@ -60,10 +61,9 @@ export const GET = auth(
           res,
         );
       } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error(
+        logger.error(
           `An Error has occurred while retrieving user licences [Internal] , caused by: `,
-          error,
+          { error },
         );
         return handleInternalErrorResponse(
           "InternalLicencesRetrieveError",

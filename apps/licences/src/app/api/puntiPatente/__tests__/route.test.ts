@@ -6,10 +6,9 @@ import { ZodiosError } from "@zodios/core";
 import { AxiosError } from "axios";
 import { NextResponse } from "next/server";
 import { Session } from "next-auth";
-import { Mock, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import { Patenti } from "../../../../generated/bff-openapi";
-import { retrieveLicences } from "../../../../lib/bff/business";
 import { GET } from "../route";
 
 const mockSession: Session = {
@@ -26,13 +25,14 @@ const mockNextAuthRequest = {
 };
 
 const mockRequest = {} as Request;
+const retrieveLicencesInnerMock = vi.fn();
 
 vi.mock("../../../../auth", () => ({
   auth: (handler) => () => handler(mockNextAuthRequest, {}),
 }));
 
 vi.mock("../../../../lib/bff/business", () => ({
-  retrieveLicences: vi.fn(),
+  retrieveLicences: vi.fn(() => retrieveLicencesInnerMock),
 }));
 
 vi.mock(import("@io-ipatente/core"), async (importOriginal) => {
@@ -41,7 +41,7 @@ vi.mock(import("@io-ipatente/core"), async (importOriginal) => {
     ...mod,
     handleBadRequestErrorResponse: vi.fn(),
     handleInternalErrorResponse: vi.fn(),
-    withJWTAuthAndVoucherHandler: (handler) => () =>
+    withJWTAuthAndVoucherHandler: (_) => (handler) => () =>
       handler(mockRequest, {
         additionalDataJWS: "anAdditional",
         user: mockSession.user,
@@ -94,7 +94,7 @@ describe("GET /api/puntiPatente", () => {
         },
       ],
     };
-    (retrieveLicences as Mock).mockResolvedValue(mockLicences);
+    retrieveLicencesInnerMock.mockResolvedValue(mockLicences);
 
     const response = (await GET(mockRequest, {
       params: {},
@@ -108,7 +108,7 @@ describe("GET /api/puntiPatente", () => {
   it("should handle AxiosError by returning a response with error details", async () => {
     const axiosError = new AxiosError("Network Error");
     axiosError.status = 500;
-    (retrieveLicences as Mock).mockResolvedValue(axiosError);
+    retrieveLicencesInnerMock.mockResolvedValue(axiosError);
 
     const response = await GET(mockRequest, {});
 
@@ -122,7 +122,7 @@ describe("GET /api/puntiPatente", () => {
 
   it("should handle ZodiosError by invoking handleBadRequestErrorResponse", async () => {
     const zodiosError = new ZodiosError("Bad Request Error");
-    (retrieveLicences as Mock).mockResolvedValue(zodiosError);
+    retrieveLicencesInnerMock.mockResolvedValue(zodiosError);
 
     await GET(mockRequest, {});
 
@@ -133,7 +133,7 @@ describe("GET /api/puntiPatente", () => {
 
   it("should handle generic errors by invoking handleInternalErrorResponse", async () => {
     const error = new Error("Unexpected Error");
-    (retrieveLicences as Mock).mockRejectedValue(error);
+    retrieveLicencesInnerMock.mockRejectedValue(error);
 
     await GET(mockRequest, {});
 

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { Voucher } from "../../interop/voucher";
+import { CoreLogger } from "../../types/logger";
 import { withVoucherHandler } from "../with-voucher-handler";
 import { withTestUserInternalHandler } from "./with-test-user-internal-handler";
 
@@ -17,23 +18,25 @@ import { withTestUserInternalHandler } from "./with-test-user-internal-handler";
  * );
  * ```
  **/
-export const withTestUserAndVoucherInternalHandler = (
-  handler: (
-    request: Request,
-    context: {
-      additionalDataJWS: string;
-      testUser: string;
-      voucher: Voucher;
-    },
-  ) => Promise<NextResponse> | Promise<Response>,
-) =>
-  withTestUserInternalHandler((request, testUserContext) =>
-    withVoucherHandler(
-      (request, voucherContext) =>
-        handler(request, {
-          ...testUserContext,
-          ...voucherContext,
-        }),
-      testUserContext.testUser,
-    )(request),
-  );
+export const withTestUserAndVoucherInternalHandler =
+  (logger: CoreLogger) =>
+  (
+    handler: (
+      request: Request,
+      context: {
+        additionalDataJWS: string;
+        testUser: string;
+        voucher: Voucher;
+      },
+    ) => Promise<NextResponse> | Promise<Response>,
+  ) =>
+    withTestUserInternalHandler((request, testUserContext) =>
+      withVoucherHandler(logger)(
+        (request, voucherContext) =>
+          handler(request, {
+            ...testUserContext,
+            ...voucherContext,
+          }),
+        testUserContext.testUser,
+      )(request),
+    );

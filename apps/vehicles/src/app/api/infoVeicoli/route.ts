@@ -6,6 +6,7 @@ import {
   handleInternalErrorResponse,
   withJWTAuthAndVoucherHandler,
 } from "@io-ipatente/core";
+import { logger } from "@io-ipatente/logger";
 import { ZodiosError } from "@zodios/core";
 import { AxiosError } from "axios";
 import { NextResponse } from "next/server";
@@ -17,10 +18,10 @@ export const dynamic = "force-dynamic";
  * @description Retrieve user vehicles
  */
 export const GET = auth(
-  withJWTAuthAndVoucherHandler(
+  withJWTAuthAndVoucherHandler(logger)(
     async (_request: Request, { additionalDataJWS, user, voucher }) => {
       try {
-        const res = await retrieveVehicles(
+        const res = await retrieveVehicles(logger)(
           additionalDataJWS,
           voucher.access_token,
           user.fiscalCode,
@@ -45,10 +46,9 @@ export const GET = auth(
 
         return handleInternalErrorResponse("VehiclesRetrieveError", res);
       } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error(
+        logger.error(
           `An Error has occurred while retrieving user vehicles, caused by: `,
-          error,
+          { error },
         );
         return handleInternalErrorResponse("VehiclesRetrieveError", error);
       }

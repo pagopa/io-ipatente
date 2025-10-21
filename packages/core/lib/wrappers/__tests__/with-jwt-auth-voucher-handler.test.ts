@@ -3,27 +3,35 @@ import { User } from "next-auth";
 import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { Voucher } from "../../interop/voucher";
+import { CoreLogger } from "../../types/logger";
 import { withJWTAuthAndVoucherHandler } from "../with-jwt-auth-voucher-handler";
 
 type WithJWTAuthAndVoucherHandlerParameters = Parameters<
-  ReturnType<typeof withJWTAuthAndVoucherHandler>
+  ReturnType<ReturnType<typeof withJWTAuthAndVoucherHandler>>
 >;
 
 type NextAuthRequest = WithJWTAuthAndVoucherHandlerParameters[0];
 type Context = WithJWTAuthAndVoucherHandlerParameters[1];
 
+const mockVoucherHandlerImplementation = vi.fn();
+
 vi.mock("../with-jwt-auth-handler", () => ({ withJWTAuthHandler }));
-vi.mock("../with-voucher-handler", () => ({ withVoucherHandler }));
+vi.mock("../with-voucher-handler", () => ({
+  withVoucherHandler: vi.fn(() => mockVoucherHandlerImplementation),
+}));
 
 const { withJWTAuthHandler } = vi.hoisted(() => ({
   withJWTAuthHandler: vi.fn(),
 }));
 
-const { withVoucherHandler } = vi.hoisted(() => ({
-  withVoucherHandler: vi.fn(),
-}));
-
 const mockHandler = vi.fn(async () => NextResponse.json({ success: true }));
+
+const mockLogger: CoreLogger = {
+  debug: vi.fn(),
+  error: vi.fn(),
+  info: vi.fn(),
+  warn: vi.fn(),
+};
 
 const mockUser: User = {
   familyName: "aFamilyName",
@@ -45,7 +53,7 @@ beforeEach(() => {
     (handler) => async (req: NextRequest, context: Context) =>
       handler(req, { ...context, user: mockUser }),
   );
-  (withVoucherHandler as Mock).mockImplementation(
+  mockVoucherHandlerImplementation.mockImplementation(
     (handler) => async (req: NextRequest, context: Context) =>
       handler(req, {
         ...context,
@@ -57,10 +65,9 @@ beforeEach(() => {
 
 describe("withJWTAndVoucherHandler", () => {
   it("should call handler with user and voucher context", async () => {
-    const response = (await withJWTAuthAndVoucherHandler(mockHandler)(
-      mockNextRequest,
-      {},
-    )) as Response;
+    const response = (await withJWTAuthAndVoucherHandler(mockLogger)(
+      mockHandler,
+    )(mockNextRequest, {})) as Response;
 
     expect(mockHandler).toHaveBeenCalledWith(mockNextRequest, {
       additionalDataJWS: mockAdditionalDataJWS,
@@ -81,10 +88,9 @@ describe("withJWTAndVoucherHandler", () => {
         ),
     );
 
-    const response = (await withJWTAuthAndVoucherHandler(mockHandler)(
-      mockNextRequest,
-      {},
-    )) as Response;
+    const response = (await withJWTAuthAndVoucherHandler(mockLogger)(
+      mockHandler,
+    )(mockNextRequest, {})) as Response;
 
     expect(mockHandler).not.toHaveBeenCalled();
     expect(response.status).toBe(401);
@@ -94,15 +100,14 @@ describe("withJWTAndVoucherHandler", () => {
   });
 
   it("should handle unauthorized error from withVoucherHandler", async () => {
-    (withVoucherHandler as Mock).mockImplementationOnce(
+    mockVoucherHandlerImplementation.mockImplementationOnce(
       () => async () =>
         NextResponse.json({ error: "No voucher provided" }, { status: 401 }),
     );
 
-    const response = (await withJWTAuthAndVoucherHandler(mockHandler)(
-      mockNextRequest,
-      {},
-    )) as Response;
+    const response = (await withJWTAuthAndVoucherHandler(mockLogger)(
+      mockHandler,
+    )(mockNextRequest, {})) as Response;
 
     expect(mockHandler).not.toHaveBeenCalled();
     expect(response.status).toBe(401);
@@ -112,15 +117,14 @@ describe("withJWTAndVoucherHandler", () => {
   });
 
   it("should handle internal error from withVoucherHandler", async () => {
-    (withVoucherHandler as Mock).mockImplementationOnce(
+    mockVoucherHandlerImplementation.mockImplementationOnce(
       () => async () =>
         NextResponse.json({ error: "VoucherRequestError" }, { status: 500 }),
     );
 
-    const response = (await withJWTAuthAndVoucherHandler(mockHandler)(
-      mockNextRequest,
-      {},
-    )) as Response;
+    const response = (await withJWTAuthAndVoucherHandler(mockLogger)(
+      mockHandler,
+    )(mockNextRequest, {})) as Response;
 
     expect(mockHandler).not.toHaveBeenCalled();
     expect(response.status).toBe(500);

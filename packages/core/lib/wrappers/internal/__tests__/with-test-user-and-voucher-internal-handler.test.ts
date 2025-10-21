@@ -2,22 +2,37 @@ import { NextRequest, NextResponse } from "next/server";
 import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { Voucher } from "../../../interop/voucher";
+import { CoreLogger } from "../../../types/logger";
+import { withJWTAuthAndVoucherHandler } from "../../with-jwt-auth-voucher-handler";
 import { withTestUserAndVoucherInternalHandler } from "../with-test-user-and-voucher-internal-handler";
+
+type WithJWTAuthAndVoucherHandlerParameters = Parameters<
+  ReturnType<ReturnType<typeof withJWTAuthAndVoucherHandler>>
+>;
+
+type Context = WithJWTAuthAndVoucherHandlerParameters[1];
+
+const mockVoucherHandlerImplementation = vi.fn();
 
 vi.mock("../with-test-user-internal-handler", () => ({
   withTestUserInternalHandler,
 }));
-vi.mock("../../with-voucher-handler", () => ({ withVoucherHandler }));
+vi.mock("../../with-voucher-handler", () => ({
+  withVoucherHandler: vi.fn(() => mockVoucherHandlerImplementation),
+}));
 
 const { withTestUserInternalHandler } = vi.hoisted(() => ({
   withTestUserInternalHandler: vi.fn(),
 }));
 
-const { withVoucherHandler } = vi.hoisted(() => ({
-  withVoucherHandler: vi.fn(),
-}));
-
 const mockHandler = vi.fn(async () => NextResponse.json({ success: true }));
+
+const mockLogger: CoreLogger = {
+  debug: vi.fn(),
+  error: vi.fn(),
+  info: vi.fn(),
+  warn: vi.fn(),
+};
 
 const mockTestUser = "testUser";
 const mockVoucher: Voucher = {
@@ -35,9 +50,10 @@ beforeEach(() => {
     (handler) => async (req: NextRequest) =>
       handler(req, { testUser: mockTestUser }),
   );
-  (withVoucherHandler as Mock).mockImplementation(
-    (handler) => async (req: NextRequest) =>
+  mockVoucherHandlerImplementation.mockImplementation(
+    (handler) => async (req: NextRequest, context: Context) =>
       handler(req, {
+        ...context,
         additionalDataJWS: mockAdditionalDataJWS,
         voucher: mockVoucher,
       }),
@@ -46,9 +62,9 @@ beforeEach(() => {
 
 describe("withJWTAndVoucherHandler", () => {
   it("should call handler with the extracted testUser and voucher context", async () => {
-    const response = (await withTestUserAndVoucherInternalHandler(mockHandler)(
-      mockNextRequest,
-    )) as Response;
+    const response = (await withTestUserAndVoucherInternalHandler(mockLogger)(
+      mockHandler,
+    )(mockNextRequest)) as Response;
 
     expect(mockHandler).toHaveBeenCalledWith(mockNextRequest, {
       additionalDataJWS: mockAdditionalDataJWS,
@@ -69,9 +85,9 @@ describe("withJWTAndVoucherHandler", () => {
         ),
     );
 
-    const response = (await withTestUserAndVoucherInternalHandler(mockHandler)(
-      mockNextRequest,
-    )) as Response;
+    const response = (await withTestUserAndVoucherInternalHandler(mockLogger)(
+      mockHandler,
+    )(mockNextRequest)) as Response;
 
     expect(mockHandler).not.toHaveBeenCalled();
     expect(response.status).toBe(403);
@@ -81,14 +97,14 @@ describe("withJWTAndVoucherHandler", () => {
   });
 
   it("should handle unauthorized error from withVoucherHandler", async () => {
-    (withVoucherHandler as Mock).mockImplementationOnce(
+    mockVoucherHandlerImplementation.mockImplementationOnce(
       () => async () =>
         NextResponse.json({ error: "No voucher provided" }, { status: 401 }),
     );
 
-    const response = (await withTestUserAndVoucherInternalHandler(mockHandler)(
-      mockNextRequest,
-    )) as Response;
+    const response = (await withTestUserAndVoucherInternalHandler(mockLogger)(
+      mockHandler,
+    )(mockNextRequest)) as Response;
 
     expect(mockHandler).not.toHaveBeenCalled();
     expect(response.status).toBe(401);
@@ -98,14 +114,14 @@ describe("withJWTAndVoucherHandler", () => {
   });
 
   it("should handle internal error from withVoucherHandler", async () => {
-    (withVoucherHandler as Mock).mockImplementationOnce(
+    mockVoucherHandlerImplementation.mockImplementationOnce(
       () => async () =>
         NextResponse.json({ error: "VoucherRequestError" }, { status: 500 }),
     );
 
-    const response = (await withTestUserAndVoucherInternalHandler(mockHandler)(
-      mockNextRequest,
-    )) as Response;
+    const response = (await withTestUserAndVoucherInternalHandler(mockLogger)(
+      mockHandler,
+    )(mockNextRequest)) as Response;
 
     expect(mockHandler).not.toHaveBeenCalled();
     expect(response.status).toBe(500);

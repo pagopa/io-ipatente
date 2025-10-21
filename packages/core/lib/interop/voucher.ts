@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { CoreLogger } from "../types/logger";
+
 export interface VoucherRequest {
   /** Authorization server endpoint url */
   authServerEndpointUrl: string;
@@ -28,23 +30,23 @@ export interface Voucher {
   token_type: "Bearer";
 }
 
-export const requestVoucher = async (vr: VoucherRequest) => {
-  try {
-    const { data } = await axios.post<Voucher>(
-      vr.authServerEndpointUrl,
-      new URLSearchParams(Object.entries(vr.data)).toString(),
-      {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+export const requestVoucher =
+  (logger: CoreLogger) => async (vr: VoucherRequest) => {
+    try {
+      const { data } = await axios.post<Voucher>(
+        vr.authServerEndpointUrl,
+        new URLSearchParams(Object.entries(vr.data)).toString(),
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
         },
-      },
-    );
-    return data;
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error(
-      `An Error has occurred while requesting voucher, caused by: `,
-      error,
-    );
-  }
-};
+      );
+      return data;
+    } catch (error) {
+      logger.error(
+        `An Error has occurred while requesting voucher, caused by: `,
+        { error },
+      );
+    }
+  };

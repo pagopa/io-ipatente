@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { NextRequest, NextResponse, userAgent } from "next/server";
 
 import { getConfiguration } from "../config";

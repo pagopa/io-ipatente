@@ -6,6 +6,7 @@ import {
   handleInternalErrorResponse,
   withTestUserInternalHandler,
 } from "@io-ipatente/core";
+import { logger } from "@io-ipatente/logger";
 import { ZodiosError } from "@zodios/core";
 import { AxiosError } from "axios";
 import { NextResponse } from "next/server";
@@ -21,7 +22,7 @@ export const GET = auth(
     const voucher = _request.headers.get("Authorization");
     const startTime = new Date().getTime();
     try {
-      const res = await retrieveLicences(
+      const res = await retrieveLicences(logger)(
         additionalDataJWS ?? "",
         voucher ?? "",
         testUser,
@@ -35,7 +36,7 @@ export const GET = auth(
       }
 
       if (res instanceof AxiosError) {
-        console.error(
+        logger.error(
           `LoadTestWithoutVoucher [AxiosError] internal retrieveLicences duration: ${
             endTime - startTime
           } Status: ${res.status} Cause: ${res.cause},`,
@@ -52,10 +53,9 @@ export const GET = auth(
 
       return handleInternalErrorResponse("InternalLicencesRetrieveError", res);
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error(
+      logger.error(
         `An Error has occurred while retrieving user licences [Internal] , caused by: `,
-        error,
+        { error },
       );
       return handleInternalErrorResponse(
         "InternalLicencesRetrieveError",

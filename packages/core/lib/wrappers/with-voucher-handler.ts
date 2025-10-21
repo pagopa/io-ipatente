@@ -4,6 +4,7 @@ import { User } from "next-auth";
 import { getConfiguration } from "../config";
 import { generateClientAssertion } from "../interop/client-assertion";
 import { Voucher, requestVoucher } from "../interop/voucher";
+import { CoreLogger } from "../types/logger";
 import {
   handleInternalErrorResponse,
   handleUnauthorizedErrorResponse,
@@ -29,6 +30,7 @@ interface Context {
 }
 
 export const withVoucherHandler =
+  (logger: CoreLogger) =>
   (
     handler: (
       request: Request,
@@ -42,7 +44,7 @@ export const withVoucherHandler =
   ) =>
   async (request: Request, ctx?: Context) => {
     try {
-      const clientAssertionResult = generateClientAssertion({
+      const clientAssertionResult = generateClientAssertion(logger)({
         additionalData: {
           LoA: "high",
           aud: INTEROP_ESERVICE_AUDIENCE,
@@ -64,7 +66,7 @@ export const withVoucherHandler =
         return handleUnauthorizedErrorResponse("No client assertion provided");
       }
 
-      const voucher = await requestVoucher({
+      const voucher = await requestVoucher(logger)({
         authServerEndpointUrl: INTEROP_AUTH_SERVER_ENDPOINT_URL,
         data: {
           client_assertion: clientAssertionResult.clientAssertionJWS,
@@ -84,10 +86,9 @@ export const withVoucherHandler =
         voucher,
       });
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error(
+      logger.error(
         `An Error has occurred while requesting voucher, caused by: `,
-        error,
+        { error },
       );
       return handleInternalErrorResponse("VoucherRequestError", error);
     }
