@@ -1,5 +1,17 @@
 # io-ipatente-licences
 
+## 1.2.0
+
+### Minor Changes
+
+- 3405a65: Add new logger package with pino for serverside logging
+
+### Patch Changes
+
+- Updated dependencies [3405a65]
+  - @io-ipatente/logger@0.1.0
+  - @io-ipatente/core@0.8.0
+
 ## 1.1.10
 
 ### Patch Changes
