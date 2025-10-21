@@ -6,10 +6,9 @@ import { ZodiosError } from "@zodios/core";
 import { AxiosError } from "axios";
 import { NextResponse } from "next/server";
 import { Session } from "next-auth";
-import { Mock, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import { Pagamento } from "../../../../generated/bff-openapi";
-import { retrievePayments } from "../../../../lib/bff/business";
 import { GET } from "../route";
 
 const mockSession: Session = {
@@ -26,13 +25,14 @@ const mockNextAuthRequest = {
 };
 
 const mockRequest = {} as Request;
+const retrievePaymentsInnerMock = vi.fn();
 
 vi.mock("../../../../auth", () => ({
   auth: (handler) => () => handler(mockNextAuthRequest, {}),
 }));
 
 vi.mock("../../../../lib/bff/business", () => ({
-  retrievePayments: vi.fn(),
+  retrievePayments: vi.fn(() => retrievePaymentsInnerMock),
 }));
 
 vi.mock(import("@io-ipatente/core"), async (importOriginal) => {
@@ -71,7 +71,7 @@ describe("GET /api/payments", () => {
         tariffario: "ABC",
       },
     ];
-    (retrievePayments as Mock).mockResolvedValue(mockPayments);
+    retrievePaymentsInnerMock.mockResolvedValue(mockPayments);
 
     const response = (await GET(mockRequest, {
       params: {},
@@ -85,7 +85,7 @@ describe("GET /api/payments", () => {
   it("should handle AxiosError by returning a response with error details", async () => {
     const axiosError = new AxiosError("Network Error");
     axiosError.status = 500;
-    (retrievePayments as Mock).mockResolvedValue(axiosError);
+    retrievePaymentsInnerMock.mockResolvedValue(axiosError);
 
     const response = await GET(mockRequest, {});
 
@@ -99,7 +99,7 @@ describe("GET /api/payments", () => {
 
   it("should handle ZodiosError by invoking handleBadRequestErrorResponse", async () => {
     const zodiosError = new ZodiosError("Bad Request Error");
-    (retrievePayments as Mock).mockResolvedValue(zodiosError);
+    retrievePaymentsInnerMock.mockResolvedValue(zodiosError);
 
     await GET(mockRequest, {});
 
@@ -110,7 +110,7 @@ describe("GET /api/payments", () => {
 
   it("should handle generic errors by invoking handleInternalErrorResponse", async () => {
     const error = new Error("Unexpected Error");
-    (retrievePayments as Mock).mockRejectedValue(error);
+    retrievePaymentsInnerMock.mockRejectedValue(error);
 
     await GET(mockRequest, {});
 

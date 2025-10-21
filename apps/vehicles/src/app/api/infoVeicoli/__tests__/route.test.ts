@@ -6,10 +6,9 @@ import { ZodiosError } from "@zodios/core";
 import { AxiosError } from "axios";
 import { NextResponse } from "next/server";
 import { Session } from "next-auth";
-import { Mock, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import { Veicolo } from "../../../../generated/bff-openapi";
-import { retrieveVehicles } from "../../../../lib/bff/business";
 import { GET } from "../route";
 
 const mockSession: Session = {
@@ -26,13 +25,14 @@ const mockNextAuthRequest = {
 };
 
 const mockRequest = {} as Request;
+const retrieveVehiclesInnerMock = vi.fn();
 
 vi.mock("../../../../auth", () => ({
   auth: (handler) => () => handler(mockNextAuthRequest, {}),
 }));
 
 vi.mock("../../../../lib/bff/business", () => ({
-  retrieveVehicles: vi.fn(),
+  retrieveVehicles: vi.fn(() => retrieveVehiclesInnerMock),
 }));
 
 vi.mock(import("@io-ipatente/core"), async (importOriginal) => {
@@ -59,7 +59,7 @@ describe("GET /api/vehicles", () => {
     const mockVehicles: Veicolo[] = [
       { targaVeicolo: "FS123EP", tipoVeicolo: "A" },
     ];
-    (retrieveVehicles as Mock).mockResolvedValue(mockVehicles);
+    retrieveVehiclesInnerMock.mockResolvedValue(mockVehicles);
 
     const response = (await GET(mockRequest, {
       params: {},
@@ -73,7 +73,7 @@ describe("GET /api/vehicles", () => {
   it("should handle AxiosError by returning a response with error details", async () => {
     const axiosError = new AxiosError("Network Error");
     axiosError.status = 500;
-    (retrieveVehicles as Mock).mockResolvedValue(axiosError);
+    retrieveVehiclesInnerMock.mockResolvedValue(axiosError);
 
     const response = await GET(mockRequest, {});
 
@@ -87,7 +87,7 @@ describe("GET /api/vehicles", () => {
 
   it("should handle ZodiosError by invoking handleBadRequestErrorResponse", async () => {
     const zodiosError = new ZodiosError("Bad Request Error");
-    (retrieveVehicles as Mock).mockResolvedValue(zodiosError);
+    retrieveVehiclesInnerMock.mockResolvedValue(zodiosError);
 
     await GET(mockRequest, {});
 
@@ -98,7 +98,7 @@ describe("GET /api/vehicles", () => {
 
   it("should handle generic errors by invoking handleInternalErrorResponse", async () => {
     const error = new Error("Unexpected Error");
-    (retrieveVehicles as Mock).mockRejectedValue(error);
+    retrieveVehiclesInnerMock.mockRejectedValue(error);
 
     await GET(mockRequest, {});
 

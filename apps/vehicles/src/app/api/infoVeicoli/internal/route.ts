@@ -21,7 +21,7 @@ export const GET = auth(
   withTestUserAndVoucherInternalHandler(logger)(
     async (_request: Request, { additionalDataJWS, testUser, voucher }) => {
       try {
-        const res = await retrieveVehicles(
+        const res = await retrieveVehicles(logger)(
           additionalDataJWS,
           voucher.access_token,
           testUser,

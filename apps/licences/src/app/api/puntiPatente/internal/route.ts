@@ -20,7 +20,7 @@ export const GET = auth(
   withTestUserAndVoucherInternalHandler(logger)(
     async (_request: Request, { additionalDataJWS, testUser, voucher }) => {
       try {
-        const res = await retrieveLicences(
+        const res = await retrieveLicences(logger)(
           additionalDataJWS,
           voucher.access_token,
           testUser,

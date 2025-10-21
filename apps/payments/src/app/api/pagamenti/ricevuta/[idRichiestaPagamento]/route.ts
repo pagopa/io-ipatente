@@ -27,7 +27,7 @@ export const GET = auth(
           );
         }
 
-        const res = await retrievePaymentReceipt(
+        const res = await retrievePaymentReceipt(logger)(
           additionalDataJWS,
           voucher.access_token,
           params.idRichiestaPagamento,

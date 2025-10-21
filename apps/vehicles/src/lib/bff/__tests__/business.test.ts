@@ -1,3 +1,4 @@
+import { CoreLogger } from "@io-ipatente/core";
 import { Mock, describe, expect, it, vi } from "vitest";
 
 import { retrieveVehicles } from "../business";
@@ -12,6 +13,12 @@ describe("retrieveVehicles", () => {
   const mockAdditionalDataJWS = "additional-token";
   const mockToken = "test-token";
   const mockFiscalCode = "ABCDEF12G34H567I";
+  const mockLogger: CoreLogger = {
+    debug: vi.fn(),
+    error: vi.fn(),
+    info: vi.fn(),
+    warn: vi.fn(),
+  };
 
   it("should return vehicle information when API call is successful", async () => {
     const mockResponse = { data: "Vehicle data" };
@@ -21,7 +28,7 @@ describe("retrieveVehicles", () => {
       getInfoVeicoli: mockGetInfoVeicoli,
     });
 
-    const result = await retrieveVehicles(
+    const result = await retrieveVehicles(mockLogger)(
       mockAdditionalDataJWS,
       mockToken,
       mockFiscalCode,
@@ -45,7 +52,7 @@ describe("retrieveVehicles", () => {
       getInfoVeicoli: mockGetInfoVeicoli,
     });
 
-    const result = await retrieveVehicles(
+    const result = await retrieveVehicles(mockLogger)(
       mockAdditionalDataJWS,
       mockToken,
       mockFiscalCode,
