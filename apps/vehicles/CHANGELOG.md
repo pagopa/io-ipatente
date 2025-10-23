@@ -1,5 +1,11 @@
 # vehicles
 
+## 1.1.1
+
+### Patch Changes
+
+- 6c8cd9a: Register opentelemetry instrumentation for pino
+
 ## 1.1.0
 
 ### Minor Changes

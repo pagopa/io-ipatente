@@ -1,5 +1,11 @@
 # io-ipatente-licences
 
+## 1.2.1
+
+### Patch Changes
+
+- 6c8cd9a: Register opentelemetry instrumentation for pino
+
 ## 1.2.0
 
 ### Minor Changes
