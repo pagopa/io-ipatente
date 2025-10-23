@@ -35,6 +35,7 @@
     "@mui/lab": "^5.0.0-alpha.140",
     "@mui/material": "^5.14.5",
     "@mui/system": "^5.14.5",
+    "@opentelemetry/instrumentation-pino": "^0.54.0",
     "@pagopa/azure-tracing": "^0.4.6",
     "@pagopa/mui-italia": "^1.5.0",
     "@tanstack/react-query": "^5.67.3",
