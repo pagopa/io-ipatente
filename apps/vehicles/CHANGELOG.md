@@ -1,5 +1,11 @@
 # vehicles
 
+## 1.1.2
+
+### Patch Changes
+
+- d37c975: Add opentelemetry debug log
+
 ## 1.1.1
 
 ### Patch Changes
