@@ -1,4 +1,7 @@
 import { logger } from "@io-ipatente/logger";
+import { DiagConsoleLogger, DiagLogLevel, diag } from "@opentelemetry/api";
+
+diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.DEBUG);
 
 export async function register() {
   if (
