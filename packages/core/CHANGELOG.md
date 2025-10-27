@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 0.9.0
+
+### Minor Changes
+
+- 25ab37b: Package core: Add logger factory fn, override next-auth error logger level. Apps: logger refactor
+
 ## 0.8.0
 
 ### Minor Changes
