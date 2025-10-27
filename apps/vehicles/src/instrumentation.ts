@@ -1,8 +1,3 @@
-import { logger } from "@io-ipatente/logger";
-import { DiagConsoleLogger, DiagLogLevel, diag } from "@opentelemetry/api";
-
-diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.DEBUG);
-
 export async function register() {
   if (
     process.env.NODE_ENV === "production" &&
@@ -16,10 +11,10 @@ export async function register() {
 
     initAzureMonitor([new PinoInstrumentation()]);
 
-    logger.info(
+    console.log(
       "Azure Monitor OpenTelemetry has been initialized on the server.",
     );
   } else {
-    logger.info("Tracking code skipped on client.");
+    console.log("Tracking code skipped on client.");
   }
 }

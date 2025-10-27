@@ -11,7 +11,7 @@ const nextConfig = {
   output: "standalone",
   experimental: {
     instrumentationHook: true,
-    serverComponentsExternalPackages: ["pino", "@io-ipatente/logger"],
+    serverComponentsExternalPackages: ["pino"],
   },
   async redirects() {
     return [
