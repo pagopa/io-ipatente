@@ -1,6 +1,7 @@
 import type { DefaultSession, NextAuthConfig } from "next-auth";
 
 import { getConfiguration } from "../config";
+import { CoreLogger } from "../types/logger";
 import { SIGNIN_URL } from "../utils";
 
 declare module "next-auth" {
@@ -32,7 +33,7 @@ declare module "@auth/core/jwt" {
 
 const maxAgeSeconds = 2 * 60 * 60; // 2 hours
 
-export const authConfig: NextAuthConfig = {
+export const authConfig = (logger: CoreLogger): NextAuthConfig => ({
   callbacks: {
     jwt: ({ profile, token }) => {
       if (profile) {
@@ -58,6 +59,11 @@ export const authConfig: NextAuthConfig = {
   jwt: {
     maxAge: maxAgeSeconds,
   },
+  logger: {
+    error(err) {
+      logger.error(`[auth][error] ${err.name}: ${err.message}`, err);
+    },
+  },
   pages: {
     signIn: SIGNIN_URL,
   },
@@ -81,4 +87,4 @@ export const authConfig: NextAuthConfig = {
   session: {
     maxAge: maxAgeSeconds,
   },
-};
+});
