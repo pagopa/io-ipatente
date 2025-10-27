@@ -1,12 +1,12 @@
 import { auth } from "@/auth";
 import { Patenti } from "@/generated/bff-openapi";
 import { retrieveLicences } from "@/lib/bff/business";
+import { logger } from "@/lib/bff/logger";
 import {
   handleBadRequestErrorResponse,
   handleInternalErrorResponse,
   withTestUserInternalHandler,
 } from "@io-ipatente/core";
-import { logger } from "@io-ipatente/logger";
 import { ZodiosError } from "@zodios/core";
 import { AxiosError } from "axios";
 import { NextResponse } from "next/server";
