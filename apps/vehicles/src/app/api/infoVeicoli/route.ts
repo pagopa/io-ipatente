@@ -1,12 +1,12 @@
 import { auth } from "@/auth";
 import { Veicolo } from "@/generated/bff-openapi";
 import { retrieveVehicles } from "@/lib/bff/business";
+import { logger } from "@/lib/bff/logger";
 import {
   handleBadRequestErrorResponse,
   handleInternalErrorResponse,
   withJWTAuthAndVoucherHandler,
 } from "@io-ipatente/core";
-import { logger } from "@io-ipatente/logger";
 import { ZodiosError } from "@zodios/core";
 import { AxiosError } from "axios";
 import { NextResponse } from "next/server";
