@@ -1,5 +1,11 @@
 # io-ipatente-licences
 
+## 1.2.3
+
+### Patch Changes
+
+- bc75e1f: Updated browserslist database
+
 ## 1.2.2
 
 ### Patch Changes
