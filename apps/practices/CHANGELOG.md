@@ -1,5 +1,11 @@
 # io-ipatente-practices
 
+## 1.1.3
+
+### Patch Changes
+
+- bc75e1f: Updated browserslist database
+
 ## 1.1.2
 
 ### Patch Changes

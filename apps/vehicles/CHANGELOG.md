@@ -1,5 +1,11 @@
 # vehicles
 
+## 1.1.4
+
+### Patch Changes
+
+- bc75e1f: Updated browserslist database
+
 ## 1.1.3
 
 ### Patch Changes
