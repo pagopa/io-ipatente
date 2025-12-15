@@ -1,3 +1,4 @@
+import { getErrorInfo } from "@io-ipatente/core";
 import { OperationResult } from "@io-ipatente/ui";
 import { Cached } from "@mui/icons-material";
 import { IllusError } from "@pagopa/mui-italia";
@@ -12,25 +13,22 @@ export interface GenericErrorProps {
 export const GenericError = ({ error, onRetry }: GenericErrorProps) => {
   const { t } = useTranslation();
 
-  if (error && error.status !== 401 && error.status !== 403) {
-    return (
-      <OperationResult
-        action={{
-          endIcon: <Cached />,
-          label: t("failure.generic.retry"),
-          onClick: onRetry,
-        }}
-        description={t("failure.generic.description")}
-        illustration={<IllusError />}
-        title={t("failure.generic.title")}
-      />
-    );
-  }
+  const errorInfo = getErrorInfo(error);
 
   return (
     <OperationResult
+      action={
+        errorInfo.showRetry
+          ? {
+              endIcon: <Cached />,
+              label: t("failure.generic.retry"),
+              onClick: onRetry,
+            }
+          : undefined
+      }
+      description={t(errorInfo.descriptionKey, { defaultValue: "" })}
       illustration={<IllusError />}
-      title={t("failure.expiredSession.title")}
+      title={t(errorInfo.titleKey, { defaultValue: "" })}
     />
   );
 };
