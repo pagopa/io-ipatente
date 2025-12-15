@@ -77,7 +77,7 @@ export const withVoucherHandler =
       });
 
       if (!voucher) {
-        return handleUnauthorizedErrorResponse("No voucher provided");
+        return handleUnauthorizedErrorResponse("No voucher provided", "PDND");
       }
 
       return handler(request, {
@@ -90,6 +90,6 @@ export const withVoucherHandler =
         `An Error has occurred while requesting voucher, caused by: `,
         { error },
       );
-      return handleInternalErrorResponse("VoucherRequestError", error);
+      return handleInternalErrorResponse("VoucherRequestError", error, "PDND");
     }
   };

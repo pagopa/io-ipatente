@@ -3,6 +3,7 @@ import { Patenti } from "@/generated/bff-openapi";
 import { retrieveLicences } from "@/lib/bff/business";
 import { logger } from "@/lib/bff/logger";
 import {
+  handleAxiosErrorResponse,
   handleBadRequestErrorResponse,
   handleInternalErrorResponse,
   withTestUserInternalHandler,
@@ -39,19 +40,20 @@ export const GET = auth(
         logger.error(
           `LoadTestWithoutVoucher [AxiosError] internal retrieveLicences duration: ${
             endTime - startTime
-          } Status: ${res.status} Cause: ${res.cause},`,
+          } Status: ${res.status} Cause: ${res.cause}`,
         );
-        return NextResponse.json(
-          { detail: res.message, status: res.status },
-          { status: res.status },
-        );
+        return handleAxiosErrorResponse(res);
       }
 
       if (res instanceof ZodiosError) {
-        return handleBadRequestErrorResponse(res.message);
+        return handleBadRequestErrorResponse(res.message, "PDND");
       }
 
-      return handleInternalErrorResponse("InternalLicencesRetrieveError", res);
+      return handleInternalErrorResponse(
+        "InternalLicencesRetrieveError",
+        res,
+        "PDND",
+      );
     } catch (error) {
       logger.error(
         `An Error has occurred while retrieving user licences [Internal] , caused by: `,
@@ -60,6 +62,7 @@ export const GET = auth(
       return handleInternalErrorResponse(
         "InternalLicencesRetrieveError",
         error,
+        "PDND",
       );
     }
   }),

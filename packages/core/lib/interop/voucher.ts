@@ -48,5 +48,6 @@ export const requestVoucher =
         `An Error has occurred while requesting voucher, caused by: `,
         { error },
       );
+      throw error;
     }
   };

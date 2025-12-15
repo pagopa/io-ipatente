@@ -3,6 +3,7 @@ import { Patenti } from "@/generated/bff-openapi";
 import { retrieveLicences } from "@/lib/bff/business";
 import { logger } from "@/lib/bff/logger";
 import {
+  handleAxiosErrorResponse,
   handleBadRequestErrorResponse,
   handleInternalErrorResponse,
   withJWTAuthAndVoucherHandler,
@@ -40,10 +41,7 @@ export const GET = auth(
               res.cause
             } , Response :${JSON.stringify(res.response?.data)}`,
           );
-          return NextResponse.json(
-            { detail: res.message, status: res.status },
-            { status: res.status },
-          );
+          return handleAxiosErrorResponse(res);
         }
 
         logger.error(
@@ -51,16 +49,24 @@ export const GET = auth(
         );
 
         if (res instanceof ZodiosError) {
-          return handleBadRequestErrorResponse(res.message);
+          return handleBadRequestErrorResponse(res.message, "PDND");
         }
 
-        return handleInternalErrorResponse("LicencesRetrieveError", res);
+        return handleInternalErrorResponse(
+          "LicencesRetrieveError",
+          res,
+          "PDND",
+        );
       } catch (error) {
         logger.error(
           `An Error has occurred while retrieving user licences, caused by: `,
           { error },
         );
-        return handleInternalErrorResponse("LicencesRetrieveError", error);
+        return handleInternalErrorResponse(
+          "LicencesRetrieveError",
+          error,
+          "PDND",
+        );
       }
     },
   ),
