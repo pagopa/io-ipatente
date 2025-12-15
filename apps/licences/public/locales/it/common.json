@@ -70,7 +70,28 @@
       "retry": "Ricarica la pagina"
     },
     "expiredSession": {
-      "title": "La tua session è scaduta"
+      "title": "Sessione scaduta",
+      "description": "La tua sessione è scaduta."
+    },
+    "pdnd": {
+      "title": "Errore del server PDND",
+      "description": "Errore del server PDND"
+    },
+    "dg_mot": {
+      "title": "Errore del server di motorizzazioni",
+      "description": "Errore del server di motorizzazioni"
+    },
+    "bff": {
+      "title": "Errore del server",
+      "description": "Errore del server"
+    },
+    "networkError": {
+      "title": "Errore di connessione",
+      "description": "Impossibile connettersi al server. Verifica la tua connessione internet e riprova"
+    },
+    "timeout": {
+      "title": "Timeout della richiesta",
+      "description": "La richiesta ha impiegato troppo tempo. Verifica la tua connessione e riprova"
     }
   },
   "consent": {
