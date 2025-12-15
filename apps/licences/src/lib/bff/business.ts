@@ -1,4 +1,5 @@
-import { CoreLogger } from "@io-ipatente/core";
+import { AxiosErrorEnriched, CoreLogger, ErrorSource } from "@io-ipatente/core";
+import { AxiosError } from "axios";
 
 import { getExternalApiClient } from "./client";
 
@@ -17,6 +18,9 @@ export const retrieveLicences =
       logger.error(
         `An Error has occurred while retrieving licences, caused by: ${error}`,
       );
+      if (error instanceof AxiosError) {
+        return new AxiosErrorEnriched(error, ErrorSource.DG_MOT);
+      }
       return error;
     }
   };
