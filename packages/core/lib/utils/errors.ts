@@ -10,7 +10,7 @@ import {
   HTTP_TITLE_FORBIDDEN,
   HTTP_TITLE_UNAUTHORIZED,
 } from "./constants";
-import { AxiosErrorEnriched, ErrorSource } from "./errorTypes";
+import { ErrorSource } from "./errorTypes";
 
 export class ManagedInternalError extends Error {
   additionalDetails?: string;
@@ -90,10 +90,8 @@ export const handleUnauthorizedErrorResponse = (
 
 export const handleAxiosErrorResponse = (
   error: AxiosError,
-  fallbackSource?: ErrorSource,
+  source: ErrorSource,
 ): NextResponse => {
-  const source =
-    error instanceof AxiosErrorEnriched ? error.source : fallbackSource;
   const status =
     error.response?.status ?? error.status ?? HTTP_STATUS_INTERNAL_SERVER_ERROR;
 

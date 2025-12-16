@@ -55,7 +55,8 @@ export const GET = auth(
             endTime - startTime
           } Status: ${error.status} Cause: ${error.cause}`,
         );
-        return handleAxiosErrorResponse(error, ErrorSource.BFF);
+
+        return handleAxiosErrorResponse(error, ErrorSource.DG_MOT);
       }
 
       if (error instanceof ZodiosError) {

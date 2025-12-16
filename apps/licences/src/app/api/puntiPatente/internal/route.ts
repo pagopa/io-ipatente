@@ -53,7 +53,8 @@ export const GET = auth(
               error.cause
             } , Response :${JSON.stringify(error.response?.data)}`,
           );
-          return handleAxiosErrorResponse(error, ErrorSource.BFF);
+
+          return handleAxiosErrorResponse(error, ErrorSource.DG_MOT);
         }
 
         if (error instanceof ZodiosError) {

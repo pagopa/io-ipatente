@@ -32,6 +32,12 @@ export interface Voucher {
 
 export const requestVoucher =
   (logger: CoreLogger) => async (vr: VoucherRequest) => {
+    // TEST: Simula errore PDND
+    if (process.env.FORCE_PDND_ERROR === "true") {
+      logger.error("[TEST] Forcing PDND error");
+      throw new Error("PDND service unavailable (test mode)");
+    }
+
     try {
       const { data } = await axios.post<Voucher>(
         vr.authServerEndpointUrl,

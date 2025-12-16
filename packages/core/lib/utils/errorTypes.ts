@@ -6,32 +6,13 @@ export enum ErrorSource {
   PDND = "PDND",
 }
 
-export class AxiosErrorEnriched extends AxiosError {
-  constructor(
-    public readonly axiosError: AxiosError,
-    public readonly source: ErrorSource,
-  ) {
-    super(
-      axiosError.message,
-      axiosError.code,
-      axiosError.config,
-      axiosError.request,
-      axiosError.response,
-    );
-    this.name = "AxiosErrorEnriched";
-    Object.setPrototypeOf(this, AxiosErrorEnriched.prototype);
-  }
-}
-
 export interface ErrorInfo {
   descriptionKey: string;
   showRetry: boolean;
   titleKey: string;
 }
 
-export const getErrorInfo = (
-  error: AxiosError | AxiosErrorEnriched | null,
-): ErrorInfo => {
+export const getErrorInfo = (error: AxiosError | null): ErrorInfo => {
   // Generic error
   if (!error) {
     return {
@@ -43,7 +24,7 @@ export const getErrorInfo = (
 
   const status = error.response?.status ?? error.status;
   const code = error.code;
-  const source = error instanceof AxiosErrorEnriched ? error.source : undefined;
+  const source = (error.response?.data as { source?: ErrorSource })?.source;
 
   // Authentication errors (401 Unauthorized, 403 Forbidden)
   if (status === 401 || status === 403) {
