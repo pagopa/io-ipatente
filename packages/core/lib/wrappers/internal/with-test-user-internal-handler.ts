@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { getConfiguration } from "../../config";
+import { ErrorSource } from "../../utils/errorTypes";
 import { handleForbiddenErrorResponse } from "../../utils/errors";
 
 /**
@@ -32,13 +33,16 @@ export const withTestUserInternalHandler =
       getConfiguration();
 
     if (!INTERNAL_ROUTES_ENABLED) {
-      return handleForbiddenErrorResponse("Internal routes are disabled");
+      return handleForbiddenErrorResponse(
+        "Internal routes are disabled",
+        ErrorSource.BFF,
+      );
     }
 
     const testUser = request.headers.get("X-TEST-USER");
 
     if (!testUser || !INTERNAL_ROUTES_TEST_USER.includes(testUser)) {
-      return handleForbiddenErrorResponse("Invalid Test User");
+      return handleForbiddenErrorResponse("Invalid Test User", ErrorSource.BFF);
     }
 
     return handler(request, { testUser });

@@ -64,7 +64,10 @@ export const withVoucherHandler =
       });
 
       if (!clientAssertionResult) {
-        return handleUnauthorizedErrorResponse("No client assertion provided");
+        return handleUnauthorizedErrorResponse(
+          "No client assertion provided",
+          ErrorSource.PDND,
+        );
       }
 
       const voucher = await requestVoucher(logger)({

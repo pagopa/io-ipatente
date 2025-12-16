@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { User } from "next-auth";
 
 import { AuthRouteHandler } from "../types";
+import { ErrorSource } from "../utils/errorTypes";
 import { handleUnauthorizedErrorResponse } from "../utils/errors";
 
 export const withJWTAuthHandler =
@@ -18,7 +19,10 @@ export const withJWTAuthHandler =
     const { auth } = request;
 
     if (!auth) {
-      return handleUnauthorizedErrorResponse("No Authentication provided");
+      return handleUnauthorizedErrorResponse(
+        "No Authentication provided",
+        ErrorSource.BFF,
+      );
     }
 
     return handler(request, {
