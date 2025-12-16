@@ -5,6 +5,7 @@ import { getConfiguration } from "../config";
 import { generateClientAssertion } from "../interop/client-assertion";
 import { Voucher, requestVoucher } from "../interop/voucher";
 import { CoreLogger } from "../types/logger";
+import { ErrorSource } from "../utils/errorTypes";
 import {
   handleInternalErrorResponse,
   handleUnauthorizedErrorResponse,
@@ -77,7 +78,10 @@ export const withVoucherHandler =
       });
 
       if (!voucher) {
-        return handleUnauthorizedErrorResponse("No voucher provided", "PDND");
+        return handleUnauthorizedErrorResponse(
+          "No voucher provided",
+          ErrorSource.PDND,
+        );
       }
 
       return handler(request, {
@@ -90,6 +94,10 @@ export const withVoucherHandler =
         `An Error has occurred while requesting voucher, caused by: `,
         { error },
       );
-      return handleInternalErrorResponse("VoucherRequestError", error, "PDND");
+      return handleInternalErrorResponse(
+        "VoucherRequestError",
+        error,
+        ErrorSource.PDND,
+      );
     }
   };

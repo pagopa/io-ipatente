@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import { logger } from "@/lib/bff/logger";
 import {
+  ErrorSource,
   handleInternalErrorResponse,
   withTestUserAndVoucherInternalHandler,
 } from "@io-ipatente/core";
@@ -24,6 +25,7 @@ export const GET = auth(
         return handleInternalErrorResponse(
           "InternalVoucherRetrieveError",
           error,
+          ErrorSource.BFF,
         );
       }
     },

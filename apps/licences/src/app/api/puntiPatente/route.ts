@@ -3,6 +3,7 @@ import { Patenti } from "@/generated/bff-openapi";
 import { retrieveLicences } from "@/lib/bff/business";
 import { logger } from "@/lib/bff/logger";
 import {
+  ErrorSource,
   handleAxiosErrorResponse,
   handleBadRequestErrorResponse,
   handleInternalErrorResponse,
@@ -41,7 +42,7 @@ export const GET = auth(
               res.cause
             } , Response :${JSON.stringify(res.response?.data)}`,
           );
-          return handleAxiosErrorResponse(res);
+          return handleAxiosErrorResponse(res, ErrorSource.BFF);
         }
 
         logger.error(
@@ -49,13 +50,13 @@ export const GET = auth(
         );
 
         if (res instanceof ZodiosError) {
-          return handleBadRequestErrorResponse(res.message, "PDND");
+          return handleBadRequestErrorResponse(res.message, ErrorSource.BFF);
         }
 
         return handleInternalErrorResponse(
           "LicencesRetrieveError",
           res,
-          "PDND",
+          ErrorSource.BFF,
         );
       } catch (error) {
         logger.error(
@@ -65,7 +66,7 @@ export const GET = auth(
         return handleInternalErrorResponse(
           "LicencesRetrieveError",
           error,
-          "PDND",
+          ErrorSource.BFF,
         );
       }
     },
