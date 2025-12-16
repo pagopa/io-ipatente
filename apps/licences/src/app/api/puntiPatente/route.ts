@@ -34,35 +34,40 @@ export const GET = auth(
           return NextResponse.json(licences.data);
         }
 
-        if (res instanceof AxiosError) {
-          logger.error(
-            `[AxiosError] retrieveLicences Status: ${res.status} , Code: ${
-              res.code
-            } , Message:${res.message} , Cause: ${
-              res.cause
-            } , Response :${JSON.stringify(res.response?.data)}`,
-          );
-          return handleAxiosErrorResponse(res, ErrorSource.BFF);
-        }
-
         logger.error(
-          `[GenericError] retrieveLicences Error: ${JSON.stringify(res)}`,
+          `[ValidationError] retrieveLicences validation failed: ${JSON.stringify(
+            licences.error,
+          )}`,
         );
 
-        if (res instanceof ZodiosError) {
-          return handleBadRequestErrorResponse(res.message, ErrorSource.BFF);
-        }
-
-        return handleInternalErrorResponse(
-          "LicencesRetrieveError",
-          res,
-          ErrorSource.BFF,
+        return handleBadRequestErrorResponse(
+          "Invalid response format",
+          ErrorSource.DG_MOT,
         );
       } catch (error) {
+        if (error instanceof AxiosError) {
+          logger.error(
+            `[AxiosError] retrieveLicences Status: ${error.status} , Code: ${
+              error.code
+            } , Message:${error.message} , Cause: ${
+              error.cause
+            } , Response :${JSON.stringify(error.response?.data)}`,
+          );
+          return handleAxiosErrorResponse(error, ErrorSource.BFF);
+        }
+
+        if (error instanceof ZodiosError) {
+          logger.error(
+            `[ZodiosError] retrieveLicences Error: ${error.message}`,
+          );
+          return handleBadRequestErrorResponse(error.message, ErrorSource.BFF);
+        }
+
         logger.error(
-          `An Error has occurred while retrieving user licences, caused by: `,
+          `[GenericError] An Error has occurred while retrieving user licences, caused by: `,
           { error },
         );
+
         return handleInternalErrorResponse(
           "LicencesRetrieveError",
           error,

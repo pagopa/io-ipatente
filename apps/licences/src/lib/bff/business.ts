@@ -19,8 +19,8 @@ export const retrieveLicences =
         `An Error has occurred while retrieving licences, caused by: ${error}`,
       );
       if (error instanceof AxiosError) {
-        return new AxiosErrorEnriched(error, ErrorSource.DG_MOT);
+        throw new AxiosErrorEnriched(error, ErrorSource.DG_MOT);
       }
-      return error;
+      throw error;
     }
   };

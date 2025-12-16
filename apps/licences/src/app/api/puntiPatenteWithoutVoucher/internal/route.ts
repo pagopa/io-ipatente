@@ -29,7 +29,6 @@ export const GET = auth(
         voucher ?? "",
         testUser,
       );
-      const endTime = new Date().getTime();
 
       const licences = Patenti.safeParse(res);
 
@@ -37,29 +36,40 @@ export const GET = auth(
         return NextResponse.json(licences.data);
       }
 
-      if (res instanceof AxiosError) {
+      logger.error(
+        `LoadTestWithoutVoucher [ValidationError] internal retrieveLicences validation failed: ${JSON.stringify(
+          licences.error,
+        )}`,
+      );
+
+      return handleBadRequestErrorResponse(
+        "Invalid response format",
+        ErrorSource.DG_MOT,
+      );
+    } catch (error) {
+      const endTime = new Date().getTime();
+
+      if (error instanceof AxiosError) {
         logger.error(
           `LoadTestWithoutVoucher [AxiosError] internal retrieveLicences duration: ${
             endTime - startTime
-          } Status: ${res.status} Cause: ${res.cause}`,
+          } Status: ${error.status} Cause: ${error.cause}`,
         );
-        return handleAxiosErrorResponse(res, ErrorSource.BFF);
+        return handleAxiosErrorResponse(error, ErrorSource.BFF);
       }
 
-      if (res instanceof ZodiosError) {
-        return handleBadRequestErrorResponse(res.message, ErrorSource.BFF);
+      if (error instanceof ZodiosError) {
+        logger.error(
+          `LoadTestWithoutVoucher [ZodiosError] internal retrieveLicences Error: ${error.message}`,
+        );
+        return handleBadRequestErrorResponse(error.message, ErrorSource.BFF);
       }
 
-      return handleInternalErrorResponse(
-        "InternalLicencesRetrieveError",
-        res,
-        ErrorSource.BFF,
-      );
-    } catch (error) {
       logger.error(
-        `An Error has occurred while retrieving user licences [Internal] , caused by: `,
+        `LoadTestWithoutVoucher [GenericError] An Error has occurred while retrieving user licences [Internal] , caused by: `,
         { error },
       );
+
       return handleInternalErrorResponse(
         "InternalLicencesRetrieveError",
         error,
