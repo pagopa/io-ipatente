@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { CoreLogger } from "../types";
 import {
   HTTP_STATUS_BAD_REQUEST,
   HTTP_STATUS_FORBIDDEN,
@@ -70,3 +71,25 @@ export const handleUnauthorizedErrorResponse = (detail: string): NextResponse =>
     },
     { status: HTTP_STATUS_UNAUTHORIZED },
   );
+
+export const handlerErrorLog = (
+  logPrefix: string,
+  e: unknown,
+  logger: CoreLogger,
+): void => {
+  if (e instanceof ManagedInternalError) {
+    logger.error(
+      `${logPrefix}, caused by: ${e.message} , additionalDetails: ${e.additionalDetails}`,
+    );
+    return;
+  } else if (e instanceof Error) {
+    logger.error(`${logPrefix}, caused by: `, e);
+    return;
+  } else {
+    logger.error(
+      `${logPrefix} , caused by: unknown error ,additionalDetails: ${JSON.stringify(
+        e,
+      )}`,
+    );
+  }
+};
