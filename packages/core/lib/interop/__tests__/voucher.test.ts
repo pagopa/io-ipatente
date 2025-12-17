@@ -34,7 +34,7 @@ describe("Voucher", () => {
   it("should send a POST request with the correct data and return a voucher", async () => {
     vi.mocked(axios.post).mockResolvedValueOnce({ data: mockVoucher });
 
-    const result = await requestVoucher(mockLogger)(mockVoucherRequest);
+    const result = await requestVoucher()(mockVoucherRequest);
 
     expect(axios.post).toHaveBeenCalledWith(
       mockVoucherRequest.authServerEndpointUrl,
@@ -52,7 +52,7 @@ describe("Voucher", () => {
   it("should handle errors and log them", async () => {
     vi.mocked(axios.post).mockRejectedValueOnce(new Error("Network error"));
 
-    const result = await requestVoucher(mockLogger)(mockVoucherRequest);
+    const result = await requestVoucher()(mockVoucherRequest);
 
     expect(result).toBeUndefined();
     expect(mockLogger.error).toHaveBeenCalledWith(
@@ -74,7 +74,7 @@ describe("Voucher", () => {
 
     vi.mocked(axios.post).mockResolvedValueOnce({ data: mockVoucher });
 
-    await requestVoucher(mockLogger)(mockVoucherRequest);
+    await requestVoucher()(mockVoucherRequest);
 
     expect(axios.post).toHaveBeenCalledWith(
       mockVoucherRequest.authServerEndpointUrl,
