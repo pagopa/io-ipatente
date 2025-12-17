@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
-import { CoreLogger } from "../types/logger";
+import { ManagedInternalError } from "../utils";
 
 export interface VoucherRequest {
   /** Authorization server endpoint url */
@@ -30,23 +30,23 @@ export interface Voucher {
   token_type: "Bearer";
 }
 
-export const requestVoucher =
-  (logger: CoreLogger) => async (vr: VoucherRequest) => {
-    try {
-      const { data } = await axios.post<Voucher>(
-        vr.authServerEndpointUrl,
-        new URLSearchParams(Object.entries(vr.data)).toString(),
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        },
-      );
-      return data;
-    } catch (error) {
-      logger.error(
-        `An Error has occurred while requesting voucher, caused by: `,
-        { error },
-      );
+export const requestVoucher = () => async (vr: VoucherRequest) => {
+  try {
+    // TEST: Simula errore PDND
+    if (process.env.FORCE_PDND_ERROR === "true") {
+      throw new AxiosError("PDND server error (test mode)");
     }
-  };
+    const { data } = await axios.post<Voucher>(
+      vr.authServerEndpointUrl,
+      new URLSearchParams(Object.entries(vr.data)).toString(),
+      {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      },
+    );
+    return data;
+  } catch (error) {
+    throw new ManagedInternalError("[PDND] Failed to request voucher", error);
+  }
+};
