@@ -12,6 +12,14 @@ export interface ErrorInfo {
   titleKey: string;
 }
 
+export interface ApiErrorResponse {
+  code?: string;
+  detail: string;
+  source?: ErrorSource;
+  status: number;
+  title?: string;
+}
+
 export const getErrorInfo = (error: AxiosError | null): ErrorInfo => {
   // Generic error
   if (!error) {
@@ -23,8 +31,9 @@ export const getErrorInfo = (error: AxiosError | null): ErrorInfo => {
   }
 
   const status = error.response?.status ?? error.status;
-  const code = error.code;
-  const source = (error.response?.data as { source?: ErrorSource })?.source;
+  const responseData = error.response?.data as ApiErrorResponse | undefined;
+  const code = responseData?.code ?? error.code;
+  const source = responseData?.source;
 
   // Authentication errors (401 Unauthorized, 403 Forbidden)
   if (status === 401 || status === 403) {
@@ -37,11 +46,10 @@ export const getErrorInfo = (error: AxiosError | null): ErrorInfo => {
 
   // No internet connection or network failure
   if (
-    !status &&
-    (code === "ERR_NETWORK" ||
-      code === "ERR_INTERNET_DISCONNECTED" ||
-      code === "ENETUNREACH" ||
-      code === "ENOTFOUND")
+    code === "ERR_NETWORK" ||
+    code === "ERR_INTERNET_DISCONNECTED" ||
+    code === "ENETUNREACH" ||
+    code === "ENOTFOUND"
   ) {
     return {
       descriptionKey: "failure.networkError.description",

@@ -97,6 +97,7 @@ export const handleAxiosErrorResponse = (
 
   return NextResponse.json(
     {
+      code: error.code,
       detail: error.message,
       source,
       status,

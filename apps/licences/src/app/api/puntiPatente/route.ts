@@ -61,7 +61,10 @@ export const GET = auth(
           logger.error(
             `[ZodiosError] retrieveLicences Error: ${error.message}`,
           );
-          return handleBadRequestErrorResponse(error.message, ErrorSource.BFF);
+          return handleBadRequestErrorResponse(
+            error.message,
+            ErrorSource.DG_MOT,
+          );
         }
 
         logger.error(

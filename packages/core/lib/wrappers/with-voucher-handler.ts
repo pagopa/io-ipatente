@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import { NextResponse } from "next/server";
 import { User } from "next-auth";
 
@@ -7,6 +8,7 @@ import { Voucher, requestVoucher } from "../interop/voucher";
 import { CoreLogger } from "../types/logger";
 import { ErrorSource } from "../utils/errorTypes";
 import {
+  handleAxiosErrorResponse,
   handleInternalErrorResponse,
   handleUnauthorizedErrorResponse,
 } from "../utils/errors";
@@ -93,6 +95,14 @@ export const withVoucherHandler =
         voucher,
       });
     } catch (error) {
+      if (error instanceof AxiosError) {
+        logger.error(
+          `[AxiosError] An Error has occurred while requesting voucher - Status: ${error.status}, Code: ${error.code}, Message: ${error.message}`,
+          { error },
+        );
+        return handleAxiosErrorResponse(error, ErrorSource.PDND);
+      }
+
       logger.error(
         `An Error has occurred while requesting voucher, caused by: `,
         { error },
