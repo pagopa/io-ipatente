@@ -3,7 +3,7 @@ import { Patenti } from "@/generated/bff-openapi";
 import { retrieveLicences } from "@/lib/bff/business";
 import { logger } from "@/lib/bff/logger";
 import {
-  ManagedInternalError,
+  BffError,
   handleInternalErrorResponse,
   handlerErrorLog,
   withTestUserAndVoucherInternalHandler,
@@ -28,8 +28,8 @@ export const GET = auth(
         const licences = Patenti.safeParse(res);
 
         if (!licences.success) {
-          throw new ManagedInternalError(
-            "[DG_MOT] Validation failed: Invalid licence data from DG_MOT",
+          throw new BffError(
+            "Validation failed: Invalid licence data from DG_MOT",
             licences.error,
           );
         }
