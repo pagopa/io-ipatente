@@ -78,6 +78,18 @@ export class DgMotError extends ManagedInternalError {
   }
 }
 
+export class PdndError extends ManagedInternalError {
+  constructor(message: string, error?: unknown) {
+    super(`[PDND] ${message}`, error);
+  }
+}
+
+export class BffError extends ManagedInternalError {
+  constructor(message: string, error?: unknown) {
+    super(`[BFF] ${message}`, error);
+  }
+}
+
 export const handlerErrorLog =
   (logger: CoreLogger) =>
   (logPrefix: string, e: unknown): void => {

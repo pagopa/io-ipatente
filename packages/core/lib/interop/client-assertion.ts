@@ -2,7 +2,7 @@ import crypto from "crypto";
 import jwt from "jsonwebtoken";
 import { v4 as uuidv4 } from "uuid";
 
-import { CoreLogger } from "../types";
+import { BffError } from "../utils";
 
 export interface ClientAssertion {
   /** Additional data _(required for GovWay authentication)_.
@@ -83,7 +83,7 @@ export interface ClientAssertionResult {
 }
 
 export const generateClientAssertion =
-  (logger: CoreLogger) =>
+  () =>
   ({
     additionalData,
     alg,
@@ -97,6 +97,17 @@ export const generateClientAssertion =
     typ,
   }: ClientAssertion): ClientAssertionResult | undefined => {
     try {
+      // TEST: Simula errore BFF
+      if (process.env.FORCE_BFF_ERROR === "true") {
+        const error = new Error(
+          "Client assertion generation failed (test mode)",
+        );
+        throw new BffError(
+          "An Error has occurred while generating client assertion",
+          error,
+        );
+      }
+
       // Variables for JWT token
       const iat = Math.floor(Date.now() / 1000);
       const expiration = iat + exp;
@@ -106,7 +117,7 @@ export const generateClientAssertion =
       const header: ClientAssertionHeader = { alg, kid, typ };
 
       // JWS for additional data (GovWay)
-      const additionalDataJWS = generateAdditionalDataJWS(logger)({
+      const additionalDataJWS = generateAdditionalDataJWS()({
         additionalData,
         exp,
         header,
@@ -124,7 +135,7 @@ export const generateClientAssertion =
         jti,
         purposeId,
         sub,
-        ...getAdditionalPayload(logger)(additionalDataJWS),
+        ...getAdditionalPayload()(additionalDataJWS),
       };
 
       return {
@@ -135,9 +146,9 @@ export const generateClientAssertion =
         }),
       };
     } catch (error) {
-      logger.error(
-        `An Error has occurred while generating client assertion, caused by: `,
-        { error },
+      throw new BffError(
+        "An Error has occurred while generating client assertion",
+        error,
       );
     }
   };
@@ -148,7 +159,7 @@ export const generateClientAssertion =
  * @returns
  */
 export const generateAdditionalDataJWS =
-  (logger: CoreLogger) =>
+  () =>
   ({
     additionalData,
     exp,
@@ -180,11 +191,10 @@ export const generateAdditionalDataJWS =
 
       return additionalDataJWS;
     } catch (error) {
-      logger.error(
-        `An Error has occurred while getting additional data JWS, caused by: `,
-        { error },
+      throw new BffError(
+        "An Error has occurred while getting additional data JWS",
+        error,
       );
-      return "";
     }
   };
 
@@ -194,27 +204,26 @@ export const generateAdditionalDataJWS =
  * @param additionalDataJWS
  * @returns
  */
-export const getAdditionalPayload =
-  (logger: CoreLogger) => (additionalDataJWS: string) => {
-    let result: ClientAssertionAdditionalDataDigest;
-    try {
-      const digestValue = hashSha256(additionalDataJWS);
+export const getAdditionalPayload = () => (additionalDataJWS: string) => {
+  let result: ClientAssertionAdditionalDataDigest;
+  try {
+    const digestValue = hashSha256(additionalDataJWS);
 
-      result = {
-        digest: {
-          alg: "SHA256",
-          value: digestValue,
-        },
-      };
+    result = {
+      digest: {
+        alg: "SHA256",
+        value: digestValue,
+      },
+    };
 
-      return result;
-    } catch (error) {
-      logger.error(
-        `An Error has occurred while getting additional payload data, caused by: `,
-        { error },
-      );
-    }
-  };
+    return result;
+  } catch (error) {
+    throw new BffError(
+      "An Error has occurred while getting additional payload data",
+      error,
+    );
+  }
+};
 
 const hashSha256 = (input: string) =>
   crypto.createHash("sha256").update(input).digest("hex");

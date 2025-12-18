@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 
-import { ManagedInternalError } from "../utils";
+import { PdndError } from "../utils";
 
 export interface VoucherRequest {
   /** Authorization server endpoint url */
@@ -36,6 +36,7 @@ export const requestVoucher = () => async (vr: VoucherRequest) => {
     if (process.env.FORCE_PDND_ERROR === "true") {
       throw new AxiosError("PDND server error (test mode)");
     }
+
     const { data } = await axios.post<Voucher>(
       vr.authServerEndpointUrl,
       new URLSearchParams(Object.entries(vr.data)).toString(),
@@ -47,6 +48,6 @@ export const requestVoucher = () => async (vr: VoucherRequest) => {
     );
     return data;
   } catch (error) {
-    throw new ManagedInternalError("[PDND] Failed to request voucher", error);
+    throw new PdndError("Failed to request voucher", error);
   }
 };

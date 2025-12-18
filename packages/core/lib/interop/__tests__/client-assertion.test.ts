@@ -2,20 +2,12 @@ import jwt from "jsonwebtoken";
 import { v4 as uuidv4 } from "uuid";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import { CoreLogger } from "../../types/logger";
 import { ClientAssertion, generateClientAssertion } from "../client-assertion";
 
 vi.mock("jsonwebtoken");
 vi.mock("uuid");
 
 describe("Client Assertion", () => {
-  const mockLogger: CoreLogger = {
-    debug: vi.fn(),
-    error: vi.fn(),
-    info: vi.fn(),
-    warn: vi.fn(),
-  };
-
   const mockClientAssertion: ClientAssertion = {
     additionalData: {
       LoA: "high",
@@ -64,7 +56,7 @@ describe("Client Assertion", () => {
       typ: mockClientAssertion.typ,
     };
 
-    generateClientAssertion(mockLogger)(mockClientAssertion);
+    generateClientAssertion()(mockClientAssertion);
 
     expect(mockUuidv4).toHaveBeenCalledWith();
     expect(mockJwtSign).toHaveBeenCalledWith(
@@ -82,7 +74,7 @@ describe("Client Assertion", () => {
       throw new Error("Signing error");
     });
 
-    const result = generateClientAssertion(mockLogger)(mockClientAssertion);
+    const result = generateClientAssertion()(mockClientAssertion);
 
     expect(result).toBeUndefined();
     expect(mockJwtSign).toThrowError("Signing error");
