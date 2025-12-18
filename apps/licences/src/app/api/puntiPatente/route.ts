@@ -19,13 +19,13 @@ export const GET = auth(
   withJWTAuthAndVoucherHandler(logger)(
     async (_request: Request, { additionalDataJWS, user, voucher }) => {
       try {
-        const response = await retrieveLicences()(
+        const res = await retrieveLicences()(
           additionalDataJWS,
           voucher.access_token,
           user.fiscalCode,
         );
 
-        const licences = Patenti.safeParse(response);
+        const licences = Patenti.safeParse(res);
 
         if (!licences.success) {
           throw new ManagedInternalError(
