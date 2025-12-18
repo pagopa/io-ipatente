@@ -36,10 +36,9 @@ export const GET = auth(
 
         return NextResponse.json(licences.data);
       } catch (error) {
-        handlerErrorLog(
+        handlerErrorLog(logger)(
           "An Error has occurred while retrieving licences",
           error,
-          logger,
         );
 
         return handleInternalErrorResponse("LicencesRetrieveError", error);

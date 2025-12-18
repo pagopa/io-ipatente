@@ -72,24 +72,22 @@ export const handleUnauthorizedErrorResponse = (detail: string): NextResponse =>
     { status: HTTP_STATUS_UNAUTHORIZED },
   );
 
-export const handlerErrorLog = (
-  logPrefix: string,
-  e: unknown,
-  logger: CoreLogger,
-): void => {
-  if (e instanceof ManagedInternalError) {
-    logger.error(
-      `${logPrefix}, caused by: ${e.message} , additionalDetails: ${e.additionalDetails}`,
-    );
-    return;
-  } else if (e instanceof Error) {
-    logger.error(`${logPrefix}, caused by: `, e);
-    return;
-  } else {
-    logger.error(
-      `${logPrefix} , caused by: unknown error ,additionalDetails: ${JSON.stringify(
-        e,
-      )}`,
-    );
-  }
-};
+export const handlerErrorLog =
+  (logger: CoreLogger) =>
+  (logPrefix: string, e: unknown): void => {
+    if (e instanceof ManagedInternalError) {
+      logger.error(
+        `${logPrefix}, caused by: ${e.message} , additionalDetails: ${e.additionalDetails}`,
+      );
+      return;
+    } else if (e instanceof Error) {
+      logger.error(`${logPrefix}, caused by: `, e);
+      return;
+    } else {
+      logger.error(
+        `${logPrefix} , caused by: unknown error ,additionalDetails: ${JSON.stringify(
+          e,
+        )}`,
+      );
+    }
+  };
