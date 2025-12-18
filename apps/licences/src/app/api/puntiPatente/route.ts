@@ -1,7 +1,9 @@
 import { auth } from "@/auth";
+import { Patenti } from "@/generated/bff-openapi";
 import { retrieveLicences } from "@/lib/bff/business";
 import { logger } from "@/lib/bff/logger";
 import {
+  ManagedInternalError,
   handleInternalErrorResponse,
   handlerErrorLog,
   withJWTAuthAndVoucherHandler,
@@ -17,13 +19,22 @@ export const GET = auth(
   withJWTAuthAndVoucherHandler(logger)(
     async (_request: Request, { additionalDataJWS, user, voucher }) => {
       try {
-        const licences = await retrieveLicences()(
+        const response = await retrieveLicences()(
           additionalDataJWS,
           voucher.access_token,
           user.fiscalCode,
         );
 
-        return NextResponse.json(licences);
+        const licences = Patenti.safeParse(response);
+
+        if (!licences.success) {
+          throw new ManagedInternalError(
+            "[DG_MOT] Validation failed: Invalid licence data from DG_MOT",
+            licences.error,
+          );
+        }
+
+        return NextResponse.json(licences.data);
       } catch (error) {
         handlerErrorLog(
           "An Error has occurred while retrieving licences",
