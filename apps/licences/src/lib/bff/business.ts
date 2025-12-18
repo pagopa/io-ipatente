@@ -1,4 +1,4 @@
-import { ManagedInternalError } from "@io-ipatente/core";
+import { DgMotError } from "@io-ipatente/core";
 import { ZodiosError } from "@zodios/core";
 import { AxiosError } from "axios";
 
@@ -22,12 +22,9 @@ export const retrieveLicences =
       });
     } catch (error) {
       if (error instanceof ZodiosError) {
-        throw new ManagedInternalError("[DG_MOT] Failed zod validation", error);
+        throw new DgMotError("Failed zod validation", error);
       }
 
-      throw new ManagedInternalError(
-        "[DG_MOT] Failed to retrieve licences",
-        error,
-      );
+      throw new DgMotError("Failed to retrieve licences", error);
     }
   };

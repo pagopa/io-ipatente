@@ -72,6 +72,12 @@ export const handleUnauthorizedErrorResponse = (detail: string): NextResponse =>
     { status: HTTP_STATUS_UNAUTHORIZED },
   );
 
+export class DgMotError extends ManagedInternalError {
+  constructor(message: string, error?: unknown) {
+    super(`[DG_MOT] ${message}`, error);
+  }
+}
+
 export const handlerErrorLog =
   (logger: CoreLogger) =>
   (logPrefix: string, e: unknown): void => {
