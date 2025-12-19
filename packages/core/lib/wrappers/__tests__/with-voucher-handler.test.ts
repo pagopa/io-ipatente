@@ -110,10 +110,10 @@ describe("withVoucherHandler", () => {
       mockContext,
     );
 
-    expect(generateClientAssertion).toHaveBeenCalledWith(mockLogger);
+    expect(generateClientAssertion).toHaveBeenCalledOnce();
     expect(generateClientAssertionInnerMock).toHaveBeenCalledOnce();
 
-    expect(requestVoucher).toHaveBeenCalledWith(mockLogger);
+    expect(requestVoucher).toHaveBeenCalledOnce();
     expect(requestVoucherInnerMock).toHaveBeenCalledWith({
       authServerEndpointUrl: "https://auth-server.com",
       data: {
@@ -140,7 +140,7 @@ describe("withVoucherHandler", () => {
       mockContext,
     );
 
-    expect(generateClientAssertion).toHaveBeenCalledWith(mockLogger);
+    expect(generateClientAssertion).toHaveBeenCalledOnce();
     expect(handleUnauthorizedErrorResponse).toHaveBeenCalledWith(
       "No client assertion provided",
     );
@@ -161,8 +161,8 @@ describe("withVoucherHandler", () => {
       mockContext,
     );
 
-    expect(generateClientAssertion).toHaveBeenCalledWith(mockLogger);
-    expect(requestVoucher).toHaveBeenCalledWith(mockLogger);
+    expect(generateClientAssertion).toHaveBeenCalledOnce();
+    expect(requestVoucher).toHaveBeenCalledOnce();
     expect(handleUnauthorizedErrorResponse).toHaveBeenCalledWith(
       "No voucher provided",
     );

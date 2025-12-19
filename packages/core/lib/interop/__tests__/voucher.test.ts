@@ -1,19 +1,12 @@
 import axios from "axios";
 import { describe, expect, it, vi } from "vitest";
 
-import { CoreLogger } from "../../types/logger";
+import { PdndError } from "../../utils/errors";
 import { Voucher, VoucherRequest, requestVoucher } from "../voucher";
 
 vi.mock("axios");
 
 describe("Voucher", () => {
-  const mockLogger: CoreLogger = {
-    debug: vi.fn(),
-    error: vi.fn(),
-    info: vi.fn(),
-    warn: vi.fn(),
-  };
-
   const mockVoucher: Voucher = {
     access_token: "test_access_token",
     expires_in: 3600,
@@ -49,18 +42,14 @@ describe("Voucher", () => {
     expect(result).toEqual(mockVoucher);
   });
 
-  it("should handle errors and log them", async () => {
+  it("should handle errors and throw PdndError", async () => {
     vi.mocked(axios.post).mockRejectedValueOnce(new Error("Network error"));
 
-    const result = await requestVoucher()(mockVoucherRequest);
+    const result = requestVoucher()(mockVoucherRequest);
 
-    expect(result).toBeUndefined();
-    expect(mockLogger.error).toHaveBeenCalledWith(
-      "An Error has occurred while requesting voucher, caused by: ",
-      {
-        error: expect.any(Error),
-      },
-    );
+    await expect(result).rejects.toThrow(PdndError);
+
+    await expect(result).rejects.toThrow("[PDND] Failed to request voucher");
   });
 
   it("should send the correct URLSearchParams data", async () => {
