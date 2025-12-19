@@ -90,6 +90,12 @@ export class BffError extends ManagedInternalError {
   }
 }
 
+export class FimsError extends ManagedInternalError {
+  constructor(message: string, error?: unknown) {
+    super(`[FIMS] ${message}`, error);
+  }
+}
+
 export const handlerErrorLog =
   (logger: CoreLogger) =>
   (logPrefix: string, e: unknown): void => {
