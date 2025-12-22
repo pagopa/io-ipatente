@@ -83,7 +83,9 @@ describe("retrieveLicences", () => {
 
     await expect(result).rejects.toThrow(DgMotError);
 
-    await expect(result).rejects.toThrow("[DG_MOT] Failed zod validation");
+    await expect(result).rejects.toThrow(
+      "[DG_MOT] Failed zod validation of licences",
+    );
 
     expect(mockGetPuntiPatente).toHaveBeenCalledWith({
       headers: {

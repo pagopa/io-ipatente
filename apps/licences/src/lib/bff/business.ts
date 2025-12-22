@@ -22,7 +22,7 @@ export const retrieveLicences =
       });
     } catch (error) {
       if (error instanceof ZodiosError) {
-        throw new DgMotError("Failed zod validation", error);
+        throw new DgMotError("Failed zod validation of licences", error);
       }
 
       throw new DgMotError("Failed to retrieve licences", error);
