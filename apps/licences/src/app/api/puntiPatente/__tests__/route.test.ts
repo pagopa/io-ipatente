@@ -1,4 +1,4 @@
-import { handleInternalErrorResponse } from "@io-ipatente/core";
+import { BffError, handleInternalErrorResponse } from "@io-ipatente/core";
 import { NextResponse } from "next/server";
 import { Session } from "next-auth";
 import { describe, expect, it, vi } from "vitest";
@@ -115,14 +115,13 @@ describe("GET /api/puntiPatente", () => {
   it("should handle zod validation error by invoking handleInternalErrorResponse", async () => {
     // Mock invalid data that will fail Zod validation
     const invalidData = { invalid: "data" };
-    const zodiosError = new Error("Failed to retrieve licences");
     retrieveLicencesInnerMock.mockResolvedValue(invalidData);
 
     await GET(mockRequest, {});
 
     expect(handleInternalErrorResponse).toHaveBeenCalledWith(
       "LicencesRetrieveError",
-      zodiosError,
+      expect.any(BffError),
     );
   });
 
