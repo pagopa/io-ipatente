@@ -1,4 +1,5 @@
-import { CoreLogger } from "@io-ipatente/core";
+import { DgMotError } from "@io-ipatente/core";
+import { ZodiosError } from "@zodios/core";
 import { Mock, describe, expect, it, vi } from "vitest";
 
 import { retrievePractices } from "../business";
@@ -13,12 +14,6 @@ describe("retrievePractices", () => {
   const mockAdditionalDataJWS = "additional-token";
   const mockToken = "test-token";
   const mockFiscalCode = "ABCDEF12G34H567I";
-  const mockLogger: CoreLogger = {
-    debug: vi.fn(),
-    error: vi.fn(),
-    info: vi.fn(),
-    warn: vi.fn(),
-  };
 
   it("should return practice information when API call is successful", async () => {
     const mockResponse = { data: "Practice data" };
@@ -28,7 +23,7 @@ describe("retrievePractices", () => {
       getPratiche: mockGetPratiche,
     });
 
-    const result = await retrievePractices(mockLogger)(
+    const result = await retrievePractices()(
       mockAdditionalDataJWS,
       mockToken,
       mockFiscalCode,
@@ -44,7 +39,7 @@ describe("retrievePractices", () => {
     });
   });
 
-  it("should return an error when API call fails", async () => {
+  it("should throw DgMotError when API call fails", async () => {
     const mockError = new Error("API error");
     const mockGetPratiche = vi.fn().mockRejectedValue(mockError);
 
@@ -52,13 +47,47 @@ describe("retrievePractices", () => {
       getPratiche: mockGetPratiche,
     });
 
-    const result = await retrievePractices(mockLogger)(
+    const result = retrievePractices()(
       mockAdditionalDataJWS,
       mockToken,
       mockFiscalCode,
     );
 
-    expect(result).toBe(mockError);
+    await expect(result).rejects.toThrow(DgMotError);
+
+    await expect(result).rejects.toThrow(
+      "[DG_MOT] Failed to retrieve practices",
+    );
+
+    expect(mockGetPratiche).toHaveBeenCalledWith({
+      headers: {
+        "Agid-JWT-TrackingEvidence": mockAdditionalDataJWS,
+        Authorization: `Bearer ${mockToken}`,
+        codiceFiscale: mockFiscalCode,
+      },
+    });
+  });
+
+  it("should throw DgMotError with validation message when ZodiosError failed", async () => {
+    const mockZodiosError = new ZodiosError("Validation failed");
+    const mockGetPratiche = vi.fn().mockRejectedValue(mockZodiosError);
+
+    (getExternalApiClient as Mock).mockReturnValue({
+      getPratiche: mockGetPratiche,
+    });
+
+    const result = retrievePractices()(
+      mockAdditionalDataJWS,
+      mockToken,
+      mockFiscalCode,
+    );
+
+    await expect(result).rejects.toThrow(DgMotError);
+
+    await expect(result).rejects.toThrow(
+      "[DG_MOT] Failed zod validation of practices",
+    );
+
     expect(mockGetPratiche).toHaveBeenCalledWith({
       headers: {
         "Agid-JWT-TrackingEvidence": mockAdditionalDataJWS,
