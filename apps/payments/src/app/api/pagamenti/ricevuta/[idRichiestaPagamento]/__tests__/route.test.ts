@@ -1,12 +1,11 @@
 import {
+  BffError,
   handleBadRequestErrorResponse,
   handleInternalErrorResponse,
 } from "@io-ipatente/core";
-import { ZodiosError } from "@zodios/core";
-import { AxiosError } from "axios";
 import { NextResponse } from "next/server";
 import { Session } from "next-auth";
-import { describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { EsitoStampaTelematica } from "../../../../../../generated/bff-openapi";
 import { GET } from "../route";
@@ -27,6 +26,8 @@ const mockNextAuthRequest = {
 const mockRequest = {} as Request;
 const retrievePaymentReceiptInnerMock = vi.fn();
 
+let mockParams: Record<string, string> = { idRichiestaPagamento: "22" };
+
 vi.mock("../../../../../../auth", () => ({
   auth: (handler) => () => handler(mockNextAuthRequest, {}),
 }));
@@ -44,9 +45,7 @@ vi.mock(import("@io-ipatente/core"), async (importOriginal) => {
     withJWTAuthAndVoucherHandler: (_) => (handler) => () =>
       handler(mockRequest, {
         additionalDataJWS: "anAdditional",
-        params: {
-          idRichiestaPagamento: "22",
-        },
+        params: mockParams,
         user: mockSession.user,
         voucher: {
           access_token: "anAccessToken",
@@ -58,7 +57,12 @@ vi.mock(import("@io-ipatente/core"), async (importOriginal) => {
 });
 
 describe("GET /api/pagamenti/ricevuta/:idRichiestaPagamento", () => {
-  it("should return a payment's recipt", async () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    mockParams = { idRichiestaPagamento: "22" };
+  });
+
+  it("should return a payment's receipt", async () => {
     const mockPaymentRecipt: EsitoStampaTelematica = {
       esito: {
         codice: "code",
@@ -82,42 +86,9 @@ describe("GET /api/pagamenti/ricevuta/:idRichiestaPagamento", () => {
     expect(response.status).toBe(200);
     await expect(response.json()).resolves.toEqual(mockPaymentRecipt);
   });
-  it("should handle AxiosError by returning a response with error details", async () => {
-    const axiosError = new AxiosError("Network Error");
-    axiosError.status = 500;
-    retrievePaymentReceiptInnerMock.mockResolvedValue(axiosError);
 
-    const response = await GET(mockRequest, {
-      params: {
-        idRichiestaPagamento: "22",
-      },
-    });
-
-    expect(response).toBeInstanceOf(NextResponse);
-    expect(response.status).toBe(500);
-    await expect(response.json()).resolves.toEqual({
-      detail: axiosError.message,
-      status: axiosError.status,
-    });
-  });
-
-  it("should handle ZodiosError by invoking handleBadRequestErrorResponse", async () => {
-    const zodiosError = new ZodiosError("Bad Request Error");
-    retrievePaymentReceiptInnerMock.mockResolvedValue(zodiosError);
-
-    await GET(mockRequest, {
-      params: {
-        idRichiestaPagamento: "22",
-      },
-    });
-
-    expect(handleBadRequestErrorResponse).toHaveBeenCalledWith(
-      zodiosError.message,
-    );
-  });
-
-  it("should handle generic errors by invoking handleInternalErrorResponse", async () => {
-    const error = new Error("Unexpected Error");
+  it("should handle DgMotError by returning an internal error response", async () => {
+    const error = new Error("Failed to retrieve payment receipt");
     retrievePaymentReceiptInnerMock.mockRejectedValue(error);
 
     await GET(mockRequest, {
@@ -132,16 +103,51 @@ describe("GET /api/pagamenti/ricevuta/:idRichiestaPagamento", () => {
     );
   });
 
-  it("should handle generic errors for missing parameters", async () => {
-    const zodiosError = new ZodiosError("Missing idRichiestaPagamento param");
-    retrievePaymentReceiptInnerMock.mockResolvedValue(zodiosError);
+  it("should handle zod validation error by invoking handleInternalErrorResponse", async () => {
+    // Mock invalid data that will fail Zod validation
+    const invalidData = { invalid: "data" };
+    retrievePaymentReceiptInnerMock.mockResolvedValue(invalidData);
+
+    await GET(mockRequest, {
+      params: {
+        idRichiestaPagamento: "22",
+      },
+    });
+
+    expect(handleInternalErrorResponse).toHaveBeenCalledWith(
+      "PaymentReceiptError",
+      expect.any(BffError),
+    );
+  });
+
+  it("should handle generic errors by invoking handleInternalErrorResponse", async () => {
+    const error = new Error("Generic Error");
+    retrievePaymentReceiptInnerMock.mockRejectedValue(error);
+
+    await GET(mockRequest, {
+      params: {
+        idRichiestaPagamento: "22",
+      },
+    });
+
+    expect(handleInternalErrorResponse).toHaveBeenCalledWith(
+      "PaymentReceiptError",
+      error,
+    );
+  });
+
+  it("should handle missing parameters by returning bad request", async () => {
+    // Set mockParams to empty for testing missing id parameter
+    mockParams = {};
 
     await GET(mockRequest, {
       params: {},
     });
 
     expect(handleBadRequestErrorResponse).toHaveBeenCalledWith(
-      zodiosError.message,
+      "Missing idRichiestaPagamento param",
     );
+
+    expect(retrievePaymentReceiptInnerMock).not.toHaveBeenCalled();
   });
 });
