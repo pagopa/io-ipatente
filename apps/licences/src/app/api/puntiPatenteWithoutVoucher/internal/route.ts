@@ -21,7 +21,7 @@ export const GET = auth(
     const voucher = _request.headers.get("Authorization");
     const startTime = new Date().getTime();
     try {
-      const res = await retrieveLicences()(
+      const res = await retrieveLicences(
         additionalDataJWS ?? "",
         voucher ?? "",
         testUser,

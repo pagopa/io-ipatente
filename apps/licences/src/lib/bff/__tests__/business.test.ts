@@ -22,7 +22,7 @@ describe("retrieveLicences", () => {
       getPuntiPatente: mockGetPuntiPatente,
     });
 
-    const result = await retrieveLicences()(
+    const result = await retrieveLicences(
       mockAdditionalDataJWS,
       mockToken,
       mockFiscalCode,
@@ -46,7 +46,7 @@ describe("retrieveLicences", () => {
       getPuntiPatente: mockGetPuntiPatente,
     });
 
-    const result = retrieveLicences()(
+    const result = retrieveLicences(
       mockAdditionalDataJWS,
       mockToken,
       mockFiscalCode,
@@ -75,7 +75,7 @@ describe("retrieveLicences", () => {
       getPuntiPatente: mockGetPuntiPatente,
     });
 
-    const result = retrieveLicences()(
+    const result = retrieveLicences(
       mockAdditionalDataJWS,
       mockToken,
       mockFiscalCode,
