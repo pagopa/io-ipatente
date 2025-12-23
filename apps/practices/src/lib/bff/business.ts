@@ -1,11 +1,17 @@
-import { CoreLogger } from "@io-ipatente/core";
+import { DgMotError } from "@io-ipatente/core";
+import { ZodiosError } from "@zodios/core";
+import { AxiosError } from "axios";
 
 import { getExternalApiClient } from "./client";
 
 export const retrievePractices =
-  (logger: CoreLogger) =>
+  () =>
   async (additionalDataJWS: string, token: string, fiscalCode: string) => {
     try {
+      // TEST: Simula errore DG_MOT
+      if (process.env.FORCE_DG_MOT_ERROR === "true") {
+        throw new AxiosError("DG_MOT server error (test mode)");
+      }
       return await getExternalApiClient().getPratiche({
         headers: {
           "Agid-JWT-TrackingEvidence": additionalDataJWS,
@@ -14,9 +20,10 @@ export const retrievePractices =
         },
       });
     } catch (error) {
-      logger.error(
-        `An Error has occurred while retrieving practices, caused by: ${error}`,
-      );
-      return error;
+      if (error instanceof ZodiosError) {
+        throw new DgMotError("Failed zod validation of practices", error);
+      }
+
+      throw new DgMotError("Failed to retrieve practices", error);
     }
   };
