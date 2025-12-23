@@ -20,7 +20,7 @@ export const GET = auth(
   withJWTAuthAndVoucherHandler(logger)(
     async (_request: Request, { additionalDataJWS, user, voucher }) => {
       try {
-        const res = await retrievePayments()(
+        const res = await retrievePayments(
           additionalDataJWS,
           voucher.access_token,
           user.fiscalCode,
