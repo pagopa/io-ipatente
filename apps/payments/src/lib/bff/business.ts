@@ -1,11 +1,18 @@
-import { CoreLogger } from "@io-ipatente/core";
+import { DgMotError } from "@io-ipatente/core";
+import { ZodiosError } from "@zodios/core";
+import { AxiosError } from "axios";
 
 import { getExternalApiClient } from "./client";
 
 export const retrievePayments =
-  (logger: CoreLogger) =>
+  () =>
   async (additionalDataJWS: string, token: string, fiscalCode: string) => {
     try {
+      // TEST: Simula errore DG_MOT
+      if (process.env.FORCE_DG_MOT_ERROR === "true") {
+        throw new AxiosError("DG_MOT server error (test mode)");
+      }
+
       return await getExternalApiClient().getPagamenti({
         headers: {
           "Agid-JWT-TrackingEvidence": additionalDataJWS,
@@ -14,15 +21,16 @@ export const retrievePayments =
         },
       });
     } catch (error) {
-      logger.error(
-        `An Error has occurred while retrieving payments, caused by: ${error}`,
-      );
-      return error;
+      if (error instanceof ZodiosError) {
+        throw new DgMotError("Failed zod validation of payments", error);
+      }
+
+      throw new DgMotError("Failed to retrieve payments", error);
     }
   };
 
 export const retrievePaymentReceipt =
-  (logger: CoreLogger) =>
+  () =>
   async (
     additionalDataJWS: string,
     token: string,
@@ -41,9 +49,10 @@ export const retrievePaymentReceipt =
         },
       });
     } catch (error) {
-      logger.error(
-        `An Error has occurred while retrieving payment receipt, caused by: ${error}`,
-      );
-      return error;
+      if (error instanceof ZodiosError) {
+        throw new DgMotError("Failed zod validation of payment receipt", error);
+      }
+
+      throw new DgMotError("Failed to retrieve payment receipt", error);
     }
   };
