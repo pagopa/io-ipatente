@@ -4,6 +4,7 @@ import { Session } from "next-auth";
 import { describe, expect, it, vi } from "vitest";
 
 import { Patenti } from "../../../../generated/bff-openapi";
+import { retrieveLicences } from "../../../../lib/bff/business";
 import { GET } from "../route";
 
 const mockSession: Session = {
@@ -20,15 +21,16 @@ const mockNextAuthRequest = {
 };
 
 const mockRequest = {} as Request;
-const retrieveLicencesInnerMock = vi.fn();
 
 vi.mock("../../../../auth", () => ({
   auth: (handler) => () => handler(mockNextAuthRequest, {}),
 }));
 
 vi.mock("../../../../lib/bff/business", () => ({
-  retrieveLicences: vi.fn(() => retrieveLicencesInnerMock),
+  retrieveLicences: vi.fn(),
 }));
+
+const retrieveLicencesMock = vi.mocked(retrieveLicences);
 
 vi.mock(import("@io-ipatente/core"), async (importOriginal) => {
   const mod = await importOriginal();
@@ -89,7 +91,7 @@ describe("GET /api/puntiPatente", () => {
         },
       ],
     };
-    retrieveLicencesInnerMock.mockResolvedValue(mockLicences);
+    retrieveLicencesMock.mockResolvedValue(mockLicences);
 
     const response = (await GET(mockRequest, {
       params: {},
@@ -102,7 +104,7 @@ describe("GET /api/puntiPatente", () => {
 
   it("should handle DgMotError by returning an internal error response", async () => {
     const error = new Error("Failed to retrieve licences");
-    retrieveLicencesInnerMock.mockRejectedValue(error);
+    retrieveLicencesMock.mockRejectedValue(error);
 
     await GET(mockRequest, {});
 
@@ -115,7 +117,7 @@ describe("GET /api/puntiPatente", () => {
   it("should handle zod validation error by invoking handleInternalErrorResponse", async () => {
     // Mock invalid data that will fail Zod validation
     const invalidData = { invalid: "data" };
-    retrieveLicencesInnerMock.mockResolvedValue(invalidData);
+    retrieveLicencesMock.mockResolvedValue(invalidData);
 
     await GET(mockRequest, {});
 
@@ -127,7 +129,7 @@ describe("GET /api/puntiPatente", () => {
 
   it("should handle generic errors by invoking handleInternalErrorResponse", async () => {
     const error = new Error("Generic Error");
-    retrieveLicencesInnerMock.mockRejectedValue(error);
+    retrieveLicencesMock.mockRejectedValue(error);
 
     await GET(mockRequest, {});
 
