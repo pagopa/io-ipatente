@@ -1,4 +1,5 @@
-import { CoreLogger } from "@io-ipatente/core";
+import { DgMotError } from "@io-ipatente/core";
+import { ZodiosError } from "@zodios/core";
 import { Mock, describe, expect, it, vi } from "vitest";
 
 import { retrieveVehicles } from "../business";
@@ -13,12 +14,6 @@ describe("retrieveVehicles", () => {
   const mockAdditionalDataJWS = "additional-token";
   const mockToken = "test-token";
   const mockFiscalCode = "ABCDEF12G34H567I";
-  const mockLogger: CoreLogger = {
-    debug: vi.fn(),
-    error: vi.fn(),
-    info: vi.fn(),
-    warn: vi.fn(),
-  };
 
   it("should return vehicle information when API call is successful", async () => {
     const mockResponse = { data: "Vehicle data" };
@@ -28,7 +23,7 @@ describe("retrieveVehicles", () => {
       getInfoVeicoli: mockGetInfoVeicoli,
     });
 
-    const result = await retrieveVehicles(mockLogger)(
+    const result = await retrieveVehicles()(
       mockAdditionalDataJWS,
       mockToken,
       mockFiscalCode,
@@ -44,7 +39,7 @@ describe("retrieveVehicles", () => {
     });
   });
 
-  it("should return an error when API call fails", async () => {
+  it("should throw DgMotError when API call fails", async () => {
     const mockError = new Error("API error");
     const mockGetInfoVeicoli = vi.fn().mockRejectedValue(mockError);
 
@@ -52,13 +47,47 @@ describe("retrieveVehicles", () => {
       getInfoVeicoli: mockGetInfoVeicoli,
     });
 
-    const result = await retrieveVehicles(mockLogger)(
+    const result = retrieveVehicles()(
       mockAdditionalDataJWS,
       mockToken,
       mockFiscalCode,
     );
 
-    expect(result).toBe(mockError);
+    await expect(result).rejects.toThrow(DgMotError);
+
+    await expect(result).rejects.toThrow(
+      "[DG_MOT] Failed to retrieve vehicles",
+    );
+
+    expect(mockGetInfoVeicoli).toHaveBeenCalledWith({
+      headers: {
+        "Agid-JWT-TrackingEvidence": mockAdditionalDataJWS,
+        Authorization: `Bearer ${mockToken}`,
+        codiceFiscale: mockFiscalCode,
+      },
+    });
+  });
+
+  it("should throw DgMotError with validation message when ZodiosError failed", async () => {
+    const mockZodiosError = new ZodiosError("Validation failed");
+    const mockGetInfoVeicoli = vi.fn().mockRejectedValue(mockZodiosError);
+
+    (getExternalApiClient as Mock).mockReturnValue({
+      getInfoVeicoli: mockGetInfoVeicoli,
+    });
+
+    const result = retrieveVehicles()(
+      mockAdditionalDataJWS,
+      mockToken,
+      mockFiscalCode,
+    );
+
+    await expect(result).rejects.toThrow(DgMotError);
+
+    await expect(result).rejects.toThrow(
+      "[DG_MOT] Failed zod validation of vehicles",
+    );
+
     expect(mockGetInfoVeicoli).toHaveBeenCalledWith({
       headers: {
         "Agid-JWT-TrackingEvidence": mockAdditionalDataJWS,
