@@ -4,6 +4,7 @@ import { Session } from "next-auth";
 import { describe, expect, it, vi } from "vitest";
 
 import { Veicolo } from "../../../../generated/bff-openapi";
+import { retrieveVehicles } from "../../../../lib/bff/business";
 import { GET } from "../route";
 
 const mockSession: Session = {
@@ -20,15 +21,16 @@ const mockNextAuthRequest = {
 };
 
 const mockRequest = {} as Request;
-const retrieveVehiclesInnerMock = vi.fn();
 
 vi.mock("../../../../auth", () => ({
   auth: (handler) => () => handler(mockNextAuthRequest, {}),
 }));
 
 vi.mock("../../../../lib/bff/business", () => ({
-  retrieveVehicles: vi.fn(() => retrieveVehiclesInnerMock),
+  retrieveVehicles: vi.fn(),
 }));
+
+const retrieveVehiclesMock = vi.mocked(retrieveVehicles);
 
 vi.mock(import("@io-ipatente/core"), async (importOriginal) => {
   const mod = await importOriginal();
@@ -54,7 +56,7 @@ describe("GET /api/vehicles", () => {
     const mockVehicles: Veicolo[] = [
       { targaVeicolo: "FS123EP", tipoVeicolo: "A" },
     ];
-    retrieveVehiclesInnerMock.mockResolvedValue(mockVehicles);
+    retrieveVehiclesMock.mockResolvedValue(mockVehicles);
 
     const response = (await GET(mockRequest, {
       params: {},
@@ -67,7 +69,7 @@ describe("GET /api/vehicles", () => {
 
   it("should handle DgMotError by returning an internal error response", async () => {
     const error = new Error("Failed to retrieve licences");
-    retrieveVehiclesInnerMock.mockRejectedValue(error);
+    retrieveVehiclesMock.mockRejectedValue(error);
 
     await GET(mockRequest, {});
 
@@ -80,7 +82,7 @@ describe("GET /api/vehicles", () => {
   it("should handle zod validation error by invoking handleInternalErrorResponse", async () => {
     // Mock invalid data that will fail Zod validation
     const invalidData = { invalid: "data" };
-    retrieveVehiclesInnerMock.mockResolvedValue(invalidData);
+    retrieveVehiclesMock.mockResolvedValue(invalidData);
 
     await GET(mockRequest, {});
 
@@ -92,7 +94,7 @@ describe("GET /api/vehicles", () => {
 
   it("should handle generic errors by invoking handleInternalErrorResponse", async () => {
     const error = new Error("Generic Error");
-    retrieveVehiclesInnerMock.mockRejectedValue(error);
+    retrieveVehiclesMock.mockRejectedValue(error);
 
     await GET(mockRequest, {});
 

@@ -23,7 +23,7 @@ describe("retrieveVehicles", () => {
       getInfoVeicoli: mockGetInfoVeicoli,
     });
 
-    const result = await retrieveVehicles()(
+    const result = await retrieveVehicles(
       mockAdditionalDataJWS,
       mockToken,
       mockFiscalCode,
@@ -47,7 +47,7 @@ describe("retrieveVehicles", () => {
       getInfoVeicoli: mockGetInfoVeicoli,
     });
 
-    const result = retrieveVehicles()(
+    const result = retrieveVehicles(
       mockAdditionalDataJWS,
       mockToken,
       mockFiscalCode,
@@ -76,7 +76,7 @@ describe("retrieveVehicles", () => {
       getInfoVeicoli: mockGetInfoVeicoli,
     });
 
-    const result = retrieveVehicles()(
+    const result = retrieveVehicles(
       mockAdditionalDataJWS,
       mockToken,
       mockFiscalCode,
