@@ -27,7 +27,7 @@ describe("Voucher", () => {
   it("should send a POST request with the correct data and return a voucher", async () => {
     vi.mocked(axios.post).mockResolvedValueOnce({ data: mockVoucher });
 
-    const result = await requestVoucher()(mockVoucherRequest);
+    const result = await requestVoucher(mockVoucherRequest);
 
     expect(axios.post).toHaveBeenCalledWith(
       mockVoucherRequest.authServerEndpointUrl,
@@ -45,7 +45,7 @@ describe("Voucher", () => {
   it("should handle errors and throw PdndError", async () => {
     vi.mocked(axios.post).mockRejectedValueOnce(new Error("Network error"));
 
-    const result = requestVoucher()(mockVoucherRequest);
+    const result = requestVoucher(mockVoucherRequest);
 
     await expect(result).rejects.toThrow(PdndError);
 
@@ -63,7 +63,7 @@ describe("Voucher", () => {
 
     vi.mocked(axios.post).mockResolvedValueOnce({ data: mockVoucher });
 
-    await requestVoucher()(mockVoucherRequest);
+    await requestVoucher(mockVoucherRequest);
 
     expect(axios.post).toHaveBeenCalledWith(
       mockVoucherRequest.authServerEndpointUrl,
