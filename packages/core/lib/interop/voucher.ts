@@ -30,7 +30,7 @@ export interface Voucher {
   token_type: "Bearer";
 }
 
-export const requestVoucher = () => async (vr: VoucherRequest) => {
+export const requestVoucher = async (vr: VoucherRequest) => {
   try {
     // TEST: Simula errore PDND
     if (process.env.FORCE_PDND_ERROR === "true") {

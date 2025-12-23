@@ -67,7 +67,7 @@ export const withVoucherHandler =
         return handleUnauthorizedErrorResponse("No client assertion provided");
       }
 
-      const voucher = await requestVoucher()({
+      const voucher = await requestVoucher({
         authServerEndpointUrl: INTEROP_AUTH_SERVER_ENDPOINT_URL,
         data: {
           client_assertion: clientAssertionResult.clientAssertionJWS,
