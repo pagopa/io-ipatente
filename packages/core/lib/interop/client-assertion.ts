@@ -95,15 +95,6 @@ export const generateClientAssertion = ({
   typ,
 }: ClientAssertion): ClientAssertionResult => {
   try {
-    // TEST: Simula errore BFF
-    if (process.env.FORCE_BFF_ERROR === "true") {
-      const error = new Error("Client assertion generation failed (test mode)");
-      throw new BffError(
-        "An Error has occurred while generating client assertion",
-        error,
-      );
-    }
-
     // Variables for JWT token
     const iat = Math.floor(Date.now() / 1000);
     const expiration = iat + exp;

@@ -1,6 +1,5 @@
 import { DgMotError } from "@io-ipatente/core";
 import { ZodiosError } from "@zodios/core";
-import { AxiosError } from "axios";
 
 import { getExternalApiClient } from "./client";
 
@@ -10,11 +9,6 @@ export const retrievePayments = async (
   fiscalCode: string,
 ) => {
   try {
-    // TEST: Simula errore DG_MOT
-    if (process.env.FORCE_DG_MOT_ERROR === "true") {
-      throw new AxiosError("DG_MOT server error (test mode)");
-    }
-
     return await getExternalApiClient().getPagamenti({
       headers: {
         "Agid-JWT-TrackingEvidence": additionalDataJWS,
