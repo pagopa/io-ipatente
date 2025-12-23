@@ -8,6 +8,7 @@ import { Session } from "next-auth";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { EsitoStampaTelematica } from "../../../../../../generated/bff-openapi";
+import { retrievePaymentReceipt } from "../../../../../../lib/bff/business";
 import { GET } from "../route";
 
 const mockSession: Session = {
@@ -24,7 +25,6 @@ const mockNextAuthRequest = {
 };
 
 const mockRequest = {} as Request;
-const retrievePaymentReceiptInnerMock = vi.fn();
 
 let mockParams: Record<string, string> = { idRichiestaPagamento: "22" };
 
@@ -33,8 +33,10 @@ vi.mock("../../../../../../auth", () => ({
 }));
 
 vi.mock("../../../../../../lib/bff/business", () => ({
-  retrievePaymentReceipt: vi.fn(() => retrievePaymentReceiptInnerMock),
+  retrievePaymentReceipt: vi.fn(),
 }));
+
+const retrievePaymentReceiptMock = vi.mocked(retrievePaymentReceipt);
 
 vi.mock(import("@io-ipatente/core"), async (importOriginal) => {
   const mod = await importOriginal();
@@ -74,7 +76,7 @@ describe("GET /api/pagamenti/ricevuta/:idRichiestaPagamento", () => {
         fileName: "nomefile",
       },
     };
-    retrievePaymentReceiptInnerMock.mockResolvedValue(mockPaymentRecipt);
+    retrievePaymentReceiptMock.mockResolvedValue(mockPaymentRecipt);
 
     const response = (await GET(mockRequest, {
       params: {
@@ -89,7 +91,7 @@ describe("GET /api/pagamenti/ricevuta/:idRichiestaPagamento", () => {
 
   it("should handle DgMotError by returning an internal error response", async () => {
     const error = new Error("Failed to retrieve payment receipt");
-    retrievePaymentReceiptInnerMock.mockRejectedValue(error);
+    retrievePaymentReceiptMock.mockRejectedValue(error);
 
     await GET(mockRequest, {
       params: {
@@ -106,7 +108,7 @@ describe("GET /api/pagamenti/ricevuta/:idRichiestaPagamento", () => {
   it("should handle zod validation error by invoking handleInternalErrorResponse", async () => {
     // Mock invalid data that will fail Zod validation
     const invalidData = { invalid: "data" };
-    retrievePaymentReceiptInnerMock.mockResolvedValue(invalidData);
+    retrievePaymentReceiptMock.mockResolvedValue(invalidData);
 
     await GET(mockRequest, {
       params: {
@@ -122,7 +124,7 @@ describe("GET /api/pagamenti/ricevuta/:idRichiestaPagamento", () => {
 
   it("should handle generic errors by invoking handleInternalErrorResponse", async () => {
     const error = new Error("Generic Error");
-    retrievePaymentReceiptInnerMock.mockRejectedValue(error);
+    retrievePaymentReceiptMock.mockRejectedValue(error);
 
     await GET(mockRequest, {
       params: {
@@ -148,6 +150,6 @@ describe("GET /api/pagamenti/ricevuta/:idRichiestaPagamento", () => {
       "Missing idRichiestaPagamento param",
     );
 
-    expect(retrievePaymentReceiptInnerMock).not.toHaveBeenCalled();
+    expect(retrievePaymentReceiptMock).not.toHaveBeenCalled();
   });
 });

@@ -4,6 +4,7 @@ import { Session } from "next-auth";
 import { describe, expect, it, vi } from "vitest";
 
 import { Pagamento } from "../../../../generated/bff-openapi";
+import { retrievePayments } from "../../../../lib/bff/business";
 import { GET } from "../route";
 
 const mockSession: Session = {
@@ -20,15 +21,16 @@ const mockNextAuthRequest = {
 };
 
 const mockRequest = {} as Request;
-const retrievePaymentsInnerMock = vi.fn();
 
 vi.mock("../../../../auth", () => ({
   auth: (handler) => () => handler(mockNextAuthRequest, {}),
 }));
 
 vi.mock("../../../../lib/bff/business", () => ({
-  retrievePayments: vi.fn(() => retrievePaymentsInnerMock),
+  retrievePayments: vi.fn(),
 }));
+
+const retrievePaymentsMock = vi.mocked(retrievePayments);
 
 vi.mock(import("@io-ipatente/core"), async (importOriginal) => {
   const mod = await importOriginal();
@@ -66,7 +68,7 @@ describe("GET /api/payments", () => {
         tariffario: "ABC",
       },
     ];
-    retrievePaymentsInnerMock.mockResolvedValue(mockPayments);
+    retrievePaymentsMock.mockResolvedValue(mockPayments);
 
     const response = (await GET(mockRequest, {
       params: {},
@@ -79,7 +81,7 @@ describe("GET /api/payments", () => {
 
   it("should handle DgMotError by returning an internal error response", async () => {
     const error = new Error("Failed to retrieve payments");
-    retrievePaymentsInnerMock.mockRejectedValue(error);
+    retrievePaymentsMock.mockRejectedValue(error);
 
     await GET(mockRequest, {});
 
@@ -92,7 +94,7 @@ describe("GET /api/payments", () => {
   it("should handle zod validation error by invoking handleInternalErrorResponse", async () => {
     // Mock invalid data that will fail Zod validation
     const invalidData = { invalid: "data" };
-    retrievePaymentsInnerMock.mockResolvedValue(invalidData);
+    retrievePaymentsMock.mockResolvedValue(invalidData);
 
     await GET(mockRequest, {});
 
@@ -104,7 +106,7 @@ describe("GET /api/payments", () => {
 
   it("should handle generic errors by invoking handleInternalErrorResponse", async () => {
     const error = new Error("Generic Error");
-    retrievePaymentsInnerMock.mockRejectedValue(error);
+    retrievePaymentsMock.mockRejectedValue(error);
 
     await GET(mockRequest, {});
 

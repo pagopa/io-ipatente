@@ -22,7 +22,7 @@ describe("retrievePayments", () => {
       getPagamenti: mockGetPagamenti,
     });
 
-    const result = await retrievePayments()(
+    const result = await retrievePayments(
       mockAdditionalDataJWS,
       mockToken,
       mockFiscalCode,
@@ -46,7 +46,7 @@ describe("retrievePayments", () => {
       getPagamenti: mockGetPagamenti,
     });
 
-    const result = retrievePayments()(
+    const result = retrievePayments(
       mockAdditionalDataJWS,
       mockToken,
       mockFiscalCode,
@@ -75,7 +75,7 @@ describe("retrievePayments", () => {
       getPagamenti: mockGetPagamenti,
     });
 
-    const result = retrievePayments()(
+    const result = retrievePayments(
       mockAdditionalDataJWS,
       mockToken,
       mockFiscalCode,
@@ -113,7 +113,7 @@ describe("retrievePaymentReceipt", () => {
       stampaRicevutaTelematica: mockStampaRicevutaTelematica,
     });
 
-    const result = await retrievePaymentReceipt()(
+    const result = await retrievePaymentReceipt(
       mockAdditionalDataJWS,
       mockToken,
       mockPaymentRequestId,
@@ -141,7 +141,7 @@ describe("retrievePaymentReceipt", () => {
       stampaRicevutaTelematica: mockStampaRicevutaTelematica,
     });
 
-    const result = retrievePaymentReceipt()(
+    const result = retrievePaymentReceipt(
       mockAdditionalDataJWS,
       mockToken,
       mockPaymentRequestId,
@@ -176,7 +176,7 @@ describe("retrievePaymentReceipt", () => {
       stampaRicevutaTelematica: mockStampaRicevutaTelematica,
     });
 
-    const result = retrievePaymentReceipt()(
+    const result = retrievePaymentReceipt(
       mockAdditionalDataJWS,
       mockToken,
       mockPaymentRequestId,
