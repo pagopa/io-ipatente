@@ -83,7 +83,7 @@ describe("Client Assertion", () => {
       sub: mockClientAssertion.sub,
     };
 
-    const result = generateClientAssertion()(mockClientAssertion);
+    const result = generateClientAssertion(mockClientAssertion);
 
     expect(result).toBeDefined();
     expect(result.clientAssertionJWS).toBe("mocked-client-assertion-jwt");
@@ -119,7 +119,7 @@ describe("Client Assertion", () => {
       throw new Error("Signing error");
     });
 
-    expect(() => generateClientAssertion()(mockClientAssertion)).toThrow(
+    expect(() => generateClientAssertion(mockClientAssertion)).toThrow(
       BffError,
     );
   });
@@ -151,7 +151,7 @@ describe("generateAdditionalDataJWS", () => {
 
     const iat = Math.floor(Date.now() / 1000);
 
-    const result = generateAdditionalDataJWS()({
+    const result = generateAdditionalDataJWS({
       additionalData: mockAdditionalData,
       exp: 600,
       header: mockHeader,
@@ -184,7 +184,7 @@ describe("generateAdditionalDataJWS", () => {
     });
 
     expect(() =>
-      generateAdditionalDataJWS()({
+      generateAdditionalDataJWS({
         additionalData: mockAdditionalData,
         exp: 600,
         header: mockHeader,
@@ -202,7 +202,7 @@ describe("getAdditionalPayload", () => {
     const expectedHash =
       "f0cffe6960a781fdd10a77793755ec1e60cf86abccabc889d396f61e7eea2622";
 
-    const result = getAdditionalPayload()(testJWT);
+    const result = getAdditionalPayload(testJWT);
 
     expect(result).toEqual({
       digest: {
@@ -216,8 +216,8 @@ describe("getAdditionalPayload", () => {
     const jwt1 = "first-jwt-token";
     const jwt2 = "second-jwt-token";
 
-    const result1 = getAdditionalPayload()(jwt1);
-    const result2 = getAdditionalPayload()(jwt2);
+    const result1 = getAdditionalPayload(jwt1);
+    const result2 = getAdditionalPayload(jwt2);
 
     expect(result1.digest.value).not.toBe(result2.digest.value);
   });
@@ -225,8 +225,8 @@ describe("getAdditionalPayload", () => {
   it("should return consistent hash for the same input", () => {
     const testJWT = "consistent-jwt-token";
 
-    const result1 = getAdditionalPayload()(testJWT);
-    const result2 = getAdditionalPayload()(testJWT);
+    const result1 = getAdditionalPayload(testJWT);
+    const result2 = getAdditionalPayload(testJWT);
 
     expect(result1.digest.value).toBe(result2.digest.value);
   });
