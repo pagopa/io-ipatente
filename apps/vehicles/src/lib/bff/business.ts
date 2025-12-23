@@ -4,27 +4,29 @@ import { AxiosError } from "axios";
 
 import { getExternalApiClient } from "./client";
 
-export const retrieveVehicles =
-  () =>
-  async (additionalDataJWS: string, token: string, fiscalCode: string) => {
-    try {
-      // TEST: Simula errore DG_MOT
-      if (process.env.FORCE_DG_MOT_ERROR === "true") {
-        throw new AxiosError("DG_MOT server error (test mode)");
-      }
-
-      return await getExternalApiClient().getInfoVeicoli({
-        headers: {
-          "Agid-JWT-TrackingEvidence": additionalDataJWS,
-          Authorization: `Bearer ${token}`,
-          codiceFiscale: fiscalCode,
-        },
-      });
-    } catch (error) {
-      if (error instanceof ZodiosError) {
-        throw new DgMotError("Failed zod validation of vehicles", error);
-      }
-
-      throw new DgMotError("Failed to retrieve vehicles", error);
+export const retrieveVehicles = async (
+  additionalDataJWS: string,
+  token: string,
+  fiscalCode: string,
+) => {
+  try {
+    // TEST: Simula errore DG_MOT
+    if (process.env.FORCE_DG_MOT_ERROR === "true") {
+      throw new AxiosError("DG_MOT server error (test mode)");
     }
-  };
+
+    return await getExternalApiClient().getInfoVeicoli({
+      headers: {
+        "Agid-JWT-TrackingEvidence": additionalDataJWS,
+        Authorization: `Bearer ${token}`,
+        codiceFiscale: fiscalCode,
+      },
+    });
+  } catch (error) {
+    if (error instanceof ZodiosError) {
+      throw new DgMotError("Failed zod validation of vehicles", error);
+    }
+
+    throw new DgMotError("Failed to retrieve vehicles", error);
+  }
+};
