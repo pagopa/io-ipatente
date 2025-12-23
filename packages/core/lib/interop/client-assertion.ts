@@ -95,7 +95,7 @@ export const generateClientAssertion =
     purposeId,
     sub,
     typ,
-  }: ClientAssertion): ClientAssertionResult | undefined => {
+  }: ClientAssertion): ClientAssertionResult => {
     try {
       // TEST: Simula errore BFF
       if (process.env.FORCE_BFF_ERROR === "true") {
@@ -204,26 +204,25 @@ export const generateAdditionalDataJWS =
  * @param additionalDataJWS
  * @returns
  */
-export const getAdditionalPayload = () => (additionalDataJWS: string) => {
-  let result: ClientAssertionAdditionalDataDigest;
-  try {
-    const digestValue = hashSha256(additionalDataJWS);
+export const getAdditionalPayload =
+  () =>
+  (additionalDataJWS: string): ClientAssertionAdditionalDataDigest => {
+    try {
+      const digestValue = hashSha256(additionalDataJWS);
 
-    result = {
-      digest: {
-        alg: "SHA256",
-        value: digestValue,
-      },
-    };
-
-    return result;
-  } catch (error) {
-    throw new BffError(
-      "An Error has occurred while getting additional payload data",
-      error,
-    );
-  }
-};
+      return {
+        digest: {
+          alg: "SHA256",
+          value: digestValue,
+        },
+      };
+    } catch (error) {
+      throw new BffError(
+        "An Error has occurred while getting additional payload data",
+        error,
+      );
+    }
+  };
 
 const hashSha256 = (input: string) =>
   crypto.createHash("sha256").update(input).digest("hex");
