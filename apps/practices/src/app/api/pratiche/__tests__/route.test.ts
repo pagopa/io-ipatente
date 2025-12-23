@@ -4,6 +4,7 @@ import { Session } from "next-auth";
 import { describe, expect, it, vi } from "vitest";
 
 import { Pratica } from "../../../../generated/bff-openapi";
+import { retrievePractices } from "../../../../lib/bff/business";
 import { GET } from "../route";
 
 const mockSession: Session = {
@@ -20,15 +21,16 @@ const mockNextAuthRequest = {
 };
 
 const mockRequest = {} as Request;
-const retrievePracticesInnerMock = vi.fn();
 
 vi.mock("../../../../auth", () => ({
   auth: (handler) => () => handler(mockNextAuthRequest, {}),
 }));
 
 vi.mock("../../../../lib/bff/business", () => ({
-  retrievePractices: vi.fn(() => retrievePracticesInnerMock),
+  retrievePractices: vi.fn(),
 }));
+
+const retrievePracticesMock = vi.mocked(retrievePractices);
 
 vi.mock(import("@io-ipatente/core"), async (importOriginal) => {
   const mod = await importOriginal();
@@ -59,7 +61,7 @@ describe("GET /api/practices", () => {
         tipoPratica: { codice: "AX", descrizione: "description" },
       },
     ];
-    retrievePracticesInnerMock.mockResolvedValue(mockPractices);
+    retrievePracticesMock.mockResolvedValue(mockPractices);
 
     const response = (await GET(mockRequest, {
       params: {},
@@ -72,7 +74,7 @@ describe("GET /api/practices", () => {
 
   it("should handle DgMotError by returning an internal error response", async () => {
     const error = new Error("Failed to retrieve practices");
-    retrievePracticesInnerMock.mockRejectedValue(error);
+    retrievePracticesMock.mockRejectedValue(error);
 
     await GET(mockRequest, {});
 
@@ -85,7 +87,7 @@ describe("GET /api/practices", () => {
   it("should handle zod validation error by invoking handleInternalErrorResponse", async () => {
     // Mock invalid data that will fail Zod validation
     const invalidData = { invalid: "data" };
-    retrievePracticesInnerMock.mockResolvedValue(invalidData);
+    retrievePracticesMock.mockResolvedValue(invalidData);
 
     await GET(mockRequest, {});
 
@@ -97,7 +99,7 @@ describe("GET /api/practices", () => {
 
   it("should handle generic errors by invoking handleInternalErrorResponse", async () => {
     const error = new Error("Generic Error");
-    retrievePracticesInnerMock.mockRejectedValue(error);
+    retrievePracticesMock.mockRejectedValue(error);
 
     await GET(mockRequest, {});
 

@@ -23,7 +23,7 @@ describe("retrievePractices", () => {
       getPratiche: mockGetPratiche,
     });
 
-    const result = await retrievePractices()(
+    const result = await retrievePractices(
       mockAdditionalDataJWS,
       mockToken,
       mockFiscalCode,
@@ -47,7 +47,7 @@ describe("retrievePractices", () => {
       getPratiche: mockGetPratiche,
     });
 
-    const result = retrievePractices()(
+    const result = retrievePractices(
       mockAdditionalDataJWS,
       mockToken,
       mockFiscalCode,
@@ -76,7 +76,7 @@ describe("retrievePractices", () => {
       getPratiche: mockGetPratiche,
     });
 
-    const result = retrievePractices()(
+    const result = retrievePractices(
       mockAdditionalDataJWS,
       mockToken,
       mockFiscalCode,
