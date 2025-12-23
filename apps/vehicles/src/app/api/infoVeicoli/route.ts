@@ -3,12 +3,11 @@ import { Veicolo } from "@/generated/bff-openapi";
 import { retrieveVehicles } from "@/lib/bff/business";
 import { logger } from "@/lib/bff/logger";
 import {
-  handleBadRequestErrorResponse,
+  BffError,
   handleInternalErrorResponse,
+  handlerErrorLog,
   withJWTAuthAndVoucherHandler,
 } from "@io-ipatente/core";
-import { ZodiosError } from "@zodios/core";
-import { AxiosError } from "axios";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -21,7 +20,7 @@ export const GET = auth(
   withJWTAuthAndVoucherHandler(logger)(
     async (_request: Request, { additionalDataJWS, user, voucher }) => {
       try {
-        const res = await retrieveVehicles(logger)(
+        const res = await retrieveVehicles()(
           additionalDataJWS,
           voucher.access_token,
           user.fiscalCode,
@@ -29,27 +28,19 @@ export const GET = auth(
 
         const vehicles = z.array(Veicolo).safeParse(res);
 
-        if (vehicles.success) {
-          return NextResponse.json(vehicles.data);
-        }
-
-        if (res instanceof AxiosError) {
-          return NextResponse.json(
-            { detail: res.message, status: res.status },
-            { status: res.status },
+        if (!vehicles.success) {
+          throw new BffError(
+            "Validation failed: Invalid vehicles data from DG_MOT",
+            vehicles.error,
           );
         }
-
-        if (res instanceof ZodiosError) {
-          return handleBadRequestErrorResponse(res.message);
-        }
-
-        return handleInternalErrorResponse("VehiclesRetrieveError", res);
+        return NextResponse.json(vehicles.data);
       } catch (error) {
-        logger.error(
-          `An Error has occurred while retrieving user vehicles, caused by: `,
-          { error },
+        handlerErrorLog(logger)(
+          "An Error has occurred while retrieving user vehicles",
+          error,
         );
+
         return handleInternalErrorResponse("VehiclesRetrieveError", error);
       }
     },
