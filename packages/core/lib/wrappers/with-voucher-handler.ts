@@ -45,7 +45,7 @@ export const withVoucherHandler =
   ) =>
   async (request: Request, ctx?: Context) => {
     try {
-      const clientAssertionResult = generateClientAssertion()({
+      const clientAssertionResult = generateClientAssertion({
         additionalData: {
           LoA: "high",
           aud: INTEROP_ESERVICE_AUDIENCE,

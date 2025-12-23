@@ -82,121 +82,115 @@ export interface ClientAssertionResult {
   clientAssertionJWS: string;
 }
 
-export const generateClientAssertion =
-  () =>
-  ({
-    additionalData,
-    alg,
-    aud,
-    exp,
-    iss,
-    kid,
-    privateKey,
-    purposeId,
-    sub,
-    typ,
-  }: ClientAssertion): ClientAssertionResult => {
-    try {
-      // TEST: Simula errore BFF
-      if (process.env.FORCE_BFF_ERROR === "true") {
-        const error = new Error(
-          "Client assertion generation failed (test mode)",
-        );
-        throw new BffError(
-          "An Error has occurred while generating client assertion",
-          error,
-        );
-      }
-
-      // Variables for JWT token
-      const iat = Math.floor(Date.now() / 1000);
-      const expiration = iat + exp;
-      const jti = uuidv4();
-
-      // JWT Headers
-      const header: ClientAssertionHeader = { alg, kid, typ };
-
-      // JWS for additional data (GovWay)
-      const additionalDataJWS = generateAdditionalDataJWS()({
-        additionalData,
-        exp,
-        header,
-        iss,
-        privateKey,
-        purposeId,
-      });
-
-      // JWT Payload
-      const payload = {
-        aud,
-        exp: expiration,
-        iat,
-        iss,
-        jti,
-        purposeId,
-        sub,
-        ...getAdditionalPayload()(additionalDataJWS),
-      };
-
-      return {
-        additionalDataJWS,
-        clientAssertionJWS: jwt.sign(payload, privateKey, {
-          algorithm: alg,
-          header,
-        }),
-      };
-    } catch (error) {
+export const generateClientAssertion = ({
+  additionalData,
+  alg,
+  aud,
+  exp,
+  iss,
+  kid,
+  privateKey,
+  purposeId,
+  sub,
+  typ,
+}: ClientAssertion): ClientAssertionResult => {
+  try {
+    // TEST: Simula errore BFF
+    if (process.env.FORCE_BFF_ERROR === "true") {
+      const error = new Error("Client assertion generation failed (test mode)");
       throw new BffError(
         "An Error has occurred while generating client assertion",
         error,
       );
     }
-  };
+
+    // Variables for JWT token
+    const iat = Math.floor(Date.now() / 1000);
+    const expiration = iat + exp;
+    const jti = uuidv4();
+
+    // JWT Headers
+    const header: ClientAssertionHeader = { alg, kid, typ };
+
+    // JWS for additional data (GovWay)
+    const additionalDataJWS = generateAdditionalDataJWS({
+      additionalData,
+      exp,
+      header,
+      iss,
+      privateKey,
+      purposeId,
+    });
+
+    // JWT Payload
+    const payload = {
+      aud,
+      exp: expiration,
+      iat,
+      iss,
+      jti,
+      purposeId,
+      sub,
+      ...getAdditionalPayload(additionalDataJWS),
+    };
+
+    return {
+      additionalDataJWS,
+      clientAssertionJWS: jwt.sign(payload, privateKey, {
+        algorithm: alg,
+        header,
+      }),
+    };
+  } catch (error) {
+    throw new BffError(
+      "An Error has occurred while generating client assertion",
+      error,
+    );
+  }
+};
 
 /**
  * Returns additional data JWS
  * @param `ClientAssertionAdditionalDataRequest`
  * @returns
  */
-export const generateAdditionalDataJWS =
-  () =>
-  ({
-    additionalData,
-    exp,
-    header,
-    iss,
-    privateKey,
-    purposeId,
-  }: ClientAssertionAdditionalDataRequest) => {
-    try {
-      const iat = Math.floor(Date.now() / 1000);
-      const expiration = iat + exp;
-      const jti = uuidv4();
+export const generateAdditionalDataJWS = ({
+  additionalData,
+  exp,
+  header,
+  iss,
+  privateKey,
+  purposeId,
+}: ClientAssertionAdditionalDataRequest) => {
+  try {
+    const iat = Math.floor(Date.now() / 1000);
+    const expiration = iat + exp;
+    const jti = uuidv4();
 
-      const additionalDataJWS = jwt.sign(
-        {
-          ...additionalData,
-          exp: expiration,
-          iat,
-          iss,
-          jti,
-          purposeId,
-        },
-        privateKey,
-        {
-          algorithm: "RS256",
-          header,
-        },
-      );
+    const additionalDataJWS = jwt.sign(
+      {
+        ...additionalData,
+        exp: expiration,
+        iat,
+        iss,
+        jti,
+        purposeId,
+      },
+      privateKey,
+      {
+        algorithm: "RS256",
+        header,
+      },
+    );
 
-      return additionalDataJWS;
-    } catch (error) {
-      throw new BffError(
-        "An Error has occurred while getting additional data JWS",
-        error,
-      );
-    }
-  };
+    return additionalDataJWS;
+  } catch (error) {
+    throw new BffError(
+      "An Error has occurred while getting additional data JWS",
+      error,
+    );
+  }
+};
 
 /**
  * Returns `digest` object with algorithm _(for now only SHA256 supported)_ and
@@ -204,25 +198,25 @@ export const generateAdditionalDataJWS =
  * @param additionalDataJWS
  * @returns
  */
-export const getAdditionalPayload =
-  () =>
-  (additionalDataJWS: string): ClientAssertionAdditionalDataDigest => {
-    try {
-      const digestValue = hashSha256(additionalDataJWS);
+export const getAdditionalPayload = (
+  additionalDataJWS: string,
+): ClientAssertionAdditionalDataDigest => {
+  try {
+    const digestValue = hashSha256(additionalDataJWS);
 
-      return {
-        digest: {
-          alg: "SHA256",
-          value: digestValue,
-        },
-      };
-    } catch (error) {
-      throw new BffError(
-        "An Error has occurred while getting additional payload data",
-        error,
-      );
-    }
-  };
+    return {
+      digest: {
+        alg: "SHA256",
+        value: digestValue,
+      },
+    };
+  } catch (error) {
+    throw new BffError(
+      "An Error has occurred while getting additional payload data",
+      error,
+    );
+  }
+};
 
 const hashSha256 = (input: string) =>
   crypto.createHash("sha256").update(input).digest("hex");
