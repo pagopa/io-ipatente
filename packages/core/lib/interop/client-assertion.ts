@@ -185,10 +185,7 @@ export const generateAdditionalDataJWS = ({
 
     return additionalDataJWS;
   } catch (error) {
-    throw new BffError(
-      "An Error has occurred while getting additional data JWS",
-      error,
-    );
+    throw new BffError("An Error has occurred while creating the JWS", error);
   }
 };
 
@@ -212,7 +209,7 @@ export const getAdditionalPayload = (
     };
   } catch (error) {
     throw new BffError(
-      "An Error has occurred while getting additional payload data",
+      "An Error has occurred while creating the JWS digest",
       error,
     );
   }
