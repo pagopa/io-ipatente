@@ -2,7 +2,7 @@ import type { DefaultSession, NextAuthConfig } from "next-auth";
 
 import { getConfiguration } from "../config";
 import { CoreLogger } from "../types/logger";
-import { SIGNIN_URL } from "../utils";
+import { SIGNIN_URL, handlerErrorLog } from "../utils";
 
 declare module "next-auth" {
   interface User {
@@ -37,6 +37,10 @@ export const authConfig = (logger: CoreLogger): NextAuthConfig => ({
   callbacks: {
     jwt: ({ profile, token }) => {
       if (profile) {
+        // if (!profile.fiscal_code) {
+        //   throw new FimsError("Missing fiscal_code in profile");
+        // }
+
         // TODO: Add lollipop check
         // TODO: Add zod model check
         const { family_name, fiscal_code, given_name } = profile;
@@ -47,6 +51,14 @@ export const authConfig = (logger: CoreLogger): NextAuthConfig => ({
       return token;
     },
     session: ({ session, token }) => {
+      // if (!token?.fiscalCode) {
+      //   throw new FimsError("Missing fiscalCode in token", { token });
+      // }
+
+      // if (!session.user) {
+      //   throw new FimsError("Missing user in session", { session });
+      // }
+
       // update the session.user based on the token object
       if (token && session.user) {
         session.user.familyName = token.familyName;
@@ -61,7 +73,7 @@ export const authConfig = (logger: CoreLogger): NextAuthConfig => ({
   },
   logger: {
     error(err) {
-      logger.error(`[auth][error] ${err.name}: ${err.message}`, err);
+      handlerErrorLog(logger)(`[auth][error] ${err.name}: ${err.message}`, err);
     },
   },
   pages: {

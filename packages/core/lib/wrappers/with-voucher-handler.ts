@@ -8,6 +8,7 @@ import { CoreLogger } from "../types/logger";
 import {
   handleInternalErrorResponse,
   handleUnauthorizedErrorResponse,
+  handlerErrorLog,
 } from "../utils/errors";
 
 const {
@@ -44,7 +45,7 @@ export const withVoucherHandler =
   ) =>
   async (request: Request, ctx?: Context) => {
     try {
-      const clientAssertionResult = generateClientAssertion(logger)({
+      const clientAssertionResult = generateClientAssertion({
         additionalData: {
           LoA: "high",
           aud: INTEROP_ESERVICE_AUDIENCE,
@@ -66,7 +67,7 @@ export const withVoucherHandler =
         return handleUnauthorizedErrorResponse("No client assertion provided");
       }
 
-      const voucher = await requestVoucher(logger)({
+      const voucher = await requestVoucher({
         authServerEndpointUrl: INTEROP_AUTH_SERVER_ENDPOINT_URL,
         data: {
           client_assertion: clientAssertionResult.clientAssertionJWS,
@@ -86,10 +87,11 @@ export const withVoucherHandler =
         voucher,
       });
     } catch (error) {
-      logger.error(
-        `An Error has occurred while requesting voucher, caused by: `,
-        { error },
+      handlerErrorLog(logger)(
+        "An Error has occurred while retrieving the voucher",
+        error,
       );
+
       return handleInternalErrorResponse("VoucherRequestError", error);
     }
   };

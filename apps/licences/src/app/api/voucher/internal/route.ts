@@ -2,6 +2,7 @@ import { auth } from "@/auth";
 import { logger } from "@/lib/bff/logger";
 import {
   handleInternalErrorResponse,
+  handlerErrorLog,
   withTestUserAndVoucherInternalHandler,
 } from "@io-ipatente/core";
 import { NextResponse } from "next/server";
@@ -17,9 +18,9 @@ export const GET = auth(
       try {
         return NextResponse.json({ additionalDataJWS, voucher });
       } catch (error) {
-        logger.error(
-          `An Error has occurred while retrieving voucher [Internal] , caused by: `,
-          { error },
+        handlerErrorLog(logger)(
+          "An Error has occurred while retrieving voucher [Internal]",
+          error,
         );
         return handleInternalErrorResponse(
           "InternalVoucherRetrieveError",

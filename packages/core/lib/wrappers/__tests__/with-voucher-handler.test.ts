@@ -2,8 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { User } from "next-auth";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import { generateClientAssertion } from "../../interop/client-assertion";
-import { Voucher, requestVoucher } from "../../interop/voucher";
+import { Voucher } from "../../interop/voucher";
 import { CoreLogger } from "../../types/logger";
 import {
   HTTP_STATUS_INTERNAL_SERVER_ERROR,
@@ -14,6 +13,11 @@ import {
   handleUnauthorizedErrorResponse,
 } from "../../utils/errors";
 import { withVoucherHandler } from "../with-voucher-handler";
+
+const { mockGenerateClientAssertion, mockRequestVoucher } = vi.hoisted(() => ({
+  mockGenerateClientAssertion: vi.fn(),
+  mockRequestVoucher: vi.fn(),
+}));
 
 const mockLogger: CoreLogger = {
   debug: vi.fn(),
@@ -31,9 +35,6 @@ const mockUser: User = {
 const mockContext = {
   user: mockUser,
 };
-
-const generateClientAssertionInnerMock = vi.fn();
-const requestVoucherInnerMock = vi.fn();
 
 vi.mock(import("../../config"), async (importOriginal) => {
   const mod = await importOriginal();
@@ -56,11 +57,11 @@ vi.mock(import("../../config"), async (importOriginal) => {
 });
 
 vi.mock("../../interop/client-assertion", () => ({
-  generateClientAssertion: vi.fn(() => generateClientAssertionInnerMock),
+  generateClientAssertion: mockGenerateClientAssertion,
 }));
 
 vi.mock("../../interop/voucher", () => ({
-  requestVoucher: vi.fn(() => requestVoucherInnerMock),
+  requestVoucher: mockRequestVoucher,
 }));
 
 vi.mock("../../utils/errors", async () => {
@@ -97,11 +98,11 @@ describe("withVoucherHandler", () => {
   });
 
   it("should call handler with voucher on success", async () => {
-    generateClientAssertionInnerMock.mockReturnValue({
+    mockGenerateClientAssertion.mockReturnValue({
       additionalDataJWS: mockAdditionalDataJWS,
       clientAssertionJWS: mockAssertion,
     });
-    requestVoucherInnerMock.mockResolvedValue(mockVoucher);
+    mockRequestVoucher.mockResolvedValue(mockVoucher);
 
     const request = {} as NextRequest;
 
@@ -110,11 +111,9 @@ describe("withVoucherHandler", () => {
       mockContext,
     );
 
-    expect(generateClientAssertion).toHaveBeenCalledWith(mockLogger);
-    expect(generateClientAssertionInnerMock).toHaveBeenCalledOnce();
+    expect(mockGenerateClientAssertion).toHaveBeenCalledOnce();
 
-    expect(requestVoucher).toHaveBeenCalledWith(mockLogger);
-    expect(requestVoucherInnerMock).toHaveBeenCalledWith({
+    expect(mockRequestVoucher).toHaveBeenCalledWith({
       authServerEndpointUrl: "https://auth-server.com",
       data: {
         client_assertion: mockAssertion,
@@ -131,7 +130,7 @@ describe("withVoucherHandler", () => {
   });
 
   it("should return unauthorized response if client assertion is missing", async () => {
-    generateClientAssertionInnerMock.mockReturnValue(null);
+    mockGenerateClientAssertion.mockReturnValue(null);
 
     const request = {} as NextRequest;
 
@@ -140,7 +139,7 @@ describe("withVoucherHandler", () => {
       mockContext,
     );
 
-    expect(generateClientAssertion).toHaveBeenCalledWith(mockLogger);
+    expect(mockGenerateClientAssertion).toHaveBeenCalledOnce();
     expect(handleUnauthorizedErrorResponse).toHaveBeenCalledWith(
       "No client assertion provided",
     );
@@ -148,11 +147,11 @@ describe("withVoucherHandler", () => {
   });
 
   it("should return unauthorized response if voucher is missing", async () => {
-    generateClientAssertionInnerMock.mockReturnValue({
+    mockGenerateClientAssertion.mockReturnValue({
       additionalDataJWS: mockAdditionalDataJWS,
       clientAssertionJWS: mockAssertion,
     });
-    requestVoucherInnerMock.mockResolvedValue(null);
+    mockRequestVoucher.mockResolvedValue(null);
 
     const request = {} as NextRequest;
 
@@ -161,8 +160,8 @@ describe("withVoucherHandler", () => {
       mockContext,
     );
 
-    expect(generateClientAssertion).toHaveBeenCalledWith(mockLogger);
-    expect(requestVoucher).toHaveBeenCalledWith(mockLogger);
+    expect(mockGenerateClientAssertion).toHaveBeenCalledOnce();
+    expect(mockRequestVoucher).toHaveBeenCalledOnce();
     expect(handleUnauthorizedErrorResponse).toHaveBeenCalledWith(
       "No voucher provided",
     );
@@ -170,7 +169,7 @@ describe("withVoucherHandler", () => {
   });
 
   it("should return internal error response on exception", async () => {
-    generateClientAssertionInnerMock.mockImplementation(() => {
+    mockGenerateClientAssertion.mockImplementation(() => {
       throw new Error("Assertion error");
     });
 

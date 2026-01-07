@@ -1,14 +1,10 @@
-import {
-  handleBadRequestErrorResponse,
-  handleInternalErrorResponse,
-} from "@io-ipatente/core";
-import { ZodiosError } from "@zodios/core";
-import { AxiosError } from "axios";
+import { BffError, handleInternalErrorResponse } from "@io-ipatente/core";
 import { NextResponse } from "next/server";
 import { Session } from "next-auth";
 import { describe, expect, it, vi } from "vitest";
 
 import { Pratica } from "../../../../generated/bff-openapi";
+import { retrievePractices } from "../../../../lib/bff/business";
 import { GET } from "../route";
 
 const mockSession: Session = {
@@ -25,15 +21,16 @@ const mockNextAuthRequest = {
 };
 
 const mockRequest = {} as Request;
-const retrievePracticesInnerMock = vi.fn();
 
 vi.mock("../../../../auth", () => ({
   auth: (handler) => () => handler(mockNextAuthRequest, {}),
 }));
 
 vi.mock("../../../../lib/bff/business", () => ({
-  retrievePractices: vi.fn(() => retrievePracticesInnerMock),
+  retrievePractices: vi.fn(),
 }));
+
+const retrievePracticesMock = vi.mocked(retrievePractices);
 
 vi.mock(import("@io-ipatente/core"), async (importOriginal) => {
   const mod = await importOriginal();
@@ -64,7 +61,7 @@ describe("GET /api/practices", () => {
         tipoPratica: { codice: "AX", descrizione: "description" },
       },
     ];
-    retrievePracticesInnerMock.mockResolvedValue(mockPractices);
+    retrievePracticesMock.mockResolvedValue(mockPractices);
 
     const response = (await GET(mockRequest, {
       params: {},
@@ -75,35 +72,34 @@ describe("GET /api/practices", () => {
     await expect(response.json()).resolves.toEqual(mockPractices);
   });
 
-  it("should handle AxiosError by returning a response with error details", async () => {
-    const axiosError = new AxiosError("Network Error");
-    axiosError.status = 500;
-    retrievePracticesInnerMock.mockResolvedValue(axiosError);
-
-    const response = await GET(mockRequest, {});
-
-    expect(response).toBeInstanceOf(NextResponse);
-    expect(response.status).toBe(500);
-    await expect(response.json()).resolves.toEqual({
-      detail: axiosError.message,
-      status: axiosError.status,
-    });
-  });
-
-  it("should handle ZodiosError by invoking handleBadRequestErrorResponse", async () => {
-    const zodiosError = new ZodiosError("Bad Request Error");
-    retrievePracticesInnerMock.mockResolvedValue(zodiosError);
+  it("should handle DgMotError by returning an internal error response", async () => {
+    const error = new Error("Failed to retrieve practices");
+    retrievePracticesMock.mockRejectedValue(error);
 
     await GET(mockRequest, {});
 
-    expect(handleBadRequestErrorResponse).toHaveBeenCalledWith(
-      zodiosError.message,
+    expect(handleInternalErrorResponse).toHaveBeenCalledWith(
+      "PracticesRetrieveError",
+      error,
+    );
+  });
+
+  it("should handle zod validation error by invoking handleInternalErrorResponse", async () => {
+    // Mock invalid data that will fail Zod validation
+    const invalidData = { invalid: "data" };
+    retrievePracticesMock.mockResolvedValue(invalidData);
+
+    await GET(mockRequest, {});
+
+    expect(handleInternalErrorResponse).toHaveBeenCalledWith(
+      "PracticesRetrieveError",
+      expect.any(BffError),
     );
   });
 
   it("should handle generic errors by invoking handleInternalErrorResponse", async () => {
-    const error = new Error("Unexpected Error");
-    retrievePracticesInnerMock.mockRejectedValue(error);
+    const error = new Error("Generic Error");
+    retrievePracticesMock.mockRejectedValue(error);
 
     await GET(mockRequest, {});
 

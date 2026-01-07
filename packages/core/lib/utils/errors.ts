@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { CoreLogger } from "../types";
 import {
   HTTP_STATUS_BAD_REQUEST,
   HTTP_STATUS_FORBIDDEN,
@@ -70,3 +71,47 @@ export const handleUnauthorizedErrorResponse = (detail: string): NextResponse =>
     },
     { status: HTTP_STATUS_UNAUTHORIZED },
   );
+
+export class DgMotError extends ManagedInternalError {
+  constructor(message: string, error?: unknown) {
+    super(`[DG_MOT] ${message}`, error);
+  }
+}
+
+export class PdndError extends ManagedInternalError {
+  constructor(message: string, error?: unknown) {
+    super(`[PDND] ${message}`, error);
+  }
+}
+
+export class BffError extends ManagedInternalError {
+  constructor(message: string, error?: unknown) {
+    super(`[BFF] ${message}`, error);
+  }
+}
+
+export class FimsError extends ManagedInternalError {
+  constructor(message: string, error?: unknown) {
+    super(`[FIMS] ${message}`, error);
+  }
+}
+
+export const handlerErrorLog =
+  (logger: CoreLogger) =>
+  (logPrefix: string, e: unknown): void => {
+    if (e instanceof ManagedInternalError) {
+      logger.error(
+        `${logPrefix}, caused by: ${e.message} , additionalDetails: ${e.additionalDetails}`,
+      );
+      return;
+    } else if (e instanceof Error) {
+      logger.error(`${logPrefix}, caused by: `, e);
+      return;
+    } else {
+      logger.error(
+        `${logPrefix} , caused by: unknown error ,additionalDetails: ${JSON.stringify(
+          e,
+        )}`,
+      );
+    }
+  };

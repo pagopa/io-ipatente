@@ -3,12 +3,11 @@ import { Pagamento } from "@/generated/bff-openapi";
 import { retrievePayments } from "@/lib/bff/business";
 import { logger } from "@/lib/bff/logger";
 import {
-  handleBadRequestErrorResponse,
+  BffError,
   handleInternalErrorResponse,
+  handlerErrorLog,
   withTestUserAndVoucherInternalHandler,
 } from "@io-ipatente/core";
-import { ZodiosError } from "@zodios/core";
-import { AxiosError } from "axios";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -21,7 +20,7 @@ export const GET = auth(
   withTestUserAndVoucherInternalHandler(logger)(
     async (_request: Request, { additionalDataJWS, testUser, voucher }) => {
       try {
-        const res = await retrievePayments(logger)(
+        const res = await retrievePayments(
           additionalDataJWS,
           voucher.access_token,
           testUser,
@@ -29,32 +28,22 @@ export const GET = auth(
 
         const payments = z.array(Pagamento).safeParse(res);
 
-        if (payments.success) {
-          return NextResponse.json(payments.data);
-        }
-
-        if (res instanceof AxiosError) {
-          return NextResponse.json(
-            { detail: res.message, status: res.status },
-            { status: res.status },
+        if (!payments.success) {
+          throw new BffError(
+            "Validation failed: Invalid payments data from DG_MOT",
+            payments.error,
           );
         }
 
-        if (res instanceof ZodiosError) {
-          return handleBadRequestErrorResponse(res.message);
-        }
+        return NextResponse.json(payments.data);
+      } catch (error) {
+        handlerErrorLog(logger)(
+          "An Error has occurred while retrieving user payments [Internal]",
+          error,
+        );
 
         return handleInternalErrorResponse(
-          "PaymentsInternalRetrieveError",
-          res,
-        );
-      } catch (error) {
-        logger.error(
-          `An Error has occurred while retrieving user payments, caused by: `,
-          { error },
-        );
-        return handleInternalErrorResponse(
-          "PaymentsInternalRetrieveError",
+          "InternalPaymentsRetrieveError",
           error,
         );
       }

@@ -1,14 +1,10 @@
-import {
-  handleBadRequestErrorResponse,
-  handleInternalErrorResponse,
-} from "@io-ipatente/core";
-import { ZodiosError } from "@zodios/core";
-import { AxiosError } from "axios";
+import { BffError, handleInternalErrorResponse } from "@io-ipatente/core";
 import { NextResponse } from "next/server";
 import { Session } from "next-auth";
 import { describe, expect, it, vi } from "vitest";
 
 import { Pagamento } from "../../../../generated/bff-openapi";
+import { retrievePayments } from "../../../../lib/bff/business";
 import { GET } from "../route";
 
 const mockSession: Session = {
@@ -25,15 +21,16 @@ const mockNextAuthRequest = {
 };
 
 const mockRequest = {} as Request;
-const retrievePaymentsInnerMock = vi.fn();
 
 vi.mock("../../../../auth", () => ({
   auth: (handler) => () => handler(mockNextAuthRequest, {}),
 }));
 
 vi.mock("../../../../lib/bff/business", () => ({
-  retrievePayments: vi.fn(() => retrievePaymentsInnerMock),
+  retrievePayments: vi.fn(),
 }));
+
+const retrievePaymentsMock = vi.mocked(retrievePayments);
 
 vi.mock(import("@io-ipatente/core"), async (importOriginal) => {
   const mod = await importOriginal();
@@ -71,7 +68,7 @@ describe("GET /api/payments", () => {
         tariffario: "ABC",
       },
     ];
-    retrievePaymentsInnerMock.mockResolvedValue(mockPayments);
+    retrievePaymentsMock.mockResolvedValue(mockPayments);
 
     const response = (await GET(mockRequest, {
       params: {},
@@ -82,35 +79,34 @@ describe("GET /api/payments", () => {
     await expect(response.json()).resolves.toEqual(mockPayments);
   });
 
-  it("should handle AxiosError by returning a response with error details", async () => {
-    const axiosError = new AxiosError("Network Error");
-    axiosError.status = 500;
-    retrievePaymentsInnerMock.mockResolvedValue(axiosError);
-
-    const response = await GET(mockRequest, {});
-
-    expect(response).toBeInstanceOf(NextResponse);
-    expect(response.status).toBe(500);
-    await expect(response.json()).resolves.toEqual({
-      detail: axiosError.message,
-      status: axiosError.status,
-    });
-  });
-
-  it("should handle ZodiosError by invoking handleBadRequestErrorResponse", async () => {
-    const zodiosError = new ZodiosError("Bad Request Error");
-    retrievePaymentsInnerMock.mockResolvedValue(zodiosError);
+  it("should handle DgMotError by returning an internal error response", async () => {
+    const error = new Error("Failed to retrieve payments");
+    retrievePaymentsMock.mockRejectedValue(error);
 
     await GET(mockRequest, {});
 
-    expect(handleBadRequestErrorResponse).toHaveBeenCalledWith(
-      zodiosError.message,
+    expect(handleInternalErrorResponse).toHaveBeenCalledWith(
+      "PaymentsRetrieveError",
+      error,
+    );
+  });
+
+  it("should handle zod validation error by invoking handleInternalErrorResponse", async () => {
+    // Mock invalid data that will fail Zod validation
+    const invalidData = { invalid: "data" };
+    retrievePaymentsMock.mockResolvedValue(invalidData);
+
+    await GET(mockRequest, {});
+
+    expect(handleInternalErrorResponse).toHaveBeenCalledWith(
+      "PaymentsRetrieveError",
+      expect.any(BffError),
     );
   });
 
   it("should handle generic errors by invoking handleInternalErrorResponse", async () => {
-    const error = new Error("Unexpected Error");
-    retrievePaymentsInnerMock.mockRejectedValue(error);
+    const error = new Error("Generic Error");
+    retrievePaymentsMock.mockRejectedValue(error);
 
     await GET(mockRequest, {});
 
