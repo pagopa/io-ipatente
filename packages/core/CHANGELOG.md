@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 1.0.0
+
+### Major Changes
+
+- d9c10b4: centralized error logging and improve error ownership
+
 ## 0.9.0
 
 ### Minor Changes
