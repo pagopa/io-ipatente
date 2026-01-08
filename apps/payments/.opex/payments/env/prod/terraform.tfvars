@@ -4,8 +4,8 @@ env_short = "p"
 tags = {
   CreatedBy      = "Terraform"
   Environment    = "Prod"
-  Owner          = "IO"
+  BusinessUnit   = "App IO"
   ManagementTeam = "IO Enti & Servizi"
   Source         = "https://github.com/pagopa/io-ipatente"
-  CostCenter     = "TS310 - PAGAMENTI & SERVIZI"
+  CostCenter     = "TS000 - Tecnologia e Servizi"
 }
