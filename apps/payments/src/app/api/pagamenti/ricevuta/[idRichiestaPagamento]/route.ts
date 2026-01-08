@@ -3,12 +3,12 @@ import { EsitoStampaTelematica } from "@/generated/bff-openapi";
 import { retrievePaymentReceipt } from "@/lib/bff/business";
 import { logger } from "@/lib/bff/logger";
 import {
+  BffError,
   handleBadRequestErrorResponse,
   handleInternalErrorResponse,
+  handlerErrorLog,
   withJWTAuthAndVoucherHandler,
 } from "@io-ipatente/core";
-import { ZodiosError } from "@zodios/core";
-import { AxiosError } from "axios";
 import { NextResponse } from "next/server";
 
 /**
@@ -27,7 +27,7 @@ export const GET = auth(
           );
         }
 
-        const res = await retrievePaymentReceipt(logger)(
+        const res = await retrievePaymentReceipt(
           additionalDataJWS,
           voucher.access_token,
           params.idRichiestaPagamento,
@@ -36,27 +36,20 @@ export const GET = auth(
 
         const payments = EsitoStampaTelematica.safeParse(res);
 
-        if (payments.success) {
-          return NextResponse.json(payments.data);
-        }
-
-        if (res instanceof AxiosError) {
-          return NextResponse.json(
-            { detail: res.message, status: res.status },
-            { status: res.status },
+        if (!payments.success) {
+          throw new BffError(
+            "Validation failed: Invalid payment receipt data from DG_MOT",
+            payments.error,
           );
         }
 
-        if (res instanceof ZodiosError) {
-          return handleBadRequestErrorResponse(res.message);
-        }
-
-        return handleInternalErrorResponse("PaymentReceiptError", res);
+        return NextResponse.json(payments.data);
       } catch (error) {
-        logger.error(
-          `An Error has occurred while retrieving a payment receipt, caused by: `,
+        handlerErrorLog(logger)(
+          "An Error has occurred while retrieving a payment receipt",
           { error },
         );
+
         return handleInternalErrorResponse("PaymentReceiptError", error);
       }
     },

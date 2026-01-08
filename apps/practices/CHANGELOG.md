@@ -1,5 +1,14 @@
 # io-ipatente-practices
 
+## 1.1.3
+
+### Patch Changes
+
+- bc75e1f: Updated browserslist database
+- d9c10b4: centralized error logging and improve error ownership
+- Updated dependencies [d9c10b4]
+  - @io-ipatente/core@1.0.0
+
 ## 1.1.2
 
 ### Patch Changes

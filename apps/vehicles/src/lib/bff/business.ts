@@ -1,22 +1,26 @@
-import { CoreLogger } from "@io-ipatente/core";
+import { DgMotError } from "@io-ipatente/core";
+import { ZodiosError } from "@zodios/core";
 
 import { getExternalApiClient } from "./client";
 
-export const retrieveVehicles =
-  (logger: CoreLogger) =>
-  async (additionalDataJWS: string, token: string, fiscalCode: string) => {
-    try {
-      return await getExternalApiClient().getInfoVeicoli({
-        headers: {
-          "Agid-JWT-TrackingEvidence": additionalDataJWS,
-          Authorization: `Bearer ${token}`,
-          codiceFiscale: fiscalCode,
-        },
-      });
-    } catch (error) {
-      logger.error(
-        `An Error has occurred while retrieving vehicles, caused by: ${error}`,
-      );
-      return error;
+export const retrieveVehicles = async (
+  additionalDataJWS: string,
+  token: string,
+  fiscalCode: string,
+) => {
+  try {
+    return await getExternalApiClient().getInfoVeicoli({
+      headers: {
+        "Agid-JWT-TrackingEvidence": additionalDataJWS,
+        Authorization: `Bearer ${token}`,
+        codiceFiscale: fiscalCode,
+      },
+    });
+  } catch (error) {
+    if (error instanceof ZodiosError) {
+      throw new DgMotError("Failed zod validation of vehicles", error);
     }
-  };
+
+    throw new DgMotError("Failed to retrieve vehicles", error);
+  }
+};

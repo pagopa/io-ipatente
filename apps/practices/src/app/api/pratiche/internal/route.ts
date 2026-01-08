@@ -3,12 +3,11 @@ import { Pratica } from "@/generated/bff-openapi";
 import { retrievePractices } from "@/lib/bff/business";
 import { logger } from "@/lib/bff/logger";
 import {
-  handleBadRequestErrorResponse,
+  BffError,
   handleInternalErrorResponse,
+  handlerErrorLog,
   withTestUserAndVoucherInternalHandler,
 } from "@io-ipatente/core";
-import { ZodiosError } from "@zodios/core";
-import { AxiosError } from "axios";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -21,7 +20,7 @@ export const GET = auth(
   withTestUserAndVoucherInternalHandler(logger)(
     async (_request: Request, { additionalDataJWS, testUser, voucher }) => {
       try {
-        const res = await retrievePractices(logger)(
+        const res = await retrievePractices(
           additionalDataJWS,
           voucher.access_token,
           testUser,
@@ -29,32 +28,22 @@ export const GET = auth(
 
         const practices = z.array(Pratica).safeParse(res);
 
-        if (practices.success) {
-          return NextResponse.json(practices.data);
-        }
-
-        if (res instanceof AxiosError) {
-          return NextResponse.json(
-            { detail: res.message, status: res.status },
-            { status: res.status },
+        if (!practices.success) {
+          throw new BffError(
+            "Validation failed: Invalid practices data from DG_MOT",
+            practices.error,
           );
         }
 
-        if (res instanceof ZodiosError) {
-          return handleBadRequestErrorResponse(res.message);
-        }
+        return NextResponse.json(practices.data);
+      } catch (error) {
+        handlerErrorLog(logger)(
+          "An Error has occurred while retrieving user practices [Internal]",
+          error,
+        );
 
         return handleInternalErrorResponse(
-          "PracticesInternalRetrieveError",
-          res,
-        );
-      } catch (error) {
-        logger.error(
-          `An Error has occurred while retrieving user practices, caused by: `,
-          { error },
-        );
-        return handleInternalErrorResponse(
-          "PracticesInternalRetrieveError",
+          "InternalPracticesRetrieveError",
           error,
         );
       }
