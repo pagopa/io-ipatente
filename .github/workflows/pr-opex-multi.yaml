@@ -7,11 +7,15 @@ on:
     types: [opened, synchronize]
     paths:
       - ".github/workflows/pr-opex-multi.yaml"
-      - "apps/vehicles/openapi/bff-openapi.yaml"
-      - "apps/vehicles/.opex/**"
       - "apps/licences/openapi/bff-openapi.yaml"
       - "apps/licences/.opex/**"
-
+      - "apps/payments/openapi/bff-openapi.yaml"
+      - "apps/payments/.opex/**"
+      - "apps/practices/openapi/bff-openapi.yaml"
+      - "apps/practices/.opex/**"
+      - "apps/vehicles/openapi/bff-openapi.yaml"
+      - "apps/vehicles/.opex/**"
+      
 concurrency:
   group: ipatente-opex-pr
   cancel-in-progress: false
@@ -53,6 +57,30 @@ jobs:
             else
             
               echo "changed_apps=${changed_apps} licences" >> $GITHUB_ENV
+            fi
+          fi
+      
+      - name: Check changes for Payments Application
+        id: check_payments
+        run: |
+          if echo "${{ steps.get_changed_files.outputs.changed_files }}" | grep -qE 'apps/payments/openapi/bff-openapi.yaml|\apps/payments/.opex/|\.github/workflows/pr-opex-multi.yaml'; then
+            if [ -z "${changed_apps}" ]; then
+              echo "changed_apps=payments" >> $GITHUB_ENV
+            else
+            
+              echo "changed_apps=${changed_apps} payments" >> $GITHUB_ENV
+            fi
+          fi
+
+      - name: Check changes for Practices Application
+        id: check_practices
+        run: |
+          if echo "${{ steps.get_changed_files.outputs.changed_files }}" | grep -qE 'apps/practices/openapi/bff-openapi.yaml|\apps/practices/.opex/|\.github/workflows/pr-opex-multi.yaml'; then
+            if [ -z "${changed_apps}" ]; then
+              echo "changed_apps=practices" >> $GITHUB_ENV
+            else
+            
+              echo "changed_apps=${changed_apps} practices" >> $GITHUB_ENV
             fi
           fi
 

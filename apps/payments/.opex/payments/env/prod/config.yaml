@@ -1,0 +1,23 @@
+oa3_spec: apps/payments/openapi/bff-openapi.yaml
+name: payments_api_iopatente
+location: Italy North
+timespan: 10m
+evaluation_frequency: 20 # default 10
+evaluation_time_window: 40 # default 20
+event_occurrences: 2 # default 1
+data_source: /subscriptions/ec285037-c673-4f58-b594-d7c480da4e8b/resourceGroups/io-p-itn-common-rg-01/providers/Microsoft.Network/applicationGateways/io-p-itn-agw-01
+action_groups:
+  - /subscriptions/ec285037-c673-4f58-b594-d7c480da4e8b/resourceGroups/io-p-itn-svc-rg-01/providers/Microsoft.Insights/actiongroups/io-p-svc-offcall-ag-01
+overrides:
+  hosts:
+    - payments.ipatente.io.pagopa.it
+  endpoints:
+    /pagamenti:
+      availability_threshold: 0.9 # Default: 99%
+      availability_evaluation_frequency: 30 # Default: 10
+      availability_evaluation_time_window: 50 # Default: 20
+      availability_event_occurrences: 3 # Default: 1
+      response_time_threshold: 1 # Default: 1
+      response_time_evaluation_frequency: 35 # Default: 10
+      response_time_evaluation_time_window: 55 # Default: 20
+      response_time_event_occurrences: 3 # Default: 1
