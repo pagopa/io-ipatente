@@ -59,3 +59,7 @@ yarn-error.log*
 
 # Auto generated client
 generated
+
+
+# PNPM
+.pnpm-store

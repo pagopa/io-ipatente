@@ -30,6 +30,7 @@
     "test:coverage": "vitest run --coverage"
   },
   "devDependencies": {
+    "@auth/core": "^0.37.2",
     "@pagopa/eslint-config": "^4.0.1",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^22.7.8",
