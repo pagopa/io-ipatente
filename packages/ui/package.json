@@ -42,6 +42,7 @@
     "@mui/lab": "^5.0.0-alpha.140",
     "@mui/material": "^5.14.5",
     "@mui/system": "^5.14.5",
+    "@mui/utils": "^5.16.6",
     "@pagopa/eslint-config": "^4.0.1",
     "@pagopa/mui-italia": "^1.5.0",
     "@storybook/addon-essentials": "^8.3.4",
@@ -88,6 +89,7 @@
     "@mui/lab": "*",
     "@mui/material": "*",
     "@mui/system": "*",
+    "@mui/utils": "*",
     "@pagopa/mui-italia": "*",
     "react": "*",
     "react-dom": "*"
