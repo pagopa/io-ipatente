@@ -49,12 +49,7 @@ export interface Configuration {
   OIDC_CLIENT_ID: string;
   OIDC_CLIENT_REDIRECT_URI: string;
   OIDC_CLIENT_SECRET: string;
-
   OIDC_ISSUER_URL: string;
-  OIDC_MOCK_FORCED_ENABLE?: boolean;
-
-  OIDC_MOCK_JWT_PRIVATE_KEY?: string;
-  OIDC_MOCK_JWT_PUBLIC_KEY?: string;
 }
 
 export const getConfiguration = (): Configuration => ({
@@ -124,7 +119,4 @@ export const getConfiguration = (): Configuration => ({
   OIDC_CLIENT_REDIRECT_URI: process.env.OIDC_CLIENT_REDIRECT_URI as string,
   OIDC_CLIENT_SECRET: process.env.OIDC_CLIENT_SECRET as string,
   OIDC_ISSUER_URL: process.env.OIDC_ISSUER_URL as string,
-  OIDC_MOCK_FORCED_ENABLE: process.env.OIDC_MOCK_FORCED_ENABLE === "true",
-  OIDC_MOCK_JWT_PRIVATE_KEY: process.env.OIDC_MOCK_JWT_PRIVATE_KEY as string,
-  OIDC_MOCK_JWT_PUBLIC_KEY: process.env.OIDC_MOCK_JWT_PUBLIC_KEY as string,
 });
