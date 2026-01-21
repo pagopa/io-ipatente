@@ -20,29 +20,20 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup yarn
-        run: corepack enable
-
       - name: Setup Node.js environment
-        uses: actions/setup-node@1a4442cacd436585916779262731d5b162bc6ec7 # v3
-        with:
-          node-version-file: ".node-version"
-          cache: "yarn"
-          cache-dependency-path: |
-            yarn.lock
-            package.json
-            apps/**/package.json
-            packages/**/package.json
+        uses: pagopa/dx/.github/actions/node-setup@0fd2b15f5b61751fa433be93682e4a48779b600b
+        env:
+          TURBO_CACHE_DIR: .turbo
 
-      - name: Install Dependencies
-        run: yarn install --immutable
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Create Release Pull Request or Tag
         id: changesets
         uses: changesets/action@c8bada60c408975afd1a20b3db81d6eee6789308 # v1.4.9
         with:
-          version: yarn run version
-          publish: yarn run release
+          version: pnpm run version
+          publish: pnpm run release
           commit: "ci(changesets): version packages"
           createGithubReleases: false
         env:
@@ -81,33 +72,21 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup yarn
-        if: ${{ env.SKIP_RELEASE_NO_PACK != 'true' }}
-        run: corepack enable
-
       - name: Setup Node.js environment
-        if: ${{ env.SKIP_RELEASE_NO_PACK != 'true' }}
-        uses: actions/setup-node@1a4442cacd436585916779262731d5b162bc6ec7 # v3
-        with:
-          node-version-file: ".node-version"
-          cache: "yarn"
-          cache-dependency-path: |
-            yarn.lock
-            package.json
-            apps/**/package.json
-            packages/**/package.json
+        uses: pagopa/dx/.github/actions/node-setup@0fd2b15f5b61751fa433be93682e4a48779b600b
+        env:
+          TURBO_CACHE_DIR: .turbo
 
       - name: Install dependencies
-        if: ${{ env.SKIP_RELEASE_NO_PACK != 'true' }}
-        run: yarn
+        run: pnpm install --frozen-lockfile
 
       - name: Build
         if: ${{ env.SKIP_RELEASE_NO_PACK != 'true' }}
-        run: yarn build --filter ${{ matrix.package.name }}
+        run: pnpm build --filter ${{ matrix.package.name }}
 
       - name: Package
         if: ${{ env.SKIP_RELEASE_NO_PACK != 'true' }}
-        run: yarn workspace ${{ matrix.package.name }} run build:package
+        run: pnpm workspace ${{ matrix.package.name }} run build:package
 
       - name: Create release
         if: ${{ env.SKIP_RELEASE_NO_PACK != 'true' }}
