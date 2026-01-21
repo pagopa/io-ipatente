@@ -19,7 +19,7 @@
     "dev": "next dev",
     "dev:log": "next dev | pnpm dlx pino-pretty",
     "build": "next build",
-    "build:pre-package": "cp -r .next/static .next/standalone/apps/vehicles/.next && cp -r public .next/standalone/apps/vehicles && cp -r .next/standalone/node_modules .next/standalone/apps/backoffice/",
+    "build:pre-package": "cp -r .next/static .next/standalone/apps/vehicles/.next && cp -r public .next/standalone/apps/vehicles && cp -r .next/standalone/node_modules .next/standalone/apps/vehicles/",
     "build:package": "pnpm build:pre-package && (cd .next/standalone/apps/vehicles && mkdir .next/server/app/it && zip -r -q ../../../../${npm_package_name}-${npm_package_version}.zip . -x package.json)",
     "start": "next start",
     "generate": "rimraf src/generated && mkdir -p src/generated && npm-run-all 'generate:*'",
