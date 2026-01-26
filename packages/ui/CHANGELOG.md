@@ -1,5 +1,11 @@
 # @io-ipatente/ui
 
+## 0.9.5
+
+### Patch Changes
+
+- eb8e14d: pnpm migration
+
 ## 0.9.4
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 1.0.1
+
+### Patch Changes
+
+- eb8e14d: pnpm migration
+
 ## 1.0.0
 
 ### Major Changes
