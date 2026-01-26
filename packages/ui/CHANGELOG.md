@@ -1,5 +1,11 @@
 # @io-ipatente/ui
 
+## 0.9.6
+
+### Patch Changes
+
+- d39f9e8: empty patch bump for restarting release
+
 ## 0.9.5
 
 ### Patch Changes
