@@ -86,7 +86,7 @@ jobs:
 
       - name: Package
         if: ${{ env.SKIP_RELEASE_NO_PACK != 'true' }}
-        run: pnpm workspace ${{ matrix.package.name }} run build:package
+        run: pnpm --filter ${{ matrix.package.name }} build:package
 
       - name: Create release
         if: ${{ env.SKIP_RELEASE_NO_PACK != 'true' }}
