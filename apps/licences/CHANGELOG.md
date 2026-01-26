@@ -1,5 +1,14 @@
 # io-ipatente-licences
 
+## 1.2.5
+
+### Patch Changes
+
+- d39f9e8: empty patch bump for restarting release
+- Updated dependencies [d39f9e8]
+  - @io-ipatente/core@1.0.2
+  - @io-ipatente/ui@0.9.6
+
 ## 1.2.4
 
 ### Patch Changes

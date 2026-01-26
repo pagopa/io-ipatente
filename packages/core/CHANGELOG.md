@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 1.0.2
+
+### Patch Changes
+
+- d39f9e8: empty patch bump for restarting release
+
 ## 1.0.1
 
 ### Patch Changes
