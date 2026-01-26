@@ -1,5 +1,14 @@
 # io-ipatente-practices
 
+## 1.1.4
+
+### Patch Changes
+
+- eb8e14d: pnpm migration
+- Updated dependencies [eb8e14d]
+  - @io-ipatente/core@1.0.1
+  - @io-ipatente/ui@0.9.5
+
 ## 1.1.3
 
 ### Patch Changes
