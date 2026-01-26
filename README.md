@@ -26,13 +26,13 @@ This project requires specific versions of the following tools. To make sure you
   node --version
   ```
 
-- **Yarn**
+- **pnpm**
 
-  Yarn must be installed using [Corepack](https://yarnpkg.com/getting-started/install), included by default in `Node.js`.
+  pnpm must be installed using [Corepack](https://pnpm.io/getting-started/install), included by default in `Node.js`.
 
   ```sh
   corepack enable
-  yarn --version
+  pnpm --version
   ```
 
 - **Terraform**
@@ -62,17 +62,17 @@ To test the `NextJS App` locally:
 
 ```bash
 # to install the dependencies
-yarn
+pnpm
 # to generate the TypeScript models based on OpenAPI specs
-yarn workspace <prj-name> generate
+pnpm --filter <prj-name> generate
 # to build all projects
-yarn build
+pnpm build
 ```
 
 3. **Run the Web App**. Run _(from the root folder)_ the following command
 
 ```bash
-yarn workspace <prj-name> dev
+pnpm --filter <prj-name> dev
 ```
 
 ### Mocking data with MSW
@@ -98,5 +98,5 @@ Each Pull Request that includes changes that require a version bump should inclu
 To create a new `changeset` file run the following command from the project root:
 
 ```bash
-yarn changeset
+pnpm changeset
 ```
