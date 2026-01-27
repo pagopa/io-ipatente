@@ -1,5 +1,11 @@
 # io-ipatente-practices
 
+## 1.1.6
+
+### Patch Changes
+
+- ca5c496: empty release to rerun pipelines
+
 ## 1.1.5
 
 ### Patch Changes
