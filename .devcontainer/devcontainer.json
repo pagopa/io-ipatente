@@ -24,7 +24,8 @@
     "set-workspace-as-safe-dir": "git config --global --add safe.directory ${containerWorkspaceFolder}"
   },
   "containerEnv": {
-    "COREPACK_ENABLE_DOWNLOAD_PROMPT": "0"
+    "COREPACK_ENABLE_DOWNLOAD_PROMPT": "0",
+    "ARM_SUBSCRIPTION_ID": "${localEnv:ARM_SUBSCRIPTION_ID}"
   },
   "customizations": {
     "vscode": {
