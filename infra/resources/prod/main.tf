@@ -18,6 +18,19 @@ module "key_vault" {
   tags = local.tags
 }
 
+module "monitor" {
+  source              = "../_modules/monitor"
+  prefix              = local.prefix
+  env_short           = local.env_short
+  location_short      = local.location_short
+  domain              = local.domain
+  location            = local.location
+  resource_group_name = data.azurerm_resource_group.main.name
+  key_vault_id        = module.key_vault.key_vault_id
+
+  tags = local.tags
+}
+
 module "vehicles_app_service" {
   source              = "../_modules/vehicles_app_service"
   prefix              = local.prefix
