@@ -17,7 +17,7 @@ module "vehicles" {
 
   resource_group_name = var.resource_group_name
   health_check_path   = "/api/info"
-  node_version        = 20
+  node_version        = 22
 
   subnet_cidr                          = var.vehicles_snet_cidr
   subnet_pep_id                        = var.peps_snet_id
