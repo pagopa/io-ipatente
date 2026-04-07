@@ -4,7 +4,7 @@
 
 module "licences" {
   source  = "pagopa-dx/azure-app-service/azurerm"
-  version = "~> 0.0"
+  version = "~> 2.0"
 
   environment = {
     prefix          = var.prefix
@@ -35,7 +35,7 @@ module "licences" {
 
   sticky_app_setting_names = local.licences.sticky_settings
 
-  tier = local.licences.tier
+  size = "P0v3"
 
   tags = var.tags
 }

@@ -4,7 +4,7 @@
 
 module "payments" {
   source  = "pagopa-dx/azure-app-service/azurerm"
-  version = "~> 0.0"
+  version = "~> 2.0"
 
   environment = {
     prefix          = var.prefix
@@ -35,7 +35,7 @@ module "payments" {
 
   sticky_app_setting_names = local.payments.sticky_settings
 
-  tier = local.payments.tier
+  size = "P0v3"
 
   tags = var.tags
 }

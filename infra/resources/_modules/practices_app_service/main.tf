@@ -4,7 +4,7 @@
 
 module "practices" {
   source  = "pagopa-dx/azure-app-service/azurerm"
-  version = "~> 0.0"
+  version = "~> 2.0"
 
   environment = {
     prefix          = var.prefix
@@ -35,7 +35,7 @@ module "practices" {
 
   sticky_app_setting_names = local.practices.sticky_settings
 
-  tier = local.practices.tier
+  size = "P0v3"
 
   tags = var.tags
 }
