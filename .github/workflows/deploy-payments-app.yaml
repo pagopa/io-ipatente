@@ -1,0 +1,20 @@
+name: Deploy (payments-app)
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    name: Deploy
+    uses: pagopa/dx/.github/workflows/release-azure-appsvc-v1.yaml@c83fca9e58de618f3a80820d075faba16a2c1a0b
+    secrets: inherit
+    with:
+      workspace_name: io-ipatente-payments
+      environment: app-prod
+      resource_group_name: io-p-itn-ipatente-rg-01
+      web_app_name: io-p-itn-ipatente-payments-app-01
+      disable_auto_staging_deploy: true
+    permissions:
+      attestations: write
+      contents: read
+      id-token: write
