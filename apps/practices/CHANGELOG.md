@@ -1,5 +1,11 @@
 # io-ipatente-practices
 
+## 1.1.7
+
+### Patch Changes
+
+- 934b9d9: upgrade practices app service to version 22 (lts) of node
+
 ## 1.1.6
 
 ### Patch Changes
