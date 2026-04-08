@@ -9,7 +9,7 @@ jobs:
     uses: pagopa/dx/.github/workflows/release-azure-appsvc-v1.yaml@c83fca9e58de618f3a80820d075faba16a2c1a0b
     secrets: inherit
     with:
-      workspace_name: practices
+      workspace_name: io-ipatente-practices
       environment: app-prod-cd
       resource_group_name: io-p-itn-ipatente-rg-01
       web_app_name: io-p-itn-ipatente-practices-app-01
