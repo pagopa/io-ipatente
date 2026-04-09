@@ -4,7 +4,7 @@
 
 module "vehicles" {
   source  = "pagopa-dx/azure-app-service/azurerm"
-  version = "~> 0.0"
+  version = "~> 2.0"
 
   environment = {
     prefix          = var.prefix
@@ -17,7 +17,7 @@ module "vehicles" {
 
   resource_group_name = var.resource_group_name
   health_check_path   = "/api/info"
-  node_version        = 20
+  node_version        = 22
 
   subnet_cidr                          = var.vehicles_snet_cidr
   subnet_pep_id                        = var.peps_snet_id
@@ -35,7 +35,7 @@ module "vehicles" {
 
   sticky_app_setting_names = local.vehicles.sticky_settings
 
-  tier = local.vehicles.tier
+  size = "P0v3"
 
   tags = var.tags
 }
