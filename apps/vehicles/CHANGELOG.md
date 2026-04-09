@@ -1,5 +1,11 @@
 # vehicles
 
+## 1.1.7
+
+### Patch Changes
+
+- 04b8dbb: upgrade vehicles app service to version 22 (lts) of node
+
 ## 1.1.6
 
 ### Patch Changes
