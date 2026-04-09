@@ -1,5 +1,11 @@
 # io-ipatente-licences
 
+## 1.2.6
+
+### Patch Changes
+
+- ea6629a: upgrade licences app service to version 22 (lts) of node
+
 ## 1.2.5
 
 ### Patch Changes
