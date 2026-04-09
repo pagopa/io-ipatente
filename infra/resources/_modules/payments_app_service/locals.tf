@@ -1,7 +1,6 @@
 
 locals {
   payments = {
-    tier = "standard"
     base_app_settings = {
       NODE_ENV                 = "production"
       WEBSITE_RUN_FROM_PACKAGE = "1"

@@ -4,7 +4,7 @@
 
 module "payments" {
   source  = "pagopa-dx/azure-app-service/azurerm"
-  version = "~> 0.0"
+  version = "~> 2.0"
 
   environment = {
     prefix          = var.prefix
@@ -17,7 +17,7 @@ module "payments" {
 
   resource_group_name = var.resource_group_name
   health_check_path   = "/api/info"
-  node_version        = 20
+  node_version        = 22
 
   subnet_cidr                          = var.payments_snet_cidr
   subnet_pep_id                        = var.peps_snet_id
@@ -34,10 +34,10 @@ module "payments" {
   slot_app_settings = merge(local.payments.base_app_settings, local.payments.staging_app_setting)
 
   sticky_app_setting_names = local.payments.sticky_settings
-
-  tier = local.payments.tier
-
-  tags = var.tags
+  
+  size                     = "P0v3"
+  
+  tags                     = var.tags
 }
 
 module "payments_app_service_roles" {
