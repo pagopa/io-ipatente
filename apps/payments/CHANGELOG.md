@@ -1,5 +1,11 @@
 # io-ipatente-payments
 
+## 1.1.6
+
+### Patch Changes
+
+- 17171e5: upgrade payments app service to version 22 (lts) of node
+
 ## 1.1.5
 
 ### Patch Changes
