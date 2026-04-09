@@ -21,6 +21,7 @@
     "build": "next build",
     "build:pre-package": "cp -r .next/static .next/standalone/apps/licences/.next && cp -r public .next/standalone/apps/licences && cp -r .next/standalone/node_modules .next/standalone/apps/licences/",
     "build:package": "pnpm build:pre-package && (cd .next/standalone/apps/licences && mkdir .next/server/app/it && zip -r -q ../../../../${npm_package_name}-${npm_package_version}.zip . -x package.json)",
+    "postbuild": "rm -f .next/standalone/apps/licences/package.json",
     "start": "next start",
     "generate": "rimraf src/generated && mkdir -p src/generated && npm-run-all 'generate:*'",
     "generate:api-models": "tsx ./generate.ts"
@@ -60,7 +61,7 @@
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
     "@types/jsonwebtoken": "^9.0.6",
-    "@types/node": "^20",
+    "@types/node": "^22",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@vitejs/plugin-react": "^4.3.1",

@@ -1,9 +1,9 @@
 {
   "licences_app_service.licences": {
-    "hash": "cdd72986f914c691abfbd82fef35e18bdecc31e6a7eafbb072af0bf23e4f2b61",
-    "version": "0.2.1",
+    "hash": "e5514c9783da26447069284ed4da6b916a6d1a0dbb8cfc1d0f2625adca0b0e52",
+    "version": "2.1.0",
     "name": "azure_app_service",
-    "source": "https://registry.terraform.io/modules/pagopa-dx/azure-app-service/azurerm/0.2.1"
+    "source": "https://registry.terraform.io/modules/pagopa-dx/azure-app-service/azurerm/2.1.0"
   },
   "licences_app_service.licences_app_service_autoscaler": {
     "hash": "b1b16764fc57ccf0d91a2375a11719e3dac5fd2a7bf77e12cbc290866deac044",
