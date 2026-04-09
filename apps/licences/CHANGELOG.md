@@ -1,5 +1,11 @@
 # io-ipatente-licences
 
+## 1.2.7
+
+### Patch Changes
+
+- a33434b: remove unused GHA and scripts build:pre-package and build:package
+
 ## 1.2.6
 
 ### Patch Changes

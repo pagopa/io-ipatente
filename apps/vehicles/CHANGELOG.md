@@ -1,5 +1,11 @@
 # vehicles
 
+## 1.1.8
+
+### Patch Changes
+
+- a33434b: remove unused GHA and scripts build:pre-package and build:package
+
 ## 1.1.7
 
 ### Patch Changes
