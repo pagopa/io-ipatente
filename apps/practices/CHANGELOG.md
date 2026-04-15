@@ -1,5 +1,11 @@
 # io-ipatente-practices
 
+## 1.1.9
+
+### Patch Changes
+
+- 8eef18c: Update support email
+
 ## 1.1.8
 
 ### Patch Changes
