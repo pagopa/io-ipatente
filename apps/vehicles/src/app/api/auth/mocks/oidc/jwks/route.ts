@@ -1,6 +1,7 @@
-import { getMockForbiddenResponse } from "@/app/api/auth/mocks/mocks-util";
 import { getConfiguration } from "@io-ipatente/core";
 import { NextResponse } from "next/server";
+
+import { getMockForbiddenResponse } from "@/app/api/auth/mocks/mocks-util";
 
 export async function GET() {
   if (!getConfiguration().OIDC_MOCK_FORCED_ENABLE)

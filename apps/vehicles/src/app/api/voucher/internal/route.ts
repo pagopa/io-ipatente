@@ -1,11 +1,12 @@
-import { auth } from "@/auth";
-import { logger } from "@/lib/bff/logger";
 import {
   handleInternalErrorResponse,
   handlerErrorLog,
   withTestUserAndVoucherInternalHandler,
 } from "@io-ipatente/core";
 import { NextResponse } from "next/server";
+
+import { auth } from "@/auth";
+import { logger } from "@/lib/bff/logger";
 
 export const dynamic = "force-dynamic";
 

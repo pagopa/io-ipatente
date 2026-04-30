@@ -2,9 +2,9 @@ import { CANCEL_CALLBACK_URL, getConfiguration } from "@io-ipatente/core";
 import { ConsentView } from "@io-ipatente/ui";
 import Box from "@mui/material/Box";
 import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from "next/router";
 import { useCallback } from "react";
 
 export default function Consent() {

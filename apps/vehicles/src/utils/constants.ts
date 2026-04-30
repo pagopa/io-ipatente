@@ -1,17 +1,19 @@
 import type { ParseKeys } from "i18next";
 
+import { IconType } from "@io-ipatente/ui";
+import { ChipProps } from "@mui/material/Chip";
+
 import {
   EsitoRevisioneEnum,
   ExtraMassaEnum,
   NeopatentatiEnum,
   TipoVeicoloEnum,
 } from "@/generated/bff-openapi";
-import { IconType } from "@io-ipatente/ui";
-import { ChipProps } from "@mui/material/Chip";
 
-export const vehicleByType: {
-  [K in TipoVeicoloEnum]: { icon: IconType; label: ParseKeys };
-} = {
+export const vehicleByType: Record<
+  TipoVeicoloEnum,
+  { icon: IconType; label: ParseKeys }
+> = {
   [TipoVeicoloEnum.Enum.A]: {
     icon: "car1",
     label: "vehicle.type.A",
@@ -90,9 +92,7 @@ export const vehicleByType: {
   },
 };
 
-export const extraMassByCode: {
-  [K in ExtraMassaEnum]: ParseKeys;
-} = {
+export const extraMassByCode: Record<ExtraMassaEnum, ParseKeys> = {
   [ExtraMassaEnum.Enum.EXTRAM_MSG_001]: "extraMass.EXTRAM_MSG_001",
   [ExtraMassaEnum.Enum.EXTRAM_MSG_002]: "extraMass.EXTRAM_MSG_002",
   [ExtraMassaEnum.Enum.EXTRAM_MSG_003]: "extraMass.EXTRAM_MSG_003",
@@ -101,21 +101,20 @@ export const extraMassByCode: {
   [ExtraMassaEnum.Enum.EXTRAM_MSG_006]: "extraMass.EXTRAM_MSG_006",
 };
 
-export const noviceByCode: {
-  [K in NeopatentatiEnum]: ParseKeys;
-} = {
+export const noviceByCode: Record<NeopatentatiEnum, ParseKeys> = {
   [NeopatentatiEnum.Enum.NEOP_MSG_001]: "novice.EXTRAM_MSG_001",
   [NeopatentatiEnum.Enum.NEOP_MSG_002]: "novice.EXTRAM_MSG_002",
   [NeopatentatiEnum.Enum.NEOP_MSG_003]: "novice.EXTRAM_MSG_003",
 };
 
-export const inspectionResultByCode: {
-  [K in EsitoRevisioneEnum]: {
+export const inspectionResultByCode: Record<
+  EsitoRevisioneEnum,
+  {
     color: ChipProps["color"];
     icon: IconType;
     label: ParseKeys;
-  };
-} = {
+  }
+> = {
   [EsitoRevisioneEnum.Enum.REV_MSG_001]: {
     color: "success",
     icon: "tickCircleBold",
