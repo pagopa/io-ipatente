@@ -1,7 +1,3 @@
-import { auth } from "@/auth";
-import { Pagamento } from "@/generated/bff-openapi";
-import { retrievePayments } from "@/lib/bff/business";
-import { logger } from "@/lib/bff/logger";
 import {
   BffError,
   handleInternalErrorResponse,
@@ -10,6 +6,11 @@ import {
 } from "@io-ipatente/core";
 import { NextResponse } from "next/server";
 import { z } from "zod";
+
+import { auth } from "@/auth";
+import { Pagamento } from "@/generated/bff-openapi";
+import { retrievePayments } from "@/lib/bff/business";
+import { logger } from "@/lib/bff/logger";
 
 export const dynamic = "force-dynamic";
 

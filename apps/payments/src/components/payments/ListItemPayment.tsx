@@ -1,8 +1,9 @@
-import { Pagamento } from "@/generated/bff-openapi";
-import { BADGES_CONFIG_BY_CODE } from "@/utils/consts";
 import { BadgeProps, ListItemAction } from "@io-ipatente/ui";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
+
+import { Pagamento } from "@/generated/bff-openapi";
+import { BADGES_CONFIG_BY_CODE } from "@/utils/consts";
 
 export interface ListItemPaymentProps {
   data: Pagamento;

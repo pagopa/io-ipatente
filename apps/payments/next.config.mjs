@@ -1,29 +1,26 @@
 /** @type {import('next').NextConfig} */
-import path from "node:path";
+
 import nextI18NextConfig from "./next-i18next.config.js";
 
 const i18n = nextI18NextConfig.i18n;
 
 const nextConfig = {
-  reactStrictMode: true,
-  transpilePackages: ["@pagopa/mui-italia"],
   i18n,
   output: "standalone",
-  experimental: {
-    instrumentationHook: true,
-    serverComponentsExternalPackages: ["pino"],
-  },
+  reactStrictMode: true,
   async redirects() {
     return [
-      // Redirect root to vehicles base path
+      // Redirect root to payments base path
       {
-        source: "/",
-        destination: "/payments",
         basePath: false,
+        destination: "/payments",
         permanent: false,
+        source: "/",
       },
     ];
   },
+  serverExternalPackages: ["pino"],
+  transpilePackages: ["@pagopa/mui-italia"],
   // https://github.com/mswjs/msw/issues/1801
   // Setting `resolve.alias` to `false` will tell webpack to ignore a module.
   // `msw/node` is a server-only module that exports methods not available in the `browser`.

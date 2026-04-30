@@ -1,3 +1,15 @@
+import { CardInfo, Icon, SectionTitle } from "@io-ipatente/ui";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Skeleton from "@mui/material/Skeleton";
+import Stack from "@mui/material/Stack";
+import { saveAs } from "file-saver";
+import { GetServerSideProps } from "next";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from "next/router";
+import { useCallback, useMemo } from "react";
+
 import AppLayout from "@/components/layouts/AppLayout";
 import { IUVListDetails } from "@/components/payment-details/IUVListDetails";
 import { PaymentSectionDetails } from "@/components/payment-details/PaymentSectionDetails";
@@ -6,17 +18,6 @@ import { Pagamento } from "@/generated/bff-openapi";
 import { usePaymentReceipt } from "@/hooks/usePaymentReceipt";
 import { usePayments } from "@/hooks/usePayments";
 import { PRINT_RECIPT_STATUSES_LIST } from "@/utils/consts";
-import { CardInfo, Icon, SectionTitle } from "@io-ipatente/ui";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Skeleton from "@mui/material/Skeleton";
-import Stack from "@mui/material/Stack";
-import { saveAs } from "file-saver";
-import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useCallback, useMemo } from "react";
 
 import { GetLayoutProps } from "../_app";
 
