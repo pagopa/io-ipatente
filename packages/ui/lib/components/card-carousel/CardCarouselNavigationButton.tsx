@@ -2,10 +2,10 @@ import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 
 import { Icon, IconType } from "../icon";
 
-type CardCarouselNavigationButtonProps = { icon: IconType } & Pick<
+type CardCarouselNavigationButtonProps = Pick<
   IconButtonProps,
   "aria-label" | "className"
->;
+> & { icon: IconType };
 
 export const CardCarouselNavigationButton = ({
   icon,

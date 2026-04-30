@@ -7,16 +7,6 @@ import {
   Typography,
 } from "@mui/material";
 
-interface PageHeaderBreadcrumbProps {
-  label: string;
-  routePath?: string;
-}
-
-export interface PageHeaderBreadcrumbsProps {
-  breadcrumbs: PageHeaderBreadcrumbProps[];
-  onBreadcrumbClick?: (routePath: string) => void;
-}
-
 export interface PageHeaderBackButtonProps {
   label: string;
   onBackClick: () => void;
@@ -29,21 +19,31 @@ export interface PageHeaderBaseProps {
   title: string;
 }
 
-export type PageHeaderProps = (
-  | {
-      backButtonProps: PageHeaderBackButtonProps;
-      breadcrumbsProps?: undefined;
-    }
-  | {
-      backButtonProps?: undefined;
-      breadcrumbsProps: PageHeaderBreadcrumbsProps;
-    }
-  | {
-      backButtonProps?: undefined;
-      breadcrumbsProps?: undefined;
-    }
-) &
-  PageHeaderBaseProps;
+export interface PageHeaderBreadcrumbsProps {
+  breadcrumbs: PageHeaderBreadcrumbProps[];
+  onBreadcrumbClick?: (routePath: string) => void;
+}
+
+export type PageHeaderProps = PageHeaderBaseProps &
+  (
+    | {
+        backButtonProps: PageHeaderBackButtonProps;
+        breadcrumbsProps?: undefined;
+      }
+    | {
+        backButtonProps?: undefined;
+        breadcrumbsProps: PageHeaderBreadcrumbsProps;
+      }
+    | {
+        backButtonProps?: undefined;
+        breadcrumbsProps?: undefined;
+      }
+  );
+
+interface PageHeaderBreadcrumbProps {
+  label: string;
+  routePath?: string;
+}
 
 export const DATA_TEST_ID_PREFIX = "io-ipatente-page-header";
 

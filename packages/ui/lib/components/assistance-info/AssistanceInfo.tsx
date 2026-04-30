@@ -13,20 +13,20 @@ import { Fragment } from "react";
 
 import { Icon, IconType } from "../icon";
 
-interface ContactItem {
-  description?: string;
-  href: string;
-  icon: IconType;
-  title: string;
-  value: string;
+export interface AssistanceInfoProps {
+  items: AssistanceItem[];
 }
 
 interface AssistanceItem {
   contacts: ContactItem[];
 }
 
-export interface AssistanceInfoProps {
-  items: AssistanceItem[];
+interface ContactItem {
+  description?: string;
+  href: string;
+  icon: IconType;
+  title: string;
+  value: string;
 }
 
 export const AssistanceInfo = ({ items }: AssistanceInfoProps) => (

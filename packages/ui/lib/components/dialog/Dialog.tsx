@@ -10,11 +10,11 @@ import { ReactNode } from "react";
 
 import { Icon } from "../icon";
 
-export type DialogProps = {
+export type DialogProps = Pick<MuiDialogProps, "open"> & {
   body: ReactNode;
   onClose: () => void;
   title: string;
-} & Pick<MuiDialogProps, "open">;
+};
 
 export const Dialog = ({ body, onClose, open, title }: DialogProps) => (
   <MuiDialog fullWidth={true} maxWidth="md" onClose={onClose} open={open}>

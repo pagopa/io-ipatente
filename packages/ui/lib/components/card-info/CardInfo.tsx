@@ -10,6 +10,21 @@ import {
 } from "@mui/material";
 import React, { ReactNode } from "react";
 
+export interface CardInfoItem {
+  /** footer text _(will be displayed on bottom)_ */
+  footerText?: string;
+  /** Item icon */
+  icon?: ReactNode;
+  /** Item label */
+  label: ReactNode | string;
+  /** Item value */
+  value: ReactNode | string;
+}
+
+export interface CardInfoItemsProps {
+  items: CardInfoItem[];
+}
+
 export interface CardInfoProps {
   /** Generic bottom content _(will be displayed after `items`)_ */
   bottomContent?: ReactNode;
@@ -21,21 +36,6 @@ export interface CardInfoProps {
   title?: string;
   /** Generic top content _(will be displayed before `items`)_ */
   topContent?: ReactNode;
-}
-
-export interface CardInfoItemsProps {
-  items: CardInfoItem[];
-}
-
-export interface CardInfoItem {
-  /** footer text _(will be displayed on bottom)_ */
-  footerText?: string;
-  /** Item icon */
-  icon?: ReactNode;
-  /** Item label */
-  label: ReactNode | string;
-  /** Item value */
-  value: ReactNode | string;
 }
 
 const DATA_TEST_ID_PREFIX = "io-ipatente-card-info";

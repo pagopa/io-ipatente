@@ -2,10 +2,10 @@ import { Fab, FabProps, Typography } from "@mui/material";
 
 import { Icon, IconType } from "../icon";
 
-export type FloatingButtonProps = { icon: IconType; label?: string } & Pick<
+export type FloatingButtonProps = Pick<
   FabProps,
   "color" | "disabled" | "onClick" | "size"
->;
+> & { icon: IconType; label?: string };
 
 export const FloatingButton = ({
   icon,

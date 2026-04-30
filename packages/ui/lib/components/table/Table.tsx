@@ -8,7 +8,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { CSSProperties, ReactElement } from "react";
 
-type WidthFactor = 0.1 | 0.2 | 0.3 | 0.4 | 0.5 | 0.6 | 0.7 | 0.8 | 0.9;
 export interface Column<T> {
   columnStyle?: CSSProperties;
   key: keyof T;
@@ -16,11 +15,12 @@ export interface Column<T> {
   title: string;
   widthFactor?: WidthFactor;
 }
-
 export interface TableProps<T> {
   columns: Column<T>[];
   rows: T[];
 }
+
+type WidthFactor = 0.1 | 0.2 | 0.3 | 0.4 | 0.5 | 0.6 | 0.7 | 0.8 | 0.9;
 
 export const Table = <T,>({ columns, rows }: TableProps<T>) => (
   <TableContainer component={Paper}>
