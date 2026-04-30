@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
 import { User } from "next-auth";
+import { NextRequest, NextResponse } from "next/server";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { Voucher } from "../../interop/voucher";

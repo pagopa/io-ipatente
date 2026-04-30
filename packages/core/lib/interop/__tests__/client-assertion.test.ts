@@ -19,8 +19,8 @@ const mockUuidv4 = vi.mocked(uuidv4);
 describe("Client Assertion", () => {
   const mockClientAssertion: ClientAssertion = {
     additionalData: {
-      LoA: "high",
       aud: "eServiceAudience",
+      LoA: "high",
       userID: "mockUserID",
       userLocation: "mockUserLocation",
     },
@@ -127,8 +127,8 @@ describe("Client Assertion", () => {
 
 describe("generateAdditionalDataJWS", () => {
   const mockAdditionalData = {
-    LoA: "high",
     aud: "eServiceAudience",
+    LoA: "high",
     userID: "mockUserID",
     userLocation: "mockUserLocation",
   };

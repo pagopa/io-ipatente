@@ -1,16 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, Mock, vi } from "vitest";
 
 import { Voucher } from "../../../interop/voucher";
 import { CoreLogger } from "../../../types/logger";
 import { withJWTAuthAndVoucherHandler } from "../../with-jwt-auth-voucher-handler";
 import { withTestUserAndVoucherInternalHandler } from "../with-test-user-and-voucher-internal-handler";
 
+type Context = WithJWTAuthAndVoucherHandlerParameters[1];
+
 type WithJWTAuthAndVoucherHandlerParameters = Parameters<
   ReturnType<ReturnType<typeof withJWTAuthAndVoucherHandler>>
 >;
-
-type Context = WithJWTAuthAndVoucherHandlerParameters[1];
 
 const mockVoucherHandlerImplementation = vi.fn();
 

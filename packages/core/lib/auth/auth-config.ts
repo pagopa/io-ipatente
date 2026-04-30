@@ -2,24 +2,24 @@ import type { DefaultSession, NextAuthConfig } from "next-auth";
 
 import { getConfiguration } from "../config";
 import { CoreLogger } from "../types/logger";
-import { SIGNIN_URL, handlerErrorLog } from "../utils";
+import { handlerErrorLog, SIGNIN_URL } from "../utils";
 
 declare module "next-auth" {
-  interface User {
-    familyName?: string;
-    fiscalCode: string;
-    givenName?: string;
+  interface Profile {
+    assertion?: string;
+    assertion_ref?: string;
+    fiscal_code: string;
+    public_key?: string;
   }
 
   interface Session {
     user: DefaultSession["user"] & User;
   }
 
-  interface Profile {
-    assertion?: string;
-    assertion_ref?: string;
-    fiscal_code: string;
-    public_key?: string;
+  interface User {
+    familyName?: string;
+    fiscalCode: string;
+    givenName?: string;
   }
 }
 

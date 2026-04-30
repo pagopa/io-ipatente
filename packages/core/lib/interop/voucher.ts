@@ -2,6 +2,18 @@ import axios from "axios";
 
 import { PdndError } from "../utils";
 
+/**
+ * PDND Interoperability **Voucher** interface
+ */
+export interface Voucher {
+  /** Voucher spendable on the provider's e-service */
+  access_token: string;
+  /** Voucher duration _(seconds)_ */
+  expires_in: number;
+  /** Type of access token represented by the voucher */
+  token_type: "Bearer";
+}
+
 export interface VoucherRequest {
   /** Authorization server endpoint url */
   authServerEndpointUrl: string;
@@ -16,18 +28,6 @@ export interface VoucherRequest {
     /** Grant type (`client_credentials`) */
     grant_type: string;
   };
-}
-
-/**
- * PDND Interoperability **Voucher** interface
- */
-export interface Voucher {
-  /** Voucher spendable on the provider's e-service */
-  access_token: string;
-  /** Voucher duration _(seconds)_ */
-  expires_in: number;
-  /** Type of access token represented by the voucher */
-  token_type: "Bearer";
 }
 
 export const requestVoucher = async (vr: VoucherRequest) => {

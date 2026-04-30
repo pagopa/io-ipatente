@@ -30,13 +30,26 @@ export interface ClientAssertion {
 }
 
 /**
+ * Result interface for `generateClientAssertion` function
+ */
+export interface ClientAssertionResult {
+  /**
+   * JWS needed to get additional information that is not part of the standard fields provided by
+   * PDND Interoperability within the client assertion.
+   */
+  additionalDataJWS: string;
+  /** JWS with standard fields provided by PDND Interoperability within the client assertion. */
+  clientAssertionJWS: string;
+}
+
+/**
  * Client assertion Additional data _(required for GovWay authentication)_.
  */
 interface ClientAssertionAdditionalData {
-  /** security or guarantee level adopted in the user's domain authentication process */
-  LoA: string;
   /** PDND Interoperability e-service audience _(get it on e-service technical specifications)_ */
   aud: string;
+  /** security or guarantee level adopted in the user's domain authentication process */
+  LoA: string;
   /** user unique identifier within the domain of the user who determined the need for the request to the provider's e-service */
   userID: string;
   /** user unique location identifier within the domain of the user who determined the need for the request to the provider's e-service */
@@ -53,12 +66,6 @@ interface ClientAssertionAdditionalDataDigest {
   };
 }
 
-interface ClientAssertionHeader {
-  alg: string;
-  kid: string;
-  typ: string;
-}
-
 /** Interface for `generateAdditionalDataJWS` request */
 interface ClientAssertionAdditionalDataRequest {
   additionalData: ClientAssertionAdditionalData;
@@ -69,17 +76,10 @@ interface ClientAssertionAdditionalDataRequest {
   purposeId: string;
 }
 
-/**
- * Result interface for `generateClientAssertion` function
- */
-export interface ClientAssertionResult {
-  /**
-   * JWS needed to get additional information that is not part of the standard fields provided by
-   * PDND Interoperability within the client assertion.
-   */
-  additionalDataJWS: string;
-  /** JWS with standard fields provided by PDND Interoperability within the client assertion. */
-  clientAssertionJWS: string;
+interface ClientAssertionHeader {
+  alg: string;
+  kid: string;
+  typ: string;
 }
 
 export const generateClientAssertion = ({

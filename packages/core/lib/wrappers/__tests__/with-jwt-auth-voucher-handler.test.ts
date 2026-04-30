@@ -1,17 +1,17 @@
-import { NextRequest, NextResponse } from "next/server";
 import { User } from "next-auth";
-import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
+import { NextRequest, NextResponse } from "next/server";
+import { beforeEach, describe, expect, it, Mock, vi } from "vitest";
 
 import { Voucher } from "../../interop/voucher";
 import { CoreLogger } from "../../types/logger";
 import { withJWTAuthAndVoucherHandler } from "../with-jwt-auth-voucher-handler";
 
+type Context = WithJWTAuthAndVoucherHandlerParameters[1];
+
+type NextAuthRequest = WithJWTAuthAndVoucherHandlerParameters[0];
 type WithJWTAuthAndVoucherHandlerParameters = Parameters<
   ReturnType<ReturnType<typeof withJWTAuthAndVoucherHandler>>
 >;
-
-type NextAuthRequest = WithJWTAuthAndVoucherHandlerParameters[0];
-type Context = WithJWTAuthAndVoucherHandlerParameters[1];
 
 const mockVoucherHandlerImplementation = vi.fn();
 
@@ -67,7 +67,7 @@ describe("withJWTAndVoucherHandler", () => {
   it("should call handler with user and voucher context", async () => {
     const response = (await withJWTAuthAndVoucherHandler(mockLogger)(
       mockHandler,
-    )(mockNextRequest, {})) as Response;
+    )(mockNextRequest, {} as unknown as Context)) as Response;
 
     expect(mockHandler).toHaveBeenCalledWith(mockNextRequest, {
       additionalDataJWS: mockAdditionalDataJWS,
@@ -90,7 +90,7 @@ describe("withJWTAndVoucherHandler", () => {
 
     const response = (await withJWTAuthAndVoucherHandler(mockLogger)(
       mockHandler,
-    )(mockNextRequest, {})) as Response;
+    )(mockNextRequest, {} as unknown as Context)) as Response;
 
     expect(mockHandler).not.toHaveBeenCalled();
     expect(response.status).toBe(401);
@@ -107,7 +107,7 @@ describe("withJWTAndVoucherHandler", () => {
 
     const response = (await withJWTAuthAndVoucherHandler(mockLogger)(
       mockHandler,
-    )(mockNextRequest, {})) as Response;
+    )(mockNextRequest, {} as unknown as Context)) as Response;
 
     expect(mockHandler).not.toHaveBeenCalled();
     expect(response.status).toBe(401);
@@ -124,7 +124,7 @@ describe("withJWTAndVoucherHandler", () => {
 
     const response = (await withJWTAuthAndVoucherHandler(mockLogger)(
       mockHandler,
-    )(mockNextRequest, {})) as Response;
+    )(mockNextRequest, {} as unknown as Context)) as Response;
 
     expect(mockHandler).not.toHaveBeenCalled();
     expect(response.status).toBe(500);

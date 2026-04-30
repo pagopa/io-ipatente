@@ -2,7 +2,7 @@ import axios from "axios";
 import { describe, expect, it, vi } from "vitest";
 
 import { PdndError } from "../../utils/errors";
-import { Voucher, VoucherRequest, requestVoucher } from "../voucher";
+import { requestVoucher, Voucher, VoucherRequest } from "../voucher";
 
 vi.mock("axios");
 
