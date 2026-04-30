@@ -1,6 +1,7 @@
-import { createApiClient } from "@/generated/bff-openapi";
 import { getConfiguration, getKeepAliveAxiosConfig } from "@io-ipatente/core";
 import { ApiOf } from "@zodios/core";
+
+import { createApiClient } from "@/generated/bff-openapi";
 
 const { BFF_API_BASE_PATH, BFF_API_BASE_URL } = getConfiguration();
 
