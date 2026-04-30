@@ -1,6 +1,7 @@
+import { useQuery } from "@tanstack/react-query";
+
 import { client } from "@/common/client";
 import { Patenti } from "@/generated/bff-openapi";
-import { useQuery } from "@tanstack/react-query";
 
 const fetchLicences = async (): Promise<Patenti> => {
   const response = await client.getPuntiPatente();

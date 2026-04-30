@@ -1,7 +1,3 @@
-import { auth } from "@/auth";
-import { Patenti } from "@/generated/bff-openapi";
-import { retrieveLicences } from "@/lib/bff/business";
-import { logger } from "@/lib/bff/logger";
 import {
   BffError,
   handleInternalErrorResponse,
@@ -9,6 +5,11 @@ import {
   withTestUserAndVoucherInternalHandler,
 } from "@io-ipatente/core";
 import { NextResponse } from "next/server";
+
+import { auth } from "@/auth";
+import { Patenti } from "@/generated/bff-openapi";
+import { retrieveLicences } from "@/lib/bff/business";
+import { logger } from "@/lib/bff/logger";
 
 export const dynamic = "force-dynamic";
 

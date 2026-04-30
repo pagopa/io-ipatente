@@ -1,9 +1,3 @@
-import AppLayout from "@/components/layouts/AppLayout";
-import { LicenceMovementDetail } from "@/components/licence-details/LicenceMovementDetail";
-import { LicenceSectionDetails } from "@/components/licence-details/LicenceSectionDetails";
-import { GenericError } from "@/components/shared/GenericError";
-import { MovPat, Patenti } from "@/generated/bff-openapi";
-import { useLicences } from "@/hooks/useLicences";
 import {
   CardInfo,
   Column,
@@ -14,10 +8,17 @@ import {
 } from "@io-ipatente/ui";
 import { Chip, Link, Skeleton, Stack, Typography } from "@mui/material";
 import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from "next/router";
 import { useCallback, useMemo } from "react";
+
+import AppLayout from "@/components/layouts/AppLayout";
+import { LicenceMovementDetail } from "@/components/licence-details/LicenceMovementDetail";
+import { LicenceSectionDetails } from "@/components/licence-details/LicenceSectionDetails";
+import { GenericError } from "@/components/shared/GenericError";
+import { MovPat, Patenti } from "@/generated/bff-openapi";
+import { useLicences } from "@/hooks/useLicences";
 
 import { GetLayoutProps } from "../_app";
 

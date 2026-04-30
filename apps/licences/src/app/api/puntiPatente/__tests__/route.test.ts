@@ -1,6 +1,6 @@
 import { BffError, handleInternalErrorResponse } from "@io-ipatente/core";
-import { NextResponse } from "next/server";
 import { Session } from "next-auth";
+import { NextResponse } from "next/server";
 import { describe, expect, it, vi } from "vitest";
 
 import { Patenti } from "../../../../generated/bff-openapi";

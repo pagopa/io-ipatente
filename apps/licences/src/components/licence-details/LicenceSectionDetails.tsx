@@ -1,5 +1,3 @@
-import { DatiPatente } from "@/generated/bff-openapi";
-import { LICENCE_TOTAL_POINTS } from "@/utils/constants";
 import {
   CardInfo,
   CardInfoItem,
@@ -10,12 +8,15 @@ import {
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
 
-interface MetadataListItem {
-  items: ({ isVisible: boolean } & CardInfoItem)[];
-}
+import { DatiPatente } from "@/generated/bff-openapi";
+import { LICENCE_TOTAL_POINTS } from "@/utils/constants";
 
 export interface LicenceSectionDetailsProps {
   data: DatiPatente;
+}
+
+interface MetadataListItem {
+  items: (CardInfoItem & { isVisible: boolean })[];
 }
 
 export const LicenceSectionDetails = ({ data }: LicenceSectionDetailsProps) => {
