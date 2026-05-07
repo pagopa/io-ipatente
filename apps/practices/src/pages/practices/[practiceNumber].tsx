@@ -1,15 +1,16 @@
+import { CardInfo, SectionTitle } from "@io-ipatente/ui";
+import Skeleton from "@mui/material/Skeleton";
+import Stack from "@mui/material/Stack";
+import { GetServerSideProps } from "next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from "next/router";
+import { useCallback } from "react";
+
 import AppLayout from "@/components/layouts/AppLayout";
 import { PracticeSectionDetails } from "@/components/practice-details/PracticeSectionDetails";
 import { GenericError } from "@/components/shared/GenericError";
 import { Pratica } from "@/generated/bff-openapi";
 import { usePractices } from "@/hooks/usePractices";
-import { CardInfo, SectionTitle } from "@io-ipatente/ui";
-import Skeleton from "@mui/material/Skeleton";
-import Stack from "@mui/material/Stack";
-import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useCallback } from "react";
 
 import { GetLayoutProps } from "../_app";
 

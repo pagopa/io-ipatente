@@ -1,8 +1,9 @@
-import { DatiPatente } from "@/generated/bff-openapi";
-import { LICENCE_TOTAL_POINTS } from "@/utils/constants";
 import { BadgeProps, ListItemAction } from "@io-ipatente/ui";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
+
+import { DatiPatente } from "@/generated/bff-openapi";
+import { LICENCE_TOTAL_POINTS } from "@/utils/constants";
 
 export interface ListItemLicenceProps {
   data: DatiPatente;

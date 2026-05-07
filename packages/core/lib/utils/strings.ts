@@ -6,7 +6,7 @@ export const sanitizeRedirectPath = (origin: string, redirectPath: string) => {
     const redirectUrl = new URL(decodedPath, origin);
 
     return currentUrl.origin === redirectUrl.origin ? redirectUrl : null;
-  } catch (e) {
+  } catch {
     return null;
   }
 };

@@ -6,13 +6,13 @@ import { ThemeProvider } from "@mui/material/styles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { NextPage } from "next";
-import { Router } from "next/router";
 import { SessionProvider } from "next-auth/react";
-import { TFunction, appWithTranslation, useTranslation } from "next-i18next";
+import { appWithTranslation, TFunction, useTranslation } from "next-i18next";
+import { Router } from "next/router";
 import { ReactElement, ReactNode, useState } from "react";
 
 if (process.env.NEXT_PUBLIC_BFF_API_MOCKING === "true") {
-  require("../../mocks");
+  void import("../../mocks");
 }
 
 export interface GetLayoutProps {
@@ -21,13 +21,16 @@ export interface GetLayoutProps {
   t: TFunction;
 }
 
-export type NextPageWithLayout<P = Record<string, never>, IP = P> = {
+export type NextPageWithLayout<P = Record<string, never>, IP = P> = NextPage<
+  P,
+  IP
+> & {
   getLayout?: ({ page, router, t }: GetLayoutProps) => ReactNode;
-} & NextPage<P, IP>;
+};
 
-type AppPropsWithLayout = {
+type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
-} & AppProps;
+};
 
 const FETCH_MAX_RETRIES = 3;
 

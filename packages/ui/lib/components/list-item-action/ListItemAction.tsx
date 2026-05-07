@@ -13,14 +13,22 @@ import {
 
 import { Icon, IconType } from "../icon";
 
-type BaseBadgeProps = Pick<ChipProps, "color" | "label" | "size">;
-
-export type BadgeProps = {
+export type BadgeProps = BaseBadgeProps & {
   icon?: IconType;
-} & BaseBadgeProps;
+};
 
 export type FullBadgeProps = Omit<BadgeProps, "icon"> &
   Required<Pick<BadgeProps, "icon">>;
+
+export type ListItemActionProps =
+  | (ListItemActionBaseProps & {
+      isLoading?: false;
+    })
+  | {
+      isLoading: true;
+    };
+
+type BaseBadgeProps = Pick<ChipProps, "color" | "label" | "size">;
 
 interface ListItemActionBaseProps {
   badges?: BadgeProps[];
@@ -29,14 +37,6 @@ interface ListItemActionBaseProps {
   onClick: () => void;
   value: string;
 }
-
-export type ListItemActionProps =
-  | {
-      isLoading: true;
-    }
-  | ({
-      isLoading?: false;
-    } & ListItemActionBaseProps);
 
 export const ListItemAction = (props: ListItemActionProps) => {
   if (props.isLoading) {

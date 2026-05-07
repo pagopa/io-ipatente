@@ -1,14 +1,15 @@
+import { EmptyState, ListItemAction } from "@io-ipatente/ui";
+import Stack from "@mui/material/Stack";
+import { GetServerSideProps } from "next";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from "next/router";
+import { useCallback } from "react";
+
 import AppLayout from "@/components/layouts/AppLayout";
 import { ListItemLicence } from "@/components/licences/ListItemLicence";
 import { GenericError } from "@/components/shared/GenericError";
 import { useLicences } from "@/hooks/useLicences";
-import { EmptyState, ListItemAction } from "@io-ipatente/ui";
-import Stack from "@mui/material/Stack";
-import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useCallback } from "react";
 
 import { GetLayoutProps } from "../_app";
 

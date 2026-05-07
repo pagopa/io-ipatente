@@ -3,8 +3,8 @@ import {
   handleBadRequestErrorResponse,
   handleInternalErrorResponse,
 } from "@io-ipatente/core";
-import { NextResponse } from "next/server";
 import { Session } from "next-auth";
+import { NextResponse } from "next/server";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { EsitoStampaTelematica } from "../../../../../../generated/bff-openapi";

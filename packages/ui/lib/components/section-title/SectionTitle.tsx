@@ -10,12 +10,12 @@ export interface SectionTitleBaseProps {
 }
 
 export type SectionTitleProps =
+  | (SectionTitleBaseProps & {
+      isLoading?: false;
+    })
   | {
       isLoading: true;
-    }
-  | ({
-      isLoading?: false;
-    } & SectionTitleBaseProps);
+    };
 
 export const SectionTitle = memo((props: SectionTitleProps) => {
   const theme = useTheme();

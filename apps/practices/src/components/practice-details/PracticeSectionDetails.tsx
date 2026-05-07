@@ -1,14 +1,15 @@
-import { Pratica } from "@/generated/bff-openapi";
 import { CardInfo, CardInfoItem } from "@io-ipatente/ui";
 import Chip from "@mui/material/Chip";
 import { useTranslation } from "next-i18next";
 
-interface MetadataListItem {
-  items: ({ isVisible: boolean } & CardInfoItem)[];
-}
+import { Pratica } from "@/generated/bff-openapi";
 
 export interface PracticeSectionDetailsProps {
   data: Pratica;
+}
+
+interface MetadataListItem {
+  items: (CardInfoItem & { isVisible: boolean })[];
 }
 
 export const PracticeSectionDetails = ({

@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
 import { User } from "next-auth";
+import { NextResponse } from "next/server";
 
 import { Voucher } from "../interop/voucher";
 import { AuthRouteHandler, CoreLogger } from "../types";

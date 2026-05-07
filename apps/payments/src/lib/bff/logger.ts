@@ -12,7 +12,7 @@ const baseConfig: LoggerOptions = {
   timestamp: pino.stdTimeFunctions.isoTime,
 };
 
-let pinoLoggerInstance: PinoLogger | null = null;
+let pinoLoggerInstance: null | PinoLogger = null;
 const getPinoInstance = (): PinoLogger =>
   pinoLoggerInstance ?? (pinoLoggerInstance = pino(baseConfig));
 

@@ -1,4 +1,3 @@
-import AppLayout from "@/components/layouts/AppLayout";
 import {
   AssistanceInfo,
   AssistanceInfoProps,
@@ -8,6 +7,8 @@ import { GetServerSideProps } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useMemo } from "react";
+
+import AppLayout from "@/components/layouts/AppLayout";
 
 import { GetLayoutProps } from "../_app";
 

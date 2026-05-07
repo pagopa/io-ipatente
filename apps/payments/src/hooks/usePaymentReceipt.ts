@@ -1,6 +1,7 @@
+import { useQuery } from "@tanstack/react-query";
+
 import { client } from "@/common/client";
 import { EsitoStampaTelematica } from "@/generated/bff-openapi";
-import { useQuery } from "@tanstack/react-query";
 
 const fetchPaymentReceipt = async (
   idRichiestaPagamento: string,

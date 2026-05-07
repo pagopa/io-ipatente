@@ -1,7 +1,3 @@
-import { auth } from "@/auth";
-import { EsitoStampaTelematica } from "@/generated/bff-openapi";
-import { retrievePaymentReceipt } from "@/lib/bff/business";
-import { logger } from "@/lib/bff/logger";
 import {
   BffError,
   handleBadRequestErrorResponse,
@@ -10,6 +6,11 @@ import {
   withJWTAuthAndVoucherHandler,
 } from "@io-ipatente/core";
 import { NextResponse } from "next/server";
+
+import { auth } from "@/auth";
+import { EsitoStampaTelematica } from "@/generated/bff-openapi";
+import { retrievePaymentReceipt } from "@/lib/bff/business";
+import { logger } from "@/lib/bff/logger";
 
 /**
  * @description Retrieve the payment's receipt

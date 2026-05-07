@@ -1,11 +1,12 @@
-import { NextResponse } from "next/server";
 import { Session } from "next-auth";
+import { NextResponse } from "next/server";
 import { describe, expect, it, vi } from "vitest";
 
 import { HTTP_STATUS_UNAUTHORIZED } from "../../utils/constants";
 import { handleUnauthorizedErrorResponse } from "../../utils/errors";
 import { withJWTAuthHandler } from "../with-jwt-auth-handler";
 
+type NextAuthContext = Parameters<ReturnType<typeof withJWTAuthHandler>>[1];
 type NextAuthRequest = Parameters<ReturnType<typeof withJWTAuthHandler>>[0];
 
 vi.mock("next-auth", () => ({
@@ -28,7 +29,7 @@ vi.mock("../../utils/errors", async () => {
 describe("withJWTAuthHandler", () => {
   it("should return unauthorized error response if no session is provided", async () => {
     const mockNextAuthRequest = {} as NextAuthRequest;
-    const mockContext = {};
+    const mockContext = {} as unknown as NextAuthContext;
 
     const mockHandler = vi.fn();
 
@@ -53,7 +54,7 @@ describe("withJWTAuthHandler", () => {
     const mockNextAuthRequest = {
       auth: mockSession,
     } as NextAuthRequest;
-    const mockContext = {};
+    const mockContext = {} as unknown as NextAuthContext;
 
     const mockHandler = vi
       .fn()

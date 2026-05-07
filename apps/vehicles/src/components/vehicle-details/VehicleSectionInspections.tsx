@@ -1,11 +1,12 @@
-import { Revisione } from "@/generated/bff-openapi";
-import { inspectionResultByCode } from "@/utils/constants";
 import { CardCarousel, CardInfo, Icon } from "@io-ipatente/ui";
 import Chip from "@mui/material/Chip";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Typography from "@mui/material/Typography";
 import { useTranslation } from "next-i18next";
+
+import { Revisione } from "@/generated/bff-openapi";
+import { inspectionResultByCode } from "@/utils/constants";
 
 export interface VehicleSectionInspectionsProps {
   inspections?: Revisione[];

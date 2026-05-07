@@ -1,5 +1,6 @@
-import { auth } from "@/auth";
 import { middleware } from "@io-ipatente/core";
+
+import { auth } from "@/auth";
 
 export default auth(middleware);
 

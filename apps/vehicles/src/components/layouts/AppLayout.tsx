@@ -1,8 +1,8 @@
 import { PageHeader, PageHeaderProps } from "@io-ipatente/ui";
 import Box from "@mui/material/Box";
+import { useTranslation } from "next-i18next";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { useTranslation } from "next-i18next";
 import { ReactNode } from "react";
 
 // Dynamic import to avoid the warning relative to the classes mismatch between csr and ssr
@@ -16,10 +16,10 @@ const ScrollToTopButton = dynamic(
   { ssr: false },
 );
 
-type AppLayoutProps = {
+type AppLayoutProps = PageHeaderProps & {
   children: ReactNode;
   enableScrollToTop?: boolean;
-} & PageHeaderProps;
+};
 
 const AppLayout = ({
   children,

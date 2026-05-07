@@ -1,7 +1,8 @@
-import { getMockForbiddenResponse } from "@/app/api/auth/mocks/mocks-util";
 import { getConfiguration } from "@io-ipatente/core";
 import jwt from "jsonwebtoken";
 import { NextResponse } from "next/server";
+
+import { getMockForbiddenResponse } from "@/app/api/auth/mocks/mocks-util";
 
 interface MockTokenPayload {
   aud: string;

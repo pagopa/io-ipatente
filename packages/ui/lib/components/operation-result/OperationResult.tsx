@@ -12,9 +12,12 @@ export interface OperationResultProps {
   title: string;
 }
 
-type OperationResultAction = {
+type OperationResultAction = Pick<
+  ButtonProps,
+  "endIcon" | "onClick" | "startIcon"
+> & {
   label: string;
-} & Pick<ButtonProps, "endIcon" | "onClick" | "startIcon">;
+};
 
 /** Operation result screen component */
 export const OperationResult = ({

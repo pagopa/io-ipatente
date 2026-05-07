@@ -1,10 +1,11 @@
-import { CoperturaRCA } from "@/generated/bff-openapi";
 import { isDueDateValid } from "@io-ipatente/core";
 import { CardInfo, CardInfoItem, CardInfoProps, Icon } from "@io-ipatente/ui";
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
+
+import { CoperturaRCA } from "@/generated/bff-openapi";
 
 export interface VehicleSectionRcaProps {
   rca?: CoperturaRCA;

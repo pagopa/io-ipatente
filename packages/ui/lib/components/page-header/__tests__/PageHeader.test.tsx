@@ -82,15 +82,12 @@ describe("Test PageHeader Component", () => {
     expect(pageHeaderBreadcrumbs).toBeInTheDocument();
     expect(pageHeaderTitle).toHaveTextContent(title);
     expect(pageHeaderRootBreadcrumb).toBeInTheDocument();
-
-    if (pageHeaderRootBreadcrumb) {
-      fireEvent.click(pageHeaderRootBreadcrumb);
-      expect(handleBreadcrumbClick).toHaveBeenCalledTimes(1);
-      expect(handleBreadcrumbClick).toHaveBeenCalledWith(
-        breadcrumbs[0].routePath,
-      );
-      expect(pageHeaderRootBreadcrumb).toHaveTextContent(breadcrumbs[0].label);
-    }
+    fireEvent.click(pageHeaderRootBreadcrumb as HTMLElement);
+    expect(handleBreadcrumbClick).toHaveBeenCalledTimes(1);
+    expect(handleBreadcrumbClick).toHaveBeenCalledWith(
+      breadcrumbs[0].routePath,
+    );
+    expect(pageHeaderRootBreadcrumb).toHaveTextContent(breadcrumbs[0].label);
   });
 
   it("Should not trigger onBreadcrumbClick for a root breadcrumb without routePath", () => {
@@ -115,12 +112,9 @@ describe("Test PageHeader Component", () => {
     );
 
     expect(pageHeaderRootBreadcrumb).toBeInTheDocument();
-
-    if (pageHeaderRootBreadcrumb) {
-      fireEvent.click(pageHeaderRootBreadcrumb);
-      expect(handleBreadcrumbClick).not.toHaveBeenCalled();
-      expect(pageHeaderRootBreadcrumb).toHaveTextContent(breadcrumbs[0].label);
-    }
+    fireEvent.click(pageHeaderRootBreadcrumb as HTMLElement);
+    expect(handleBreadcrumbClick).not.toHaveBeenCalled();
+    expect(pageHeaderRootBreadcrumb).toHaveTextContent(breadcrumbs[0].label);
   });
 
   it("Should render a page header with back button", () => {

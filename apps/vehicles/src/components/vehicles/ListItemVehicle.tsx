@@ -1,9 +1,10 @@
-import { Veicolo } from "@/generated/bff-openapi";
-import { vehicleByType } from "@/utils/constants";
 import { isDueDateValid } from "@io-ipatente/core";
 import { BadgeProps, ListItemAction } from "@io-ipatente/ui";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
+
+import { Veicolo } from "@/generated/bff-openapi";
+import { vehicleByType } from "@/utils/constants";
 
 export interface ListItemVehicleProps {
   data: Veicolo;

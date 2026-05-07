@@ -1,13 +1,13 @@
-import { PropsWithChildren, createContext, useCallback, useState } from "react";
+import { createContext, PropsWithChildren, useCallback, useState } from "react";
 
 import { Dialog, DialogProps } from "../../components";
 
-interface ShowDialogProps extends Omit<DialogProps, "onClose" | "open"> {
-  onClose?: DialogProps["onClose"];
-}
-
 export interface DialogContextProps {
   showDialog: (props: ShowDialogProps) => void;
+}
+
+interface ShowDialogProps extends Omit<DialogProps, "onClose" | "open"> {
+  onClose?: DialogProps["onClose"];
 }
 
 export const DialogContext = createContext<DialogContextProps | undefined>(
@@ -15,7 +15,7 @@ export const DialogContext = createContext<DialogContextProps | undefined>(
 );
 
 export const DialogProvider = ({ children }: PropsWithChildren) => {
-  const [dialogConfig, setDialogConfig] = useState<ShowDialogProps | null>(
+  const [dialogConfig, setDialogConfig] = useState<null | ShowDialogProps>(
     null,
   );
 

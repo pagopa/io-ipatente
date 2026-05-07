@@ -72,27 +72,27 @@ export const handleUnauthorizedErrorResponse = (detail: string): NextResponse =>
     { status: HTTP_STATUS_UNAUTHORIZED },
   );
 
-export class DgMotError extends ManagedInternalError {
-  constructor(message: string, error?: unknown) {
-    super(`[DG_MOT] ${message}`, error);
-  }
-}
-
-export class PdndError extends ManagedInternalError {
-  constructor(message: string, error?: unknown) {
-    super(`[PDND] ${message}`, error);
-  }
-}
-
 export class BffError extends ManagedInternalError {
   constructor(message: string, error?: unknown) {
     super(`[BFF] ${message}`, error);
   }
 }
 
+export class DgMotError extends ManagedInternalError {
+  constructor(message: string, error?: unknown) {
+    super(`[DG_MOT] ${message}`, error);
+  }
+}
+
 export class FimsError extends ManagedInternalError {
   constructor(message: string, error?: unknown) {
     super(`[FIMS] ${message}`, error);
+  }
+}
+
+export class PdndError extends ManagedInternalError {
+  constructor(message: string, error?: unknown) {
+    super(`[PDND] ${message}`, error);
   }
 }
 

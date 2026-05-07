@@ -1,6 +1,6 @@
 import { DgMotError } from "@io-ipatente/core";
 import { ZodiosError } from "@zodios/core";
-import { Mock, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, Mock, vi } from "vitest";
 
 import { retrieveVehicles } from "../business";
 import { getExternalApiClient } from "../client";

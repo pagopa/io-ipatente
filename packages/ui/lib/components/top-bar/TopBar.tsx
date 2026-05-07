@@ -4,13 +4,13 @@ import { ButtonNaked } from "@pagopa/mui-italia";
 
 import Logo from "../../assets/logo.png";
 
+export interface TopBarProps {
+  assistance?: AssistanceProps;
+}
+
 interface AssistanceProps {
   label: string;
   onClick: () => void;
-}
-
-export interface TopBarProps {
-  assistance?: AssistanceProps;
 }
 
 export const TopBar = ({ assistance }: TopBarProps) => (

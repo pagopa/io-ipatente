@@ -11,10 +11,10 @@ import IconCallBold from "./svg/IconCallBold";
 import IconCar1 from "./svg/IconCar1";
 import IconCar1Bold from "./svg/IconCar1Bold";
 import IconCar2 from "./svg/IconCar2";
+import IconCaravan from "./svg/IconCaravan";
 import IconCarCollision from "./svg/IconCarCollision";
 import IconCarGearbox from "./svg/IconCarGearbox";
 import IconCarParking from "./svg/IconCarParking";
-import IconCaravan from "./svg/IconCaravan";
 import IconCloseCircle from "./svg/IconCloseCircle";
 import IconComponent from "./svg/IconComponent";
 import IconDetail from "./svg/IconDetail";
@@ -68,10 +68,10 @@ export const Icons = {
   car1: IconCar1,
   car1Bold: IconCar1Bold,
   car2: IconCar2,
+  caravan: IconCaravan,
   carCollision: IconCarCollision,
   carGearbox: IconCarGearbox,
   carParking: IconCarParking,
-  caravan: IconCaravan,
   closeCircle: IconCloseCircle,
   component: IconComponent,
   detail: IconDetail,
@@ -114,11 +114,11 @@ export const Icons = {
   yacth: IconYacth,
 } as const;
 
-export type IconType = keyof typeof Icons;
-
-export type IconProps = {
+export type IconProps = SvgIconProps & {
   name: IconType;
-} & SvgIconProps;
+};
+
+export type IconType = keyof typeof Icons;
 
 export const Icon = ({ fontSize = "small", name, ...props }: IconProps) => {
   const IconElement = Icons[name];

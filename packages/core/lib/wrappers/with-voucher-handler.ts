@@ -1,14 +1,14 @@
-import { NextResponse } from "next/server";
 import { User } from "next-auth";
+import { NextResponse } from "next/server";
 
 import { getConfiguration } from "../config";
 import { generateClientAssertion } from "../interop/client-assertion";
-import { Voucher, requestVoucher } from "../interop/voucher";
+import { requestVoucher, Voucher } from "../interop/voucher";
 import { CoreLogger } from "../types/logger";
 import {
   handleInternalErrorResponse,
-  handleUnauthorizedErrorResponse,
   handlerErrorLog,
+  handleUnauthorizedErrorResponse,
 } from "../utils/errors";
 
 const {
@@ -47,8 +47,8 @@ export const withVoucherHandler =
     try {
       const clientAssertionResult = generateClientAssertion({
         additionalData: {
-          LoA: "high",
           aud: INTEROP_ESERVICE_AUDIENCE,
+          LoA: "high",
           userID: fiscalCode,
           userLocation: "office", // TODO: to understand what and how to specify
         },

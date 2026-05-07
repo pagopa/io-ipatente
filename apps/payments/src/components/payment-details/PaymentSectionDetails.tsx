@@ -1,15 +1,16 @@
-import { Pagamento } from "@/generated/bff-openapi";
-import { BADGES_CONFIG_BY_CODE } from "@/utils/consts";
 import { CardInfo, CardInfoItem, Icon } from "@io-ipatente/ui";
 import Chip from "@mui/material/Chip";
 import { useTranslation } from "next-i18next";
 
-interface MetadataListItem {
-  items: ({ isVisible: boolean } & CardInfoItem)[];
-}
+import { Pagamento } from "@/generated/bff-openapi";
+import { BADGES_CONFIG_BY_CODE } from "@/utils/consts";
 
 export interface PaymentSectionDetailsProps {
   data: Pagamento;
+}
+
+interface MetadataListItem {
+  items: (CardInfoItem & { isVisible: boolean })[];
 }
 
 export const PaymentSectionDetails = ({ data }: PaymentSectionDetailsProps) => {

@@ -1,4 +1,3 @@
-import { MovPat } from "@/generated/bff-openapi";
 import {
   Chip,
   Divider,
@@ -11,12 +10,14 @@ import {
 import { useTranslation } from "next-i18next";
 import React, { Fragment, ReactNode } from "react";
 
-interface MetadataListItem {
-  items: { isVisible: boolean; label: string; value: ReactNode | string }[];
-}
+import { MovPat } from "@/generated/bff-openapi";
 
 export interface LicenceSectionDetailsProps {
   data: MovPat;
+}
+
+interface MetadataListItem {
+  items: { isVisible: boolean; label: string; value: ReactNode | string }[];
 }
 
 export const LicenceMovementDetail = ({ data }: LicenceSectionDetailsProps) => {

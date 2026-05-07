@@ -1,6 +1,7 @@
+import { useQuery } from "@tanstack/react-query";
+
 import { client } from "@/common/client";
 import { Pratica } from "@/generated/bff-openapi";
-import { useQuery } from "@tanstack/react-query";
 
 const fetchPractices = async (): Promise<Pratica[]> => {
   const response = await client.getPratiche();

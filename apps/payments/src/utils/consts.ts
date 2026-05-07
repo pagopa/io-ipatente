@@ -1,8 +1,9 @@
+import { FullBadgeProps } from "@io-ipatente/ui";
+
 import {
   StatoIuvEnum,
   StatoRichiestaPagamentoEnum,
 } from "@/generated/bff-openapi";
-import { FullBadgeProps } from "@io-ipatente/ui";
 
 export const BADGES_BY_IUV_STATUS: Record<StatoIuvEnum, FullBadgeProps> = {
   A: {
