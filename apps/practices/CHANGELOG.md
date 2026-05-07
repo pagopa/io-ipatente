@@ -1,5 +1,14 @@
 # io-ipatente-practices
 
+## 1.1.10
+
+### Patch Changes
+
+- ff9be44: Chores: upgrade monorepo to Next.js 15 and ESLint 9
+- Updated dependencies [ff9be44]
+  - @io-ipatente/core@1.0.3
+  - @io-ipatente/ui@0.9.7
+
 ## 1.1.9
 
 ### Patch Changes
