@@ -6,4 +6,4 @@
 "@io-ipatente/core": patch
 ---
 
-upgrade nextjs to solve CVE
+upgrade nextjs to resolve CVE
