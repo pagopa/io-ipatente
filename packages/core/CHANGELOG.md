@@ -1,5 +1,11 @@
 # @io-ipatente/core
 
+## 1.0.4
+
+### Patch Changes
+
+- f069fd6: upgrade nextjs to resolve CVE
+
 ## 1.0.3
 
 ### Patch Changes
