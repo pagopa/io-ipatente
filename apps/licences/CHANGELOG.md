@@ -1,5 +1,13 @@
 # io-ipatente-licences
 
+## 1.2.9
+
+### Patch Changes
+
+- f069fd6: upgrade nextjs to resolve CVE
+- Updated dependencies [f069fd6]
+  - @io-ipatente/core@1.0.4
+
 ## 1.2.8
 
 ### Patch Changes
