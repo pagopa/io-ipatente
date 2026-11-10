@@ -1,5 +1,11 @@
 # io-ipatente-practices
 
+## 1.1.12
+
+### Patch Changes
+
+- 68879a9: update the Node version to resolve the CVE
+
 ## 1.1.11
 
 ### Patch Changes

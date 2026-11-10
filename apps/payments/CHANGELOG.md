@@ -1,5 +1,11 @@
 # io-ipatente-payments
 
+## 1.1.10
+
+### Patch Changes
+
+- 68879a9: update the Node version to resolve the CVE
+
 ## 1.1.9
 
 ### Patch Changes
