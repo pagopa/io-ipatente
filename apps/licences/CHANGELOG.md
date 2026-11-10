@@ -1,5 +1,11 @@
 # io-ipatente-licences
 
+## 1.2.10
+
+### Patch Changes
+
+- 68879a9: update the Node version to resolve the CVE
+
 ## 1.2.9
 
 ### Patch Changes
