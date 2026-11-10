@@ -6,7 +6,7 @@ on:
 jobs:
   deploy:
     name: Deploy
-    uses: pagopa/dx/.github/workflows/release-azure-appsvc-v1.yaml@c83fca9e58de618f3a80820d075faba16a2c1a0b
+    uses: pagopa/dx/.github/workflows/release-azure-appsvc-v1.yaml@49cb83094d0f5b7fa206ef7242ef48135d61c82d
     secrets: inherit
     with:
       workspace_name: io-ipatente-payments
